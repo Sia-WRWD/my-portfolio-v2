@@ -1,1 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Motiva+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+
+body {
+    min-height: 100%;
+    height: auto;
+    position: relative;
+    margin: 0;
+    font-family: "Motiva Sans", Arial, Helvetica, sans-serif;
+}
+
+a {
+    color: #ebebeb;
+    text-decoration: none;
+    cursor: pointer;
+}
