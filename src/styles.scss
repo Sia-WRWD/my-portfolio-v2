@@ -28,7 +28,7 @@ body {
     height: auto;
     position: relative;
     font-family: "Motiva Sans", Arial, Helvetica, sans-serif;
-    background: #1b2838;
+    background: #000000;
     text-align: left;
     color: #8F98A0;
     font-size: 14px;
@@ -93,4 +93,9 @@ a {
     margin: 4px;
     min-height: 32px;
     min-width: 32px;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: center;
 }

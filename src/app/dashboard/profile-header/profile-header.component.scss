@@ -1,88 +1,14 @@
-.profile-header-bg {
-    position: relative;
-    max-width: 1018px;
+.profile-header-container {
+    position: absolute;
+    display: flex;
+    margin: auto;
+    width: 992px;
     min-height: 224px;
-    padding-bottom: 0px;
-    margin: 0 auto;
-    background-repeat: no-repeat;
-    background-position: center bottom;
-    // padding-top: 104px;
-    height: 300vh;
-
-    .profile-header-bg-texture {
-        max-width: 976px;
-        min-height: 224px;
-        margin: 0 auto;
-        background: radial-gradient(farthest-side at bottom right, var(--gradient-right), transparent 500px), radial-gradient(farthest-corner at bottom left, var(--gradient-left), transparent 600px);
-        background-color: var(--gradient-background);
-        background-repeat: no-repeat;
-        background-position: center;
-
-        .profile-header {
-            position: relative;
-            max-width: 926px;
-            margin: 0 auto;
-            padding-top: 24px;
-
-            .profile-header-content {
-                position: relative;
-                padding-top: 8px;
-                padding-right: 8px;
-                color: #c4c4c4;
-                font-size: 13px;
-
-                .profile-header-centered-persona {
-                    position: absolute;
-                    left: 186px;
-                    right: 268px;
-                    white-space: nowrap;
-                    padding-left: 18px;
-                    padding-bottom: 18px;
-
-                    .persona-name {
-                        line-height: 40px;
-                        font-size: 24px;
-                        color: #ffffff;
-                        text-overflow: ellipsis;
-                        white-space: nowrap;
-                        overflow: hidden;
-                        font-family: "Motiva Sans", Sans-serif;
-                        font-weight: 200;
-                    }
-
-                    .header-real-name {
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                        white-space: nowrap;
-
-                        bdi {
-                            unicode-bidi: isolate;
-                        }
-
-                        .profile-flag {
-                            vertical-align: middle;
-                            width: 16px;
-                            height: 11px;
-                            -webkit-user-drag: none;
-                            border: none;
-                            overflow-clip-margin: content-box;
-                            overflow: clip;
-                        }
-                    }
-
-                    .header-real-name-spacer {
-                        height: 26px;
-                    }
-
-                    .profile-summary {
-                        line-height: 18px;
-                        height: 57px;
-                        overflow: hidden;
-                        margin-bottom: 8px;
-                        text-wrap: wrap;
-                    }
-                }
-            }
-        }
-    }
+    background: radial-gradient(farthest-side at bottom right,
+            var(--gradient-right),
+            transparent 500px),
+        radial-gradient(farthest-corner at bottom left,
+            var(--gradient-left),
+            transparent 600px);
+    background-color: var(--gradient-background)
 }
