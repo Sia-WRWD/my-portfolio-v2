@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavigationComponent } from './navigation/navigation.component';
 import { ProfileHeaderComponent } from './profile-header/profile-header.component';
 
@@ -10,15 +10,9 @@ import { ProfileHeaderComponent } from './profile-header/profile-header.componen
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent {
-  @ViewChild('video') videoElement!: ElementRef;
 
   constructor() {}
 
-  ngAfterViewInit(): void {
-    console.log(this.videoElement.nativeElement);
-    // Access the video element and play it
-    this.videoElement.nativeElement.play();
-  }
 }
 
 

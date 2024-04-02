@@ -1,6 +1,20 @@
 @import url('https://fonts.cdnfonts.com/css/motiva-sans');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
 
+:root {
+    --font-family-primary: "Motiva Sans", Arial, Helvetica, sans-serif;
+    --gradient-left: rgba(191, 175, 162, 1);
+    --gradient-right: rgba(255, 107, 97, 1);
+    --gradient-background: rgba(46, 49, 93, 0.6);
+    --gradient-background-right: rgba(255, 107, 97, 1);
+    --gradient-background-left: rgba(191, 175, 162, 1);
+    --color-showcase-header: rgba(79, 150, 94, .4);
+    --gradient-showcase-header-left: rgba(79, 150, 94, 1);
+    --btn-background: rgba(0, 0, 0, .2);
+    --btn-background-hover: rgb(255, 255, 255, .1);
+    --btn-outline: rgb(255, 255, 255, .1);
+}
+
 html {
     height: 100%;
 }
@@ -45,7 +59,9 @@ a {
 @keyframes slide {
     0% {
         transform: scaleX(0);
-    } 100% {
+    }
+
+    100% {
         transform: scaleX(1);
     }
 }
