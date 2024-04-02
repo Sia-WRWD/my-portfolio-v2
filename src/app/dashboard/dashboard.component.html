@@ -1,1 +1,17 @@
-<app-navigation></app-navigation>   
+<app-navigation></app-navigation>
+<div class="profile-page">
+    <div class="profile-animated-background">
+        <video playsinline autoplay loop [muted]="'muted'"
+            poster="https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/1595290/24840cb158a3a7b24009c6e5b6bbce5e59234abc.jpg">
+            <source
+                src="https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/1595290/80764474a479d3de5ff1828720f6b5c06d1ada32.webm"
+                type="video/webm">
+            <source
+                src="https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/1595290/7e41e64b7df62f820f64b4a979a147976ee2a50f.mp4"
+                type="video/mp4">
+        </video>
+
+        <!--Debug: https://stackoverflow.com/questions/69427603/autoplay-on-video-is-not-working-after-refreshing-page-->
+    </div>
+    <!-- <app-profile-header></app-profile-header> -->
+</div>

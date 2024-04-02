@@ -1,0 +1,21 @@
+.profile-header-bg {
+    position: relative;
+    max-width: 1018px;
+    min-height: 224px;
+    padding-bottom: 0px;
+    margin: 0 auto;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    // padding-top: 104px;
+    height: 300vh;
+
+    .profile-header-bg-texture {
+        max-width: 976px;
+        min-height: 224px;
+        margin: 0 auto;
+        background: radial-gradient(farthest-side at bottom right, var(--gradient-right), transparent 500px), radial-gradient(farthest-corner at bottom left, var(--gradient-left), transparent 600px);
+        background-color: var(--gradient-background);
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+}

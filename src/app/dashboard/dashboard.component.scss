@@ -1,0 +1,43 @@
+.profile-page {
+    background-size: 100%;
+    background-image: none;
+    background-color: #000000;
+    background-repeat: no-repeat;
+    position: relative;
+    min-width: 970px;
+    height: 300vh;
+
+
+    .profile-animated-background {
+        position: absolute;
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        overflow: hidden;
+
+        > video {
+            width: 100%;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1920px;
+        }
+    }
+}
+
+@media(max-width: 1920px) {
+    .profile-page {
+        // background-size: auto;
+
+        .profile-animated-background>video {
+            width: 1920px;
+        }
+    }
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+    .profile-page {
+        background-position: 49.999% 0;
+    }
+}
