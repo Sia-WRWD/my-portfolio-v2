@@ -1,7 +1,7 @@
 .header {
+    display: flex;
     background: #171d25;
     background-position: center top;
-    min-width: 940px;
     font-family: "Motiva Sans", Sans-serif;
     font-weight: normal;
     font-size: 14px;
@@ -14,6 +14,8 @@
         background: #171d25;
         position: relative;
         width: 940px;
+        min-width: 0px;
+        max-width: 940px;
         height: 104px;
         margin: 0px auto;
         z-index: 402;
