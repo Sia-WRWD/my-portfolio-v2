@@ -1,14 +1,32 @@
 .profile-header-container {
-    position: absolute;
     display: flex;
     margin: auto;
-    width: 992px;
+    min-width: 0;
+    max-width: 992px;
     min-height: 224px;
-    background: radial-gradient(farthest-side at bottom right,
-            var(--gradient-right),
-            transparent 500px),
-        radial-gradient(farthest-corner at bottom left,
-            var(--gradient-left),
-            transparent 600px);
-    background-color: var(--gradient-background)
+    width: 992px;
+    background: radial-gradient(farthest-side at bottom right, var(--gradient-right), transparent 500px),
+        radial-gradient(farthest-corner at bottom left, var(--gradient-left), transparent 600px);
+    background-color: var(--gradient-background);
+    flex-direction: row;
+    z-index: 1;
+
+    .profile-pic {
+        display: flex;
+        margin: 15px;
+        flex-basis: 20%;
+    }
+
+    .profile-info {
+        display: flex;
+        margin: 15px;
+        flex-basis: 60%;
+    }
+
+    .profile-badge {
+        display: flex;
+        margin: 15px;
+        flex-basis: 20%;
+    }
+
 }

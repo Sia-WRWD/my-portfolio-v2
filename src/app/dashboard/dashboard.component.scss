@@ -4,16 +4,14 @@
     background-color: #000000;
     background-repeat: no-repeat;
     position: relative;
-    min-width: 970px;
-    height: 300vh;
+    width: 100%;
+    height: 300vh; //Change it to Auto
     // padding-top: 104px;
 
     .profile-animated-background {
         position: absolute;
-        min-width: 100%;
-        min-height: 100%;
-        width: auto;
-        height: auto;
+        width: 100%;
+        height: 100%;
         overflow: hidden;
 
         > video {
@@ -21,20 +19,20 @@
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-            width: 1920px;
+            width: 1920px; //Check again.
         }
     }
 }
 
-@media(max-width: 1920px) {
-    .profile-page {
-        // background-size: auto;
+// @media(max-width: 1920px) {
+//     .profile-page {
+//         // background-size: auto;
 
-        .profile-animated-background>video {
-            width: 1920px;
-        }
-    }
-}
+//         .profile-animated-background>video {
+//             width: 1920px;
+//         }
+//     }
+// }
 
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
     .profile-page {
