@@ -43,8 +43,6 @@
             .profile-pic {
                 position: absolute;
                 z-index: -1;
-                // left: 50%;
-                // transform: translate(-50%);
                 background: none;
                 filter: none;
                 display: block;
@@ -56,16 +54,36 @@
 
     }
 
-    .profile-info {
+    .profile-info-container {
         display: flex;
         margin: 15px;
         flex-basis: 60%;
+
+        .profile-info-name-container {
+
+        }
+
+        .profile-info-others-container {
+
+        }
+
+        .profile-info-summary-container {
+
+        }
     }
 
-    .profile-badge {
+    .profile-badge-container {
         display: flex;
         margin: 15px;
         flex-basis: 20%;
+
+        .profile-badge-level-container {
+
+        }
+
+        .profile-badge-showcase-container {
+            
+        }
     }
 
 }
@@ -74,7 +92,7 @@
     .profile-header-container {
         flex-direction: column;
 
-        .profile-pic-container {
+        .profile-pic-container, .profile-info-container, .profile-badge-container {
             flex-basis: auto !important;
         }
     }
