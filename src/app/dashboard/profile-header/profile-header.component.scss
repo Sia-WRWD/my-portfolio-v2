@@ -1,5 +1,6 @@
 .profile-header-container {
     display: flex;
+    align-items: center;
     margin: auto;
     min-width: 0;
     max-width: 992px;
@@ -10,11 +11,49 @@
     background-color: var(--gradient-background);
     flex-direction: row;
     z-index: 1;
+    padding: 15px;
 
-    .profile-pic {
+    .profile-pic-container {
         display: flex;
         margin: 15px;
         flex-basis: 20%;
+        position: relative;
+        width: 166px;
+        height: 166px;
+
+        .profile-pic-inner-container {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            right: 2px;
+            bottom: 2px;
+
+            .profile-pic-frame-container {
+                position: absolute;
+                height: 100%;
+                width: 100%;
+    
+                .profile-pic-frame {
+                    width: 100%;
+                    height: 100%;
+                    transform: scale(1.22);
+                }
+            }
+    
+            .profile-pic {
+                position: absolute;
+                z-index: -1;
+                // left: 50%;
+                // transform: translate(-50%);
+                background: none;
+                filter: none;
+                display: block;
+                padding: 0;
+                width: 100%;
+                height: 100%;
+            }
+        }
+
     }
 
     .profile-info {
@@ -29,4 +68,14 @@
         flex-basis: 20%;
     }
 
+}
+
+@media screen and (max-width: 576px) {
+    .profile-header-container {
+        flex-direction: column;
+
+        .profile-pic-container {
+            flex-basis: auto !important;
+        }
+    }
 }
