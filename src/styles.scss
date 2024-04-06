@@ -28,7 +28,7 @@ body {
     min-height: 100%;
     height: auto;
     position: relative;
-    font-family: "Motiva Sans", Arial, Helvetica, sans-serif;
+    font-family: var(--font-family-primary);
     background: #000000;
     text-align: left;
     color: #8F98A0;
@@ -99,4 +99,10 @@ a {
 .flex-container {
     display: flex;
     justify-content: center;
+}
+
+.ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }

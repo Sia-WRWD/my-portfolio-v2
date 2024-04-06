@@ -10,6 +10,12 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 export class ProfileHeaderComponent {
   @ViewChild('profileSummaryModal') profileSummaryModal!: ElementRef;
 
+  myAge: number = 0;
+
+  ngOnInit() {
+    this.calculateAge();
+  }
+
   ngAfterViewInit() {
 
   }
@@ -20,5 +26,10 @@ export class ProfileHeaderComponent {
     } else {
       this.profileSummaryModal.nativeElement.style.visibility = "hidden";
     }
+  }
+
+  calculateAge() {
+    const today = new Date();
+    this.myAge = today.getFullYear() - 2001;
   }
 }
