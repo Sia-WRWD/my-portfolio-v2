@@ -166,39 +166,6 @@
                 }
             }
         }
-
-        .profile-badge-showcase-container {
-            display: flex;
-            flex-direction: row;
-            border-radius: 3px;
-            background-color: rgba(0, 0, 0, 0.3);
-            margin-bottom: 13px;
-            color: #ffffff;
-            font-size: 13px;
-            align-items: center;
-            gap: 8px;
-            padding: 8px;
-            text-shadow: 1px 2px 2px black;
-            letter-spacing: .3px;
-            overflow: hidden;
-
-            .profile-badge-showcase-icon-container {
-                display: flex;
-
-                .profile-badge-showcase-icon {
-                    height: 54px;
-                    width: 54px;
-                    -webkit-user-drag: none;
-                    border: none;
-                }
-            }
-
-            .profile-badge-showcase-desc-container {
-                .profile-badge-showcase-desc {
-                    margin-bottom: 3px;
-                }
-            }
-        }
     }
 
 }
@@ -218,7 +185,6 @@
         }
 
         .profile-badge-container {
-            max-width: calc(100% - 125px - 15px);
             order: 2;
             flex-basis: max-content;
             justify-content: center;
@@ -252,8 +218,7 @@
 @media screen and (max-width: 400px) {
     .profile-header-container {
         .profile-badge-container {
-            flex-basis: 0;
-            flex-grow: 1;
+
         }
     }
 }

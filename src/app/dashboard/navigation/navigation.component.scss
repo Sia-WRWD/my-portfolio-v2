@@ -11,82 +11,126 @@
     // z-index: 9999;
 
     .header-content {
+        display: flex;
+        align-items: center;
         background: #171d25;
         position: relative;
-        width: 940px;
+        width: 1000px;
         min-width: 0px;
-        max-width: 940px;
+        max-width: 1000px;
         height: 104px;
         margin: 0px auto;
         z-index: 402;
+        justify-content: space-between;
     }
 
     .header-logo {
         float: left;
-        padding-top: 30px;
         margin-right: 40px;
         width: 176px;
         height: 44px;
     }
 
-    .header-menuitem {
-        display: block;
-        position: relative;
-        padding-top: 45px;
-        padding-left: 7px;
-        padding-right: 7px;
-        padding-bottom: 7px;
-        line-height: 16px;
-        float: left;
-        color: #dcdedf;
-        text-transform: uppercase;
-        font-size: 16px;
-        font-family: "Motiva Sans", "Twemoji", "Noto Sans", Helvetica, sans-serif;
-        font-weight: 500;
+    .header-nav-items-container {
+        display: flex;
+        row-gap: 15px;
+        flex-wrap: wrap;
+        align-items: center;
 
-        &::after {
-            content: "";
+        .header-menuitem {
             display: block;
-            width: 100%;
-            height: 2.5px;
-            margin-top: 2px;
-        }
-
-        &:hover {
-            color: #ffffff;
-            text-decoration: none;
-        }
-    }
-
-    .header-other-actions {
-        position: absolute;
-        right: 0px;
-        top: 6px;
-        height: 21px;
-        line-height: 21px;
-        color: #b8b6b4;
-        font-size: 11px;
-        z-index: 401;
-
-        .header-install-btn {
-            display: inline-block;
             position: relative;
-            height: 21px;
-            line-height: 24px;
-            margin-right: 3px;
+            padding-left: 7px;
+            padding-right: 7px;
+            line-height: 16px;
+            float: left;
+            color: #dcdedf;
+            text-transform: uppercase;
+            font-size: 16px;
+            font-family: "Motiva Sans", "Twemoji", "Noto Sans", Helvetica, sans-serif;
+            font-weight: 500;
 
-            .header-install-btn-content {
-                display: inline-block;
-                padding-left: 35px;
-                padding-right: 9px;
-                background-position: 10px 5px;
-                background-image: url(https://community.akamai.steamstatic.com/public/shared/images/header/btn_header_installsteam_download.png?v=1);
-                background-repeat: no-repeat;
+            &::after {
+                content: "";
+                display: none;
+                width: 100%;
+                height: 2.5px;
+                margin-top: 2px;
+            }
+
+            &:hover {
+                color: #ffffff;
                 text-decoration: none;
-                color: #e5e4dc;
-                font-weight: normal;
-                background-color: #5c7e10;
             }
         }
+
+        .resume {
+            display: flex;
+            align-items: center;
+            padding-left: 15px;
+            padding-right: 15px;
+            border: 2px solid white;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            border-radius: 25px;
+            margin-left: 5px;
+            cursor: pointer;
+            overflow: hidden;
+            position: relative;
+            transition: 0.3s ease-in-out;
+
+            .resume-icon {
+                margin-left: 5px;
+                color: #ffffff;
+            }
+        }
+
+        @media (not (prefers-reduced-motion: reduce)) {
+            .resume {
+                width: 63px;
+
+                .resume-icon {
+                    opacity: 0;
+                    transition: 0.3s ease-in-out;
+                }
+
+                &:hover {
+                    width: calc(119px - 30px - 5px);
+                    border-color: #66C0F4;
+                }
+
+                &:hover .resume-icon {
+                    color: #ff0000;
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+
+.responsive-header {
+    display: none;
+    position: fixed;
+    left: 15px;
+    bottom: 15px;
+}
+
+@media screen and (max-width: 910px) {
+    .header {
+        display: none;
+    }
+
+    .responsive-header {
+        display: block;
+    }
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateX(30px);
+    }
+
+    100% {
+        transform: translateX(0px);
     }
 }
