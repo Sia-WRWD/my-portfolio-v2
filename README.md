@@ -1,27 +1,123 @@
-# MyPortfolioV2
+<a name="readme-top"></a>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.4.
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
 
-## Development server
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/Sia-WRWD/my-portfolio-v2">
+    <img src="./public/loading-dark.gif" alt="Logo" width="80" height="80">
+  </a>
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+<h3 align="center">My Personal Portfolio Website</h3>
 
-## Code scaffolding
+  <p align="center">
+    A simple website devoped using Angular V17 and SASS while hosted using Netlify.
+    <br />
+    <a href="https://github.com/Sia-WRWD/my-portfolio-v2/blob/main/README.md"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://www.heysia.dev">View Demo</a>
+    ·
+    <a href="https://github.com/Sia-WRWD/my-portfolio-v2/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+    ·
+    <a href="https://github.com/Sia-WRWD/my-portfolio-v2/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+  </p>
+</div>
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ol>
+</details>
 
-## Build
+<!-- ABOUT THE PROJECT -->
+## About The Project
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+[![Product Name Screen Shot][product-screenshot]](https://www.heysia.dev)
 
-## Running unit tests
+Welcome to the source of my personal portfolio website. This website contains all you need to know about myself, past education, experiences and projects. The UI of the website was inspired by the popular gaming platform, Steam's Profile Page.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### Built With
 
-## Further help
+* [![Angular][Angular.js]][Angular-url]
+* [![SASS][SASS]][SASS-url]
+* [![FontAwesome][FontAwesome]][FontAwesome-url]
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- RESOURCES -->
+## Resources Used
+1. [On-Scroll Reveal Animation with React & Framer Motion](https://youtu.be/2V1WK-3HQNk?si=GUd_iBUAG38Gvc0C)
+2. [Mouse Hover Tilt using Vanilla Tilt JS](https://micku7zu.github.io/vanilla-tilt.js/)
+3. [Sending Emails from React App with EmailJS | Step-by-Step Tutorial](https://youtu.be/wWiTouBHibs?si=5hgHlVj2ghBfUnB_)
+4. [Setup a Custom Domain in Netlify in 5 Minutes](https://www.youtube.com/watch?v=bY7Tkh9Vz8I)
+5. [Make React Audio Player with Controls & Waveform](https://www.youtube.com/watch?v=rT6GiYEIdGs)
+
+
+#### Angular Components
+1. 
+2. 
+
+#### Misc Resources
+1. [Mobile Responsive Hamburger Icon](https://codepen.io/alvarotrigo/pen/ExwgbZv)
+2. [Profile Background](https://steamcommunity.com/id/jcn_loveinapril)
+3. [Profile Picture Frame](https://steamcommunity.com/id/jcn_loveinapril)
+4. 
+
+<!-- ACKNOWLEDGMENTS -->
+## Acknowledgments
+
+This markdown was created with the help of the template provided by user othneildrew:
+
+* [Best-README-Template](https://github.com/othneildrew/Best-README-Template)
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/contributors/Sia-WRWD/my-portfolio-v2.svg?style=for-the-badge
+[contributors-url]: https://github.com/Sia-WRWD/my-portfolio-v2/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/Sia-WRWD/my-portfolio-v2.svg?style=for-the-badge
+[forks-url]: https://github.com/Sia-WRWD/my-portfolio-v2/network/members
+[stars-shield]: https://img.shields.io/github/stars/Sia-WRWD/my-portfolio-v2.svg?style=for-the-badge
+[stars-url]: https://github.com/Sia-WRWD/my-portfolio-v2/stargazers
+[issues-shield]: https://img.shields.io/github/issues/Sia-WRWD/my-portfolio-v2.svg?style=for-the-badge
+[issues-url]: https://img.shields.io/github/issues/Sia-WRWD/my-portfolio-v2
+[license-shield]: https://img.shields.io/github/license/Sia-WRWD/my-portfolio-v2.svg?style=for-the-badge
+[license-url]: https://github.com/Sia-WRWD/my-portfolio-v2/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://www.linkedin.com/in/scz2401/
+[product-screenshot]: /public/githubthumb.png
+[Angular.js]: https://img.shields.io/badge/Angular-20232A?style=for-the-badge&logo=angular&logoColor=61DAFB
+[Angular-url]: https://angular.io/
+[SASS]: https://img.shields.io/badge/SASS-20232A?style=for-the-badge&logo=sass
+[SASS-url]: https://sass-lang.com/
+[FontAwesome]: https://img.shields.io/badge/Fontawesome-20232A?style=for-the-badge&logo=fontawesome
+[FontAwesome-url]: https://github.com/FortAwesome/angular-fontawesome

@@ -285,6 +285,12 @@
 
 }
 
+@media screen and (max-width: 910px) {
+    .profile-header-container {
+        margin-top: 62px;
+    }
+}
+
 @media screen and (max-width: 768px) {
     .profile-header-container {
         flex-direction: column;
@@ -312,6 +318,8 @@
             justify-content: center;
             min-height: auto;
             align-items: center;
+            margin-left: 0px;
+            padding: 0px 15px;
 
             .profile-badge-level-container {
                 display: none;
@@ -337,10 +345,6 @@
         //     width: 125px;
         //     height: 125px;
         // }
-
-        .profile-badge-container {
-            margin-left: 0px;
-        }
     }
 }
 

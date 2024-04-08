@@ -41,7 +41,7 @@ export class ProfileHeaderComponent {
   }
 
   ngAfterViewInit() {
-    if (this.shouldApplyTilt()) {
+    if (this.shouldApplyTilt() && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       VanillaTilt.init(
         this.el.nativeElement.querySelectorAll('.tilt-object'),
         { max: 30, speed: 100, scale: 1.1 }

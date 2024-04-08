@@ -1,5 +1,5 @@
 .header {
-    display: flex;
+    display: none;
     background: #171d25;
     background-position: center top;
     font-family: "Motiva Sans", Sans-serif;
@@ -109,10 +109,129 @@
 }
 
 .responsive-header {
-    display: none;
+    display: flex;
+    background: #171d25;
+    background-position: center top;
+    font-family: "Motiva Sans", Sans-serif;
+    font-weight: normal;
+    font-size: 14px;
+    padding: 0px 16px;
     position: fixed;
-    left: 15px;
-    bottom: 15px;
+    z-index: 999;
+    width: calc(100% - 32px);
+    // overflow: hidden;
+
+    .responsive-header-content {
+        display: flex;
+        align-items: center;
+        background: #171d25;
+        position: relative;
+        height: 62px;
+        margin: 0px auto;
+        z-index: 402;
+        justify-content: space-between;
+        width: 100%;
+
+        .responsive-header-logo {}
+
+        .responsive-header-menu-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .responsive-header-menu-label {
+
+                .responsive-header-menu-checkbox {
+                    display: block;
+                    height: 30px;
+                    width: 30px;
+                    position: absolute;
+                    top: 15px;
+                    right: -3px;
+                    z-index: 999;
+                    opacity: 0;
+                    cursor: pointer;
+
+                    &:checked+.responsive-header-menu .responsive-header-menu-hamburger {
+                        -webkit-transform: rotate(45deg);
+                        transform: rotate(45deg);
+    
+                        &::after {
+                            -webkit-transform: rotate(90deg);
+                            transform: rotate(90deg);
+                            bottom: 0;
+                            width: 100%;
+                        }
+    
+                        &::before {
+                            -webkit-transform: rotate(90deg);
+                            transform: rotate(90deg);
+                            top: 0;
+                            width: 100%;
+                        }
+                    }
+
+                    &:checked+.responsive-header-menu .responsive-header-menu-options {
+                        left: -16px
+                    }
+                }
+
+                .responsive-header-menu {
+                    border-radius: 50% 50% 50% 50%;
+                    -webkit-transition: .5s ease-in-out;
+                    transition: .5s ease-in-out;
+                    box-shadow: 0 0 0 0 #FFF, 0 0 0 0 #FFF;
+                    cursor: pointer;
+
+                    .responsive-header-menu-options {
+                        width: 100vw;
+                        height: 100vh;
+                        position: absolute;
+                        top: 62px;
+                        left: 1000px;
+                        opacity: 0.3;
+                        background: black;
+                        transition: 0.5s ease-in-out;
+                    }
+                }
+
+                .responsive-header-menu-hamburger {
+                    position: relative;
+                    top: 0;
+                    left: 0;
+                    width: 25px;
+                    height: 2px;
+                    background: #ffffff;
+                    display: block;
+                    -webkit-transform-origin: center;
+                    transform-origin: center;
+                    -webkit-transition: .5s ease-in-out;
+                    transition: .5s ease-in-out;
+
+                    &::after, &::before {
+                        -webkit-transition: .5s ease-in-out;
+                        transition: .5s ease-in-out;
+                        content: "";
+                        position: absolute;
+                        display: block;
+                        height: 100%;
+                        background: #ffffff;
+                        right: 0;
+                    }
+
+                    &::before {
+                        width: 30px;
+                        top: -10px;
+                    }
+        
+                    &::after {
+                        width: 20px;
+                        bottom: -10px;
+                    }
+                }
+            }
+        }
+    }
 }
 
 @media screen and (max-width: 910px) {
@@ -121,7 +240,7 @@
     }
 
     .responsive-header {
-        display: block;
+        display: flex;
     }
 }
 
