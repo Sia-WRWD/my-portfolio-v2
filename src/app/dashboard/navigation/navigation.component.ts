@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import anime from 'animejs/lib/anime.es.js';
+import { ScrollFadeDirective } from 'src/app/directives/scroll-fade.directive';
+import { ScrollSpyDirective } from 'src/app/directives/scroll-spy.directive';
 
 @Component({
   selector: 'app-navigation',
   standalone: true,
-  imports: [],
+  imports: [ScrollSpyDirective, ScrollFadeDirective],
   templateUrl: './navigation.component.html',
   styleUrl: './navigation.component.scss'
 })

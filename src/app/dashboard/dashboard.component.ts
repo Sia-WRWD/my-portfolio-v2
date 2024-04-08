@@ -12,7 +12,24 @@ import { LoaderComponent } from './loader/loader.component';
 })
 export class DashboardComponent {
 
-  constructor() {}
+  currentTime: any = "";
+
+  constructor() { }
+
+  ngOnInit() {
+    this.getCurrentTime();
+  }
+
+  getCurrentTime() {
+    const now = new Date();
+    const hours = now.getHours();
+
+    if (hours >= 9 && hours < 18) { //working-time
+      this.currentTime = 'work-time';
+    } else if (hours >= 18 && hours < 9) { //off-work
+      this.currentTime = 'off-time';
+    }
+  }
 
 }
 

@@ -1,4 +1,4 @@
-<div role="banner" class="header">
+<div role="banner" class="header" scrollSpy scrollFade>
     <div class="header-content">
         <div class="header-logo">
             <span id="header-logo-holder">
@@ -39,7 +39,7 @@
     </div>
 </div>
 
-<div class="responsive-header">
+<div class="responsive-header" scrollSpy scrollFade>
     <div class="responsive-header-content">
         <div class="responsive-header-logo">
             test
@@ -47,11 +47,10 @@
         <div class="responsive-header-menu-container">
             <label class="responsive-header-menu-label">
                 <input type="checkbox" class="responsive-header-menu-checkbox" (change)="handleCheckboxChange($event)">
-                <span class="responsive-header-menu">   
+                <span class="responsive-header-menu">
                     <span class="responsive-header-menu-hamburger"></span>
                     <div class="responsive-header-menu-options-container">
                         @for(option of options; track option) {
-
                         <div class="responsive-header-menu-option">
                             {{option.name}}
                         </div>

@@ -1,14 +1,17 @@
+.scroll-down-fixed {
+    position: fixed;
+    z-index: 9999;
+    width: calc(100% - 32px);
+}
+
 .header {
-    display: none;
+    display: flex;
     background: #171d25;
     background-position: center top;
     font-family: "Motiva Sans", Sans-serif;
     font-weight: normal;
     font-size: 14px;
     padding: 0px 16px;
-    // width: 100%; 
-    // position: fixed;
-    // z-index: 9999;
 
     .header-content {
         display: flex;
@@ -100,7 +103,6 @@
                 }
 
                 &:hover .resume-icon {
-                    color: #ff0000;
                     opacity: 1;
                 }
             }
@@ -109,7 +111,7 @@
 }
 
 .responsive-header {
-    display: flex;
+    display: none;
     background: #171d25;
     background-position: center top;
     font-family: "Motiva Sans", Sans-serif;
