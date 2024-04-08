@@ -1,3 +1,7 @@
+*:focus {
+    outline: none;
+}
+
 .profile-header-container {
     display: flex;
     align-items: center;
@@ -72,6 +76,33 @@
             color: #ffffff;
             font-family: "Motiva Sans", Sans-serif;
             font-weight: 200;
+            display: flex;
+            align-items: center;
+
+            .profile-badge-level-number-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 16px;
+                border-radius: 50%;
+                border: solid #fff 2px;
+                height: 28px;
+                width: 28px;
+                line-height: 26px;
+                text-align: center;
+                cursor: default;
+                margin-top: 2px;
+                margin-left: 8px;
+                border-color: #4e8ddb;
+                vertical-align: middle;
+                opacity: 0;
+
+                .profile-badge-level-number {
+                    line-height: 26px;
+                    text-align: center;
+                    cursor: default;
+                }
+            }
         }
 
         .profile-info-others-container {
@@ -79,6 +110,7 @@
             color: #c4c4c4;
             font-size: 13px;
             text-shadow: 1px 2px 2px black;
+            margin-bottom: 5px;
         }
 
         .profile-info-summary-container {
@@ -123,12 +155,7 @@
         align-items: flex-start;
         min-height: 168px;
         flex-direction: column;
-        flex-shrink: 1;
-        /* Allow the container to shrink */
         order: 3;
-        overflow: hidden;
-        width: 268px;
-
 
         .profile-badge-level-container {
             display: flex;
@@ -140,7 +167,7 @@
             font-family: "Motiva Sans", Sans-serif;
             font-weight: 200;
             overflow: hidden;
-            flex-grow: 0;
+            width: 100%;
 
             .profile-badge-level-number-container {
                 display: flex;
@@ -166,46 +193,150 @@
                 }
             }
         }
+
+        .profile-social-container {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+
+            .profile-social-icon-container {
+                width: 40px;
+                height: 40px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: #171d25;
+                border-radius: 5px;
+                box-shadow: 1px 2px 2px black;
+
+                fa-icon {
+                    font-size: 24px;
+                    color: #66C0F4;
+                }
+            }
+
+            //Hover Animation for Socials Buttons
+            @media (not (prefers-reduced-motion: reduce)) {
+
+                .linkedin,
+                .github,
+                .facebook,
+                .instagram,
+                .hackerrank,
+                .dev {
+                    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+
+                    &:hover {
+                        transform: scale(1.1);
+                    }
+                }
+
+                .linkedin:hover {
+                    background-color: #0072b1;
+
+                    fa-icon {
+                        color: #ffffff;
+                    }
+                }
+
+                .github:hover {
+                    fa-icon {
+                        color: #ffffff;
+                    }
+                }
+
+                .facebook:hover {
+                    background-color: #1877F2;
+
+                    fa-icon {
+                        color: #ffffff;
+                    }
+                }
+
+                .instagram {
+                    transition: background-color 0.3s, color 0.3s ease-in-out;
+                    /* Apply transition to both background-color and color */
+
+                    &:hover {
+                        background: linear-gradient(to bottom left, #4f5bd5, #962fbf, #d62976, #fa7e1e, #feda75);
+
+                        fa-icon {
+                            color: #ffffff;
+                        }
+                    }
+                }
+
+                .hackerrank:hover {
+                    fa-icon {
+                        color: #2ec866;
+                    }
+                }
+
+                .dev:hover {
+                    background-color: #003e54;
+
+                    fa-icon {
+                        color: #ffffff;
+                    }
+                }
+            }
+        }
     }
 
 }
 
 @media screen and (max-width: 768px) {
     .profile-header-container {
-        flex-wrap: wrap;
+        flex-direction: column;
         justify-content: center;
 
         .profile-info-container {
             order: 3;
             flex-basis: 100%;
 
+            .profile-info-name-container {
+                .profile-badge-level-number-container {
+                    opacity: 1;
+                }
+            }
+
             .profile-info-summary-container {
                 height: 63px;
             }
         }
 
+
         .profile-badge-container {
             order: 2;
-            flex-basis: max-content;
+            flex-basis: auto;
             justify-content: center;
+            min-height: auto;
+            align-items: center;
+
+            .profile-badge-level-container {
+                display: none;
+            }
+
+            .profile-social-container {
+                align-items: center;
+                justify-content: center;
+            }
         }
     }
 }
 
 @media screen and (max-width: 576px) {
-    .profile-header-container {
-
-    }
+    .profile-header-container {}
 }
 
 @media screen and (max-width: 495px) {
     .profile-header-container {
-        padding: 15px 15px 15px 0px;
+        padding: 15px 0px;
 
-        .profile-pic-container {
-            width: 125px;
-            height: 125px;
-        }
+        // .profile-pic-container {
+        //     width: 125px;
+        //     height: 125px;
+        // }
 
         .profile-badge-container {
             margin-left: 0px;
@@ -217,8 +348,6 @@
 
 @media screen and (max-width: 400px) {
     .profile-header-container {
-        .profile-badge-container {
-
-        }
+        .profile-badge-container {}
     }
 }
