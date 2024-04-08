@@ -4,19 +4,20 @@
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
+[![Last Commit][last-commit-shield]]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
   <a href="https://github.com/Sia-WRWD/my-portfolio-v2">
-    <img src="./public/loading-dark.gif" alt="Logo" width="80" height="80">
+    <img src="./public/loading-light.gif" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">My Personal Portfolio Website</h3>
 
   <p align="center">
-    A simple website devoped using Angular V17 and SASS while hosted using Netlify.
+    A simple website devoped using Angular V17 and hosted using Netlify.
     <br />
     <a href="https://github.com/Sia-WRWD/my-portfolio-v2/blob/main/README.md"><strong>Explore the docs »</strong></a>
     <br />
@@ -112,6 +113,7 @@ This markdown was created with the help of the template provided by user othneil
 [issues-url]: https://img.shields.io/github/issues/Sia-WRWD/my-portfolio-v2
 [license-shield]: https://img.shields.io/github/license/Sia-WRWD/my-portfolio-v2.svg?style=for-the-badge
 [license-url]: https://github.com/Sia-WRWD/my-portfolio-v2/blob/master/LICENSE.txt
+[last-commit]: https://img.shields.io/github/last-commit/Sia-WRWD/my-portfolio-v2
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/scz2401/
 [product-screenshot]: /public/githubthumb.png
