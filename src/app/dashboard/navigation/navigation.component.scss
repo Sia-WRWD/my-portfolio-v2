@@ -171,7 +171,7 @@
                         }
                     }
 
-                    &:checked+.responsive-header-menu .responsive-header-menu-options {
+                    &:checked+.responsive-header-menu .responsive-header-menu-options-container {
                         left: -16px
                     }
                 }
@@ -183,13 +183,13 @@
                     box-shadow: 0 0 0 0 #FFF, 0 0 0 0 #FFF;
                     cursor: pointer;
 
-                    .responsive-header-menu-options {
+                    .responsive-header-menu-options-container {
                         width: 100vw;
                         height: 100vh;
                         position: absolute;
                         top: 62px;
-                        left: 1000px;
-                        opacity: 0.3;
+                        left: 3000px;
+                        opacity: 0.5;
                         background: black;
                         transition: 0.5s ease-in-out;
                     }
