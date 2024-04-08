@@ -113,7 +113,7 @@ This markdown was created with the help of the template provided by user othneil
 [issues-url]: https://img.shields.io/github/issues/Sia-WRWD/my-portfolio-v2
 [license-shield]: https://img.shields.io/github/license/Sia-WRWD/my-portfolio-v2.svg?style=for-the-badge
 [license-url]: https://github.com/Sia-WRWD/my-portfolio-v2/blob/master/LICENSE.txt
-[last-commit-shield]: https://img.shields.io/github/last-commit/Sia-WRWD/my-portfolio-v2
+[last-commit-shield]: https://img.shields.io/github/last-commit/Sia-WRWD/my-portfolio-v2.svg?style=for-the-badge
 [commit-url]: https://github.com/ir4un/pt-v01/commits/main/
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/scz2401/
