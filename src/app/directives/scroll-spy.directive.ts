@@ -15,7 +15,7 @@ export class ScrollSpyDirective {
 
         if (scrollTop > 0) {
             this.renderer.addClass(this.el.nativeElement, 'scroll-down-fixed');
-            if (window.innerWidth < 910) {
+            if (window.innerWidth > 910) {
                 this.renderer.setStyle(header, "paddingTop", "119px");
             }
         } else {
