@@ -23,6 +23,7 @@
     "@fortawesome/free-brands-svg-icons": "^6.5.2",
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "animejs": "^3.2.2",
+    "ng-in-viewport": "^16.1.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "vanilla-tilt": "^1.8.1",

@@ -12,6 +12,7 @@
     font-weight: normal;
     font-size: 14px;
     padding: 0px 16px;
+    transition: 0.3s ease-in-out;
 
     .header-content {
         display: flex;
@@ -121,6 +122,7 @@
     position: fixed;
     z-index: 999;
     width: calc(100% - 32px);
+    transition: 0.2s ease-in-out;
     // overflow: hidden;
 
     .responsive-header-content {
@@ -157,14 +159,14 @@
                     &:checked+.responsive-header-menu .responsive-header-menu-hamburger {
                         -webkit-transform: rotate(45deg);
                         transform: rotate(45deg);
-    
+
                         &::after {
                             -webkit-transform: rotate(90deg);
                             transform: rotate(90deg);
                             bottom: 0;
                             width: 100%;
                         }
-    
+
                         &::before {
                             -webkit-transform: rotate(90deg);
                             transform: rotate(90deg);
@@ -191,9 +193,38 @@
                         position: absolute;
                         top: 62px;
                         left: 3000px;
-                        opacity: 0.5;
-                        background: black;
+                        background: rgb(0, 0, 0, 0.5);
                         transition: 0.5s ease-in-out;
+
+                        .responsive-header-menu-options-inner-container {
+                            display: flex;
+                            flex-direction: column;
+                            height: 100%;
+                            row-gap: 20px;
+                            padding: 15px 0px 0px 0px;
+                            float: right;
+                            min-width: max-content;
+                            max-width: 0px;
+
+                            .responsive-header-menu-option-container {
+                                width: 50vw;
+                                text-align: right;
+                                height: 70px;
+                                display: flex;
+                                justify-content: right;
+                                align-items: center;
+                                background: #171d25;
+                                color: white;
+                                clip-path: polygon(0 0, 100% 0%, 100% 100%, 4% 100%);
+                                text-shadow: 1px 2px 3px black;
+
+                                .responsive-header-menu-option {
+                                    margin-right: 15px;
+                                    font-size: 24px;
+                                    font-weight: 500;
+                                }
+                            }
+                        }
                     }
                 }
 
@@ -210,7 +241,8 @@
                     -webkit-transition: .5s ease-in-out;
                     transition: .5s ease-in-out;
 
-                    &::after, &::before {
+                    &::after,
+                    &::before {
                         -webkit-transition: .5s ease-in-out;
                         transition: .5s ease-in-out;
                         content: "";
@@ -225,7 +257,7 @@
                         width: 30px;
                         top: -10px;
                     }
-        
+
                     &::after {
                         width: 20px;
                         bottom: -10px;
@@ -243,6 +275,14 @@
 
     .responsive-header {
         display: flex;
+    }
+}
+
+@media screen and (max-width: 481px) {
+    .responsive-header {
+        .responsive-header-menu-option-container {
+            min-width: 90vw;
+        }
     }
 }
 

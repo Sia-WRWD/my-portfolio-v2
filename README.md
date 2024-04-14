@@ -92,7 +92,7 @@ Welcome to the source of my personal portfolio website. This website contains al
 1. [Mobile Responsive Hamburger Icon](https://codepen.io/alvarotrigo/pen/ExwgbZv)
 2. [Profile Background](https://steamcommunity.com/id/jcn_loveinapril)
 3. [Profile Picture Frame](https://steamcommunity.com/id/jcn_loveinapril)
-4. 
+4. [Vector Logo](https://worldvectorlogo.com/logo/azure-2)
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments

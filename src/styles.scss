@@ -99,6 +99,7 @@ a {
 .flex-container {
     display: flex;
     justify-content: center;
+    overflow: hidden; //Resolves the overflow issue for translateX(100%);
 }
 
 .ellipsis {

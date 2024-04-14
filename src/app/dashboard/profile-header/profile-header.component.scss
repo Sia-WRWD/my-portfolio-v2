@@ -17,6 +17,12 @@
     z-index: 1;
     padding: 15px;
 
+    .anime-profile-header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
     .profile-pic-container {
         display: flex;
         margin: 15px;
@@ -296,6 +302,11 @@
         flex-direction: column;
         justify-content: center;
 
+        .anime-profile-header {
+            flex-direction: column;
+            justify-content: center;
+        }
+
         .profile-info-container {
             order: 3;
             flex-basis: 100%;
@@ -330,28 +341,5 @@
                 justify-content: center;
             }
         }
-    }
-}
-
-@media screen and (max-width: 576px) {
-    .profile-header-container {}
-}
-
-@media screen and (max-width: 495px) {
-    .profile-header-container {
-        padding: 15px 0px;
-
-        // .profile-pic-container {
-        //     width: 125px;
-        //     height: 125px;
-        // }
-    }
-}
-
-
-
-@media screen and (max-width: 400px) {
-    .profile-header-container {
-        .profile-badge-container {}
     }
 }
