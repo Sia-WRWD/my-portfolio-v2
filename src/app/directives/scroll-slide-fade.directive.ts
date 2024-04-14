@@ -17,11 +17,15 @@ export class ScrollSlideFadeDirective {
         if (scrollTop > this.lastScrollTop) {
             // Scrolling down
             this.renderer.setStyle(this.el.nativeElement, 'top', '-62px');
-            this.renderer.setStyle(header, 'paddingTop', '70px');
+            if (window.innerWidth < 911) {
+                this.renderer.setStyle(header, 'paddingTop', '70px');
+            }
         } else {
             // Scrolling up
             this.renderer.setStyle(this.el.nativeElement, 'top', '0');
-            this.renderer.removeStyle(header,'paddingTop');
+            if (window.innerWidth < 911) {
+                this.renderer.removeStyle(header, 'paddingTop');
+            }
         }
         this.lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
     }

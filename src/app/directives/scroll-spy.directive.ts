@@ -15,10 +15,14 @@ export class ScrollSpyDirective {
 
         if (scrollTop > 0) {
             this.renderer.addClass(this.el.nativeElement, 'scroll-down-fixed');
-            this.renderer.setStyle(header, "paddingTop", "119px");
+            if (window.innerWidth < 910) {
+                this.renderer.setStyle(header, "paddingTop", "119px");
+            }
         } else {
             this.renderer.removeClass(this.el.nativeElement, 'scroll-down-fixed');
-            this.renderer.setStyle(header, "paddingTop", "0px");
+            if (window.innerWidth > 910) {
+                this.renderer.setStyle(header, "paddingTop", "0px");
+            }
         }
     }
 }
