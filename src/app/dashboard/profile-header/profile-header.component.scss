@@ -229,7 +229,9 @@
                 .facebook,
                 .instagram,
                 .hackerrank,
-                .dev {
+                .dev,
+                .steam,
+                .discord {
                     transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 
                     &:hover {
@@ -280,6 +282,22 @@
 
                 .dev:hover {
                     background-color: #003e54;
+
+                    fa-icon {
+                        color: #ffffff;
+                    }
+                }
+
+                .steam:hover {
+                    background-color: #ffffff;
+
+                    fa-icon {
+                        color: #171a21;
+                    }
+                }
+
+                .discord:hover {
+                    background-color: #5662F5;
 
                     fa-icon {
                         color: #ffffff;

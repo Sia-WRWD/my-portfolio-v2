@@ -1,6 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
-import { faGithub, faInstagram, faFacebookSquare, faLinkedinIn, faHackerrank, faDev } from '@fortawesome/free-brands-svg-icons';
+import { faGithub, faInstagram, faFacebookSquare, faLinkedinIn, faHackerrank, faDev, faSteam, faDiscord } from '@fortawesome/free-brands-svg-icons';
 import VanillaTilt from 'vanilla-tilt';
 import anime from 'animejs/lib/anime.es.js';
 
@@ -23,8 +23,10 @@ export class ProfileHeaderComponent {
     { iconName: 'facebook-square', iconClass: 'facebook', iconRedirect: 'https://www.facebook.com/WRWD.Alonica' },
     { iconName: 'instagram', iconClass: 'instagram', iconRedirect: 'https://www.instagram.com/wrwd_alonica/' },
     { iconName: 'hackerrank', iconClass: 'hackerrank', iconRedirect: 'https://www.hackerrank.com/profile/cheezhensia24' },
-    { iconName: 'dev', iconClass: 'dev', iconRedirect: 'https://devpost.com/Sia-WRWD' }
-  ]
+    { iconName: 'dev', iconClass: 'dev', iconRedirect: 'https://devpost.com/Sia-WRWD' },
+    { iconName: 'steam', iconClass: 'steam', iconRedirect: 'https://steamcommunity.com/id/wrwd_haloha/' },
+    { iconName: 'discord', iconClass: 'discord', iconRedirect: 'https://www.discord.com/users/370570874438287363' }
+  ] //Discord need to add tooltip
 
   constructor(library: FaIconLibrary, private el: ElementRef) {
     library.addIcons(
@@ -33,7 +35,9 @@ export class ProfileHeaderComponent {
       faInstagram,
       faLinkedinIn,
       faHackerrank,
-      faDev
+      faDev,
+      faSteam,
+      faDiscord
     )
   }
 
