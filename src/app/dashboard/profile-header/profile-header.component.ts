@@ -18,13 +18,13 @@ export class ProfileHeaderComponent {
   myHandle: string = "@Sia-WRWD®";
 
   socials: any = [
-    { iconName: 'linkedin-in', iconClass: 'linkedin', iconRedirect: 'https://www.linkedin.com/in/scz2401/' },
-    { iconName: 'github', iconClass: 'github', iconRedirect: 'https://github.com/sia-wrwd' },
-    { iconName: 'facebook-square', iconClass: 'facebook', iconRedirect: 'https://www.facebook.com/WRWD.Alonica' },
-    { iconName: 'instagram', iconClass: 'instagram', iconRedirect: 'https://www.instagram.com/wrwd_alonica/' },
+    { iconName: 'linkedin-in', iconClass: 'linkedin', iconRedirect: 'https://www.linkedin.com/in/Sia-WRWD/' },
+    { iconName: 'github', iconClass: 'github', iconRedirect: 'https://github.com/Sia-WRWD' },
+    { iconName: 'facebook-square', iconClass: 'facebook', iconRedirect: 'https://www.facebook.com/Sia.WRWD' },
+    { iconName: 'instagram', iconClass: 'instagram', iconRedirect: 'https://www.instagram.com/Sia-WRWD/' },
     { iconName: 'hackerrank', iconClass: 'hackerrank', iconRedirect: 'https://www.hackerrank.com/profile/cheezhensia24' },
     { iconName: 'dev', iconClass: 'dev', iconRedirect: 'https://devpost.com/Sia-WRWD' },
-    { iconName: 'steam', iconClass: 'steam', iconRedirect: 'https://steamcommunity.com/id/wrwd_haloha/' },
+    { iconName: 'steam', iconClass: 'steam', iconRedirect: 'https://steamcommunity.com/id/Sia-WRWD/' },
     { iconName: 'discord', iconClass: 'discord', iconRedirect: 'https://www.discord.com/users/370570874438287363' }
   ] //Discord need to add tooltip
 

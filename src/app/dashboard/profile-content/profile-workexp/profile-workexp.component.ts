@@ -13,7 +13,6 @@ export class ProfileWorkexpComponent {
   animationPlayed: boolean = false;
 
   onIntersection({ target, visible }: { target: Element; visible: boolean }): void {
-    console.log("test:" + this.animationPlayed);
 
     if (this.animationPlayed == false && visible && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       anime({
@@ -24,7 +23,6 @@ export class ProfileWorkexpComponent {
       });
 
       this.animationPlayed = true;
-      console.log(this.animationPlayed);
     }
   }
 }
