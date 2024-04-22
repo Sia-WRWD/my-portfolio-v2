@@ -6,6 +6,13 @@
         </div>
     </div>
     <div class="profile-workexp-content-display">
-
+        <acuw-carousel #carousel class="carousel">
+            @for (item of workExpCarouselItems; track item;  let idx = $index) {
+                <acuw-carousel-item class="carousel-item">
+                    <h2>Item {{ idx+1 }}</h2>
+                    <img [src]="item" height="300" />
+                </acuw-carousel-item>
+            }
+        </acuw-carousel>
     </div>
 </div>
