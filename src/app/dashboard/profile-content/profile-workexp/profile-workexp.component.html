@@ -11,8 +11,8 @@
         <carousel [infinite]="false" [responsive]="true" [autoslideLimitPercentCard]="60" [slideToShow]="1"
             [slideToScroll]="1" [animationTimingMs]="400" [counter]="false" [animationTimingFn]="'ease-in-out'"
             [arrows]="false" [enableMouseDrag]="false" class="profile-workexp-content-carousel">
-            @for(slide of workExpSlides; track slide) {
-            <div class="profile-workexp-content-carousel-slide carousel-slide tilt-object" id="1">
+            @for(slide of workExpSlides; track slide; let idx = $index) {
+            <div class="profile-workexp-content-carousel-slide carousel-slide" [id]="idx">
                 <img [src]="slide.imgSrc" alt="{{slide.name}}" title="{{slide.name}}" />
                 <div class="profile-workexp-content-carousel-slide-card-content">
                     {{slide.name}}
