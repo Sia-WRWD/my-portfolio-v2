@@ -1,24 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import anime from 'animejs/lib/anime.es.js';
 import { InViewportDirective } from 'ng-in-viewport';
-import { CarouselModule } from 'ngx-acuw';
+import { CarouselModule } from 'ngx-carousel-ease';
+import VanillaTilt from 'vanilla-tilt';
+import { NgOptimizedImage } from '@angular/common';
+import { workExp } from '../../shared/data/work-exp';
 
 @Component({
   selector: 'app-profile-workexp',
   standalone: true,
-  imports: [InViewportDirective, CarouselModule],
+  imports: [InViewportDirective, CarouselModule, NgOptimizedImage],
   templateUrl: './profile-workexp.component.html',
   styleUrl: './profile-workexp.component.scss'
 })
 export class ProfileWorkexpComponent {
   animationPlayed: boolean = false;
+  workExpSlides: any = workExp;
 
-  workExpCarouselItems = [
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzYrRIui75mIjWZ8L4n4HFAiujNkWTztPxqOQ0Z12Oqw&s',
-    'https://www.fusionexus.com/wp-content/uploads/2018/11/IMG-fxlg.jpg',
-    'https://media.licdn.com/dms/image/C560BAQFOcJlUTD1hCw/company-logo_200_200/0/1630670422579/whalecloud_logo?e=2147483647&v=beta&t=UgKf0016oAmJfBPtu2nM6utCmTSmTuDfnBt5wpw1kaQ',
-    'https://www.fusionexus.com/wp-content/uploads/2018/11/IMG-fxlg.jpg'
-  ];
+  constructor(private el: ElementRef) { }
+
+  ngAfterViewInit() {
+    if (this.shouldApplyTilt() && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      VanillaTilt.init(
+        this.el.nativeElement.querySelectorAll('.tilt-object'),
+        { max: 30, speed: 100, scale: 1.1 }
+      );
+    }
+  }
 
   onIntersection({ target, visible }: { target: Element; visible: boolean }): void {
 
@@ -32,5 +40,27 @@ export class ProfileWorkexpComponent {
 
       this.animationPlayed = true;
     }
+  }
+
+  shouldApplyTilt(): boolean {
+    // Adjust the screen width threshold based on your definition of "mobile"
+    const mobileScreenWidth = 910;
+    return window.innerWidth > mobileScreenWidth;
+  }
+
+  slideTo(index: number) {
+    const bulletsContainer = document.querySelector('.bullets-container');
+    const bulletElements = bulletsContainer!.querySelectorAll('.bullet');
+
+    bulletElements.forEach((bullet, idx) => {
+      // Assert bullet as HTMLElement
+      const bulletElement = bullet as HTMLElement;
+      
+      // Check if the index matches the desired index
+      if (idx == index) {
+        // Trigger the click event for the bullet element at the specified index
+        bulletElement.click();
+      }
+    });
   }
 }

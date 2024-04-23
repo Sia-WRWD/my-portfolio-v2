@@ -26,7 +26,7 @@
     "@types/three": "^0.163.0",
     "animejs": "^3.2.2",
     "ng-in-viewport": "^16.1.0",
-    "ngx-acuw": "^3.2.0",
+    "ngx-carousel-ease": "^0.1.4",
     "rxjs": "~7.8.0",
     "three": "^0.126.1",
     "tslib": "^2.3.0",

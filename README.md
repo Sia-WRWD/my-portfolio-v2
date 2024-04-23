@@ -85,8 +85,8 @@ Welcome to the source of my personal portfolio website. This website contains al
 
 
 #### Angular Components
-1. 
-2. 
+1. [NGX-Carousel-Ease](https://www.npmjs.com/package/ngx-carousel-ease)
+2. [GlassMorphism](https://css.glass/)
 
 #### Misc Resources
 1. [Mobile Responsive Hamburger Icon](https://codepen.io/alvarotrigo/pen/ExwgbZv)

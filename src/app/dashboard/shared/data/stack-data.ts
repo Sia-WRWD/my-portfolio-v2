@@ -36,6 +36,14 @@ export const stacks: any = [
                 opacity: 'selected'
             },
             {
+                name: "Java",
+                link: "https://cdn.worldvectorlogo.com/logos/java-4.svg",
+                description: `A high-level, class-based OOP language that I have utilized for developing various different
+                type of applications that include Enterprise-Level application (Java EE), Desktop Applications (Swing), 
+                and Backend Development (Java Spring Boot).`,
+                opacity: 'selected'
+            },
+            {
                 name: "Firebase",
                 link: "https://cdn.worldvectorlogo.com/logos/firebase-1.svg",
                 description: `A versatile suite of cloud services by Google that is integral to my portfolio, offering 

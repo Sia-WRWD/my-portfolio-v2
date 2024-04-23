@@ -29,15 +29,79 @@
     .profile-workexp-content-display {
         display: flex;
         padding: 10px;
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 15px;
+        flex-direction: column;
         width: calc(100% - 20px);
         height: 100%;
         background-color: rgba(0, 0, 0, 0.3);
         justify-content: center;
+        align-items: center;
         border-radius: 0px 0px 3px 3px;
-        overflow: hidden;
-        min-height: 217px;
+        min-height: 300px;
+
+        .profile-workexp-content-carousel {
+            width: 100%;
+            overflow: hidden;
+            min-height: 300px;
+
+            .profile-workexp-content-carousel-slide {
+                border-radius: 7px;
+                background: rgba(255, 255, 255, 0.25);
+                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+                backdrop-filter: blur(6.3px);
+                -webkit-backdrop-filter: blur(6.3px);
+                border: 1px solid rgba(255, 255, 255, 1);
+                overflow: hidden;
+                width: calc(100% - 20px) !important;
+                padding: 10px;
+                box-shadow: 1px 2px 3px black;
+
+                .profile-workexp-content-carousel-slide-card-content {
+                    padding: 0.625rem;
+                }
+
+                .profile-workexp-content-carousel-slide-title-card {
+                    text-align: center;
+                    margin-bottom: 2rem;
+
+                    h3 {
+                        font-size: 1.2rem;
+                    }
+                }
+
+                >img {
+                    display: block;
+                    width: 125px;
+                    object-fit: cover;
+                    border-radius: 7px;
+                    height: 125px;
+                    filter: drop-shadow(1px 2px 3px black);
+                }
+            }
+        }
+
+        .profile-workexp-content-carousel-filter {
+            display: flex;
+            flex-direction: row;
+            gap: 5px;
+            justify-content: center;
+            align-items: center;
+
+            .carousel-filter-icon-container {
+                padding: 5px;
+                border: 1px solid white;
+                border-radius: 7px;
+            }
+        }
     }
+}
+
+::ng-deep .banner-container,
+::ng-deep .bullets-container {
+    display: none !important;
+}
+
+::ng-deep .carousel-container {
+    overflow: hidden;
+    min-height: 300px;
+    display: flex;
 }

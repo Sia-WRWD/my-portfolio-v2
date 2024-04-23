@@ -39,12 +39,13 @@
                 padding: 0px 7px;
                 cursor: pointer;
                 transition: 0.3s ease-in-out;
+                line-height: 26px;
 
                 &[data-state="Inactive"] {
                     @media (not (prefers-reduced-motion: reduce)) {
                         &:hover {
                             transform: scale(1.03);
-                            box-shadow: 1px 2px 2px black;
+                            text-shadow: 1px 2px 2px black;
                         }
                     }
                 }

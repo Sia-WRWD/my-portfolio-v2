@@ -16,9 +16,11 @@ export class ScrollFadeDirective {
         if (scrollTop > this.lastScrollTop) {
             // Scrolling down
             this.renderer.setStyle(this.el.nativeElement, 'opacity', '0');
+            this.renderer.setStyle(this.el.nativeElement, 'z-index', '-1');
         } else {
             // Scrolling up
             this.renderer.setStyle(this.el.nativeElement, 'opacity', '1');
+            this.renderer.setStyle(this.el.nativeElement, 'z-index', '9999');
         }
         this.lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
     }

@@ -6,13 +6,26 @@
         </div>
     </div>
     <div class="profile-workexp-content-display">
-        <acuw-carousel #carousel class="carousel">
-            @for (item of workExpCarouselItems; track item;  let idx = $index) {
-                <acuw-carousel-item class="carousel-item">
-                    <h2>Item {{ idx+1 }}</h2>
-                    <img [src]="item" height="300" />
-                </acuw-carousel-item>
+        <!--Slider AutoPlay Configs: [autoPlay]="true" [autoPlayAtStart]="true" [autoPlayInterval]="5000" 
+            [displayAutoPlayControls]="false" [autoPlayDirection]="'ltr'"-->
+        <carousel [infinite]="false" [responsive]="true" [autoslideLimitPercentCard]="60" [slideToShow]="1"
+            [slideToScroll]="1" [animationTimingMs]="400" [counter]="false" [animationTimingFn]="'ease-in-out'"
+            [arrows]="false" [enableMouseDrag]="false" class="profile-workexp-content-carousel">
+            @for(slide of workExpSlides; track slide) {
+            <div class="profile-workexp-content-carousel-slide carousel-slide tilt-object" id="1">
+                <img [src]="slide.imgSrc" alt="{{slide.name}}" title="{{slide.name}}" />
+                <div class="profile-workexp-content-carousel-slide-card-content">
+                    {{slide.name}}
+                </div>
+            </div>
             }
-        </acuw-carousel>
+        </carousel>
+        <div class="profile-workexp-content-carousel-filter">
+            @for(slide of workExpSlides; track slide) {
+            <div class="carousel-filter-icon-container" (click)="slideTo(slide.bullet)">
+                <img [src]="slide.imgSrc" height="50" width="50">
+            </div>
+            }
+        </div>
     </div>
 </div>

@@ -24,6 +24,8 @@
         height: 100%;
         width: 100%;
         border-radius: 20px;
+        max-width: 684px;
+        min-width: 0px;
     }
 
     .right-profile-content-container {
@@ -48,12 +50,14 @@
     .profile-content-container {
         flex-direction: column;
 
-        .left-profile-content-container, .right-profile-content-container {
+        .left-profile-content-container,
+        .right-profile-content-container {
             flex-basis: auto;
         }
 
         .left-profile-content-container {
             order: 2;
+            max-width: 100%;
         }
 
         .right-profile-content-container {
