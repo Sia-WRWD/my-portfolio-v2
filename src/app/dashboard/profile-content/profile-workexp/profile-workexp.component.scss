@@ -250,6 +250,28 @@
     margin-bottom: 10px !important;
 }
 
+:host ::ng-deep .special-links {
+    color:#66C0F4 !important;
+    position: relative;
+    text-decoration: none;
+
+    &:hover::after {
+        width: 100%;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        background-color: #66C0F4;
+        left: 0;
+        bottom: -2px; /* Adjust the distance of the underline from the text */
+        width: 0;
+        height: 2px; /* Thickness of the underline */
+        transition: width 0.3s ease; /* Transition for growing out */
+        transform-origin: left;
+    }
+}
+
 @media screen and (max-width: 768px) {
     .profile-workexp-content-carousel {
         order: 2;
@@ -257,7 +279,6 @@
         .profile-workexp-content-carousel-filter {
             order: 1;
         }
-
 
         .profile-workexp-content-carousel-slide {
             flex-direction: column !important;

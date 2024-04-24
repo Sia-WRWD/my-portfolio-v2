@@ -28,8 +28,8 @@ export const workExp: any = [
             During this time, I continued working with the Angular Framework (which really came in handy 
             as I have continuously explored this framework since my first internship) and also gained 
             experience with the .NET framework for backend development. I engaged in diverse projects, 
-            including a <a href="https://voyager.v-circle.com/home" target="_blank">car marketplace</a>, 
-            <a href="https://www.npmjs.com/package/a-goog-trans" target="_blank">translation library</a>, and topology. Despite being an internship, 
+            including ML model for Palm Fruit Detection, a <a class="special-links" href="https://voyager.v-circle.com/home" target="_blank">car marketplace</a>, 
+            <a class="special-links" href="https://www.npmjs.com/package/a-goog-trans" target="_blank">translation library</a>. Despite being an internship, 
             it provided me with valuable insights into the industry.
         `,
         imgSrc: '../../../../assets/icons/fusionex.png',

@@ -55,7 +55,7 @@ export class ProfileWorkexpComponent {
     bulletElements.forEach((bullet, idx) => {
       // Assert bullet as HTMLElement
       const bulletElement = bullet as HTMLElement;
-      
+
       // Check if the index matches the desired index
       if (idx == index) {
         // Trigger the click event for the bullet element at the specified index
@@ -66,12 +66,12 @@ export class ProfileWorkexpComponent {
     this.workExpSlides.forEach((slide: any, idx: any) => {
       // If the index matches the desired index
       if (idx == index) {
-          // Set the selected property to 'active'
-          slide.selected = 'active';
+        // Set the selected property to 'active'
+        slide.selected = 'active';
       } else {
-          // Set the selected property to 'inactive' for all other slides
-          slide.selected = 'inactive';
+        // Set the selected property to 'inactive' for all other slides
+        slide.selected = 'inactive';
       }
-  });
+    });
   }
 }
