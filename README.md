@@ -94,6 +94,7 @@ Welcome to the source of my personal portfolio website. This website contains al
 3. [Profile Picture Frame](https://steamcommunity.com/id/jcn_loveinapril)
 4. [Vector Logo](https://worldvectorlogo.com/logo/azure-2)
 5. [GitHub Shields Logo](https://github.com/Ileriayo/markdown-badges)
+6. [CSS Animations](https://codepen.io/nelledejones/pen/gOOPWrK)
 
 #### Note for Self on SVG Icon Creation
 1. Look for existing SVG (WorldVectorLogo, Github Shields)

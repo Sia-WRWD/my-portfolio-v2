@@ -13,15 +13,21 @@ export class ScrollFadeDirective {
     onWindowScroll() {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
 
-        if (scrollTop > this.lastScrollTop) {
-            // Scrolling down
-            this.renderer.setStyle(this.el.nativeElement, 'opacity', '0');
-            this.renderer.setStyle(this.el.nativeElement, 'z-index', '-1');
-        } else {
-            // Scrolling up
-            this.renderer.setStyle(this.el.nativeElement, 'opacity', '1');
-            this.renderer.setStyle(this.el.nativeElement, 'z-index', '9999');
+        // Check the scroll direction
+        const scrollDirection = scrollTop > this.lastScrollTop ? 'down' : 'up';
+
+        // Apply fade effect only for vertical scrolling
+        if (Math.abs(scrollTop - this.lastScrollTop) > 5) { // adjust this value based on your needs
+            if (scrollDirection === 'down') {
+                // Scrolling down
+                this.renderer.setStyle(this.el.nativeElement, 'opacity', '0');
+                this.renderer.setStyle(this.el.nativeElement, 'z-index', '-1');
+            } else {
+                // Scrolling up
+                this.renderer.setStyle(this.el.nativeElement, 'opacity', '1');
+                this.renderer.setStyle(this.el.nativeElement, 'z-index', '9999');
+            }
+            this.lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
         }
-        this.lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
     }
 }

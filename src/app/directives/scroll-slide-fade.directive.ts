@@ -14,19 +14,25 @@ export class ScrollSlideFadeDirective {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
         var header = document.querySelector('.profile-header-container');
 
-        if (scrollTop > this.lastScrollTop) {
-            // Scrolling down
-            this.renderer.setStyle(this.el.nativeElement, 'top', '-62px');
-            if (window.innerWidth < 911) {
-                this.renderer.setStyle(header, 'paddingTop', '70px');
+        // Check the scroll direction
+        const scrollDirection = scrollTop > this.lastScrollTop ? 'down' : 'up';
+
+        // Apply slide and fade effects only for vertical scrolling
+        if (Math.abs(scrollTop - this.lastScrollTop) > 5) { // adjust this value based on your needs
+            if (scrollDirection === 'down') {
+                // Scrolling down
+                this.renderer.setStyle(this.el.nativeElement, 'top', '-62px');
+                if (window.innerWidth < 911) {
+                    this.renderer.setStyle(header, 'paddingTop', '70px');
+                }
+            } else {
+                // Scrolling up
+                this.renderer.setStyle(this.el.nativeElement, 'top', '0');
+                if (window.innerWidth < 911) {
+                    this.renderer.removeStyle(header, 'paddingTop');
+                }
             }
-        } else {
-            // Scrolling up
-            this.renderer.setStyle(this.el.nativeElement, 'top', '0');
-            if (window.innerWidth < 911) {
-                this.renderer.removeStyle(header, 'paddingTop');
-            }
+            this.lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
         }
-        this.lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
     }
 }

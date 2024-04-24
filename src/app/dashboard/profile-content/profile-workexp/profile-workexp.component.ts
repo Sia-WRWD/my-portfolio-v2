@@ -3,13 +3,13 @@ import anime from 'animejs/lib/anime.es.js';
 import { InViewportDirective } from 'ng-in-viewport';
 import { CarouselModule } from 'ngx-carousel-ease';
 import VanillaTilt from 'vanilla-tilt';
-import { NgOptimizedImage } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { workExp } from '../../shared/data/work-exp';
 
 @Component({
   selector: 'app-profile-workexp',
   standalone: true,
-  imports: [InViewportDirective, CarouselModule, NgOptimizedImage],
+  imports: [InViewportDirective, CarouselModule, NgOptimizedImage, CommonModule],
   templateUrl: './profile-workexp.component.html',
   styleUrl: './profile-workexp.component.scss'
 })
@@ -62,5 +62,16 @@ export class ProfileWorkexpComponent {
         bulletElement.click();
       }
     });
+
+    this.workExpSlides.forEach((slide: any, idx: any) => {
+      // If the index matches the desired index
+      if (idx == index) {
+          // Set the selected property to 'active'
+          slide.selected = 'active';
+      } else {
+          // Set the selected property to 'inactive' for all other slides
+          slide.selected = 'inactive';
+      }
+  });
   }
 }

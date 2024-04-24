@@ -50,10 +50,11 @@
                 backdrop-filter: blur(6.3px);
                 -webkit-backdrop-filter: blur(6.3px);
                 border: 1px solid rgba(255, 255, 255, 1);
-                overflow: hidden;
-                width: calc(100% - 20px) !important;
-                padding: 10px;
                 box-shadow: 1px 2px 3px black;
+                display: flex;
+                align-items: flex-start;
+                flex-direction: row;
+                overflow: hidden;
 
                 .profile-workexp-content-carousel-slide-card-content {
                     padding: 0.625rem;
@@ -68,13 +69,111 @@
                     }
                 }
 
-                >img {
-                    display: block;
-                    width: 125px;
-                    object-fit: cover;
-                    border-radius: 7px;
-                    height: 125px;
-                    filter: drop-shadow(1px 2px 3px black);
+                .slide-card-header {
+                    width: 80px;
+                    min-height: 100%;
+                    background: radial-gradient(98.31% 133.89% at 12.99% 12.25%, #693F00 10%, #33005C 62.6%, #022216 90%);
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    .slide-card-header-name {
+                        display: inline-block;
+                        transform: translateX(-100px);
+                        text-align: center;
+                        font-size: 16px;
+                        color: #FFFFFF;
+                        text-shadow: 1px 2px 3px black;
+                        position: absolute;
+                        bottom: 20px;
+                        transition: 0.3s ease-in-out;
+                        font-weight: 600;
+                        letter-spacing: .3px;
+                    }
+
+                    .slide-card-header-logo-container {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: 50px;
+                        height: 50px;
+                        border-radius: 50%;
+                        position: absolute;
+                        top: 10px;
+                        left: 35px;
+                        background: white;
+                        transition: .3s ease-in-out;
+                        padding: 10px;
+
+                        .slide-card-header-logo {
+                            height: 45px;
+                            width: 45px;
+                        }
+
+                        @media (not (prefers-reduced-motion: reduce)) {
+                            &:hover {
+                                animation: hithere 1s ease infinite;
+                                box-shadow: 1px 1px 2px 2px black;
+                            }
+                        }
+                    }
+
+                    @media (not (prefers-reduced-motion: reduce)) {
+                        .slide-card-header-logo-container:hover+.slide-card-header-name {
+                            transform: translateX(0px);
+                        }
+                    }
+                }
+
+                .slide-card-desc {
+                    width: 100%;
+                    padding: 7px;
+
+                    .slide-card-desc-padding {
+                        padding-left: 40px;
+                        padding-top: 12px;
+
+                        .slide-card-desc-role {
+                            font-size: 24px;
+                            font-weight: 700;
+                            text-shadow: 1px 2px 2px black;
+                        }
+
+                        .wct {
+                            color: #42B0EE;
+                        }
+
+                        .fus {
+                            color: #D00910;
+                        }
+
+                        .qube {
+                            color: #BC2024;
+                        }
+
+                        .slide-card-desc-date-duration {
+                            margin-top: 5px;
+                            color: #D3D3D3;
+                            font-weight: lighter;
+
+                            .slide-card-desc-date {
+                                font-size: 15px;
+                            }
+
+                            .slide-card-desc-duration {
+                                font-size: 12px;
+                            }
+                        }
+                    }
+
+                    .slide-card-desc-desc {
+                        padding: 10px;
+                        line-height: 20px;
+                        color: white;
+                        word-spacing: 2px;
+                        text-align: justify;
+                    }
                 }
             }
         }
@@ -82,27 +181,136 @@
         .profile-workexp-content-carousel-filter {
             display: flex;
             flex-direction: row;
-            gap: 5px;
+            gap: 10px;
             justify-content: center;
             align-items: center;
 
             .carousel-filter-icon-container {
                 padding: 5px;
-                border: 1px solid white;
+                background: rgba(255, 255, 255, 0.25);
+                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+                backdrop-filter: blur(6.3px);
+                -webkit-backdrop-filter: blur(6.3px);
+                border: 1px solid rgba(255, 255, 255, 1);
                 border-radius: 7px;
                 cursor: pointer;
+                box-shadow: 1px 2px 3px black;
+                transition: .3s ease-in-out;
+
+                img {
+                    transition: .3s ease-in-out;
+                    filter: drop-shadow(1px 2px 3px black);
+                }
+
+                @media (not (prefers-reduced-motion: reduce)) {
+                    &:hover {
+                        opacity: 1 !important;
+                        transform: scale(1.05);
+                    }
+                }
+
+                &[data-selected="active"] {
+                    opacity: 1;
+                }
+
+                &[data-selected="inactive"] {
+                    opacity: 0.25;
+                }
             }
+
+            .wct[data-selected="active"] {
+                border: 2px solid #42B0EE;
+            }
+
+            .fus[data-selected="active"] {
+                border: 2px solid #D00910;
+            }
+
+            .qube[data-selected="active"] {
+                border: 2px solid #BC2024;
+            }
+
         }
     }
 }
 
-::ng-deep .banner-container,
-::ng-deep .bullets-container {
+:host ::ng-deep .banner-container,
+:host ::ng-deep .bullets-container {
     display: none !important;
 }
 
-::ng-deep .carousel-container {
+:host ::ng-deep .carousel-container {
     overflow: hidden;
     min-height: 225px;
     display: flex;
+}
+
+:host ::ng-deep .slides-container {
+    margin: 0 !important;
+    margin-bottom: 10px !important;
+}
+
+@media screen and (max-width: 768px) {
+    .profile-workexp-content-carousel {
+        order: 2;
+
+        .profile-workexp-content-carousel-filter {
+            order: 1;
+        }
+
+
+        .profile-workexp-content-carousel-slide {
+            flex-direction: column !important;
+            align-items: center !important;
+
+            .slide-card-header {
+                width: 100% !important;
+                min-height: 175px !important;
+                flex-direction: column !important;
+
+                .slide-card-header-name {
+                    position: static !important;
+                    transform: none !important;
+                    font-size: 40px !important;
+                    text-wrap: nowrap !important;
+                    margin-right: 0px !important;
+                    margin-bottom: 10px !important;
+                }
+
+                .slide-card-header-logo-container {
+                    left: unset !important;
+                    right: 20px !important;
+                    margin: auto;
+                    top: 50px !important;
+                    width: 80px !important;
+                    height: 80px !important;
+                    position: static !important;
+
+                    .slide-card-header-logo {
+                        width: 70px !important;
+                        height: 70px !important;
+                    }
+                }
+            }
+
+            .slide-card-desc {
+                .slide-card-desc-padding {
+                    padding: 0 10px !important;
+                }
+
+                .slide-card-desc-date {
+                    font-size: 16px;
+                }
+
+                .slide-card-desc-desc {
+                    font-size: 13px;
+                }
+            }
+        }
+    }
+
+    :host ::ng-deep .slides-container {
+        margin: 0 !important;
+        margin-top: 10px !important;
+    }
 }
