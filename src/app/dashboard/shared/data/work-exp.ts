@@ -46,7 +46,7 @@ export const workExp: any = [
         totalDuration: '4 months',
         jobDesc: `This was my first internship, and it was eye-opening. I got to see what 
         working in IT is really like, learning about different programming languages, frameworks, 
-        and project management. But the best part was getting hands-on with Angular, a JavaScript 
+        and project management. But the best part was getting hands-on with <a class="special-links" href="https://angular.io/" target="_blank">Angular</a>, a TypeScript 
         framework. It helped me understand JavaScript and TypeScript better and made it easier to 
         pick up similar frameworks like React and Vue. Plus, I got to explore things like authentication, 
         database via MySQL, and building APIs via NodeJS. It was a great learning experience!`,
