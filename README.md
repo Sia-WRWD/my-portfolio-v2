@@ -86,7 +86,8 @@ Welcome to the source of my personal portfolio website. This website contains al
 
 #### Angular Components
 1. [NGX-Carousel-Ease](https://www.npmjs.com/package/ngx-carousel-ease)
-2. [GlassMorphism](https://css.glass/)
+2. [NG-In-Viewport](https://www.npmjs.com/package/ng-in-viewport)
+3. [GlassMorphism](https://css.glass/)
 
 #### Misc Resources
 1. [Mobile Responsive Hamburger Icon](https://codepen.io/alvarotrigo/pen/ExwgbZv)
@@ -95,6 +96,7 @@ Welcome to the source of my personal portfolio website. This website contains al
 4. [Vector Logo](https://worldvectorlogo.com/logo/azure-2)
 5. [GitHub Shields Logo](https://github.com/Ileriayo/markdown-badges)
 6. [CSS Animations](https://codepen.io/nelledejones/pen/gOOPWrK)
+7. [Scroll-to-Top During Refresh](https://stackoverflow.com/questions/3664381/force-page-scroll-position-to-top-at-page-refresh-in-html)
 
 #### Note for Self on SVG Icon Creation
 1. Look for existing SVG (WorldVectorLogo, Github Shields)

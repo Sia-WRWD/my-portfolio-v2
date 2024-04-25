@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'my-portfolio-v2';
+
+  ngOnInit() {
+    if (history.scrollRestoration) {
+      history.scrollRestoration = 'manual';
+    } else {
+      window.onbeforeunload = function () {
+        window.scrollTo(0, 0);
+      }
+    }
+  }
 }

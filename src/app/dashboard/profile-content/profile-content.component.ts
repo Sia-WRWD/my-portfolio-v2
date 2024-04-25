@@ -5,12 +5,16 @@ import { ProfileEducationComponent } from './profile-education/profile-education
 import { ProfileProjectComponent } from './profile-project/profile-project.component';
 import { ProfileWorkexpComponent } from './profile-workexp/profile-workexp.component';
 import { ProfileContactComponent } from './profile-contact/profile-contact.component';
-import { InViewportDirective } from 'ng-in-viewport';
+import { InViewportModule } from 'ng-in-viewport';
+import { ScrollReachedDirective } from 'src/app/directives/scroll-reaches.directive';
 
 @Component({
   selector: 'app-profile-content',
   standalone: true,
-  imports: [ProfileStacksComponent, ProfileEducationComponent, ProfileProjectComponent, ProfileWorkexpComponent, ProfileContactComponent, InViewportDirective],
+  imports: [
+    ProfileStacksComponent, ProfileEducationComponent, ProfileProjectComponent, 
+    ProfileWorkexpComponent, ProfileContactComponent, InViewportModule, ScrollReachedDirective
+  ],
   templateUrl: './profile-content.component.html',
   styleUrl: './profile-content.component.scss'
 })
@@ -18,16 +22,16 @@ export class ProfileContentComponent {
 
   stacksAnimationPlayed: boolean = false;
   workexpAnimationPlayed: boolean = false;
-  workexpDelay: number = 0;
   projAnimationPlayed: boolean = false;
   eduAnimationPlayed: boolean = false;
 
   ngOnInit() {
-    if (window.innerWidth > 882) {
-      this.workexpDelay = 1000;
-    } else {
-      this.workexpDelay = 0;
-    }
+
+  }
+
+  onScrollReached(): void {
+    // Perform actions when the scroll reaches the element section
+    console.log('Scroll reached the element section');
   }
 
   onStacksIntersection({ target, visible }: { target: Element; visible: boolean }): void {
@@ -45,24 +49,24 @@ export class ProfileContentComponent {
     }
   }
 
-  onWorkExpIntersection({ target, visible }: { target: Element; visible: boolean }): void {
-    if (!this.workexpAnimationPlayed && visible && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  onWorkExpIntersection(): void {
+    if (!this.workexpAnimationPlayed && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       anime({
         targets: '.anime-profile-workexp',
         translateX: ['100%', 0], // Move from left (-100%) to current position (0)
         opacity: [0, 1], // Fade from transparent (0) to opaque (1)
         easing: 'easeInOutQuad', // Use easing for smoother animation
-        delay: this.workexpDelay,
+        delay: 0,
         duration: 1000 // Animation duration in milliseconds
       });
       this.workexpAnimationPlayed = true;
     }
   }
 
-  onProjIntersection({ target, visible }: { target: Element; visible: boolean }): void {
-    if (!this.projAnimationPlayed && visible && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  onProjIntersection(): void {
+    if (!this.projAnimationPlayed && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       anime({
-        targets: '.anime-profile-proj',
+        targets: '.anime-profile-project',
         translateX: ['-100%', 0], // Move from left (-100%) to current position (0)
         opacity: [0, 1], // Fade from transparent (0) to opaque (1)
         easing: 'easeInOutQuad', // Use easing for smoother animation
@@ -73,8 +77,8 @@ export class ProfileContentComponent {
     }
   }
 
-  onEduIntersection({ target, visible }: { target: Element; visible: boolean }): void {
-    if (!this.eduAnimationPlayed && visible && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  onEduIntersection(): void {
+    if (!this.eduAnimationPlayed && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       anime({
         targets: '.anime-profile-edu',
         translateX: ['-100%', 0], // Move from left (-100%) to current position (0)

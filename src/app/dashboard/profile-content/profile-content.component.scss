@@ -26,6 +26,11 @@
         border-radius: 20px;
         max-width: 684px;
         min-width: 0px;
+
+        .anime-profile-stacks, .anime-profile-workexp,
+        .anime-profile-project, .anime-profile-edu {
+            opacity: 0;
+        }
     }
 
     .right-profile-content-container {

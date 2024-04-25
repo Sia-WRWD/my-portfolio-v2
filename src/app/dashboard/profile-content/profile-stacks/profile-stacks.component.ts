@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 import { stacks } from '../../shared/data/stack-data';
 import anime from 'animejs/lib/anime.es.js';
-import { InViewportDirective } from 'ng-in-viewport';
 
 @Component({
   selector: 'app-profile-stacks',
   standalone: true,
-  imports: [InViewportDirective],
+  imports: [],
   templateUrl: './profile-stacks.component.html',
   styleUrl: './profile-stacks.component.scss'
 })
@@ -26,7 +25,9 @@ export class ProfileStacksComponent {
   }
 
   ngAfterViewInit() {
-
+    setTimeout(() => {
+      this.playStackAnimation();
+    }, 1000)
   }
 
   changeStack(filterValue: string) {
@@ -66,27 +67,27 @@ export class ProfileStacksComponent {
         element.removeAttribute('style');
       });
 
-      const stackElements = document.querySelectorAll('.profile-stack-icon-container');
-      stackElements.forEach(element => {
-        element.removeAttribute('style');
-      });
+      // const stackElements = document.querySelectorAll('.profile-stack-icon-container');
+      // stackElements.forEach(element => {
+      //   element.removeAttribute('style');
+      // });
     }, 5000)
   }
 
-  onIntersection({ target, visible }: { target: Element; visible: boolean }): void {
+  playStackAnimation() {
 
     if (this.animationPlayed == false && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       anime({
         targets: '.profile-stack-header-filter',
         translateX: ['800px', 0], // Move from left (-100%) to current position (0)
         opacity: [0, 1], // Fade from transparent (0) to opaque (1)
-        delay: anime.stagger(200, { start: 1000 }), // Use easing for smoother animation
+        delay: anime.stagger(200, { start: 500 }), // Use easing for smoother animation
       });
 
       anime({
         targets: '.profile-stack-icon-container',
         translateY: ['500px', 0], // Move from left (-100%) to current position (0)
-        delay: anime.stagger(150, { start: 1000 }), // Use easing for smoother animation
+        delay: anime.stagger(150, { start: 500 }), // Use easing for smoother animation
       });
 
       this.removeAnimationInlineStyles();

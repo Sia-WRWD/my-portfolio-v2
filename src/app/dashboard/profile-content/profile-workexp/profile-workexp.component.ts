@@ -1,14 +1,14 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import anime from 'animejs/lib/anime.es.js';
-import { InViewportDirective } from 'ng-in-viewport';
 import { CarouselModule } from 'ngx-carousel-ease';
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { workExp } from '../../shared/data/work-exp';
+import { ScrollReachedDirective } from 'src/app/directives/scroll-reaches.directive';
 
 @Component({
   selector: 'app-profile-workexp',
   standalone: true,
-  imports: [InViewportDirective, CarouselModule, NgOptimizedImage, CommonModule],
+  imports: [CarouselModule, CommonModule, ScrollReachedDirective],
   templateUrl: './profile-workexp.component.html',
   styleUrl: './profile-workexp.component.scss'
 })
@@ -36,42 +36,45 @@ export class ProfileWorkexpComponent {
     }, 5000)
   }
 
-  onIntersection({ target, visible }: { target: Element; visible: boolean }): void {
+  onIntersection(): void {
 
-    if (this.animationPlayed == false && visible && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    if (this.animationPlayed == false && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
 
       if (window.innerWidth > 768) {
         anime({
           targets: '.profile-workexp-content-carousel',
           translateX: ['100%', 0], // Move from left (-100%) to current position (0)
           opacity: [0, 1], // Fade from transparent (0) to opaque (1)
-          delay: 2000, // Use easing for smoother animation
+          delay: 500, // Use easing for smoother animation
         });
 
         anime({
           targets: '.carousel-filter-icon-container',
           translateX: ['-1000px', 0], // Move from left (-100%) to current position (0)
           opacity: [0, 1], // Fade from transparent (0) to opaque (1)
-          delay: anime.stagger(200, { start: 2250 }), // Use easing for smoother animation
+          delay: anime.stagger(200, { start: 700 }), // Use easing for smoother animation
         });
+
+        this.removeAnimationInlineStyles();
+        this.animationPlayed = true;
       } else {
         anime({
           targets: '.carousel-filter-icon-container',
           translateX: ['1000px', 0], // Move from left (-100%) to current position (0)
           opacity: [0, 1], // Fade from transparent (0) to opaque (1)
-          delay: anime.stagger(200, { start: 1000 }), // Use easing for smoother animation
+          delay: anime.stagger(200, { start: 500 }), // Use easing for smoother animation
         });
 
         anime({
           targets: '.profile-workexp-content-carousel',
           translateX: ['100%', 0], // Move from left (-100%) to current position (0)
           opacity: [0, 1], // Fade from transparent (0) to opaque (1)
-          delay: 2500, // Use easing for smoother animation
+          delay: 700, // Use easing for smoother animation
         });
-      }
 
-      this.removeAnimationInlineStyles();
-      this.animationPlayed = true;
+        this.removeAnimationInlineStyles();
+        this.animationPlayed = true;
+      }
     }
   }
 

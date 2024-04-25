@@ -1,1 +1,31 @@
-<p>profile-project works!</p>
+<div class="profile-project-container" #proj scrollReached (scrollReached)="onIntersection()">
+    <div class="profile-project-header-container ellipsis">
+        <div class="profile-project-header-title">
+            My Projects
+        </div>
+    </div>
+    <div class="profile-project-content-display">
+        <div class="profile-project-card-container">
+            @for (proj of selectedProjects; track proj) {
+            <div class="profile-project-card">
+                <img class="card-bg" [src]="proj.ngSrc" [alt]="proj.name">
+                <div class="card-content">
+                    <div class="card-name">
+                        {{proj.name}}
+                    </div>
+                    <div class="card-stack">
+                        @for(stack of proj.stacks; track stack) {
+                        <div class="card-stack-icon-container">
+                            <img [src]="stack.link" [alt]="stack.name" class="card-stack-icon">
+                        </div>
+                        }
+                    </div>
+                    <div class="card-desc">
+                        {{proj.desc}}
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</div>
