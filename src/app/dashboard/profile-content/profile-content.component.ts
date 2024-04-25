@@ -91,4 +91,7 @@ export class ProfileContentComponent {
     }
   }
 
+  onNavScrollReached(section: string) {
+
+  }
 }
