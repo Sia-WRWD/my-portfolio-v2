@@ -1,4 +1,4 @@
-import { Component, ElementRef } from '@angular/core';
+import { Component, ElementRef, QueryList, ViewChildren } from '@angular/core';
 import anime from 'animejs/lib/anime.es.js';
 import { projects } from '../../shared/data/project';
 import { ScrollReachedDirective } from 'src/app/directives/scroll-reaches.directive';
@@ -11,6 +11,9 @@ import { ScrollReachedDirective } from 'src/app/directives/scroll-reaches.direct
   styleUrl: './profile-project.component.scss'
 })
 export class ProfileProjectComponent {
+
+  @ViewChildren('projectCardContent') projectCardContentElements!: QueryList<ElementRef>;
+  @ViewChildren('projectCardBg') projectCardBgElements!: QueryList<ElementRef>;
   animationPlayed: boolean = false;
   selectedProjects: any = projects;
 
@@ -33,23 +36,22 @@ export class ProfileProjectComponent {
   onIntersection(): void {
 
     if (this.animationPlayed == false && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      
+    }
+  }
 
-    //     anime({
-    //       targets: '.profile-workexp-content-carousel',
-    //       translateX: ['100%', 0], // Move from left (-100%) to current position (0)
-    //       opacity: [0, 1], // Fade from transparent (0) to opaque (1)
-    //       delay: 2000, // Use easing for smoother animation
-    //     });
+  //To apply effects on Project Card Bg when user enters Project Card Content.
+  onMouseEnter(index: number) {
+    const projectCardBgElement = this.projectCardBgElements.toArray()[index]?.nativeElement;
+    if (projectCardBgElement) {
+      projectCardBgElement.classList.add('project-card-bg-hovered');
+    }
+  }
 
-    //     anime({
-    //       targets: '.carousel-filter-icon-container',
-    //       translateX: ['-1000px', 0], // Move from left (-100%) to current position (0)
-    //       opacity: [0, 1], // Fade from transparent (0) to opaque (1)
-    //       delay: anime.stagger(200, { start: 2250 }), // Use easing for smoother animation
-    //     });
-
-    //   this.removeAnimationInlineStyles();
-    //   this.animationPlayed = true;
+  onMouseLeave(index: number) {
+    const projectCardBgElement = this.projectCardBgElements.toArray()[index]?.nativeElement;
+    if (projectCardBgElement) {
+      projectCardBgElement.classList.remove('project-card-bg-hovered');
     }
   }
 }

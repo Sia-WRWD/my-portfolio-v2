@@ -12,7 +12,7 @@ export const workExp: any = [
         how they leverage the <a class="special-links" href="https://www.tmforum.org/certifications-awarded/whale-cloud-zsmart-v9/" target="_blank">Telco as a Service (TAAS)</a> 
         concept optimizes CRM, E-Sales, Billing, Charging, and other aspects for their clients. It's been an enlightening 
         experience diving into this field for the first time.`,
-        imgSrc: '../../../../assets/icons/wct.png',
+        imgSrc: '../../../../assets/icons/work/wct.png',
         role: 'DevOps Delivery Engineer',
         bullet: '0',
         class: 'wct',
@@ -32,7 +32,7 @@ export const workExp: any = [
             <a class="special-links" href="https://www.npmjs.com/package/a-goog-trans" target="_blank">translation library</a>. Despite being an internship, 
             it provided me with valuable insights into the industry.
         `,
-        imgSrc: '../../../../assets/icons/fusionex.png',
+        imgSrc: '../../../../assets/icons/work/fusionex.png',
         role: 'Full Stack Developer',
         bullet: '1',
         class: 'fus',
@@ -50,7 +50,7 @@ export const workExp: any = [
         framework. It helped me understand JavaScript and TypeScript better and made it easier to 
         pick up similar frameworks like React and Vue. Plus, I got to explore things like authentication, 
         database via MySQL, and building APIs via NodeJS. It was a great learning experience!`,
-        imgSrc: '../../../../assets/icons/qube.png',
+        imgSrc: '../../../../assets/icons/work/qube.png',
         role: 'Web Developer',
         bullet: '2',
         class: 'qube',

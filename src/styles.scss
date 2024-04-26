@@ -90,6 +90,18 @@ a {
     }
 }
 
+@keyframes bounceUp {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0); /* Start and end positions */
+    }
+    40% {
+      transform: translateY(-10px); /* Bounce up position */
+    }
+    60% {
+      transform: translateY(-5px); /* Bounce back position */
+    }
+}
+
 ::-webkit-scrollbar {
     height: 12px;
     width: 14px;

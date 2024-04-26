@@ -6,21 +6,21 @@
     </div>
     <div class="profile-project-content-display">
         <div class="profile-project-card-container">
-            @for (proj of selectedProjects; track proj) {
+            @for (proj of selectedProjects; track proj; let idx = $index) {
             <div class="profile-project-card">
-                <img class="card-bg" [src]="proj.ngSrc" [alt]="proj.name">
-                <div class="card-content">
-                    <div class="card-name">
+                <img #projectCardBg class="project-card-bg" [src]="proj.bgSrc" [alt]="proj.name">
+                <div class="project-card-content" #projectCardContent (mouseenter)="onMouseEnter(idx)" (mouseleave)="onMouseLeave(idx)">
+                    <div class="project-card-name">
                         {{proj.name}}
                     </div>
-                    <div class="card-stack">
-                        @for(stack of proj.stacks; track stack) {
-                        <div class="card-stack-icon-container">
-                            <img [src]="stack.link" [alt]="stack.name" class="card-stack-icon">
+                    <div class="project-card-stack">
+                        @for(stack of proj.stacksLogo; track stack) {
+                        <div class="project-card-stack-icon-container">
+                            <img [src]="stack.link" [alt]="stack.name" class="project-card-stack-icon">
                         </div>
                         }
                     </div>
-                    <div class="card-desc">
+                    <div class="project-card-desc">
                         {{proj.desc}}
                     </div>
                 </div>
