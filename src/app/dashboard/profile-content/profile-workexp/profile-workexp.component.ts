@@ -33,7 +33,7 @@ export class ProfileWorkexpComponent {
       filterElements.forEach(element => {
         element.removeAttribute('style');
       });
-    }, 5000)
+    }, 3000)
   }
 
   onIntersection(): void {

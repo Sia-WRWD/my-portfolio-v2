@@ -141,8 +141,20 @@
                                 width: 40px;
                                 transition: 0.3s ease-in-out;
 
+                                @media (not (prefers-reduced-motion: reduce)) {
+                                    &:hover {
+                                        transform: scale(1.2);
+                                    }
+                                }
+                            }
+                        }
+
+                        @media (not (prefers-reduced-motion: reduce)) {
+                            .redirect {
+                                transition: 0.3s ease-in-out;
+
                                 &:hover {
-                                    transform: scale(1.2);
+                                    filter: invert(1);
                                 }
                             }
                         }

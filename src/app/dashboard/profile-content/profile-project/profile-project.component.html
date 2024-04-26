@@ -7,24 +7,33 @@
     <div class="profile-project-content-display">
         <div class="profile-project-card-container">
             @for (proj of selectedProjects; track proj; let idx = $index) {
-            <div class="profile-project-card">
-                <img #projectCardBg class="project-card-bg" [src]="proj.bgSrc" [alt]="proj.name">
-                <div class="project-card-content" #projectCardContent (mouseenter)="onMouseEnter(idx)" (mouseleave)="onMouseLeave(idx)">
-                    <div class="project-card-name">
-                        {{proj.name}}
-                    </div>
-                    <div class="project-card-stack">
-                        @for(stack of proj.stacksLogo; track stack) {
-                        <div class="project-card-stack-icon-container">
-                            <img [src]="stack.link" [alt]="stack.name" class="project-card-stack-icon">
+                <div class="profile-project-card tilt-object">
+                    <img #projectCardBg class="project-card-bg" [src]="proj.bgSrc" [alt]="proj.name">
+                    <div class="project-card-content" #projectCardContent (mouseenter)="onMouseEnter(idx)"
+                        (mouseleave)="onMouseLeave(idx)">
+                        <div class="project-card-name">
+                            {{proj.name}}
                         </div>
-                        }
-                    </div>
-                    <div class="project-card-desc">
-                        {{proj.desc}}
+                        <div class="project-card-stack">
+                            @for(stack of proj.stacksLogo; track stack) {
+                                @if(stack.redirect != "") {
+                                    <a [href]="stack.redirect" target="_blank">
+                                        <div class="project-card-stack-icon-container redirect" [title]="stack.name">
+                                            <img [src]="stack.link" [alt]="stack.name" class="project-card-stack-icon">
+                                        </div>
+                                    </a>
+                                } @else {
+                                    <div class="project-card-stack-icon-container" [title]="stack.name">
+                                        <img [src]="stack.link" [alt]="stack.name" class="project-card-stack-icon">
+                                    </div>
+                                }
+                            }
+                        </div>
+                        <div class="project-card-desc">
+                            {{proj.desc}}
+                        </div>
                     </div>
                 </div>
-            </div>
             }
         </div>
     </div>
