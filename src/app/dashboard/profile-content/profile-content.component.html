@@ -1,13 +1,14 @@
 <div class="profile-content-container">
     <div class="left-profile-content-container">
         <app-profile-stacks class="anime-profile-stacks" inViewport [inViewportOptions]="{ threshold: [0] }"
-            (inViewportAction)="onStacksIntersection($event)" navScrollReached (navScrollReached)="onNavScrollReached('stack')"></app-profile-stacks>
+            (inViewportAction)="onStacksIntersection($event)" navScrollReached
+            (navScrollReached)="onNavScrollReached('stacks')" id="stacks"></app-profile-stacks>
         <app-profile-workexp class="anime-profile-workexp" scrollReached (scrollReached)="onWorkExpIntersection()"
-            navScrollReached (navScrollReached)="onNavScrollReached('workexp')"></app-profile-workexp>
+            navScrollReached (navScrollReached)="onNavScrollReached('workexp')" id="workexp"></app-profile-workexp>
         <app-profile-project class="anime-profile-project" scrollReached (scrollReached)="onProjIntersection()"
-            navScrollReached (navScrollReached)="onNavScrollReached('project')"></app-profile-project>
+            navScrollReached (navScrollReached)="onNavScrollReached('project')" id="project"></app-profile-project>
         <app-profile-education class="anime-profile-edu" scrollReached (scrollReached)="onEduIntersection()"
-            navScrollReached (navScrollReached)="onNavScrollReached('edu')"></app-profile-education>
+            navScrollReached (navScrollReached)="onNavScrollReached('edu')" id="edu"></app-profile-education>
     </div>
     <div class="right-profile-content-container" #right>
         <div class="right-profile-content-inner-container">

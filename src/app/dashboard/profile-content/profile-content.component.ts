@@ -7,13 +7,15 @@ import { ProfileWorkexpComponent } from './profile-workexp/profile-workexp.compo
 import { ProfileContactComponent } from './profile-contact/profile-contact.component';
 import { InViewportModule } from 'ng-in-viewport';
 import { ScrollReachedDirective } from 'src/app/directives/scroll-reaches.directive';
+import { ScrollReachedNavDirective } from 'src/app/directives/scroll-reaches-nav.directive';
+import { ScrollService } from '../shared/service/scroll.service';
 
 @Component({
   selector: 'app-profile-content',
   standalone: true,
   imports: [
-    ProfileStacksComponent, ProfileEducationComponent, ProfileProjectComponent, 
-    ProfileWorkexpComponent, ProfileContactComponent, InViewportModule, ScrollReachedDirective
+    ProfileStacksComponent, ProfileEducationComponent, ProfileProjectComponent,
+    ProfileWorkexpComponent, ProfileContactComponent, InViewportModule, ScrollReachedDirective, ScrollReachedNavDirective
   ],
   templateUrl: './profile-content.component.html',
   styleUrl: './profile-content.component.scss'
@@ -25,13 +27,10 @@ export class ProfileContentComponent {
   projAnimationPlayed: boolean = false;
   eduAnimationPlayed: boolean = false;
 
+  constructor (private scrollService: ScrollService) {}
+
   ngOnInit() {
 
-  }
-
-  onScrollReached(): void {
-    // Perform actions when the scroll reaches the element section
-    console.log('Scroll reached the element section');
   }
 
   onStacksIntersection({ target, visible }: { target: Element; visible: boolean }): void {
@@ -92,6 +91,15 @@ export class ProfileContentComponent {
   }
 
   onNavScrollReached(section: string) {
+    // Remove the "header-menuitem-active" class from all elements
+    const allSections = document.querySelectorAll('.header-menuitem-active');
+    allSections.forEach((element) => {
+      element.classList.remove('header-menuitem-active');
+    });
 
+    // Add the "header-menuitem-active" class to the newly reached section
+    const sectionReached = document.querySelector(`.${section}`);
+    sectionReached?.classList.add('header-menuitem-active');
   }
+
 }

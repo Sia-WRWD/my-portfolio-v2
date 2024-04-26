@@ -1,10 +1,10 @@
 import { Component, ElementRef } from '@angular/core';
-import { InViewportModule } from 'ng-in-viewport';
+import { ScrollReachedDirective } from 'src/app/directives/scroll-reaches.directive';
 
 @Component({
   selector: 'app-profile-education',
   standalone: true,
-  imports: [InViewportModule],
+  imports: [ScrollReachedDirective],
   templateUrl: './profile-education.component.html',
   styleUrl: './profile-education.component.scss'
 })
@@ -27,9 +27,9 @@ export class ProfileEducationComponent {
     // }, 5000)
   }
 
-  onIntersection({ target, visible }: { target: Element; visible: boolean }): void {
+  onIntersection(): void {
 
-    if (this.animationPlayed == false && visible && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    if (this.animationPlayed == false && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
 
     //     anime({
     //       targets: '.profile-workexp-content-carousel',

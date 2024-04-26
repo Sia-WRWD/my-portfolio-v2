@@ -1,11 +1,12 @@
-<div class="profile-edu-container" #edu inViewport [inViewportOptions]="{ threshold: [1] }"
-    (inViewportAction)="onIntersection($event)">
+<div class="profile-edu-container" #edu scrollReached (scrollReached)="onIntersection()">
     <div class="profile-edu-header-container ellipsis">
         <div class="profile-edu-header-title">
             My Education
         </div>
     </div>
     <div class="profile-edu-content-display">
+        <div class="edu-timeline-content">
 
+        </div>
     </div>
 </div>

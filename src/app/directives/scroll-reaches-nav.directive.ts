@@ -1,13 +1,13 @@
-import { Directive, ElementRef, EventEmitter, Output, HostListener, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, EventEmitter, Output, HostListener } from '@angular/core';
 
 @Directive({
     standalone: true,
     selector: '[navScrollReached]'
 })
-export class ScrollReachedDirective {
-    @Output() scrollReached = new EventEmitter<void>();
+export class ScrollReachedNavDirective {
+    @Output() navScrollReached = new EventEmitter<void>();
 
-    constructor(private elementRef: ElementRef, private renderer: Renderer2) { }
+    constructor(private elementRef: ElementRef) { }
 
     @HostListener('window:scroll', [])
     onScroll(): void {
@@ -15,13 +15,9 @@ export class ScrollReachedDirective {
         const elementRect = element.getBoundingClientRect();
         const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
 
-        // Calculate the threshold as a percentage of the viewport height
-        const threshold = 0; // Change this value as needed
-        const thresholdOffset = viewportHeight * threshold;
-
-        // Check if the top of the element section is within the threshold
-        if (elementRect.top <= thresholdOffset) {
-            this.scrollReached.emit();
+        // Check if the top and bottom of the element section are within the viewport
+        if (elementRect.top >= 0 && elementRect.bottom <= viewportHeight) {
+            this.navScrollReached.emit();
         }
     }
 }

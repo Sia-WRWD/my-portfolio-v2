@@ -1,30 +1,34 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import anime from 'animejs/lib/anime.es.js';
 import { ScrollFadeDirective } from 'src/app/directives/scroll-fade.directive';
 import { ScrollSlideFadeDirective } from 'src/app/directives/scroll-slide-fade.directive';
 import { ScrollSpyDirective } from 'src/app/directives/scroll-spy.directive';
+import { ScrollService } from '../shared/service/scroll.service';
 
 @Component({
   selector: 'app-navigation',
   standalone: true,
-  imports: [ScrollSpyDirective, ScrollFadeDirective, ScrollSlideFadeDirective, FontAwesomeModule],
+  imports: [ScrollSpyDirective, ScrollFadeDirective, ScrollSlideFadeDirective, FontAwesomeModule, CommonModule],
   templateUrl: './navigation.component.html',
   styleUrl: './navigation.component.scss'
 })
 export class NavigationComponent {
 
+  @ViewChild('stacksSection') test!: ElementRef;
+
   isChecked: boolean = false;
   options: any = [
-    { name: "Stacks", anchor: "stack", icon: "" },
-    { name: "Work-Exp", anchor: "work-exp", icon: "" },
-    { name: "Projects", anchor: "projects", icon: "" },
-    { name: "Education", anchor: "education", icon: "" },
-    { name: "Contact", anchor: "contact", icon: "" },
-    { name: "Resume", anchor: "", icon: "" }
+    { name: "STACKS", anchor: "stacks", icon: "" },
+    { name: "WORK-EXP", anchor: "workexp", icon: "" },
+    { name: "PROJECTS", anchor: "project", icon: "" },
+    { name: "EDUCATION", anchor: "edu", icon: "" },
+    { name: "CONTACT", anchor: "contact", icon: "" },
+    { name: "RESUME", anchor: "resume", icon: "" }
   ]
 
-  constructor() {
+  constructor(private scrollService: ScrollService) {
     
   }
 
@@ -58,5 +62,9 @@ export class NavigationComponent {
     } else {
       body!.removeAttribute('style');
     }
+  }
+
+  scrollToSection(sectionId: string) {
+    this.scrollService.scrollToSection(sectionId);
   }
 }
