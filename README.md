@@ -83,11 +83,11 @@ Welcome to the source of my personal portfolio website. This website contains al
 4. [Setup a Custom Domain in Netlify in 5 Minutes](https://www.youtube.com/watch?v=bY7Tkh9Vz8I)
 5. [Make React Audio Player with Controls & Waveform](https://www.youtube.com/watch?v=rT6GiYEIdGs)
 
-
 #### Angular Components
 1. [NGX-Carousel-Ease](https://www.npmjs.com/package/ngx-carousel-ease)
 2. [NG-In-Viewport](https://www.npmjs.com/package/ng-in-viewport)
 3. [GlassMorphism](https://css.glass/)
+4. [Scroll-Into-View](https://stackoverflow.com/questions/49820013/javascript-scrollintoview-smooth-scroll-and-offset)
 
 #### Misc Resources
 1. [Mobile Responsive Hamburger Icon](https://codepen.io/alvarotrigo/pen/ExwgbZv)
