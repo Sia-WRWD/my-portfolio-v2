@@ -1,15 +1,18 @@
 import { Component, ElementRef } from '@angular/core';
 import { ScrollReachedDirective } from 'src/app/directives/scroll-reaches.directive';
+import { edu } from '../../shared/data/edu';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-profile-education',
   standalone: true,
-  imports: [ScrollReachedDirective],
+  imports: [ScrollReachedDirective, CommonModule],
   templateUrl: './profile-education.component.html',
   styleUrl: './profile-education.component.scss'
 })
 export class ProfileEducationComponent {
   animationPlayed: boolean = false;
+  selectedEdu: any = edu;
 
   constructor(private el: ElementRef) { }
 

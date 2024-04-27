@@ -103,7 +103,7 @@ export const projects: any = [
                 redirect: ""
             }
         ],
-        bgSrc: '../../../../assets/icons/proj/foodvision-bg.jpg',
+        bgSrc: '../../../../assets/icons/proj/suzume-bg.png',
         link: 'https://github.com/Sia-WRWD/Suzume'
     },
     {
@@ -132,7 +132,7 @@ export const projects: any = [
                 redirect: ""
             },
         ],
-        bgSrc: '../../../../assets/icons/proj/foodvision-bg.jpg',
+        bgSrc: '../../../../assets/icons/proj/react2fa-bg.gif',
         link: 'https://github.com/Sia-WRWD/react-next-2fa'
     },
     {

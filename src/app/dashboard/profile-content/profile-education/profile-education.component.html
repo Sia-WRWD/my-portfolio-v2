@@ -5,8 +5,26 @@
         </div>
     </div>
     <div class="profile-edu-content-display">
+        @for (edu of selectedEdu; track edu) {
         <div class="edu-timeline-content">
+            <i class="edu-icon fa fa-graduation-cap"></i>
+            <h3 class="edu-date" [ngStyle]="{ color: edu.color }">{{edu.startDate}}</h3>
+            <div class="edu-card">
+                <div class="edu-card-title">
+                    {{edu.course}}
+                </div>
+                <div class="edu-card-subtitle">
+                    <a class="edu-card-university" [href]="edu.redirect">{{edu.school}}</a>
+                    <p class="edu-card-date">({{edu.date}})</p>
+                </div>
+                <div class="edu-card-text">
+                    {{edu.desc}}
+                </div>
+                <div class="edu-achievement">
 
+                </div>
+            </div>
         </div>
+        }
     </div>
 </div>

@@ -30,7 +30,7 @@
 
     .profile-edu-content-display {
         display: flex;
-        padding: 20px 0px;
+        padding: 7px 0px 0px 0px;
         flex-direction: column;
         width: 100%;
         height: 100%;
@@ -39,5 +39,105 @@
         align-items: center;
         border-radius: 0px 0px 3px 3px;
         min-height: 225px;
+
+        .edu-timeline-content {
+            border-left: 1px solid #f4f5f7;
+            position: relative;
+            padding: 20px;
+            margin-left: 35px;
+
+            @media (min-width: 768px) {
+                margin-left: 90px;
+            }
+
+            .edu-icon {
+                position: absolute;
+                left: -1.3rem;
+                width: 42px;
+                text-align: center;
+                font-size: 22px;
+                background-color: #fff;
+            }
+
+            @media (min-width: 768px) {
+                .edu-date {
+                    position: absolute;
+                    left: -9rem;
+                    width: 7.5rem;
+                    text-align: right;
+                    color: #e5e5e5;
+                    text-shadow: 1px 2px 2px black;
+                }
+            }
+
+            .edu-card {
+                padding: 20px;
+                background: rgba(255, 255, 255, 0.2);
+                border-radius: 4px;
+                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+                backdrop-filter: blur(5px);
+                -webkit-backdrop-filter: blur(5px);
+                border: 1px solid rgba(255, 255, 255, 0.3);
+                min-height: calc(235px - 40px);
+                text-shadow: 1px 2px 3px black;
+
+                .edu-card-title {
+                    display: flex;
+                    flex-wrap: wrap;
+                    font-size: 24px;
+                    margin-bottom: 7px;
+                    font-weight: bolder;
+                    color: #66C0F4;
+                    text-shadow: 1px 2px 3px black;
+                }
+
+                .edu-card-subtitle {
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    gap: 7px;
+                    margin-bottom: 14px;
+                    align-items: baseline;
+
+                    .edu-card-university {
+                        font-size: 16px;
+                        position: relative;
+                        transition: 0.3s ease-in-out;
+
+                        &::before {
+                            content: "";
+                            position: absolute;
+                            bottom: -3px;
+                            left: 0;
+                            height: 3px;
+                            margin-top: 7px;
+                            background: #66C0F4;
+                            width: 0;
+                            transition: width 0.3s ease-in-out;
+                        }
+
+                        &:hover {
+                            color: #66C0F4;
+
+                            &::before {
+                                width: 100%;
+                            }
+                        }
+                    }
+
+                    .edu-card-date {
+                        margin: 0;
+                        font-size: 12px;
+                        font-style: italic;
+                    }
+                }
+
+                .edu-card-text {
+                    color: white;
+                    line-height: 1.4;
+                    text-align: justify;
+                }
+            }
+        }
     }
 }
