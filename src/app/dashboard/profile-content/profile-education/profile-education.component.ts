@@ -135,15 +135,22 @@ export class ProfileEducationComponent {
 
   removeAnimationInlineStyles() {
     setTimeout(() => {
-      const carouselElement = document.querySelectorAll('.profile-workexp-content-carousel');
-      carouselElement.forEach(element => {
+      const dateElements = document.querySelectorAll('.edu-date');
+      dateElements.forEach(element => {
         element.removeAttribute('style');
       });
 
-      const filterElements = document.querySelectorAll('.carousel-filter-icon-container');
-      filterElements.forEach(element => {
+      const cardElements = document.querySelectorAll('.edu-card');
+      cardElements.forEach(element => {
         element.removeAttribute('style');
       });
+
+      if (window.innerWidth <= 910) {
+        const navElements = document.querySelectorAll('.edu-mobile-nav');
+        navElements.forEach(element => {
+          element.removeAttribute('style');
+        });
+      }
     }, 5000)
   }
 
@@ -167,7 +174,7 @@ export class ProfileEducationComponent {
 
       if (window.innerWidth <= 910) {
         anime({
-          targets: '.mobile-nav',
+          targets: '.edu-mobile-nav',
           translateX: ['100%', 0],
           opacity: [0, 1], // Fade from transparent (0) to opaque (1)
           delay: anime.stagger(300, { start: 1200 }),
