@@ -2,9 +2,9 @@ export const edu: any = [
     {
         course: 'BsC (Hons) in Artificial Intelligence',
         achievement: [
-            { item: '3.73 / 4.00' },
-            { item: 'Vice Chancellor List' },
-            { item: 'First Honor' },
+            { desc: '3.73 / 4.00', icon: 'clipboard-check' },
+            { desc: 'Vice Chancellor List', icon: 'building-columns' },
+            { desc: 'First Class Honors', icon: 'award' },
         ],
         date: '2021 - 2023',
         startDate: '2021',
@@ -19,8 +19,8 @@ export const edu: any = [
     {
         course: 'Diploma in Software Engineering',
         achievement: [
-            { item: '3.90 / 4.00' },
-            { item: 'First Honor' },
+            { desc: '3.90 / 4.00', icon: 'clipboard-check' },
+            { desc: 'First Class Honors', icon: 'award' },
         ],
         date: '2019 - 2021',
         startDate: '2019',
@@ -34,7 +34,7 @@ export const edu: any = [
     {
         course: 'Sijil Pelajaran Malaysia (SPM)',
         achievement: [
-            { item: '1A+ 3A 4B+ 1B 1C' },
+            { desc: '1A+ 3A 4B+ 1B 1C', icon: 'clipboard-check' },
         ],
         date: '2017 - 2018',
         startDate: '2018',
@@ -49,7 +49,7 @@ export const edu: any = [
     {
         course: 'PT3',
         achievement: [
-            { item: '' },
+            { desc: 'NA', icon: 'clipboard-check' },
         ],
         date: '2014 - 2016',
         startDate: '2014',

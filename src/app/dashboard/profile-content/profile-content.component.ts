@@ -80,7 +80,7 @@ export class ProfileContentComponent {
     if (!this.eduAnimationPlayed && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       anime({
         targets: '.anime-profile-edu',
-        translateX: ['-100%', 0], // Move from left (-100%) to current position (0)
+        translateX: ['100%', 0], // Move from left (-100%) to current position (0)
         opacity: [0, 1], // Fade from transparent (0) to opaque (1)
         easing: 'easeInOutQuad', // Use easing for smoother animation
         delay: 0,

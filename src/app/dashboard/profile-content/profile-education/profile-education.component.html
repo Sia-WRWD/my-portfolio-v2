@@ -3,28 +3,42 @@
         <div class="profile-edu-header-title">
             My Education
         </div>
+        <div class="profile-edu-header-mobile-nav">
+            <div class="mobile-nav" (click)="scrollToPrevious()" title="previous">
+                <fa-icon [icon]="['fas', 'chevron-up']"></fa-icon>
+            </div>
+            <div class="mobile-nav" (click)="scrollToNext()" title="next">
+                <fa-icon [icon]="['fas', 'chevron-down']"></fa-icon>
+            </div>
+        </div>
     </div>
     <div class="profile-edu-content-display">
         @for (edu of selectedEdu; track edu) {
-        <div class="edu-timeline-content">
-            <i class="edu-icon fa fa-graduation-cap"></i>
-            <h3 class="edu-date" [ngStyle]="{ color: edu.color }">{{edu.startDate}}</h3>
-            <div class="edu-card">
-                <div class="edu-card-title">
-                    {{edu.course}}
-                </div>
-                <div class="edu-card-subtitle">
-                    <a class="edu-card-university" [href]="edu.redirect">{{edu.school}}</a>
-                    <p class="edu-card-date">({{edu.date}})</p>
-                </div>
-                <div class="edu-card-text">
-                    {{edu.desc}}
-                </div>
-                <div class="edu-achievement">
-
+            <div class="edu-timeline-content">
+                <h3 class="edu-date" [ngStyle]="{ color: edu.color }">{{edu.startDate}}</h3>
+                <div class="edu-card">
+                    <div class="edu-card-title">
+                        {{edu.course}}
+                    </div>
+                    <div class="edu-card-subtitle">
+                        <a class="edu-card-university" [href]="edu.redirect">{{edu.school}}</a>
+                        <p class="edu-card-date">({{edu.date}})</p>
+                    </div>
+                    <div class="edu-card-text">
+                        {{edu.desc}}
+                    </div>
+                    <div class="edu-achievement-container">
+                        @for(achievement of edu.achievement; track achievement) {
+                            <div class="edu-achievement-content">
+                                <fa-icon [icon]="['fas', achievement.icon]" class="edu-achievement-icon"></fa-icon>
+                                <div class="edu-achievement-desc">
+                                    {{achievement.desc}}
+                                </div>
+                            </div>
+                        }
+                    </div>
                 </div>
             </div>
-        </div>
         }
     </div>
 </div>
