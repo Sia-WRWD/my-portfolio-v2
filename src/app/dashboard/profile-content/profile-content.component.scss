@@ -27,9 +27,15 @@
         max-width: 684px;
         min-width: 0px;
 
-        .anime-profile-stacks, .anime-profile-workexp,
-        .anime-profile-project, .anime-profile-edu {
-            opacity: 0;
+        .anime-profile-stacks,
+        .anime-profile-workexp,
+        .anime-profile-project,
+        .anime-profile-edu {
+            opacity: 1;
+
+            @media (not (prefers-reduced-motion: reduce)) {
+                opacity: 0;
+            }
         }
     }
 

@@ -120,11 +120,13 @@
                             transition: width 0.3s ease-in-out;
                         }
 
-                        &:hover {
-                            color: #66C0F4;
+                        @media (not (prefers-reduced-motion: reduce)) {
+                            &:hover {
+                                color: #66C0F4;
 
-                            &::before {
-                                width: 100%;
+                                &::before {
+                                    width: 100%;
+                                }
                             }
                         }
                     }

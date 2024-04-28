@@ -84,7 +84,10 @@
             -webkit-backdrop-filter: blur(5px);
             border: 1px solid rgba(255, 255, 255, 0.3);
             cursor: pointer;
-            transform: translateY(500px);
+
+            @media (not (prefers-reduced-motion: reduce)) {
+                transform: translateY(500px);
+            }
 
             &[data-opacity="selected"] {
                 opacity: 1;
