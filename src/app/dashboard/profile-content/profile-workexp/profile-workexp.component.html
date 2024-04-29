@@ -17,8 +17,8 @@
             <div class="profile-workexp-content-carousel-slide carousel-slide" [id]="idx">
                 <div class="slide-card-header">
                     <a href="{{slide.link}}" target="_blank" class="slide-card-header-logo-container" tabindex="-1">
-                        <img [src]="slide.imgSrc" alt="{{slide.name}}" title="{{slide.name}}"
-                            class="slide-card-header-logo" />
+                        <img [ngSrc]="slide.imgSrc" alt="{{slide.name}}" title="{{slide.name}}"
+                            class="slide-card-header-logo" width="50" height="50"/>
                     </a>
                     <span class="slide-card-header-name">{{slide.name}}</span>
                 </div>
@@ -49,7 +49,7 @@
             @for(slide of workExpSlides; track slide) {
             <div class="carousel-filter-icon-container" [ngClass]="slide.class" (click)="slideTo(slide.bullet)"
                 [attr.data-selected]="slide.selected">
-                <img [src]="slide.imgSrc" height="50" width="50">
+                <img [ngSrc]="slide.imgSrc" height="50" width="50">
             </div>
             }
         </div>

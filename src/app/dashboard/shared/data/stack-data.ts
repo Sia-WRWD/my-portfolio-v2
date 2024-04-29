@@ -99,7 +99,7 @@ export const stacks: any = [
         name: "Database", shorthand: "Database", languages: [
             {
                 name: "MySQL",
-                link: "https://cdn.worldvectorlogo.com/logos/mysql-6.svg",
+                link: "https://static.cdnlogo.com/logos/m/78/mysql.svg",
                 description: "",
                 opacity: 'selected'
             },
@@ -111,7 +111,7 @@ export const stacks: any = [
             },
             {
                 name: "Azure CosmoDB",
-                link: "https://cdn.worldvectorlogo.com/logos/azure-2.svg",
+                link: "https://seeklogo.com/images/A/azure-cosmos-db-logo-128436034F-seeklogo.com.png",
                 description: "",
                 opacity: 'selected'
             },

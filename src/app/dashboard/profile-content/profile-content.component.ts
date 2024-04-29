@@ -9,13 +9,16 @@ import { InViewportModule } from 'ng-in-viewport';
 import { ScrollReachedDirective } from 'src/app/directives/scroll-reaches.directive';
 import { ScrollReachedNavDirective } from 'src/app/directives/scroll-reaches-nav.directive';
 import { ScrollService } from '../shared/service/scroll.service';
+import { CommonModule } from '@angular/common';
+import { activities } from '../shared/data/activity';
 
 @Component({
   selector: 'app-profile-content',
   standalone: true,
   imports: [
     ProfileStacksComponent, ProfileEducationComponent, ProfileProjectComponent,
-    ProfileWorkexpComponent, ProfileContactComponent, InViewportModule, ScrollReachedDirective, ScrollReachedNavDirective
+    ProfileWorkexpComponent, ProfileContactComponent, InViewportModule, ScrollReachedDirective, ScrollReachedNavDirective,
+    CommonModule
   ],
   templateUrl: './profile-content.component.html',
   styleUrl: './profile-content.component.scss'
@@ -26,11 +29,14 @@ export class ProfileContentComponent {
   workexpAnimationPlayed: boolean = false;
   projAnimationPlayed: boolean = false;
   eduAnimationPlayed: boolean = false;
+  status: string = "Offline";
+  statusColor: string = "";
+  activities: any = activities;
 
-  constructor (private scrollService: ScrollService) {}
+  constructor(private scrollService: ScrollService) { }
 
   ngOnInit() {
-
+    this.statusUpdate();
   }
 
   onStacksIntersection({ target, visible }: { target: Element; visible: boolean }): void {
@@ -100,6 +106,22 @@ export class ProfileContentComponent {
     // Add the "header-menuitem-active" class to the newly reached section
     const sectionReached = document.querySelector(`.${section}`);
     sectionReached?.classList.add('header-menuitem-active');
+  }
+
+  statusUpdate() {
+    const currentDate = new Date();
+    const currentHour = currentDate.getHours();
+
+    let statusObj = { status: 'Lost in Coding', statusColor: '#898989' };
+
+    activities.forEach((interval: any) => {
+        if (currentHour >= interval.start && currentHour < interval.end) {
+            statusObj = { status: interval.status, statusColor: interval.statusColor };
+        }
+    });
+
+    this.status = statusObj.status;
+    this.statusColor = statusObj.statusColor;
   }
 
 }

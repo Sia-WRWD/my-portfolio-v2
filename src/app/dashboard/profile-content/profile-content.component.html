@@ -12,19 +12,69 @@
     </div>
     <div class="right-profile-content-container" #right>
         <div class="right-profile-content-inner-container">
-            <div class="right-profile-content-status">
-
+            <div class="right-profile-content-status" [ngStyle]="{color: statusColor}">
+                Currently {{status}}
             </div>
-            <div class="right-profile-content-certification">
-
+            <!-- <div class="right-item content-certification">
+                <span class="title games-title">Certificates</span>
+                &nbsp;
+                <span class="total games-total">48</span>
+            </div> -->
+            <div class="right-item content-hackathon">
+                <span class="title hackathon-title">Hackathons</span>
+                &nbsp;
+                <span class="total hackathon-total">6</span>
             </div>
-            <div class="right-profile-content-clubs">
-
+            <div class="right-item content-groups"> <!--Clubs-->
+                <span class="title groups-title" style="cursor: default;">Groups</span>
+                &nbsp;
+                <span class="total groups-total">3</span>
+                <div class="groups-main">
+                    <a href="https://github.com/Diskordlit" target="_blank">
+                        <img src="https://cdn.ko-fi.com/cdn/useruploads/13b6f268-9440-4115-86d3-0e6f9d597750.png"
+                            alt="main-group.jpg" class="groups-main-pic">
+                        <div class="groups-main-info">
+                            <span class="groups-main-name">Diskordlit</span>
+                            <span class="groups-main-members">10 Members</span>
+                        </div>
+                    </a>
+                    <a href="https://www.instagram.com/apujcc/?hl=en" target="_blank" class="lower-group">
+                        <img src="https://pbs.twimg.com/profile_images/1458800907320107011/UJtqqPnV_400x400.jpg"
+                            alt="main-group.jpg" class="lower-groups-main-pic" width="32px" height="32px">
+                        <div class="groups-main-info">
+                            <span class="groups-main-name">APU JCC</span>
+                            <span class="groups-main-members">242 Members</span>
+                        </div>
+                    </a>
+                    <a href="https://www.spca.org.my/" target="_blank" class="lower-group">
+                        <img src="https://scontent.fkul15-1.fna.fbcdn.net/v/t39.30808-1/306971630_457117563114905_953311376753399432_n.png?_nc_cat=103&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeGm87nbkovAPuwhA9aHQxLQqBIgGfCwi5KoEiAZ8LCLkv22AVLHC4URNIu-k4LtB0LIqtgLD9D2MG7-E3jjGSTM&_nc_ohc=q45ixSLnfdkAb4Z6cXk&_nc_ht=scontent.fkul15-1.fna&oh=00_AfBcVyRnyCvsG9gG5NZP7I6TuLMf3Ctmfas8zQj6xsPcnw&oe=66354179"
+                            alt="main-group.jpg" class="lower-groups-main-pic" width="32px" height="32px">
+                        <div class="groups-main-info">
+                            <span class="groups-main-name">SPCA</span>
+                            <span class="groups-main-members">- Members</span>
+                        </div>
+                    </a>
+                </div>
             </div>
-            <div class="right-profile-content-hackathon">
-
+            <div class="right-item content-games">
+                <a href="https://steamcommunity.com/id/Sia-WRWD/games/?tab=all" target="_blank">
+                    <span class="title games-title">Games</span>
+                    &nbsp;
+                    <span class="total games-total">48</span>
+                </a>
             </div>
-
+            <div class="right-item content-friends">
+                <span class="title friends-title">Friends</span>
+                &nbsp;
+                <span class="total friends-total">99</span>
+                <div class="highlighted-friends">
+                    <div class="friend">
+                        <img>
+                        <span class="friend-name"></span>
+                        <span class="friend-status"></span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

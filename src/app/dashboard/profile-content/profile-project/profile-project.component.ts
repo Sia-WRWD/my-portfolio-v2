@@ -3,11 +3,12 @@ import { ScrollReachedDirective } from 'src/app/directives/scroll-reaches.direct
 import VanillaTilt from 'vanilla-tilt';
 import anime from 'animejs/lib/anime.es.js';
 import { projects } from '../../shared/data/project';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-profile-project',
   standalone: true,
-  imports: [ScrollReachedDirective],
+  imports: [ScrollReachedDirective, NgOptimizedImage],
   templateUrl: './profile-project.component.html',
   styleUrl: './profile-project.component.scss'
 })

@@ -8,23 +8,23 @@
         <div class="profile-project-card-container">
             @for (proj of selectedProjects; track proj; let idx = $index) {
                 <div class="profile-project-card tilt-object">
-                    <img #projectCardBg class="project-card-bg" [src]="proj.bgSrc" [alt]="proj.name">
+                    <img #projectCardBg class="project-card-bg" [ngSrc]="proj.bgSrc" [alt]="proj.name" fill>
                     <div class="project-card-content" #projectCardContent (mouseenter)="onMouseEnter(idx)"
                         (mouseleave)="onMouseLeave(idx)">
                         <div class="project-card-name">
                             {{proj.name}}
                         </div>
-                        <div class="project-card-stack">
+                        <div class="project-card-stack" ngOptimizedImageIgnore>
                             @for(stack of proj.stacksLogo; track stack) {
                                 @if(stack.redirect != "") {
                                     <a [href]="stack.redirect" target="_blank">
                                         <div class="project-card-stack-icon-container redirect" [title]="stack.name">
-                                            <img [src]="stack.link" [alt]="stack.name" class="project-card-stack-icon">
+                                            <img [ngSrc]="stack.link" [alt]="stack.name" class="project-card-stack-icon" height="40" width="40">
                                         </div>
                                     </a>
                                 } @else {
                                     <div class="project-card-stack-icon-container" [title]="stack.name">
-                                        <img [src]="stack.link" [alt]="stack.name" class="project-card-stack-icon">
+                                        <img [ngSrc]="stack.link" [alt]="stack.name" class="project-card-stack-icon" height="40" width="40">
                                     </div>
                                 }
                             }

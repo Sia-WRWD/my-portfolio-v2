@@ -1,14 +1,14 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import anime from 'animejs/lib/anime.es.js';
 import { CarouselModule } from 'ngx-carousel-ease';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { workExp } from '../../shared/data/work-exp';
 import { ScrollReachedDirective } from 'src/app/directives/scroll-reaches.directive';
 
 @Component({
   selector: 'app-profile-workexp',
   standalone: true,
-  imports: [CarouselModule, CommonModule, ScrollReachedDirective],
+  imports: [CarouselModule, CommonModule, ScrollReachedDirective, NgOptimizedImage],
   templateUrl: './profile-workexp.component.html',
   styleUrl: './profile-workexp.component.scss'
 })

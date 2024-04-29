@@ -62,6 +62,8 @@ export class ProfileHeaderComponent {
         { max: 30, speed: 100, scale: 1.1 }
       );
     }
+
+    this.addPicChangeListeners();
   }
 
   shouldApplyTilt(): boolean {
@@ -81,5 +83,47 @@ export class ProfileHeaderComponent {
   calculateAge() {
     const today = new Date();
     this.myAge = today.getFullYear() - 2001;
+  }
+
+  addPicChangeListeners() {
+    const imgContainer = document.querySelector('.profile-pic-frame');
+    const steamPic = document.querySelector('.steam-pic');
+    const realPic = document.querySelector('.real-pic');
+
+    imgContainer!.addEventListener('mouseenter', () => {
+      // Animate text content change
+      anime({
+        targets: steamPic,
+        opacity: [1, 0],
+        easing: 'easeInOutQuad',
+        duration: 500
+      });
+
+      anime({
+        targets: realPic,
+        opacity: [0, 1],
+        easing: 'easeInOutQuad',
+        duration: 500,
+        delay: 100
+      });
+    });
+
+    imgContainer!.addEventListener('mouseleave', () => {
+      // Animate text content back to original
+      anime({
+        targets: realPic,
+        opacity: [1, 0],
+        easing: 'easeInOutQuad',
+        duration: 500
+      });
+
+      anime({
+        targets: steamPic,
+        opacity: [0, 1],
+        easing: 'easeInOutQuad',
+        duration: 500,
+        delay: 100
+      });
+    });
   }
 }
