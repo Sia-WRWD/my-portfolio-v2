@@ -135,10 +135,10 @@ export class ProfileEducationComponent {
 
   removeAnimationInlineStyles() {
     setTimeout(() => {
-      const dateElements = document.querySelectorAll('.edu-date');
-      dateElements.forEach(element => {
-        element.removeAttribute('style');
-      });
+      // const dateElements = document.querySelectorAll('.edu-date');
+      // dateElements.forEach(element => {
+      //   element.removeAttribute('style');
+      // });
 
       const cardElements = document.querySelectorAll('.edu-card');
       cardElements.forEach(element => {

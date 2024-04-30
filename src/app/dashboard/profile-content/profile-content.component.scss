@@ -78,11 +78,57 @@
                     color: #9b9b9b;
                     font-size: 24px;
                 }
+
+                .link {
+                    position: relative;
+
+                    @media (not (prefers-reduced-motion: reduce)) {
+                        &::before {
+                            content: '';
+                            height: 1.5px;
+                            background: white;
+                            width: 0;
+                            position: absolute;
+                            bottom: -2px;
+                            transition: width 0.3s ease-in-out;
+                        }
+
+                        &:hover {
+                            &::before {
+                                width: 100%;
+                            }
+                        }
+                    }
+                }
             }
 
             .content-certification {}
 
-            .content-hackathon {}
+            .content-hackathon {
+                margin-bottom: 40px;
+
+                .hackathon-logo-showcase {
+                    display: flex;
+                    flex-direction: row;
+                    gap: 16px;
+
+                    a {
+                        .hackathon-logo {
+                            width: 54px;
+                            height: 54px;
+                            filter: drop-shadow(1px 2px 2px rgb(0, 0, 0, 0.7));
+
+                            @media (not (prefers-reduced-motion: reduce)) {
+                                transition: 0.2s ease-in;
+
+                                &:hover {
+                                    transform: scale(1.15);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
 
             .content-games {}
 
@@ -106,17 +152,36 @@
                         justify-content: flex-start;
                         align-items: center;
 
-                        .groups-main-pic {
+                        .regular-groups-pic {
                             height: 64px;
                             width: 64px;
                             filter: drop-shadow(1px 2px 2px black);
                             margin-right: 7px;
-                            transition: 0.3s ease-in-out;
                             margin-bottom: 14px;
 
-                            &:hover {
-                                transform: scale(1.05);
-                                filter: drop-shadow(1px 2px 2px black) hue-rotate(90deg);
+                            @media (not (prefers-reduced-motion: reduce)) {
+                                transition: 0.3s ease-in-out;
+
+                                &:hover {
+                                    transform: scale(1.05);
+                                    filter: drop-shadow(1px 2px 2px black) hue-rotate(90deg);
+                                }
+                            }
+                        }
+
+                        .small-groups-pic {
+                            height: 32px;
+                            width: 32px;
+                            filter: drop-shadow(1px 2px 2px black);
+                            margin-right: 7px;
+
+                            @media (not (prefers-reduced-motion: reduce)) {
+                                transition: 0.3s ease-in-out;
+
+                                &:hover {
+                                    transform: scale(1.05);
+                                    filter: drop-shadow(1px 2px 2px black) hue-rotate(90deg);
+                                }
                             }
                         }
 
@@ -126,10 +191,13 @@
                             filter: drop-shadow(1px 2px 2px black);
                             margin-right: 7px;
                             border-radius: 3px;
-                            transition: 0.3s ease-in-out;
 
-                            &:hover {
-                                transform: scale(1.05);
+                            @media (not (prefers-reduced-motion: reduce)) {
+                                transition: 0.3s ease-in-out;
+
+                                &:hover {
+                                    transform: scale(1.05);
+                                }
                             }
                         }
 

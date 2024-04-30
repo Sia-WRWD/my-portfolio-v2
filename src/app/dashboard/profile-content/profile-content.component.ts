@@ -11,6 +11,7 @@ import { ScrollReachedNavDirective } from 'src/app/directives/scroll-reaches-nav
 import { ScrollService } from '../shared/service/scroll.service';
 import { CommonModule } from '@angular/common';
 import { activities } from '../shared/data/activity';
+import { rightContent } from '../shared/data/right-content';
 
 @Component({
   selector: 'app-profile-content',
@@ -32,6 +33,7 @@ export class ProfileContentComponent {
   status: string = "Offline";
   statusColor: string = "";
   activities: any = activities;
+  rightContent: any = rightContent;
 
   constructor(private scrollService: ScrollService) { }
 
