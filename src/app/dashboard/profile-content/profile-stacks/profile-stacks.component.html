@@ -1,25 +1,31 @@
 <div class="profile-stack-container" #stack>
-    <div class="profile-stack-header-container ellipsis">
-        <div class="profile-stack-header-title">
-            My Stacks
+  <div class="profile-stack-header-container ellipsis">
+    <div class="profile-stack-header-title">My Stacks</div>
+    <div class="profile-stack-header-filter-container" #filterRef>
+      @for (filter of filters; track filter) {
+        <div
+          class="profile-stack-header-filter"
+          (click)="changeStack(filter.shorthand)"
+          [attr.data-state]="filter.state"
+          [id]="filter.shorthand"
+        >
+          {{ filter.name }}
         </div>
-        <div class="profile-stack-header-filter-container" #filterRef>
-            @for (filter of filters; track filter) {
-            <div class="profile-stack-header-filter" (click)="changeStack(filter.shorthand)"
-                [attr.data-state]="filter.state" [id]="filter.shorthand">
-                {{filter.name}}
-            </div>
-            }
-        </div>
+      }
     </div>
-    <div class="profile-stack-icon-display">
-        @for (stack of filteredStacks; track stack) {
-        @for (language of stack.languages; track language) {
-        <div class="profile-stack-icon-container" [attr.data-language]="language.name"
-            [attr.data-opacity]="language.opacity" [attr.data-tooltip-html]="language.name">
-            <img src="{{language.link}}" alt="" class="profile-stack-icon">
+  </div>
+  <div class="profile-stack-icon-display">
+    @for (stack of filteredStacks; track stack) {
+      @for (language of stack.languages; track language) {
+        <div
+          class="profile-stack-icon-container"
+          [attr.data-language]="language.name"
+          [attr.data-opacity]="language.opacity"
+          [attr.data-tooltip-html]="language.name"
+        >
+          <img src="{{ language.link }}" alt="" class="profile-stack-icon" />
         </div>
-        }
-        }
-    </div>
+      }
+    }
+  </div>
 </div>

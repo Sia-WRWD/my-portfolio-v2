@@ -39,6 +39,7 @@ export class ProfileContentComponent {
 
   ngOnInit() {
     this.statusUpdate();
+    this.friendStatusUpdate();
   }
 
   onStacksIntersection({ target, visible }: { target: Element; visible: boolean }): void {
@@ -124,6 +125,23 @@ export class ProfileContentComponent {
 
     this.status = statusObj.status;
     this.statusColor = statusObj.statusColor;
+  }
+
+  friendStatusUpdate() {
+    // Iterate through the friends array and randomize the status
+    this.rightContent.forEach((section: any) => {
+      if (section.friends) {
+        section.friends.forEach((friend: any) => {
+          friend.status = this.getRandomStatus(); // Assign a random status
+        });
+      }
+    });
+  }
+
+  getRandomStatus(): string {
+    const statuses = ['Offline', 'Online', 'In-Game'];
+    const randomIndex = Math.floor(Math.random() * statuses.length);
+    return statuses[randomIndex];
   }
 
 }

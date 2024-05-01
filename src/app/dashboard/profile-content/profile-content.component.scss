@@ -102,8 +102,6 @@
                 }
             }
 
-            .content-certification {}
-
             .content-hackathon {
                 margin-bottom: 40px;
 
@@ -222,7 +220,110 @@
                 }
             }
 
-            .content-friends {}
+            .content-friends {
+                margin-bottom: 40px;
+
+                .content-friends-container {
+                    margin-bottom: 12px;
+                }
+
+                .highlighted-friends {
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: flex-start;
+                    flex-direction: column;
+                    gap: 8px;
+                    margin-left: 4px;
+
+                    .friend {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: flex-start;
+                        align-items: center;
+                        gap: 16px;
+                        position: relative;
+
+                        .friend-pic-container {
+                            width: 34px;
+                            height: 34px;
+                            position: relative;
+                            border-radius: 0;
+                            padding: 1px;
+
+                            &[data-status="Offline"] {
+                                background: -webkit-linear-gradient(to bottom, rgba(106, 106, 106, 1) 5%, rgba(85, 85, 85, 1) 95%);
+                                background: linear-gradient(to bottom, rgba(106, 106, 106, 1) 5%, rgba(85, 85, 85, 1) 95%);
+                            }
+
+                            &[data-status="Online"] {
+                                background: -webkit-linear-gradient( top, rgba(83,164,196,1) 5%, rgba(69,128,151,1) 95%);
+                                background: linear-gradient( to bottom, rgba(83,164,196,1) 5%, rgba(69,128,151,1) 95%)
+                            }
+
+                            &[data-status="In-Game"] {
+                                background: -webkit-linear-gradient(top, rgba(143, 185, 59, 1) 5%, rgba(110, 140, 49, 1) 95%);
+                                background: linear-gradient(to bottom, rgba(143, 185, 59, 1) 5%, rgba(110, 140, 49, 1) 95%);
+                            }
+
+                            .friend-pic {
+                                width: 32px;
+                                height: 32px;
+                                padding: 1px;
+                                border-radius: 0;
+                                border: none;
+                            }
+                        }
+
+                        .friend-info {
+                            display: flex;
+                            flex-direction: column;
+                            font-size: 12px;
+
+                            &[data-status="Offline"] {
+                                color: #898989;
+                            }
+
+                            &[data-status="Online"] {
+                                color: #57cbde;
+                            }
+
+                            &[data-status="In-Game"] {
+                                color: #90ba3c;
+                            }
+                        }
+
+                        .friend-level-container {
+                            position: absolute;
+                            right: 0;
+                            padding-right: 10px;
+                            background: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_shields.png');
+                            border: none;
+                            border-radius: 0;
+                            background-repeat: no-repeat;
+                            font-size: 14px;
+                            height: 32px;
+                            width: 32px;
+                            line-height: 32px;
+                            text-shadow: 1px 1px #1a1a1a;
+
+                            &[data-position="Odd"] {
+                                background-position: 0 -96px;
+                            }
+
+                            &[data-position="Even"] {
+                                background-position: 0 -64px;
+                            }
+
+                            .friend-level {
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                            }
+                        }
+                    }
+
+                }
+            }
         }
     }
 }

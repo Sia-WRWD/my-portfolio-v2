@@ -57,42 +57,54 @@ export const rightContent = [
             name: 'ir4un', 
             level: '40',
             link: 'https://ir4un.com/',
-            status: 'Offline'
+            status: 'Offline',
+            position: 'Odd',
+            game: 'World of Tanks'
         },
         {
             picSrc: 'https://avatars.cloudflare.steamstatic.com/13917bcafc93bc3db1c10ea23ae887faf4a4bd99_full.jpg', 
             name: 'Jo-Kilat9', 
             level: '11',
             link: 'https://johari-portfolio.netlify.app/',
-            status: 'Offline'
+            status: 'Offline',
+            position: 'Even',
+            game: 'World of Warship'
         },
         {
             picSrc: 'https://avatars.cloudflare.steamstatic.com/b463d03d26bde40d3cfbca6a57cff9b24b8a3b8e_full.jpg', 
             name: 'ki_SHAWNNN', 
             level: '10',
             link: 'https://github.com/orgs/Diskordlit/people/Kishen35',
-            status: 'Offline'
+            status: 'Offline',
+            position: 'Odd',
+            game: 'Need for Speed™ Heat'
         },
         {
             picSrc: 'https://avatars.cloudflare.steamstatic.com/fc2192b1ed4cfabaa5961ceb4046f9dae358e622_full.jpg', 
             name: 'Danish Cat', 
             level: '8',
             link: 'https://github.com/orgs/Diskordlit/people/mdanishmansor',
-            status: 'Offline'
+            status: 'Online',
+            position: 'Even',
+            game: 'Counter-Strike 2'
         },
         {
             picSrc: 'https://avatars.cloudflare.steamstatic.com/f45d6498c3c1ab9ba9a6b8b723bc3cd3b31d5b72_full.jpg', 
             name: 'RyanFY', 
             level: '7',
             link: 'https://github.com/ConquerorFY',
-            status: 'Offline'
+            status: 'In-Game',
+            position: 'Odd',
+            game: 'Elden Ring'
         },
         {
             picSrc: 'https://avatars.cloudflare.steamstatic.com/e8e481848ab8a34b94232499696b518bb5956ce1_full.jpg', 
             name: 'Prem-Lucy', 
             level: '4',
             link: 'https://www.helloprem.com/',
-            status: 'Offline'
+            status: 'Offline',
+            position: 'Even',
+            game: 'Apex Legends'
         },
     ]},
 ]

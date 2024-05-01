@@ -1,83 +1,164 @@
 <div class="profile-content-container">
-    <div class="left-profile-content-container">
-        <app-profile-stacks class="anime-profile-stacks" inViewport [inViewportOptions]="{ threshold: [0] }"
-            (inViewportAction)="onStacksIntersection($event)" navScrollReached
-            (navScrollReached)="onNavScrollReached('stacks')" id="stacks"></app-profile-stacks>
-        <app-profile-workexp class="anime-profile-workexp" scrollReached (scrollReached)="onWorkExpIntersection()"
-            navScrollReached (navScrollReached)="onNavScrollReached('workexp')" id="workexp"></app-profile-workexp>
-        <app-profile-project class="anime-profile-project" scrollReached (scrollReached)="onProjIntersection()"
-            navScrollReached (navScrollReached)="onNavScrollReached('project')" id="project"></app-profile-project>
-        <app-profile-education class="anime-profile-edu" scrollReached (scrollReached)="onEduIntersection()"
-            navScrollReached (navScrollReached)="onNavScrollReached('edu')" id="edu"></app-profile-education>
-    </div>
-    <div class="right-profile-content-container" #right>
-        <div class="right-profile-content-inner-container">
-            <div class="right-profile-content-status" [ngStyle]="{color: statusColor}">
-                Currently {{status}}
-            </div>
-            <!-- <div class="right-item content-certification">
+  <div class="left-profile-content-container">
+    <app-profile-stacks
+      class="anime-profile-stacks"
+      inViewport
+      [inViewportOptions]="{ threshold: [0] }"
+      (inViewportAction)="onStacksIntersection($event)"
+      navScrollReached
+      (navScrollReached)="onNavScrollReached('stacks')"
+      id="stacks"
+    ></app-profile-stacks>
+    <app-profile-workexp
+      class="anime-profile-workexp"
+      scrollReached
+      (scrollReached)="onWorkExpIntersection()"
+      navScrollReached
+      (navScrollReached)="onNavScrollReached('workexp')"
+      id="workexp"
+    ></app-profile-workexp>
+    <app-profile-project
+      class="anime-profile-project"
+      scrollReached
+      (scrollReached)="onProjIntersection()"
+      navScrollReached
+      (navScrollReached)="onNavScrollReached('project')"
+      id="project"
+    ></app-profile-project>
+    <app-profile-education
+      class="anime-profile-edu"
+      scrollReached
+      (scrollReached)="onEduIntersection()"
+      navScrollReached
+      (navScrollReached)="onNavScrollReached('edu')"
+      id="edu"
+    ></app-profile-education>
+  </div>
+  <div class="right-profile-content-container" #right>
+    <div class="right-profile-content-inner-container">
+      <div
+        class="right-profile-content-status"
+        [ngStyle]="{ color: statusColor }"
+      >
+        Currently {{ status }}
+      </div>
+      <!-- <div class="right-item content-certification">
                 <span class="title games-title">Certificates</span>
                 &nbsp;
                 <span class="total games-total">48</span>
             </div> -->
-            <div class="right-item content-hackathon">
-                <div style="margin-bottom: 4px">
-                    <span class="title hackathon-title">Hackathons</span>
-                    &nbsp;
-                    <span class="total hackathon-total">4</span>
-                </div>
-                <div class="hackathon-logo-showcase">
-                    @for(content of rightContent; track content) {
-                        @if (content.hasOwnProperty('hackathons')) {
-                            @for(hackathon of content.hackathons; track hackathon) {
-                                <a [href]="hackathon.link" target="_blank">
-                                    <img [src]="hackathon.logoSrc" [alt]="hackathon.name + '.jpg'" class="hackathon-logo"> 
-                                </a>
-                            }
-                        }
-                    }
-                </div>
-            </div>
-            <div class="right-item content-groups"> <!--Clubs-->
-                <span class="title groups-title" style="cursor: default;">Groups</span>
-                &nbsp;
-                <span class="total groups-total">3</span>
-                <div class="groups-main">
-                    @for(content of rightContent; track content) {
-                        @if (content.hasOwnProperty('groups')) {
-                            @for(group of content.groups; track group) {
-                                <a [href]="group.link" target="_blank" [ngClass]="group.anchorClass">
-                                    <img [src]="group.groupSrc" [alt]="group.name + '.jpg'" class="groups-main-pic"
-                                        [ngClass]="group.picClass">
-                                    <div class="groups-main-info">
-                                        <span class="groups-main-name link">{{group.name}}</span>
-                                        <span class="groups-main-members">{{group.members}} Members</span>
-                                    </div>
-                                </a>
-                            }
-                        }
-                    }
-                </div>
-            </div>
-            <div class="right-item content-games">
-                <a href="https://steamcommunity.com/id/Sia-WRWD/games/?tab=all" target="_blank">
-                    <span class="title games-title link">Games</span>
-                    &nbsp;
-                    <span class="total games-total">48</span>
-                </a>
-            </div>
-            <div class="right-item content-friends">
-                <span class="title friends-title link">Friends</span>
-                &nbsp;
-                <span class="total friends-total">99</span>
-                <div class="highlighted-friends">
-                    <div class="friend">
-                        <img>
-                        <span class="friend-name link"></span>
-                        <span class="friend-status"></span>
-                    </div>
-                </div>
-            </div>
+      <div class="right-item content-hackathon">
+        <div style="margin-bottom: 4px">
+          <span class="title hackathon-title">Hackathons</span>
+          &nbsp;
+          <span class="total hackathon-total">4</span>
         </div>
+        <div class="hackathon-logo-showcase">
+          @for (content of rightContent; track content) {
+            @if (content.hasOwnProperty("hackathons")) {
+              @for (hackathon of content.hackathons; track hackathon) {
+                <a [href]="hackathon.link" target="_blank">
+                  <img
+                    [src]="hackathon.logoSrc"
+                    [alt]="hackathon.name + '.jpg'"
+                    class="hackathon-logo"
+                  />
+                </a>
+              }
+            }
+          }
+        </div>
+      </div>
+      <div class="right-item content-groups">
+        <!--Clubs-->
+        <span class="title groups-title" style="cursor: default">Groups</span>
+        &nbsp;
+        <span class="total groups-total">3</span>
+        <div class="groups-main">
+          @for (content of rightContent; track content) {
+            @if (content.hasOwnProperty("groups")) {
+              @for (group of content.groups; track group) {
+                <a
+                  [href]="group.link"
+                  target="_blank"
+                  [ngClass]="group.anchorClass"
+                >
+                  <img
+                    [src]="group.groupSrc"
+                    [alt]="group.name + '.jpg'"
+                    class="groups-main-pic"
+                    [ngClass]="group.picClass"
+                  />
+                  <div class="groups-main-info">
+                    <span class="groups-main-name link">{{ group.name }}</span>
+                    <span class="groups-main-members"
+                      >{{ group.members }} Members</span
+                    >
+                  </div>
+                </a>
+              }
+            }
+          }
+        </div>
+      </div>
+      <div class="right-item content-games">
+        <a
+          href="https://steamcommunity.com/id/Sia-WRWD/games/?tab=all"
+          target="_blank"
+        >
+          <span class="title games-title link">Games</span>
+          &nbsp;
+          <span class="total games-total">48</span>
+        </a>
+      </div>
+      <div class="right-item content-friends">
+        <div class="content-friends-container">
+          <span class="title friends-title">Friends</span>
+          &nbsp;
+          <span class="total friends-total">420</span>
+        </div>
+        <div class="highlighted-friends">
+          @for (content of rightContent; track content) {
+            @if (content.hasOwnProperty("friends")) {
+              @for (friend of content.friends; track friend) {
+                <a [href]="friend.link" target="_blank" style="width: 100%">
+                  <div class="friend">
+                    <div
+                      class="friend-pic-container"
+                      [attr.data-status]="friend.status"
+                    >
+                      <img
+                        [src]="friend.picSrc"
+                        [alt]="friend.name + '.jpg'"
+                        class="friend-pic"
+                      />
+                    </div>
+                    <div class="friend-info" [attr.data-status]="friend.status">
+                      <span class="friend-name ellipsis">
+                        {{ friend.name }}
+                      </span>
+                      <span class="friend-status ellipsis">
+                        {{ friend.status }}
+                      </span>
+                      @if (friend.status == "In-Game") {
+                        <span class="friend-status ellipsis">
+                          {{ friend.game }}
+                        </span>
+                      }
+                    </div>
+                    <div
+                      class="friend-level-container"
+                      [attr.data-position]="friend.position"
+                    >
+                      <span class="friend-level">{{ friend.level }}</span>
+                    </div>
+                  </div>
+                </a>
+              }
+            }
+          }
+        </div>
+      </div>
     </div>
+  </div>
 </div>
