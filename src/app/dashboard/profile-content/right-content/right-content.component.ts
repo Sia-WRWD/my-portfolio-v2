@@ -27,6 +27,9 @@ export class RightContentComponent {
   ngOnInit() {
     this.statusUpdate();
     this.friendStatusUpdate();
+  }
+
+  ngAfterViewInit() {
     this.onInitAnimation();
   }
 
@@ -98,6 +101,13 @@ export class RightContentComponent {
         delay: 1300,
         duration: 1000 // Animation duration in milliseconds
       });
+
+      anime({
+        targets: '.hackathon-logo',
+        opacity: [0, 1], // Fade from transparent (0) to opaque (1)
+        delay: anime.stagger(300, { start: 1600 }), // Use easing for smoother animation
+      });
+
       this.hackathonsAnimationPlayed = true;
     }
   }
@@ -109,9 +119,23 @@ export class RightContentComponent {
         translateX: ['-100%', 0], // Move from left (-100%) to current position (0)
         opacity: [0, 1], // Fade from transparent (0) to opaque (1)
         easing: 'easeInOutQuad', // Use easing for smoother animation
-        delay: 1400,
+        delay: 1600,
         duration: 1000 // Animation duration in milliseconds
       });
+
+      anime({
+        targets: '.groups-main-pic',
+        opacity: [0, 1], // Fade from transparent (0) to opaque (1)
+        delay: anime.stagger(300, { start: 2200 }), // Use easing for smoother animation
+      });
+
+      anime({
+        targets: '.groups-main-info',
+        translateX: ['100%', 0],
+        opacity: [0, 1], // Fade from transparent (0) to opaque (1)
+        delay: anime.stagger(300, { start: 2300 }), // Use easing for smoother animation
+      });
+
       this.groupsAnimationPlayed = true;
     }
   }
@@ -128,6 +152,14 @@ export class RightContentComponent {
           delay: 0,
           duration: 1000 // Animation duration in milliseconds
         });
+
+        
+      anime({
+        targets: '.game-container',
+        opacity: [0, 1], // Fade from transparent (0) to opaque (1)
+        delay: anime.stagger(300, { start: 0 }), // Use easing for smoother animation
+      });
+
         this.gamesAnimationPlayed = true;
       }
     }
@@ -140,9 +172,18 @@ export class RightContentComponent {
         translateX: ['-100%', 0], // Move from left (-100%) to current position (0)
         opacity: [0, 1], // Fade from transparent (0) to opaque (1)
         easing: 'easeInOutQuad', // Use easing for smoother animation
-        delay: 1900,
+        delay: 3600,
         duration: 1000 // Animation duration in milliseconds
       });
+
+      anime({
+        targets: '.game-container',
+        translateY: ['-100%', 0], // Move from left (-100%) to current position (0)
+        opacity: [0, 1], // Fade from transparent (0) to opaque (1)
+        easing: 'easeInOutQuad', // Use easing for smoother animation
+        delay: anime.stagger(300, { start: 3700 }),
+      });
+
       this.gamesAnimationPlayed = true;
     }
   }
@@ -159,6 +200,14 @@ export class RightContentComponent {
           delay: 0,
           duration: 1000 // Animation duration in milliseconds
         });
+
+        anime({
+          targets: '.highlighted-friends-container',
+          translateY: ['100%', 0],
+          opacity: [0, 1], // Fade from transparent (0) to opaque (1)
+          delay: anime.stagger(300, { start: 500 }), // Use easing for smoother animation
+        });
+
         this.friendsAnimationPlayed = true;
       }
     }
@@ -172,9 +221,18 @@ export class RightContentComponent {
         translateX: ['-100%', 0], // Move from left (-100%) to current position (0)
         opacity: [0, 1], // Fade from transparent (0) to opaque (1)
         easing: 'easeInOutQuad', // Use easing for smoother animation
-        delay: 1700,
+        delay: 2900,
         duration: 1000 // Animation duration in milliseconds
       });
+
+      anime({
+        targets: '.highlighted-friends-container',
+        translateY: ['100%', 0], // Move from left (-100%) to current position (0)
+        opacity: [0, 1], // Fade from transparent (0) to opaque (1)
+        easing: 'easeInOutQuad', // Use easing for smoother animation
+        delay: anime.stagger(300, { start: 3000}),
+      });
+
       this.friendsAnimationPlayed = true;
     }
   }

@@ -58,6 +58,46 @@
     }
 }
 
+.widget-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    bottom: 60px;
+    right: 10px;
+    z-index: 9999;
+
+    .contact-widget-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        border-radius: 50%;
+        background: #171d25;
+        height: 40px;
+        width: 40px;
+        filter: drop-shadow(1px 2px 3px black);
+        font-size: 24px;
+        cursor: pointer;
+        transition: 0.3s ease-in-out;
+
+        .contact-widget-icon {
+            filter: drop-shadow(1px 1px 1px black);
+            color: white;
+            transition: 0.3s ease-in-out;
+        }
+
+        @media (not (prefers-reduced-motion: reduce)) {
+            &:hover .contact-widget-icon {
+                color: #EB4D26;
+                animation: ring 3s .7s ease-in-out infinite;
+                transform: scale(1.2);
+            }
+        }
+    }
+}
+
 @media screen and (max-width: 910px) {
     .profile-content-container {
         flex-direction: column;

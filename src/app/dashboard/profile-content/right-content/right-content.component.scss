@@ -51,11 +51,13 @@
         }
     }
 
-    .anime-status, .anime-hackathons,
-    .anime-groups, .anime-friends,
+    .anime-status,
+    .anime-hackathons,
+    .anime-groups,
+    .anime-friends,
     .anime-games {
         opacity: 1;
-        
+
         @media (not (prefers-reduced-motion: reduce)) {
             opacity: 0;
         }
@@ -98,6 +100,12 @@
             gap: 16px;
 
             .game-container {
+                opacity: 1;
+
+                @media (not (prefers-reduced-motion: reduce)) {
+                    opacity: 0;
+                }
+
                 .game {
 
                     .game-pic {
@@ -228,6 +236,11 @@
 
             .highlighted-friends-container {
                 width: 100%;
+                opacity: 1;
+
+                @media (not (prefers-reduced-motion: reduce)) {
+                    opacity: 0;
+                }
 
                 .friend {
                     display: flex;
@@ -243,6 +256,7 @@
                         position: relative;
                         border-radius: 0;
                         padding: 1px;
+                        transition: 0.3s ease-in-out;
 
                         &[data-status="Offline"] {
                             background: -webkit-linear-gradient(to bottom, rgba(106, 106, 106, 1) 5%, rgba(85, 85, 85, 1) 95%);
@@ -265,6 +279,12 @@
                             padding: 1px;
                             border-radius: 0;
                             border: none;
+                        }
+
+                        @media (not (prefers-reduced-motion: reduce)) {
+                            &:hover {
+                                transform: scale(1.2);
+                            }
                         }
                     }
 

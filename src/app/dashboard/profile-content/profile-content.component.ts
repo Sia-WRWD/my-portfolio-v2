@@ -11,6 +11,8 @@ import { CommonModule } from '@angular/common';
 import { ScrollReachedDirective } from 'src/app/directives/scroll-reaches.directive';
 import { ScrollReachedNavDirective } from 'src/app/directives/scroll-reaches-nav.directive';
 import { ScrollService } from '../shared/service/scroll.service';
+import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faPhone } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-profile-content',
@@ -18,7 +20,7 @@ import { ScrollService } from '../shared/service/scroll.service';
   imports: [
     ProfileStacksComponent, ProfileEducationComponent, ProfileProjectComponent,
     ProfileWorkexpComponent, ProfileContactComponent, InViewportModule, ScrollReachedDirective, ScrollReachedNavDirective,
-    CommonModule, RightContentComponent
+    CommonModule, RightContentComponent, FontAwesomeModule
   ],
   templateUrl: './profile-content.component.html',
   styleUrl: './profile-content.component.scss'
@@ -31,7 +33,11 @@ export class ProfileContentComponent {
   eduAnimationPlayed: boolean = false;
   rightContentAnimationPlayed: boolean = false;
 
-  constructor(private scrollService: ScrollService) { }
+  constructor(private scrollService: ScrollService, private library: FaIconLibrary) {
+    library.addIcons(
+      faPhone
+    )
+  }
 
   ngOnInit() {
 
@@ -47,7 +53,7 @@ export class ProfileContentComponent {
       } else {
         delay = 1000
       }
-      
+
       anime({
         targets: '.anime-profile-stacks',
         translateX: ['-100%', 0], // Move from left (-100%) to current position (0)
@@ -142,5 +148,9 @@ export class ProfileContentComponent {
         this.rightContentAnimationPlayed = true;
       }
     }
+  }
+
+  openContactModal() {
+    
   }
 }

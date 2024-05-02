@@ -96,7 +96,7 @@ export const rightContent = [
             picSrc: 'https://avatars.cloudflare.steamstatic.com/b463d03d26bde40d3cfbca6a57cff9b24b8a3b8e_full.jpg', 
             name: 'ki_SHAWNNN', 
             level: '10',
-            link: 'https://github.com/orgs/Diskordlit/people/Kishen35',
+            link: 'https://github.com/Kishen35',
             status: 'Offline',
             position: 'Odd',
             game: 'Need for Speed™ Heat'
@@ -105,7 +105,7 @@ export const rightContent = [
             picSrc: 'https://avatars.cloudflare.steamstatic.com/fc2192b1ed4cfabaa5961ceb4046f9dae358e622_full.jpg', 
             name: 'Danish Cat', 
             level: '8',
-            link: 'https://github.com/orgs/Diskordlit/people/mdanishmansor',
+            link: 'https://github.com/mdanishmansor',
             status: 'Online',
             position: 'Even',
             game: 'Counter-Strike 2'
