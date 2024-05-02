@@ -1,13 +1,8 @@
 <div class="right-profile-content-inner-container">
-  <div class="right-profile-content-status" [ngStyle]="{ color: statusColor }">
+  <div class="right-profile-content-status" [ngStyle]="{ color: statusColor }" scrollReached (scrollReached)="onStatusReached()">
     Currently {{ status }}
   </div>
-  <!-- <div class="right-item content-certification">
-                <span class="title games-title">Certificates</span>
-                &nbsp;
-                <span class="total games-total">48</span>
-            </div> -->
-  <div class="right-item content-hackathon">
+  <div class="right-item content-hackathon" scrollReached (scrollReached)="onHackathonReached()">
     <div class="mb4">
       <span class="title hackathon-title">Hackathons</span>
       &nbsp;
@@ -29,7 +24,7 @@
       }
     </div>
   </div>
-  <div class="right-item content-groups">
+  <div class="right-item content-groups" scrollReached (scrollReached)="onGroupsReached()">
     <!--Clubs-->
     <div class="mb4">
       <span class="title groups-title" style="cursor: default">Groups</span>
@@ -63,7 +58,7 @@
       }
     </div>
   </div>
-  <div class="right-item content-games">
+  <div class="right-item content-games" scrollReached (scrollReached)="onGamesReached()">
     <a
       href="https://steamcommunity.com/id/Sia-WRWD/games/?tab=all"
       target="_blank"
@@ -92,7 +87,7 @@
       }
     </div>
   </div>
-  <div class="right-item content-friends">
+  <div class="right-item content-friends" scrollReached (scrollReached)="onFriendsReached()">
     <div class="content-friends-container">
       <span class="title friends-title">Friends</span>
       &nbsp;

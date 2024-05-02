@@ -34,7 +34,13 @@
       id="edu"
     ></app-profile-education>
   </div>
-  <div class="right-profile-content-container">
+  <div
+    class="right-profile-content-container"
+    inViewport
+    [inViewportOptions]="{ threshold: [0] }"
+    (inViewportAction)="onRightContentIntersection($event)"
+    id="right-content"
+  >
     <app-right-content></app-right-content>
   </div>
 </div>

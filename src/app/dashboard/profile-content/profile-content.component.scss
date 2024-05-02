@@ -50,6 +50,11 @@
         flex-basis: 30%;
         width: calc(100% - 20px);
         height: 100%;
+        opacity: 1;
+
+        @media (not (prefers-reduced-motion: reduce)) {
+            opacity: 0;
+        }
     }
 }
 
@@ -68,6 +73,7 @@
 
         .right-profile-content-container {
             order: 1;
+            padding: 10px 10px 0px 10px !important;
         }
     }
 }

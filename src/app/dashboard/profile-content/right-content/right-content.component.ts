@@ -2,11 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { activities } from '../../shared/data/activity';
 import { rightContent } from '../../shared/data/right-content';
+import { ScrollReachedDirective } from 'src/app/directives/scroll-reaches.directive';
 
 @Component({
   selector: 'app-right-content',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ScrollReachedDirective],
   templateUrl: './right-content.component.html',
   styleUrl: './right-content.component.scss'
 })
@@ -52,5 +53,25 @@ export class RightContentComponent {
     const statuses = ['Offline', 'Online', 'In-Game'];
     const randomIndex = Math.floor(Math.random() * statuses.length);
     return statuses[randomIndex];
+  }
+
+  onStatusReached() {
+
+  }
+
+  onHackathonReached() {
+
+  }
+
+  onGroupsReached() {
+
+  }
+
+  onGamesReached() {
+
+  }
+
+  onFriendsReached() {
+    
   }
 }

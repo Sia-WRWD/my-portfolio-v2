@@ -78,6 +78,8 @@
     }
 
     .content-games {
+        margin-bottom: 40px;
+
         .highlighted-games {
             display: flex;
             flex-direction: row;
@@ -310,119 +312,111 @@
 
 @media screen and (max-width: 910px) {
 
-    .right-profile-content-container {
-        flex-basis: auto;
-    }
+    .right-profile-content-inner-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+        column-gap: 8px;
 
-    .right-profile-content-container {
-        order: 1;
+        .right-profile-content-status {
+            width: 100%;
+            padding: 8px;
+            background: rgba(0, 0, 0, 0.5);
+            margin-bottom: 12px;
+            order: 1;
+        }
 
-        .right-profile-content-inner-container {
-            flex-direction: row;
-            flex-wrap: wrap;
-            column-gap: 8px;
+        .content-hackathon {
+            order: 2;
+            width: calc(50% - 20px);
+            padding: 8px;
+            background: rgba(0, 0, 0, 0.5);
+            margin-bottom: 12px;
+            overflow: hidden;
 
-            .right-profile-content-status {
-                width: 100%;
-                padding: 8px;
-                background: rgba(0, 0, 0, 0.5);
-                margin-bottom: 12px;
-                order: 1;
+            .hackathon-logo-showcase {
+                gap: 8px;
+
+                .hackathon-logo {
+                    width: 36px !important;
+                    height: 36px !important;
+                }
             }
+        }
 
-            .content-hackathon {
-                order: 2;
-                width: calc(50% - 20px);
-                padding: 8px;
-                background: rgba(0, 0, 0, 0.5);
-                margin-bottom: 12px;
-                overflow: hidden;
+        .content-groups {
+            order: 3;
+            width: calc(50% - 20px);
+            padding: 8px;
+            background: rgba(0, 0, 0, 0.5);
+            margin-bottom: 12px;
+            overflow: hidden;
 
-                .hackathon-logo-showcase {
-                    gap: 8px;
+            .groups-main {
+                flex-direction: row;
+                margin-top: 0px;
 
-                    .hackathon-logo {
+                .regular-groups-pic,
+                .small-groups-pic {
+                    width: 36px !important;
+                    height: 36px !important;
+                    margin-bottom: 0px !important;
+                    margin-right: 8px;
+                }
+
+                .groups-main-info {
+                    display: none !important;
+                }
+            }
+        }
+
+        .content-games {
+            order: 5;
+            width: calc(50% - 20px);
+            padding: 8px;
+            background: rgba(0, 0, 0, 0.5);
+            margin-bottom: 12px;
+
+            .highlighted-games {
+                gap: 8px;
+
+                .game {
+                    .game-pic {
                         width: 36px !important;
                         height: 36px !important;
                     }
                 }
             }
+        }
 
-            .content-groups {
-                order: 3;
-                width: calc(50% - 20px);
-                padding: 8px;
-                background: rgba(0, 0, 0, 0.5);
-                margin-bottom: 12px;
-                overflow: hidden;
+        .content-friends {
+            order: 4;
+            width: calc(50% - 20px);
+            padding: 8px;
+            background: rgba(0, 0, 0, 0.5);
+            margin-bottom: 12px;
+            overflow: hidden;
 
-                .groups-main {
-                    flex-direction: row;
-                    margin-top: 0px;
-
-                    .regular-groups-pic,
-                    .small-groups-pic {
-                        width: 36px !important;
-                        height: 36px !important;
-                        margin-bottom: 0px !important;
-                        margin-right: 8px;
-                    }
-
-                    .groups-main-info {
-                        display: none !important;
-                    }
-                }
+            .content-friends-container {
+                margin-bottom: 4px !important;
             }
 
-            .content-games {
-                order: 5;
-                width: calc(50% - 20px);
-                padding: 8px;
-                background: rgba(0, 0, 0, 0.5);
-                margin-bottom: 12px;
+            .highlighted-friends {
+                flex-direction: row;
+                margin-left: 0px !important;
 
-                .highlighted-games {
-                    gap: 8px;
+                .highlighted-friends-container {
+                    width: max-content !important;
 
-                    .game {
-                        .game-pic {
-                            width: 36px !important;
-                            height: 36px !important;
+                    .friend {
+
+                        .friend-info {
+                            display: none !important;
                         }
-                    }
-                }
-            }
 
-            .content-friends {
-                order: 4;
-                width: calc(50% - 20px);
-                padding: 8px;
-                background: rgba(0, 0, 0, 0.5);
-                margin-bottom: 12px;
-                overflow: hidden;
-
-                .content-friends-container {
-                    margin-bottom: 4px !important;
-                }
-
-                .highlighted-friends {
-                    flex-direction: row;
-                    margin-left: 0px !important;
-
-                    .highlighted-friends-container {
-                        width: max-content !important;
-
-                        .friend {
-
-                            .friend-info {
-                                display: none !important;
-                            }
-
-                            .friend-level-container {
-                                display: none;
-                            }
-
+                        .friend-level-container {
+                            display: none;
                         }
+
                     }
                 }
             }
