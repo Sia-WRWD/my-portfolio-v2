@@ -51,6 +51,16 @@
         }
     }
 
+    .anime-status, .anime-hackathons,
+    .anime-groups, .anime-friends,
+    .anime-games {
+        opacity: 1;
+        
+        @media (not (prefers-reduced-motion: reduce)) {
+            opacity: 0;
+        }
+    }
+
     .content-hackathon {
         margin-bottom: 40px;
 

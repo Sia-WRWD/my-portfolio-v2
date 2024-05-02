@@ -1,9 +1,9 @@
 <div class="right-profile-content-inner-container">
-  <div class="right-profile-content-status" [ngStyle]="{ color: statusColor }" scrollReached (scrollReached)="onStatusReached()">
+  <div class="right-profile-content-status anime-status" [ngStyle]="{ color: statusColor }">
     Currently {{ status }}
   </div>
-  <div class="right-item content-hackathon" scrollReached (scrollReached)="onHackathonReached()">
-    <div class="mb4">
+  <div class="right-item content-hackathon">
+    <div class="mb4 anime-hackathons">
       <span class="title hackathon-title">Hackathons</span>
       &nbsp;
       <span class="total hackathon-total">4</span>
@@ -24,9 +24,9 @@
       }
     </div>
   </div>
-  <div class="right-item content-groups" scrollReached (scrollReached)="onGroupsReached()">
+  <div class="right-item content-groups">
     <!--Clubs-->
-    <div class="mb4">
+    <div class="mb4 anime-groups">
       <span class="title groups-title" style="cursor: default">Groups</span>
       &nbsp;
       <span class="total groups-total">3</span>
@@ -63,7 +63,7 @@
       href="https://steamcommunity.com/id/Sia-WRWD/games/?tab=all"
       target="_blank"
     >
-      <div class="mb4">
+      <div class="mb4 anime-games">
         <span class="title games-title link">Games</span>
         &nbsp;
         <span class="total games-total">48</span>
@@ -88,7 +88,7 @@
     </div>
   </div>
   <div class="right-item content-friends" scrollReached (scrollReached)="onFriendsReached()">
-    <div class="content-friends-container">
+    <div class="content-friends-container anime-friends">
       <span class="title friends-title">Friends</span>
       &nbsp;
       <span class="total friends-total">420</span>
