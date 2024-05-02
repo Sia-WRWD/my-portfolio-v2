@@ -24,7 +24,6 @@ export class NavigationComponent {
     { name: "WORK-EXP", anchor: "workexp", icon: "" },
     { name: "PROJECTS", anchor: "project", icon: "" },
     { name: "EDUCATION", anchor: "edu", icon: "" },
-    { name: "CONTACT", anchor: "contact", icon: "" },
     { name: "RESUME", anchor: "resume", icon: "" }
   ]
 
