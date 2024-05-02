@@ -42,7 +42,7 @@
     .right-profile-content-container {
         order: 2;
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         background-color: rgba(0, 0, 0, 0.3);
         backdrop-filter: blur(20px);
         padding: 10px;
@@ -54,6 +54,8 @@
         .right-profile-content-inner-container {
             height: 100%;
             width: 100%;
+            display: flex;
+            flex-direction: column;
 
             .right-profile-content-status {
                 font-family: "Motiva Sans", Sans-serif;
@@ -128,7 +130,37 @@
                 }
             }
 
-            .content-games {}
+            .content-games {
+                .highlighted-games {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-start;
+                    align-items: center;
+                    gap: 16px;
+
+                    .game-container {
+                        .game {
+
+                            .game-pic {
+                                border-radius: 4px;
+                                height: 54px;
+                                width: 54px;
+                                filter: drop-shadow(1px 2px 3px black);
+
+                                @media (not (prefers-reduced-motion: reduce)) {
+                                    transition: 0.3s ease-in-out;
+                                }
+                            }
+                        }
+
+                        @media (not (prefers-reduced-motion: reduce)) {
+                            &:hover .game-pic {
+                                transform: scale(1.15);
+                            }
+                        }
+                    }
+                }
+            }
 
             .content-groups {
                 margin-bottom: 30px;
@@ -235,93 +267,96 @@
                     gap: 8px;
                     margin-left: 4px;
 
-                    .friend {
-                        display: flex;
-                        flex-direction: row;
-                        justify-content: flex-start;
-                        align-items: center;
-                        gap: 16px;
-                        position: relative;
+                    .highlighted-friends-container {
+                        width: 100%;
 
-                        .friend-pic-container {
-                            width: 34px;
-                            height: 34px;
-                            position: relative;
-                            border-radius: 0;
-                            padding: 1px;
-
-                            &[data-status="Offline"] {
-                                background: -webkit-linear-gradient(to bottom, rgba(106, 106, 106, 1) 5%, rgba(85, 85, 85, 1) 95%);
-                                background: linear-gradient(to bottom, rgba(106, 106, 106, 1) 5%, rgba(85, 85, 85, 1) 95%);
-                            }
-
-                            &[data-status="Online"] {
-                                background: -webkit-linear-gradient( top, rgba(83,164,196,1) 5%, rgba(69,128,151,1) 95%);
-                                background: linear-gradient( to bottom, rgba(83,164,196,1) 5%, rgba(69,128,151,1) 95%)
-                            }
-
-                            &[data-status="In-Game"] {
-                                background: -webkit-linear-gradient(top, rgba(143, 185, 59, 1) 5%, rgba(110, 140, 49, 1) 95%);
-                                background: linear-gradient(to bottom, rgba(143, 185, 59, 1) 5%, rgba(110, 140, 49, 1) 95%);
-                            }
-
-                            .friend-pic {
-                                width: 32px;
-                                height: 32px;
-                                padding: 1px;
-                                border-radius: 0;
-                                border: none;
-                            }
-                        }
-
-                        .friend-info {
+                        .friend {
                             display: flex;
-                            flex-direction: column;
-                            font-size: 12px;
+                            flex-direction: row;
+                            justify-content: flex-start;
+                            align-items: center;
+                            gap: 16px;
+                            position: relative;
 
-                            &[data-status="Offline"] {
-                                color: #898989;
+                            .friend-pic-container {
+                                width: 34px;
+                                height: 34px;
+                                position: relative;
+                                border-radius: 0;
+                                padding: 1px;
+
+                                &[data-status="Offline"] {
+                                    background: -webkit-linear-gradient(to bottom, rgba(106, 106, 106, 1) 5%, rgba(85, 85, 85, 1) 95%);
+                                    background: linear-gradient(to bottom, rgba(106, 106, 106, 1) 5%, rgba(85, 85, 85, 1) 95%);
+                                }
+
+                                &[data-status="Online"] {
+                                    background: -webkit-linear-gradient(top, rgba(83, 164, 196, 1) 5%, rgba(69, 128, 151, 1) 95%);
+                                    background: linear-gradient(to bottom, rgba(83, 164, 196, 1) 5%, rgba(69, 128, 151, 1) 95%)
+                                }
+
+                                &[data-status="In-Game"] {
+                                    background: -webkit-linear-gradient(top, rgba(143, 185, 59, 1) 5%, rgba(110, 140, 49, 1) 95%);
+                                    background: linear-gradient(to bottom, rgba(143, 185, 59, 1) 5%, rgba(110, 140, 49, 1) 95%);
+                                }
+
+                                .friend-pic {
+                                    width: 32px;
+                                    height: 32px;
+                                    padding: 1px;
+                                    border-radius: 0;
+                                    border: none;
+                                }
                             }
 
-                            &[data-status="Online"] {
-                                color: #57cbde;
-                            }
-
-                            &[data-status="In-Game"] {
-                                color: #90ba3c;
-                            }
-                        }
-
-                        .friend-level-container {
-                            position: absolute;
-                            right: 0;
-                            padding-right: 10px;
-                            background: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_shields.png');
-                            border: none;
-                            border-radius: 0;
-                            background-repeat: no-repeat;
-                            font-size: 14px;
-                            height: 32px;
-                            width: 32px;
-                            line-height: 32px;
-                            text-shadow: 1px 1px #1a1a1a;
-
-                            &[data-position="Odd"] {
-                                background-position: 0 -96px;
-                            }
-
-                            &[data-position="Even"] {
-                                background-position: 0 -64px;
-                            }
-
-                            .friend-level {
+                            .friend-info {
                                 display: flex;
-                                justify-content: center;
-                                align-items: center;
+                                flex-direction: column;
+                                font-size: 12px;
+
+                                &[data-status="Offline"] {
+                                    color: #898989;
+                                }
+
+                                &[data-status="Online"] {
+                                    color: #57cbde;
+                                }
+
+                                &[data-status="In-Game"] {
+                                    color: #90ba3c;
+                                }
+                            }
+
+                            .friend-level-container {
+                                position: absolute;
+                                right: 0;
+                                padding-right: 10px;
+                                background: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_shields.png');
+                                border: none;
+                                border-radius: 0;
+                                background-repeat: no-repeat;
+                                font-size: 14px;
+                                height: 32px;
+                                width: 32px;
+                                line-height: 32px;
+                                text-shadow: 1px 1px #1a1a1a;
+
+                                &[data-position="Odd"] {
+                                    background-position: 0 -96px;
+                                }
+
+                                &[data-position="Even"] {
+                                    background-position: 0 -64px;
+                                }
+
+                                .friend-level {
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                }
                             }
                         }
                     }
-
                 }
             }
         }
@@ -345,9 +380,141 @@
         .right-profile-content-container {
             order: 1;
 
-            .right-profile-content-container {
-                padding-left: 0px;
+            .right-profile-content-inner-container {
+                flex-direction: row;
+                flex-wrap: wrap;
+                column-gap: 8px;
+
+                .right-profile-content-status {
+                    width: 100%;
+                    padding: 8px;
+                    background: rgba(0, 0, 0, 0.5);
+                    margin-bottom: 12px;
+                    order: 1;
+                }
+
+                .content-hackathon {
+                    order: 2;
+                    width: calc(50% - 20px);
+                    padding: 8px;
+                    background: rgba(0, 0, 0, 0.5);
+                    margin-bottom: 12px;
+                    overflow: hidden;
+
+                    .hackathon-logo-showcase {
+                        gap: 8px;
+
+                        .hackathon-logo {
+                            width: 36px !important;
+                            height: 36px !important;
+                        }
+                    }
+                }
+
+                .content-groups {
+                    order: 3;
+                    width: calc(50% - 20px);
+                    padding: 8px;
+                    background: rgba(0, 0, 0, 0.5);
+                    margin-bottom: 12px;
+                    overflow: hidden;
+
+                    .groups-main {
+                        flex-direction: row;
+                        margin-top: 0px;
+
+                        .regular-groups-pic,
+                        .small-groups-pic {
+                            width: 36px !important;
+                            height: 36px !important;
+                            margin-bottom: 0px !important;
+                            margin-right: 8px;
+                        }
+
+                        .groups-main-info {
+                            display: none !important;
+                        }
+                    }
+                }
+
+                .content-games {
+                    order: 5;
+                    width: calc(50% - 20px);
+                    padding: 8px;
+                    background: rgba(0, 0, 0, 0.5);
+                    margin-bottom: 12px;
+
+                    .highlighted-games {
+                        gap: 8px;
+
+                        .game {
+                            .game-pic {
+                                width: 36px !important;
+                                height: 36px !important;
+                            }
+                        }
+                    }
+                }
+
+                .content-friends {
+                    order: 4;
+                    width: calc(50% - 20px);
+                    padding: 8px;
+                    background: rgba(0, 0, 0, 0.5);
+                    margin-bottom: 12px;
+                    overflow: hidden;
+
+                    .content-friends-container {
+                        margin-bottom: 4px !important;
+                    }
+
+                    .highlighted-friends {
+                        flex-direction: row;
+                        margin-left: 0px !important;
+
+                        .highlighted-friends-container {
+                            width: max-content !important;
+
+                            .friend {
+
+                                .friend-info {
+                                    display: none !important;
+                                }
+
+                                .friend-level-container {
+                                    display: none;
+                                }
+
+                            }
+                        }
+                    }
+                }
             }
         }
+    }
+}
+
+@media screen and (max-width: 620px) {
+
+    .content-hackathon .hackathon-logo-showcase,
+    .content-friends .highlighted-friends,
+    .content-groups .groups-main,
+    .content-games .highlighted-games {
+        max-width: 260px;
+        overflow: hidden;
+        overflow-x: scroll;
+        gap: 4px !important;
+    }
+
+    .regular-groups-pic,
+    .small-groups-pic {
+        margin-right: 4px !important;
+    }
+
+    .content-hackathon .hackathon-logo-showcase::-webkit-scrollbar,
+    .content-friends .highlighted-friends::-webkit-scrollbar,
+    .content-groups .groups-main::-webkit-scrollbar,
+    .content-games .highlighted-games::-webkit-scrollbar {
+        height: 0px !important;
     }
 }

@@ -7,7 +7,7 @@ export const rightContent = [
             link: 'https://devpost.com/software/classinsight-pro'
         },
         {
-            logoSrc: '../../../assets/icons/proj/melb.png', 
+            logoSrc: '../../../assets/icons/rightcontent/melb.png', 
             name: 'Melbourne Hack 2022', 
             achievement: 'Participation',
             link: 'https://devpost.com/software/baby-ghost'
@@ -50,6 +50,28 @@ export const rightContent = [
             picClass: 'small-groups-pic',
             anchorClass: 'lower-group'
         },
+    ]},
+    {games: [
+        {
+            gameSrc: '../../../assets/icons/rightcontent/dota.png',
+            name: 'Dota 2',
+            link: 'https://store.steampowered.com/app/570/Dota_2/',
+        },
+        {
+            gameSrc: 'https://preview.redd.it/fldyql8i8n931.png?auto=webp&s=7150f4970b34257b4416ffb9c66a86debb79e449',
+            name: 'Hunt: Showdown',
+            link: 'https://store.steampowered.com/app/594650/Hunt_Showdown/',
+        },
+        {
+            gameSrc: '../../../assets/icons/rightcontent/cs2.jpg',
+            name: 'Counter-Strike: 2',
+            link: 'https://store.steampowered.com/app/730/CounterStrike_2/',
+        },
+        {
+            gameSrc: '../../../assets/icons/rightcontent/sotf.jpg',
+            name: 'Sons of The Forest',
+            link: 'https://store.steampowered.com/app/1326470/Sons_Of_The_Forest/',
+        }
     ]},
     {friends: [
         {

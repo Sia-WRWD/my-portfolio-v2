@@ -48,7 +48,7 @@
                 <span class="total games-total">48</span>
             </div> -->
       <div class="right-item content-hackathon">
-        <div style="margin-bottom: 4px">
+        <div class="mb4">
           <span class="title hackathon-title">Hackathons</span>
           &nbsp;
           <span class="total hackathon-total">4</span>
@@ -71,9 +71,11 @@
       </div>
       <div class="right-item content-groups">
         <!--Clubs-->
-        <span class="title groups-title" style="cursor: default">Groups</span>
-        &nbsp;
-        <span class="total groups-total">3</span>
+        <div class="mb4">
+          <span class="title groups-title" style="cursor: default">Groups</span>
+          &nbsp;
+          <span class="total groups-total">3</span>
+        </div>
         <div class="groups-main">
           @for (content of rightContent; track content) {
             @if (content.hasOwnProperty("groups")) {
@@ -106,10 +108,25 @@
           href="https://steamcommunity.com/id/Sia-WRWD/games/?tab=all"
           target="_blank"
         >
-          <span class="title games-title link">Games</span>
-          &nbsp;
-          <span class="total games-total">48</span>
+          <div class="mb4">
+            <span class="title games-title link">Games</span>
+            &nbsp;
+            <span class="total games-total">48</span>
+          </div>
         </a>
+        <div class="highlighted-games">
+          @for (content of rightContent; track content) {
+            @if (content.hasOwnProperty("games")) {
+              @for (game of content.games; track game) {
+                <a [href]="game.link" target="_blank" class="game-container">
+                  <div class="game">
+                    <img [src]="game.gameSrc" [alt]="game.name + '.jpg'" class="game-pic">
+                  </div>
+                </a>
+              }
+            }
+          }
+        </div>
       </div>
       <div class="right-item content-friends">
         <div class="content-friends-container">
@@ -121,7 +138,11 @@
           @for (content of rightContent; track content) {
             @if (content.hasOwnProperty("friends")) {
               @for (friend of content.friends; track friend) {
-                <a [href]="friend.link" target="_blank" style="width: 100%">
+                <a
+                  [href]="friend.link"
+                  target="_blank"
+                  class="highlighted-friends-container"
+                >
                   <div class="friend">
                     <div
                       class="friend-pic-container"
