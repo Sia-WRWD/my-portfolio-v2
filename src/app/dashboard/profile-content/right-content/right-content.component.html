@@ -1,0 +1,147 @@
+<div class="right-profile-content-inner-container">
+  <div class="right-profile-content-status" [ngStyle]="{ color: statusColor }">
+    Currently {{ status }}
+  </div>
+  <!-- <div class="right-item content-certification">
+                <span class="title games-title">Certificates</span>
+                &nbsp;
+                <span class="total games-total">48</span>
+            </div> -->
+  <div class="right-item content-hackathon">
+    <div class="mb4">
+      <span class="title hackathon-title">Hackathons</span>
+      &nbsp;
+      <span class="total hackathon-total">4</span>
+    </div>
+    <div class="hackathon-logo-showcase">
+      @for (content of rightContent; track content) {
+        @if (content.hasOwnProperty("hackathons")) {
+          @for (hackathon of content.hackathons; track hackathon) {
+            <a [href]="hackathon.link" target="_blank">
+              <img
+                [src]="hackathon.logoSrc"
+                [alt]="hackathon.name + '.jpg'"
+                class="hackathon-logo"
+              />
+            </a>
+          }
+        }
+      }
+    </div>
+  </div>
+  <div class="right-item content-groups">
+    <!--Clubs-->
+    <div class="mb4">
+      <span class="title groups-title" style="cursor: default">Groups</span>
+      &nbsp;
+      <span class="total groups-total">3</span>
+    </div>
+    <div class="groups-main">
+      @for (content of rightContent; track content) {
+        @if (content.hasOwnProperty("groups")) {
+          @for (group of content.groups; track group) {
+            <a
+              [href]="group.link"
+              target="_blank"
+              [ngClass]="group.anchorClass"
+            >
+              <img
+                [src]="group.groupSrc"
+                [alt]="group.name + '.jpg'"
+                class="groups-main-pic"
+                [ngClass]="group.picClass"
+              />
+              <div class="groups-main-info">
+                <span class="groups-main-name link">{{ group.name }}</span>
+                <span class="groups-main-members"
+                  >{{ group.members }} Members</span
+                >
+              </div>
+            </a>
+          }
+        }
+      }
+    </div>
+  </div>
+  <div class="right-item content-games">
+    <a
+      href="https://steamcommunity.com/id/Sia-WRWD/games/?tab=all"
+      target="_blank"
+    >
+      <div class="mb4">
+        <span class="title games-title link">Games</span>
+        &nbsp;
+        <span class="total games-total">48</span>
+      </div>
+    </a>
+    <div class="highlighted-games">
+      @for (content of rightContent; track content) {
+        @if (content.hasOwnProperty("games")) {
+          @for (game of content.games; track game) {
+            <a [href]="game.link" target="_blank" class="game-container">
+              <div class="game">
+                <img
+                  [src]="game.gameSrc"
+                  [alt]="game.name + '.jpg'"
+                  class="game-pic"
+                />
+              </div>
+            </a>
+          }
+        }
+      }
+    </div>
+  </div>
+  <div class="right-item content-friends">
+    <div class="content-friends-container">
+      <span class="title friends-title">Friends</span>
+      &nbsp;
+      <span class="total friends-total">420</span>
+    </div>
+    <div class="highlighted-friends">
+      @for (content of rightContent; track content) {
+        @if (content.hasOwnProperty("friends")) {
+          @for (friend of content.friends; track friend) {
+            <a
+              [href]="friend.link"
+              target="_blank"
+              class="highlighted-friends-container"
+            >
+              <div class="friend">
+                <div
+                  class="friend-pic-container"
+                  [attr.data-status]="friend.status"
+                >
+                  <img
+                    [src]="friend.picSrc"
+                    [alt]="friend.name + '.jpg'"
+                    class="friend-pic"
+                  />
+                </div>
+                <div class="friend-info" [attr.data-status]="friend.status">
+                  <span class="friend-name ellipsis">
+                    {{ friend.name }}
+                  </span>
+                  <span class="friend-status ellipsis">
+                    {{ friend.status }}
+                  </span>
+                  @if (friend.status == "In-Game") {
+                    <span class="friend-status ellipsis">
+                      {{ friend.game }}
+                    </span>
+                  }
+                </div>
+                <div
+                  class="friend-level-container"
+                  [attr.data-position]="friend.position"
+                >
+                  <span class="friend-level">{{ friend.level }}</span>
+                </div>
+              </div>
+            </a>
+          }
+        }
+      }
+    </div>
+  </div>
+</div>

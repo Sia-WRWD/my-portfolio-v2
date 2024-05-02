@@ -10,8 +10,7 @@ import { ScrollReachedDirective } from 'src/app/directives/scroll-reaches.direct
 import { ScrollReachedNavDirective } from 'src/app/directives/scroll-reaches-nav.directive';
 import { ScrollService } from '../shared/service/scroll.service';
 import { CommonModule } from '@angular/common';
-import { activities } from '../shared/data/activity';
-import { rightContent } from '../shared/data/right-content';
+import { RightContentComponent } from './right-content/right-content.component';
 
 @Component({
   selector: 'app-profile-content',
@@ -19,7 +18,7 @@ import { rightContent } from '../shared/data/right-content';
   imports: [
     ProfileStacksComponent, ProfileEducationComponent, ProfileProjectComponent,
     ProfileWorkexpComponent, ProfileContactComponent, InViewportModule, ScrollReachedDirective, ScrollReachedNavDirective,
-    CommonModule
+    CommonModule, RightContentComponent
   ],
   templateUrl: './profile-content.component.html',
   styleUrl: './profile-content.component.scss'
@@ -30,16 +29,11 @@ export class ProfileContentComponent {
   workexpAnimationPlayed: boolean = false;
   projAnimationPlayed: boolean = false;
   eduAnimationPlayed: boolean = false;
-  status: string = "Offline";
-  statusColor: string = "";
-  activities: any = activities;
-  rightContent: any = rightContent;
 
   constructor(private scrollService: ScrollService) { }
 
   ngOnInit() {
-    this.statusUpdate();
-    this.friendStatusUpdate();
+
   }
 
   onStacksIntersection({ target, visible }: { target: Element; visible: boolean }): void {
@@ -110,38 +104,4 @@ export class ProfileContentComponent {
     const sectionReached = document.querySelector(`.${section}`);
     sectionReached?.classList.add('header-menuitem-active');
   }
-
-  statusUpdate() {
-    const currentDate = new Date();
-    const currentHour = currentDate.getHours();
-
-    let statusObj = { status: 'Lost in Coding', statusColor: '#898989' };
-
-    activities.forEach((interval: any) => {
-        if (currentHour >= interval.start && currentHour < interval.end) {
-            statusObj = { status: interval.status, statusColor: interval.statusColor };
-        }
-    });
-
-    this.status = statusObj.status;
-    this.statusColor = statusObj.statusColor;
-  }
-
-  friendStatusUpdate() {
-    // Iterate through the friends array and randomize the status
-    this.rightContent.forEach((section: any) => {
-      if (section.friends) {
-        section.friends.forEach((friend: any) => {
-          friend.status = this.getRandomStatus(); // Assign a random status
-        });
-      }
-    });
-  }
-
-  getRandomStatus(): string {
-    const statuses = ['Offline', 'Online', 'In-Game'];
-    const randomIndex = Math.floor(Math.random() * statuses.length);
-    return statuses[randomIndex];
-  }
-
 }

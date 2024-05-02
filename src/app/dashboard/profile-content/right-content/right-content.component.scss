@@ -1,0 +1,456 @@
+.right-profile-content-inner-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .right-profile-content-status {
+        font-family: "Motiva Sans", Sans-serif;
+        font-weight: 200;
+        font-size: 20px;
+        margin-bottom: 32px;
+    }
+
+    .right-item {
+        min-height: 29px;
+        margin-bottom: 16px;
+
+        .title {
+            color: #ebebeb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .total {
+            font-family: "Motiva Sans", Sans-serif;
+            font-weight: 200;
+            color: #9b9b9b;
+            font-size: 24px;
+        }
+
+        .link {
+            position: relative;
+
+            @media (not (prefers-reduced-motion: reduce)) {
+                &::before {
+                    content: '';
+                    height: 1.5px;
+                    background: white;
+                    width: 0;
+                    position: absolute;
+                    bottom: -2px;
+                    transition: width 0.3s ease-in-out;
+                }
+
+                &:hover {
+                    &::before {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+
+    .content-hackathon {
+        margin-bottom: 40px;
+
+        .hackathon-logo-showcase {
+            display: flex;
+            flex-direction: row;
+            gap: 16px;
+
+            a {
+                .hackathon-logo {
+                    width: 54px;
+                    height: 54px;
+                    filter: drop-shadow(1px 2px 2px rgb(0, 0, 0, 0.7));
+
+                    @media (not (prefers-reduced-motion: reduce)) {
+                        transition: 0.2s ease-in;
+
+                        &:hover {
+                            transform: scale(1.15);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .content-games {
+        .highlighted-games {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 16px;
+
+            .game-container {
+                .game {
+
+                    .game-pic {
+                        border-radius: 4px;
+                        height: 54px;
+                        width: 54px;
+                        filter: drop-shadow(1px 2px 3px black);
+
+                        @media (not (prefers-reduced-motion: reduce)) {
+                            transition: 0.3s ease-in-out;
+                        }
+                    }
+                }
+
+                @media (not (prefers-reduced-motion: reduce)) {
+                    &:hover .game-pic {
+                        transform: scale(1.15);
+                    }
+                }
+            }
+        }
+    }
+
+    .content-groups {
+        margin-bottom: 30px;
+
+        .groups-main {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            margin-top: 14px;
+
+            .lower-group {
+                margin-bottom: 6px;
+            }
+
+            a {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: center;
+
+                .regular-groups-pic {
+                    height: 64px;
+                    width: 64px;
+                    filter: drop-shadow(1px 2px 2px black);
+                    margin-right: 7px;
+                    margin-bottom: 14px;
+
+                    @media (not (prefers-reduced-motion: reduce)) {
+                        transition: 0.3s ease-in-out;
+
+                        &:hover {
+                            transform: scale(1.05);
+                            filter: drop-shadow(1px 2px 2px black) hue-rotate(90deg);
+                        }
+                    }
+                }
+
+                .small-groups-pic {
+                    height: 32px;
+                    width: 32px;
+                    filter: drop-shadow(1px 2px 2px black);
+                    margin-right: 7px;
+
+                    @media (not (prefers-reduced-motion: reduce)) {
+                        transition: 0.3s ease-in-out;
+
+                        &:hover {
+                            transform: scale(1.05);
+                            filter: drop-shadow(1px 2px 2px black) hue-rotate(90deg);
+                        }
+                    }
+                }
+
+                .lower-groups-main-pic {
+                    height: 32px;
+                    width: 32px;
+                    filter: drop-shadow(1px 2px 2px black);
+                    margin-right: 7px;
+                    border-radius: 3px;
+
+                    @media (not (prefers-reduced-motion: reduce)) {
+                        transition: 0.3s ease-in-out;
+
+                        &:hover {
+                            transform: scale(1.05);
+                        }
+                    }
+                }
+
+                .groups-main-info {
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: flex-start;
+                    flex-direction: column;
+                    margin-left: 7px;
+
+                    .groups-main-name {
+                        margin-bottom: 3px;
+                        font-size: 13px;
+                    }
+
+                    .groups-main-members {
+                        font-size: 13px;
+                        color: #969696;
+                    }
+                }
+            }
+        }
+    }
+
+    .content-friends {
+        margin-bottom: 40px;
+
+        .content-friends-container {
+            margin-bottom: 12px;
+        }
+
+        .highlighted-friends {
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex-direction: column;
+            gap: 8px;
+            margin-left: 4px;
+
+            .highlighted-friends-container {
+                width: 100%;
+
+                .friend {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-start;
+                    align-items: center;
+                    gap: 16px;
+                    position: relative;
+
+                    .friend-pic-container {
+                        width: 34px;
+                        height: 34px;
+                        position: relative;
+                        border-radius: 0;
+                        padding: 1px;
+
+                        &[data-status="Offline"] {
+                            background: -webkit-linear-gradient(to bottom, rgba(106, 106, 106, 1) 5%, rgba(85, 85, 85, 1) 95%);
+                            background: linear-gradient(to bottom, rgba(106, 106, 106, 1) 5%, rgba(85, 85, 85, 1) 95%);
+                        }
+
+                        &[data-status="Online"] {
+                            background: -webkit-linear-gradient(top, rgba(83, 164, 196, 1) 5%, rgba(69, 128, 151, 1) 95%);
+                            background: linear-gradient(to bottom, rgba(83, 164, 196, 1) 5%, rgba(69, 128, 151, 1) 95%)
+                        }
+
+                        &[data-status="In-Game"] {
+                            background: -webkit-linear-gradient(top, rgba(143, 185, 59, 1) 5%, rgba(110, 140, 49, 1) 95%);
+                            background: linear-gradient(to bottom, rgba(143, 185, 59, 1) 5%, rgba(110, 140, 49, 1) 95%);
+                        }
+
+                        .friend-pic {
+                            width: 32px;
+                            height: 32px;
+                            padding: 1px;
+                            border-radius: 0;
+                            border: none;
+                        }
+                    }
+
+                    .friend-info {
+                        display: flex;
+                        flex-direction: column;
+                        font-size: 12px;
+
+                        &[data-status="Offline"] {
+                            color: #898989;
+                        }
+
+                        &[data-status="Online"] {
+                            color: #57cbde;
+                        }
+
+                        &[data-status="In-Game"] {
+                            color: #90ba3c;
+                        }
+                    }
+
+                    .friend-level-container {
+                        position: absolute;
+                        right: 0;
+                        padding-right: 10px;
+                        background: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_shields.png');
+                        border: none;
+                        border-radius: 0;
+                        background-repeat: no-repeat;
+                        font-size: 14px;
+                        height: 32px;
+                        width: 32px;
+                        line-height: 32px;
+                        text-shadow: 1px 1px #1a1a1a;
+
+                        &[data-position="Odd"] {
+                            background-position: 0 -96px;
+                        }
+
+                        &[data-position="Even"] {
+                            background-position: 0 -64px;
+                        }
+
+                        .friend-level {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 910px) {
+
+    .right-profile-content-container {
+        flex-basis: auto;
+    }
+
+    .right-profile-content-container {
+        order: 1;
+
+        .right-profile-content-inner-container {
+            flex-direction: row;
+            flex-wrap: wrap;
+            column-gap: 8px;
+
+            .right-profile-content-status {
+                width: 100%;
+                padding: 8px;
+                background: rgba(0, 0, 0, 0.5);
+                margin-bottom: 12px;
+                order: 1;
+            }
+
+            .content-hackathon {
+                order: 2;
+                width: calc(50% - 20px);
+                padding: 8px;
+                background: rgba(0, 0, 0, 0.5);
+                margin-bottom: 12px;
+                overflow: hidden;
+
+                .hackathon-logo-showcase {
+                    gap: 8px;
+
+                    .hackathon-logo {
+                        width: 36px !important;
+                        height: 36px !important;
+                    }
+                }
+            }
+
+            .content-groups {
+                order: 3;
+                width: calc(50% - 20px);
+                padding: 8px;
+                background: rgba(0, 0, 0, 0.5);
+                margin-bottom: 12px;
+                overflow: hidden;
+
+                .groups-main {
+                    flex-direction: row;
+                    margin-top: 0px;
+
+                    .regular-groups-pic,
+                    .small-groups-pic {
+                        width: 36px !important;
+                        height: 36px !important;
+                        margin-bottom: 0px !important;
+                        margin-right: 8px;
+                    }
+
+                    .groups-main-info {
+                        display: none !important;
+                    }
+                }
+            }
+
+            .content-games {
+                order: 5;
+                width: calc(50% - 20px);
+                padding: 8px;
+                background: rgba(0, 0, 0, 0.5);
+                margin-bottom: 12px;
+
+                .highlighted-games {
+                    gap: 8px;
+
+                    .game {
+                        .game-pic {
+                            width: 36px !important;
+                            height: 36px !important;
+                        }
+                    }
+                }
+            }
+
+            .content-friends {
+                order: 4;
+                width: calc(50% - 20px);
+                padding: 8px;
+                background: rgba(0, 0, 0, 0.5);
+                margin-bottom: 12px;
+                overflow: hidden;
+
+                .content-friends-container {
+                    margin-bottom: 4px !important;
+                }
+
+                .highlighted-friends {
+                    flex-direction: row;
+                    margin-left: 0px !important;
+
+                    .highlighted-friends-container {
+                        width: max-content !important;
+
+                        .friend {
+
+                            .friend-info {
+                                display: none !important;
+                            }
+
+                            .friend-level-container {
+                                display: none;
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 620px) {
+
+    .content-hackathon .hackathon-logo-showcase,
+    .content-friends .highlighted-friends,
+    .content-groups .groups-main,
+    .content-games .highlighted-games {
+        max-width: 260px;
+        overflow: hidden;
+        overflow-x: scroll;
+        gap: 4px !important;
+    }
+
+    .regular-groups-pic,
+    .small-groups-pic {
+        margin-right: 4px !important;
+    }
+
+    .content-hackathon .hackathon-logo-showcase::-webkit-scrollbar,
+    .content-friends .highlighted-friends::-webkit-scrollbar,
+    .content-groups .groups-main::-webkit-scrollbar,
+    .content-games .highlighted-games::-webkit-scrollbar {
+        height: 0px !important;
+    }
+}
