@@ -1,0 +1,219 @@
+:host {
+    margin-top: 20rem;
+    margin-bottom: 20rem;
+}
+
+.contact-modal-container {
+    background: #171d25;
+    max-width: 960px;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border-radius: 7px;
+
+    .contact-modal-inner-container {
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        height: 100%;
+        width: 100%;
+
+        .contact-modal-left {
+            padding: 15px;
+            width: 450px;
+
+            .left-form {
+                .form-header {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-bottom: 8px;
+                    flex-wrap: wrap;
+
+                    .form-header-text {
+                        font-size: 30px;
+                        font-weight: 600;
+                        line-height: 1.5;
+                        color: #ffffff;
+                    }
+
+                    .form-header-actions {
+                        display: flex;
+                        flex-direction: row;
+                        gap: 10px;
+                        color: #ffffff;
+
+                        .actions-info,
+                        .actions-map,
+                        .actions-more {
+                            font-size: 24px;
+                            cursor: pointer;
+                            transition: 0.3s ease-in-out;
+
+                            &:hover {}
+                        }
+
+                        .actions-info {}
+
+                        .actions-map {}
+
+                        .actions-more {}
+                    }
+                }
+
+                .form-name,
+                .form-email,
+                .form-message {
+                    margin-bottom: 10px;
+
+                    input {
+                        width: calc(100% - 40px);
+                        height: 40px;
+                        border-radius: 15px;
+                        border: none;
+                        padding: 0px 20px;
+
+                        &:focus {
+                            outline: none;
+                        }
+                    }
+
+                    textarea {
+                        width: calc(100% - 40px);
+                        padding: 10px 20px;
+                        border: none;
+                        border-radius: 15px;
+                        height: calc(200px - 20px);
+                        overflow: hidden;
+                        overflow-y: scroll;
+                        resize: none;
+                        text-align: justify;
+                        font-family: sans-serif;
+                        line-height: 1.4;
+
+                        &:focus {
+                            outline: none;
+                        }
+                    }
+
+                    textarea::-webkit-scrollbar {
+                        width: 0;
+                    }
+
+                    textarea:placeholder-shown {
+                        text-overflow: ellipsis;
+                    }
+                }
+
+                .form-name {
+                    .form-name-input {}
+                }
+
+                .form-email {
+                    .form-email-input {}
+                }
+
+                .form-message {
+                    margin-bottom: 13px;
+
+                    .form-message-input {}
+                }
+
+                .form-button {
+                    .btnEmbark {
+                        width: 100%;
+                        border-radius: 7px;
+                        font-family: sans-serif;
+                        height: 50px;
+                        background: rgba(255, 255, 255, 0.25);
+                        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+                        backdrop-filter: blur(4px);
+                        -webkit-backdrop-filter: blur(4px);
+                        border: 1px solid rgba(255, 255, 255, 0.18);
+                        font-size: 18px;
+                        text-shadow: 1px 2px 3px black;
+                        color: white;
+                        font-weight: 800;
+                        letter-spacing: .5px;
+                        cursor: pointer;
+                        transition: 0.3s ease-in-out;
+
+                        &:hover {
+                            background: rgb(102, 192, 244, 0.75);
+
+                            span {
+                                transform: translateY(-7px);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .contact-modal-right {
+            width: 0;
+            overflow: hidden;
+
+            .google-map-container {
+                width: max-content;
+
+                .google-map {
+                    width: 450px;
+                    height: 450px;
+                    border-top-right-radius: 7px;
+                    border-bottom-right-radius: 7px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 960px) {
+    ::ng-deep .ngx-modal {
+        width: 100% !important;
+        display: flex;
+        justify-content: center;
+        overflow-y: scroll;
+    }
+
+    .contact-modal-container {
+        width: max-content !important;
+        margin: 0px 10px;
+        height: 100% !important;
+        overflow: hidden;
+        overflow-y: scroll;
+
+        .contact-modal-inner-container {
+            flex-direction: column !important;
+
+            .contact-modal-left {
+
+            }
+
+            .contact-modal-right {
+                height: 0;
+            }
+        }
+    }
+
+    .contact-modal-container::-webkit-scrollbar {
+        width: 0;
+    }
+
+    .form-button {
+        .btnEmbark {
+            padding: 10px;
+        }
+    }
+}
+
+@media screen and (max-width: 359px) {
+    .form-button {
+        .btnEmbark {
+            .btnEmbark-text {
+                font-size: 13px !important;
+            }
+        }
+    }
+}

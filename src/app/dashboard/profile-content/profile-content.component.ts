@@ -13,6 +13,7 @@ import { ScrollReachedNavDirective } from 'src/app/directives/scroll-reaches-nav
 import { ScrollService } from '../shared/service/scroll.service';
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPhone } from '@fortawesome/free-solid-svg-icons';
+import { ModalService } from 'ngx-modal-ease';
 
 @Component({
   selector: 'app-profile-content',
@@ -33,7 +34,7 @@ export class ProfileContentComponent {
   eduAnimationPlayed: boolean = false;
   rightContentAnimationPlayed: boolean = false;
 
-  constructor(private scrollService: ScrollService, private library: FaIconLibrary) {
+  constructor(private scrollService: ScrollService, private library: FaIconLibrary, private modalService: ModalService) {
     library.addIcons(
       faPhone
     )
@@ -151,6 +152,19 @@ export class ProfileContentComponent {
   }
 
   openContactModal() {
-    
+    this.modalService.open(ProfileContactComponent, {
+      modal: {
+        enter: 'enter-scale-down 0.1s ease-out'
+      },
+      overlay: {
+        leave: 'fade-out 0.3s',
+      },
+      size: {
+        width: 'max-content', //calc(100% - 0.5rem - 14px - 40px)
+      },
+      data: {
+        type: 'Angular modal library'
+      }
+    })
   }
 }

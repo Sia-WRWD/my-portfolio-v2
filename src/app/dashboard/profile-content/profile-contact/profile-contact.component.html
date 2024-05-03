@@ -1,1 +1,85 @@
-<p>profile-contact works!</p>
+<div class="contact-modal-container">
+  <div class="contact-modal-inner-container">
+    <div class="contact-modal-left">
+      <div class="left-form">
+        <div class="form-header">
+          <span class="form-header-text">Get in Touch</span>
+          <div class="form-header-actions">
+            <div class="actions-info" (click)="showInfo()">
+              <fa-icon [icon]="['fas', 'info-circle']"></fa-icon>
+            </div>
+            <div class="actions-map" (click)="showLocation(mapVisible)">
+              <fa-icon [icon]="['fas', 'map-location-dot']"></fa-icon>
+            </div>
+            <div class="actions-more" (click)="showOtherMethods()">
+              <fa-icon [icon]="['fas', 'address-card']"></fa-icon>
+            </div>
+          </div>
+        </div>
+        <div class="form-name">
+          <input
+            type="text"
+            class="form-name-input"
+            id="name"
+            [formControl]="contactName"
+            placeholder="Your Name, a reminder of companionship amidst the icy expanse"
+          />
+        </div>
+        <div class="form-email">
+          <input
+            type="email"
+            class="form-email-input"
+            id="email"
+            [formControl]="contactName"
+            placeholder="Your email, like a beacon in the frozen wilderness"
+          />
+        </div>
+        <div class="form-message">
+          <textarea
+            class="form-message-textarea"
+            [formControl]="contactMessage"
+            [placeholder]="msgPlaceholder"
+          ></textarea>
+        </div>
+        <div class="form-button">
+          <button class="btnEmbark" (click)="sendMessage()">
+            <span class="btnEmbark-text">
+                Embark on the Journey
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="contact-modal-right">
+      <div class="google-map-container">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127494.16640708256!2d101.4406569!3d3.0429674999999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc534c4ffe81cf%3A0xeb61f5772fd54514!2sKlang%2C%20Selangor!5e0!3m2!1sen!2smy!4v1714705985585!5m2!1sen!2smy"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          class="google-map"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--
+            <div class="left-header">
+            Let's Get in Touch!
+        </div>
+        <div class="left-message">
+            If you have any questions, feel free to leave a message via the
+            contact form or for faster response, you can contact me via the
+            other methods provided below.
+        </div>
+        <div class="left-info">
+            <div class="address">
+                Klang, Selangor
+            </div>
+        </div>
+        <div class="left-socials">
+
+        </div>
+-->
