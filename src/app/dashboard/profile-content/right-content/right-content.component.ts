@@ -156,7 +156,9 @@ export class RightContentComponent {
         
       anime({
         targets: '.game-container',
+        translateX: ['100%', 0],
         opacity: [0, 1], // Fade from transparent (0) to opaque (1)
+        easing: 'easeInOutQuad',
         delay: anime.stagger(300, { start: 0 }), // Use easing for smoother animation
       });
 

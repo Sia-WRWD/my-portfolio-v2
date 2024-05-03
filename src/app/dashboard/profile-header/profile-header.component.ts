@@ -63,7 +63,9 @@ export class ProfileHeaderComponent {
       );
     }
 
-    this.addPicChangeListeners();
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      this.addPicChangeListeners();
+    }
   }
 
   shouldApplyTilt(): boolean {

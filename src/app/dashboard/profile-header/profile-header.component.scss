@@ -106,6 +106,10 @@
             .steam-name {
                 opacity: 0;
 
+                @media (prefers-reduced-motion: reduce) {
+                    display: none;
+                }
+
                 @media (not (prefers-reduced-motion: reduce)) {
                     min-width: 0px;
                     transition: 0.3s ease-in-out;
