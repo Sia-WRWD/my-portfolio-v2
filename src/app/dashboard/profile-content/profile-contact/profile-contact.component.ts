@@ -84,7 +84,7 @@ export class ProfileContactComponent {
           anime({
             targets: '.contact-modal-right',
             width: [0, resShrinkExpandWidth],
-            height: [0, '100%'],
+            height: ['0px', '100%'],
             easing: 'easeInOutQuad',
             delay: 0,
             duration: 1000
@@ -101,7 +101,7 @@ export class ProfileContactComponent {
         } else {
           anime({
             targets: '.google-map',
-            width: [0, resShrinkExpandWidth],
+            width: [resShrinkExpandWidth, 0],
             opacity: [1, 0],
             easing: 'easeInOutQuad',
             delay: 0,
@@ -111,6 +111,7 @@ export class ProfileContactComponent {
           anime({
             targets: '.contact-modal-right',
             width: [resShrinkExpandWidth, 0],
+            height: ['100%', '0px'],
             easing: 'easeInOutQuad',
             delay: 1100,
             duration: 1000

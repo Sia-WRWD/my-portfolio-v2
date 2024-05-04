@@ -84,12 +84,21 @@ export const rightContent = [
             game: 'World of Tanks'
         },
         {
+            picSrc: 'https://avatars.akamai.steamstatic.com/06af6e6ac841db51f119b4e43c4cbdd9bd2fcf49_full.jpg', 
+            name: 'Fuad-WasHere', 
+            level: '25',
+            link: 'https://github.com/FuadAbdullah',
+            status: 'Offline',
+            position: 'Even',
+            game: 'Wallpaper Engine'
+        },
+        {
             picSrc: 'https://avatars.cloudflare.steamstatic.com/13917bcafc93bc3db1c10ea23ae887faf4a4bd99_full.jpg', 
             name: 'Jo-Kilat9', 
             level: '11',
             link: 'https://johari-portfolio.netlify.app/',
             status: 'Offline',
-            position: 'Even',
+            position: 'Odd',
             game: 'World of Warship'
         },
         {
@@ -98,7 +107,7 @@ export const rightContent = [
             level: '10',
             link: 'https://github.com/Kishen35',
             status: 'Offline',
-            position: 'Odd',
+            position: 'Even',
             game: 'Need for Speed™ Heat'
         },
         {
@@ -107,7 +116,7 @@ export const rightContent = [
             level: '8',
             link: 'https://github.com/mdanishmansor',
             status: 'Online',
-            position: 'Even',
+            position: 'Odd',
             game: 'Counter-Strike 2'
         },
         {
@@ -116,7 +125,7 @@ export const rightContent = [
             level: '7',
             link: 'https://github.com/ConquerorFY',
             status: 'In-Game',
-            position: 'Odd',
+            position: 'Even',
             game: 'Elden Ring'
         },
         {
@@ -125,7 +134,7 @@ export const rightContent = [
             level: '4',
             link: 'https://www.helloprem.com/',
             status: 'Offline',
-            position: 'Even',
+            position: 'Odd',
             game: 'Apex Legends'
         },
     ]},

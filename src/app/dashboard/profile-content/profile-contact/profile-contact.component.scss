@@ -1,14 +1,9 @@
-:host {
-    margin-top: 20rem;
-    margin-bottom: 20rem;
-}
-
 .contact-modal-container {
     background: #171d25;
-    max-width: 960px;
+    max-width: 910px;
+    margin: auto;
     width: 100%;
     height: 100%;
-    position: relative;
     border-radius: 7px;
 
     .contact-modal-inner-container {
@@ -20,7 +15,8 @@
 
         .contact-modal-left {
             padding: 15px;
-            width: 450px;
+            width: calc(100% - 30px);
+            flex-basis: 100%;
 
             .left-form {
                 .form-header {
@@ -152,15 +148,15 @@
         }
 
         .contact-modal-right {
-            width: 0;
-            overflow: hidden;
+            flex-basis: 100%;
 
             .google-map-container {
-                width: max-content;
+                width: 100%;
+                height: 100%;
 
-                .google-map {
-                    width: 450px;
-                    height: 450px;
+                iframe {
+                    width: 100%;
+                    height: 100%;
                     border-top-right-radius: 7px;
                     border-bottom-right-radius: 7px;
                 }
@@ -169,51 +165,41 @@
     }
 }
 
-@media screen and (max-width: 960px) {
-    ::ng-deep .ngx-modal {
-        width: 100% !important;
-        display: flex;
-        justify-content: center;
-        overflow-y: scroll;
-    }
+@media screen and (max-width: 910px) {
+    // ::ng-deep .ngx-modal {
+    //     width: 100% !important;
+    //     display: flex;
+    //     justify-content: center;
+    // }
 
     .contact-modal-container {
-        width: max-content !important;
-        margin: 0px 10px;
-        height: 100% !important;
-        overflow: hidden;
-        overflow-y: scroll;
+        width: 90%;
+        margin: 0 auto;
 
         .contact-modal-inner-container {
             flex-direction: column !important;
 
-            .contact-modal-left {
-
-            }
-
             .contact-modal-right {
-                height: 0;
-            }
-        }
-    }
+                .google-map-container {
+                    height: 300px !important;
+                    
+                    .google-map {
+                        border-bottom-left-radius: 7px;
+                        border-top-right-radius: 0px !important;
+                    }
 
-    .contact-modal-container::-webkit-scrollbar {
-        width: 0;
-    }
-
-    .form-button {
-        .btnEmbark {
-            padding: 10px;
-        }
-    }
-}
-
-@media screen and (max-width: 359px) {
-    .form-button {
-        .btnEmbark {
-            .btnEmbark-text {
-                font-size: 13px !important;
+                }
             }
         }
     }
 }
+
+// @media screen and (max-width: 359px) {
+//     .form-button {
+//         .btnEmbark {
+//             .btnEmbark-text {
+//                 font-size: 13px !important;
+//             }
+//         }
+//     }
+// }

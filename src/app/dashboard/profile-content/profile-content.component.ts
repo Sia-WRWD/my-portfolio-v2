@@ -160,7 +160,7 @@ export class ProfileContentComponent {
         leave: 'fade-out 0.3s',
       },
       size: {
-        width: 'max-content', //calc(100% - 0.5rem - 14px - 40px)
+        width: '100%', //calc(100% - 0.5rem - 14px - 40px)
       },
       data: {
         type: 'Angular modal library'
