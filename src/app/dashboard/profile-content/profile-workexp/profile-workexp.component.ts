@@ -24,9 +24,10 @@ export class ProfileWorkexpComponent {
 
   removeAnimationInlineStyles() {
     setTimeout(() => {
-      const carouselElement = document.querySelectorAll('.profile-workexp-content-carousel');
+      const carouselElement = document.querySelectorAll<HTMLDivElement>('.profile-workexp-content-carousel');
       carouselElement.forEach(element => {
         element.removeAttribute('style');
+        element.style.opacity = '1';
       });
 
       const filterElements = document.querySelectorAll('.carousel-filter-icon-container');
@@ -69,7 +70,7 @@ export class ProfileWorkexpComponent {
           targets: '.profile-workexp-content-carousel',
           translateX: ['100%', 0], // Move from left (-100%) to current position (0)
           opacity: [0, 1], // Fade from transparent (0) to opaque (1)
-          delay: 700, // Use easing for smoother animation
+          delay: 900, // Use easing for smoother animation
         });
 
         this.removeAnimationInlineStyles();

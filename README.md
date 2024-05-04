@@ -88,6 +88,7 @@ Welcome to the source of my personal portfolio website. This website contains al
 2. [NG-In-Viewport](https://www.npmjs.com/package/ng-in-viewport)
 3. [GlassMorphism](https://css.glass/)
 4. [Scroll-Into-View](https://stackoverflow.com/questions/49820013/javascript-scrollintoview-smooth-scroll-and-offset)
+5. [Google Map Contact](https://www.youtube.com/watch?v=nwEB3Wxh5N0&t=955s&ab_channel=CarpoolVenom)
 
 #### Misc Resources
 1. [Mobile Responsive Hamburger Icon](https://codepen.io/alvarotrigo/pen/ExwgbZv)

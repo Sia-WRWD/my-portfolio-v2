@@ -46,7 +46,13 @@
 </div>
 
 <div class="widget-container">
-  <div class="contact-widget-container" (click)="openContactModal()">
-    <fa-icon [icon]="['fas', 'phone']" class="contact-widget-icon"></fa-icon>
-  </div>
+  @if (!modalVisible) {
+    <div class="contact-widget-container" (click)="openContactModal()">
+      <fa-icon [icon]="['fas', 'phone']" class="contact-widget-icon"></fa-icon>
+    </div>
+  } @else {
+    <div class="contact-widget-container" (click)="closeContactModal()">
+      <fa-icon [icon]="['fas', 'xmark']" class="contact-widget-icon"></fa-icon>
+    </div>
+  }
 </div>

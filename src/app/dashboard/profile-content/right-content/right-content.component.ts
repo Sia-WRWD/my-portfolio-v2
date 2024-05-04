@@ -74,6 +74,8 @@ export class RightContentComponent {
     if (window.innerWidth <= 910) {
       this.onResponsiveGamesReached();
       this.onResponsiveFriendsReached();
+    } else if (window.innerWidth > 910 && window.innerHeight > 754) {
+      this.onResponsiveGamesReached();
     }
   }
 

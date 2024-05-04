@@ -12,7 +12,7 @@ import { ScrollReachedDirective } from 'src/app/directives/scroll-reaches.direct
 import { ScrollReachedNavDirective } from 'src/app/directives/scroll-reaches-nav.directive';
 import { ScrollService } from '../shared/service/scroll.service';
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faPhone } from '@fortawesome/free-solid-svg-icons';
+import { faPhone, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { ModalService } from 'ngx-modal-ease';
 
 @Component({
@@ -33,15 +33,17 @@ export class ProfileContentComponent {
   projAnimationPlayed: boolean = false;
   eduAnimationPlayed: boolean = false;
   rightContentAnimationPlayed: boolean = false;
+  modalVisible: boolean = false;
 
   constructor(private scrollService: ScrollService, private library: FaIconLibrary, private modalService: ModalService) {
     library.addIcons(
-      faPhone
+      faPhone,
+      faXmark
     )
   }
 
-  ngOnInit() {
-
+  ngAfterViewInit() {
+    this.onResponsiveWorkExpIntersection();
   }
 
   onStacksIntersection({ target, visible }: { target: Element; visible: boolean }): void {
@@ -76,6 +78,20 @@ export class ProfileContentComponent {
         opacity: [0, 1], // Fade from transparent (0) to opaque (1)
         easing: 'easeInOutQuad', // Use easing for smoother animation
         delay: 0,
+        duration: 1000 // Animation duration in milliseconds
+      });
+      this.workexpAnimationPlayed = true;
+    }
+  }
+
+  onResponsiveWorkExpIntersection() {
+    if (!this.workexpAnimationPlayed && !window.matchMedia('(prefers-reduced-motion: reduce)').matches && window.innerHeight >= 754 && window.innerWidth > 910) {
+      anime({
+        targets: '.anime-profile-workexp',
+        translateX: ['100%', 0], // Move from left (-100%) to current position (0)
+        opacity: [0, 1], // Fade from transparent (0) to opaque (1)
+        easing: 'easeInOutQuad', // Use easing for smoother animation
+        delay: 1000,
         duration: 1000 // Animation duration in milliseconds
       });
       this.workexpAnimationPlayed = true;
@@ -152,19 +168,53 @@ export class ProfileContentComponent {
   }
 
   openContactModal() {
+    var animationModalEnter;
+    var animationModalLeave;
+
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      animationModalEnter = 'enter-scale-down 0.3s ease-out';
+      animationModalLeave = 'scale-rotate 1s linear';
+    } else {
+      animationModalEnter = 'fade-in 0.3s linear';
+      animationModalLeave = 'fade-out 0.3s linear';
+    }
+
     this.modalService.open(ProfileContactComponent, {
       modal: {
-        enter: 'enter-scale-down 0.1s ease-out'
+        enter: animationModalEnter,
+        leave: animationModalLeave,
       },
       overlay: {
-        leave: 'fade-out 0.3s',
+        leave: 'fade-out 0.1s linear',
       },
       size: {
         width: '100%', //calc(100% - 0.5rem - 14px - 40px)
+      },
+      actions: {
+        click: false
       },
       data: {
         type: 'Angular modal library'
       }
     })
+
+    this.toggleBodyOverflow(true);
+  }
+
+  closeContactModal() {
+    this.modalService.close();
+    this.toggleBodyOverflow(false);
+  }
+
+  toggleBodyOverflow(hide: boolean) {
+    const body = document.querySelector('body');
+
+    if (hide == true) {
+      body!.style.overflow = "hidden";
+      this.modalVisible = true;
+    } else {
+      body!.removeAttribute('style');
+      this.modalVisible = false;
+    }
   }
 }
