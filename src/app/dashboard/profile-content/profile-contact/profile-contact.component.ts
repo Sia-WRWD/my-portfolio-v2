@@ -6,11 +6,12 @@ import { faAddressCard, faExclamationTriangle, faInfoCircle, faWarning } from '@
 import { CustomValidators } from '../../shared/directives/custom-validators';
 import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
 import { environment } from 'src/assets/environment/environment';
+import { tooltipDirective } from '../../shared/directives/tooltip.directive';
 
 @Component({
   selector: 'app-profile-contact',
   standalone: true,
-  imports: [ReactiveFormsModule, FontAwesomeModule],
+  imports: [ReactiveFormsModule, FontAwesomeModule, tooltipDirective],
   templateUrl: './profile-contact.component.html',
   styleUrl: './profile-contact.component.scss'
 })
