@@ -90,6 +90,7 @@ Welcome to the source of my personal portfolio website. This website contains al
 4. [Scroll-Into-View](https://stackoverflow.com/questions/49820013/javascript-scrollintoview-smooth-scroll-and-offset)
 5. [Google Map Contact](https://www.youtube.com/watch?v=nwEB3Wxh5N0&t=955s&ab_channel=CarpoolVenom)
 6. [NGX-Modal](https://github.com/GreenFlag31/modal-library)
+7. [Tooltip-Directive](https://www.youtube.com/watch?v=5-gssFQ7ILk&ab_channel=LEARNINGPARTNER)
 
 #### Misc Resources
 1. [Mobile Responsive Hamburger Icon](https://codepen.io/alvarotrigo/pen/ExwgbZv)
