@@ -1,5 +1,5 @@
 import { Component, ElementRef, HostListener, Renderer2 } from '@angular/core';
-import { ScrollReachedDirective } from 'src/app/directives/scroll-reaches.directive';
+import { ScrollReachedDirective } from 'src/app/dashboard/shared/directives/scroll-reaches.directive';
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CommonModule } from '@angular/common';
 import { Observable, debounceTime, fromEvent, map } from 'rxjs';

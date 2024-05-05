@@ -2,9 +2,9 @@ import { CommonModule } from '@angular/common';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import anime from 'animejs/lib/anime.es.js';
-import { ScrollFadeDirective } from 'src/app/directives/scroll-fade.directive';
-import { ScrollSlideFadeDirective } from 'src/app/directives/scroll-slide-fade.directive';
-import { ScrollSpyDirective } from 'src/app/directives/scroll-spy.directive';
+import { ScrollFadeDirective } from 'src/app/dashboard/shared/directives/scroll-fade.directive';
+import { ScrollSlideFadeDirective } from 'src/app/dashboard/shared/directives/scroll-slide-fade.directive';
+import { ScrollSpyDirective } from 'src/app/dashboard/shared/directives/scroll-spy.directive';
 import { ScrollService } from '../shared/service/scroll.service';
 
 @Component({

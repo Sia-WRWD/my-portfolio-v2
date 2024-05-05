@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { activities } from '../../shared/data/activity';
 import { rightContent } from '../../shared/data/right-content';
-import { ScrollReachedDirective } from 'src/app/directives/scroll-reaches.directive';
+import { ScrollReachedDirective } from 'src/app/dashboard/shared/directives/scroll-reaches.directive';
 import anime from 'animejs/lib/anime.es.js';
 
 @Component({

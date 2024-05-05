@@ -98,7 +98,6 @@ Welcome to the source of my personal portfolio website. This website contains al
 5. [GitHub Shields Logo](https://github.com/Ileriayo/markdown-badges)
 6. [CSS Animations](https://codepen.io/nelledejones/pen/gOOPWrK)
 7. [Scroll-to-Top During Refresh](https://stackoverflow.com/questions/3664381/force-page-scroll-position-to-top-at-page-refresh-in-html)
-8. [Freiren Background](https://www.uhdpaper.com/2023/12/frieren-sousou-no-frieren-anime-4k-6071n.html?m=0#google_vignette)
 
 #### Note for Self on SVG Icon Creation
 1. Look for existing SVG (WorldVectorLogo, Github Shields)

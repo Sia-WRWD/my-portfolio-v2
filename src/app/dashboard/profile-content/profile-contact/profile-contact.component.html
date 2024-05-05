@@ -5,13 +5,10 @@
         <div class="form-header">
           <span class="form-header-text">Get in Touch</span>
           <div class="form-header-actions">
-            <div class="actions-info" (click)="showInfo()">
+            <div class="actions-info">
               <fa-icon [icon]="['fas', 'info-circle']"></fa-icon>
             </div>
-            <div class="actions-map" (click)="showLocation(mapVisible)">
-              <fa-icon [icon]="['fas', 'map-location-dot']"></fa-icon>
-            </div>
-            <div class="actions-more" (click)="showOtherMethods()">
+            <div class="actions-more">
               <fa-icon [icon]="['fas', 'address-card']"></fa-icon>
             </div>
           </div>
@@ -24,15 +21,39 @@
             [formControl]="contactName"
             placeholder="Your Name, a reminder of companionship amidst the icy expanse"
           />
+          @if (contactName.hasError("required") && contactName.touched) {
+            <div class="error-message">
+              <fa-icon [icon]="['fas', 'exclamation-triangle']"></fa-icon>
+              Name is Required!
+            </div>
+          }
+          @if (contactName.hasError("invalidName") && contactName.touched) {
+            <div class="error-message">
+              <fa-icon [icon]="['fas', 'exclamation-triangle']"></fa-icon>
+              Only Alphabets are Allowed!
+            </div>
+          }
         </div>
         <div class="form-email">
           <input
             type="email"
             class="form-email-input"
             id="email"
-            [formControl]="contactName"
-            placeholder="Your email, like a beacon in the frozen wilderness"
+            [formControl]="contactEmail"
+            placeholder="Your Email, like a beacon in the frozen wilderness"
           />
+          @if (contactEmail.hasError('required') && contactEmail.touched) {
+            <div class="error-message">
+              <fa-icon [icon]="['fas', 'exclamation-triangle']"></fa-icon>
+              Email is Required!
+            </div>
+          }
+          @if (contactEmail.hasError('email') && contactEmail.touched) {
+            <div class="error-message">
+              <fa-icon [icon]="['fas', 'exclamation-triangle']"></fa-icon>
+              Invalid Email Format!
+            </div>
+          }
         </div>
         <div class="form-message">
           <textarea
@@ -40,12 +61,22 @@
             [formControl]="contactMessage"
             [placeholder]="msgPlaceholder"
           ></textarea>
+          @if (contactMessage.hasError("required") && contactMessage.touched) {
+            <div class="error-message">
+              <fa-icon [icon]="['fas', 'exclamation-triangle']"></fa-icon>
+              Message is Required!
+            </div>
+          }
+          @if (contactMessage.hasError("invalidChars") && contactMessage.touched) {
+            <div class="error-message">
+              <fa-icon [icon]="['fas', 'exclamation-triangle']"></fa-icon>
+              Invalid Characters Detected!
+            </div>
+          }
         </div>
         <div class="form-button">
-          <button class="btnEmbark" (click)="sendMessage()">
-            <span class="btnEmbark-text">
-                Embark on the Journey
-            </span>
+          <button class="btnEmbark" (click)="sendMessage()" [disabled]="isDisable">
+            <span class="btnEmbark-text"> {{buttonText}} </span>
           </button>
         </div>
       </div>
@@ -64,22 +95,3 @@
     </div>
   </div>
 </div>
-
-<!--
-            <div class="left-header">
-            Let's Get in Touch!
-        </div>
-        <div class="left-message">
-            If you have any questions, feel free to leave a message via the
-            contact form or for faster response, you can contact me via the
-            other methods provided below.
-        </div>
-        <div class="left-info">
-            <div class="address">
-                Klang, Selangor
-            </div>
-        </div>
-        <div class="left-socials">
-
-        </div>
--->

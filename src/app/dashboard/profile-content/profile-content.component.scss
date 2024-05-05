@@ -67,8 +67,9 @@
     bottom: 60px;
     right: 10px;
     z-index: 9999;
+    gap: 7px;
 
-    .contact-widget-container {
+    .contact-widget-container, .backtotop-container {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -82,19 +83,23 @@
         cursor: pointer;
         transition: 0.3s ease-in-out;
 
-        .contact-widget-icon {
+        .widget-icon {
             filter: drop-shadow(1px 1px 1px black);
             color: white;
             transition: 0.3s ease-in-out;
         }
 
         @media (not (prefers-reduced-motion: reduce)) {
-            &:hover .contact-widget-icon {
+            &:hover .widget-icon {
                 color: #EB4D26;
                 animation: ring 3s .7s ease-in-out infinite;
                 transform: scale(1.2);
             }
         }
+    }
+
+    .backtotop-container {
+        display: none;
     }
 }
 

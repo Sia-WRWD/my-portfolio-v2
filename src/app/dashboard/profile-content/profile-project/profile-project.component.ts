@@ -1,5 +1,5 @@
 import { Component, ElementRef, QueryList, ViewChildren } from '@angular/core';
-import { ScrollReachedDirective } from 'src/app/directives/scroll-reaches.directive';
+import { ScrollReachedDirective } from 'src/app/dashboard/shared/directives/scroll-reaches.directive';
 import VanillaTilt from 'vanilla-tilt';
 import anime from 'animejs/lib/anime.es.js';
 import { projects } from '../../shared/data/project';

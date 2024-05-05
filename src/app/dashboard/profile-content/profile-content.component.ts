@@ -8,12 +8,13 @@ import { ProfileContactComponent } from './profile-contact/profile-contact.compo
 import { RightContentComponent } from './right-content/right-content.component';
 import { InViewportModule } from 'ng-in-viewport';
 import { CommonModule } from '@angular/common';
-import { ScrollReachedDirective } from 'src/app/directives/scroll-reaches.directive';
-import { ScrollReachedNavDirective } from 'src/app/directives/scroll-reaches-nav.directive';
+import { ScrollReachedDirective } from 'src/app/dashboard/shared/directives/scroll-reaches.directive';
+import { ScrollReachedNavDirective } from 'src/app/dashboard/shared/directives/scroll-reaches-nav.directive';
 import { ScrollService } from '../shared/service/scroll.service';
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faPhone, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faChevronUp, faPhone, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { ModalService } from 'ngx-modal-ease';
+import { ScrollToTopDirective } from '../shared/directives/scroll-to-top.directive';
 
 @Component({
   selector: 'app-profile-content',
@@ -21,7 +22,7 @@ import { ModalService } from 'ngx-modal-ease';
   imports: [
     ProfileStacksComponent, ProfileEducationComponent, ProfileProjectComponent,
     ProfileWorkexpComponent, ProfileContactComponent, InViewportModule, ScrollReachedDirective, ScrollReachedNavDirective,
-    CommonModule, RightContentComponent, FontAwesomeModule
+    CommonModule, RightContentComponent, FontAwesomeModule, ScrollToTopDirective
   ],
   templateUrl: './profile-content.component.html',
   styleUrl: './profile-content.component.scss'
@@ -35,10 +36,11 @@ export class ProfileContentComponent {
   rightContentAnimationPlayed: boolean = false;
   modalVisible: boolean = false;
 
-  constructor(private scrollService: ScrollService, private library: FaIconLibrary, private modalService: ModalService) {
+  constructor(private library: FaIconLibrary, private modalService: ModalService) {
     library.addIcons(
       faPhone,
-      faXmark
+      faXmark,
+      faChevronUp
     )
   }
 

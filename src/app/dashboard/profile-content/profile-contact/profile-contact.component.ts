@@ -1,8 +1,11 @@
 import { Component, ElementRef } from '@angular/core';
 import anime from 'animejs/lib/anime.es.js';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faAddressCard, faInfoCircle, faMapLocationDot } from '@fortawesome/free-solid-svg-icons';
+import { faAddressCard, faExclamationTriangle, faInfoCircle, faWarning } from '@fortawesome/free-solid-svg-icons';
+import { CustomValidators } from '../../shared/directives/custom-validators';
+import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
+import { environment } from 'src/assets/environment/environment';
 
 @Component({
   selector: 'app-profile-contact',
@@ -12,122 +15,56 @@ import { faAddressCard, faInfoCircle, faMapLocationDot } from '@fortawesome/free
   styleUrl: './profile-contact.component.scss'
 })
 export class ProfileContactComponent {
-  contactName = new FormControl('');
-  contactEmail = new FormControl('');
-  contactMessage = new FormControl('');
+  contactName = new FormControl('', [Validators.required, CustomValidators.nameValidator()]);
+  contactEmail = new FormControl('', [Validators.required, CustomValidators.emailValidator()]);
+  contactMessage = new FormControl('', [Validators.required, CustomValidators.escapeStringValidator()]);
+  buttonText: any = "Embark on the Journey!";
+  sendingEmail: boolean = false;
+  isDisable: boolean = false;
   msgPlaceholder: any = `In this journey of life, every step forward is an adventure into the unknown. Strength lies not in the muscles, but in the courage of the heart. Every challenge faced is but a stepping stone towards growth. Let the icy winds of adversity sharpen your resolve. In the frozen expanse, discover the beauty of resilience. Embrace the chill of uncertainty, for within it lies the spark of possibility. Like the snowflakes that dance in the wind, each moment is fleeting yet precious. May the stars guide us through the coldest of nights, lighting our path with hope.`;
-  mapVisible: boolean = false;
 
   constructor(private library: FaIconLibrary, private elementRef: ElementRef) {
     library.addIcons(
       faInfoCircle,
       faAddressCard,
-      faMapLocationDot
+      faExclamationTriangle
     )
   }
 
-  showOtherMethods() {
+  sendMessage() {
+    this.contactName.markAsTouched();
+    this.contactEmail.markAsTouched();
+    this.contactMessage.markAsTouched();
 
-  }
+    if (this.contactName.valid && this.contactEmail.valid && this.contactMessage.valid) {
+      const data = {
+        to_name: "Sia",
+        from_name: this.contactName.value,
+        from_email: this.contactEmail.value,
+        message: this.contactMessage.value
+      };
 
-  showInfo() {
+      this.isDisable = true;
+      this.buttonText = "Casting the Email Spell...";
+      this.sendingEmail = true; // Set sending status to true
 
-  }
-
-  showLocation(mapVisibility: boolean) {
-    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-
-      if (window.innerWidth > 960) {
-        const googleMapElement = this.elementRef.nativeElement.querySelector('.google-map');
-        const shrinkExpandWidth = googleMapElement.offsetWidth;
-
-        if (mapVisibility == false) {
-          anime({
-            targets: '.contact-modal-right',
-            width: [0, shrinkExpandWidth],
-            easing: 'easeInOutQuad',
-            delay: 0,
-            duration: 1000
-          })
-
-          anime({
-            targets: '.google-map',
-            translateY: ['-100%', 0],
-            opacity: [0, 1],
-            easing: 'easeInOutQuad',
-            delay: 1100,
-            duration: 1000
-          });
-        } else {
-          anime({
-            targets: '.google-map',
-            translateY: [0, '100%'],
-            opacity: [1, 0],
-            easing: 'easeInOutQuad',
-            delay: 0,
-            duration: 1000
-          });
-
-          anime({
-            targets: '.contact-modal-right',
-            width: [shrinkExpandWidth, 0],
-            easing: 'easeInOutQuad',
-            delay: 1100,
-            duration: 1000
-          })
-        }
-      } else {
-        const innerModalElement = this.elementRef.nativeElement.querySelector('.contact-modal-inner-container');
-        const resShrinkExpandWidth = innerModalElement.offsetWidth;
-
-        if (mapVisibility == false) {
-          anime({
-            targets: '.contact-modal-right',
-            width: [0, resShrinkExpandWidth],
-            height: ['0px', '100%'],
-            easing: 'easeInOutQuad',
-            delay: 0,
-            duration: 1000
-          })
-
-          anime({
-            targets: '.google-map',
-            width: [0, resShrinkExpandWidth],
-            opacity: [0, 1],
-            easing: 'easeInOutQuad',
-            delay: 1100,
-            duration: 1000
-          });
-        } else {
-          anime({
-            targets: '.google-map',
-            width: [resShrinkExpandWidth, 0],
-            opacity: [1, 0],
-            easing: 'easeInOutQuad',
-            delay: 0,
-            duration: 1000
-          });
-
-          anime({
-            targets: '.contact-modal-right',
-            width: [resShrinkExpandWidth, 0],
-            height: ['100%', '0px'],
-            easing: 'easeInOutQuad',
-            delay: 1100,
-            duration: 1000
-          })
-        }
-      }
-
-      // Toggle mapVisible based on mapVisibility
-      this.mapVisible = !mapVisibility;
+      emailjs.send(environment.emailServiceId, environment.emailTemplateId, data, environment.emailUserId)
+        .then((result: EmailJSResponseStatus) => {
+          this.contactName.reset();
+          this.contactEmail.reset();
+          this.contactMessage.reset();
+          this.buttonText = "Your message has been sent successfully! Freiren's magic knows no bounds."; // Update button text on success
+        }, (error) => {
+          // console.log(error.text);
+        })
+        .finally(() => {
+          setTimeout(() => {
+            this.buttonText = "Embark on the Journey"; // Reset button text after delay
+            this.sendingEmail = false; // Reset sending status after 3 seconds delay
+            this.isDisable = false;
+          }, 5000);
+        });
     }
   }
-
-
-  sendMessage() {
-
-  }
-
 
 }

@@ -1,5 +1,10 @@
 .contact-modal-container {
-    background: #171d25;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     max-width: 910px;
     margin: auto;
     width: 100%;
@@ -32,6 +37,7 @@
                         font-weight: 600;
                         line-height: 1.5;
                         color: #ffffff;
+                        text-shadow: 1px 2px 2px black;
                     }
 
                     .form-header-actions {
@@ -41,18 +47,15 @@
                         color: #ffffff;
 
                         .actions-info,
-                        .actions-map,
                         .actions-more {
                             font-size: 24px;
-                            cursor: pointer;
                             transition: 0.3s ease-in-out;
+                            filter: drop-shadow(1px 2px 2px black);
 
                             &:hover {}
                         }
 
                         .actions-info {}
-
-                        .actions-map {}
 
                         .actions-more {}
                     }
@@ -61,7 +64,7 @@
                 .form-name,
                 .form-email,
                 .form-message {
-                    margin-bottom: 10px;
+                    margin-bottom: 15px;
 
                     input {
                         width: calc(100% - 40px);
@@ -69,6 +72,7 @@
                         border-radius: 15px;
                         border: none;
                         padding: 0px 20px;
+                        box-shadow: 1px 2px 2px black;
 
                         &:focus {
                             outline: none;
@@ -87,6 +91,7 @@
                         text-align: justify;
                         font-family: sans-serif;
                         line-height: 1.4;
+                        box-shadow: 1px 2px 2px black;
 
                         &:focus {
                             outline: none;
@@ -100,6 +105,14 @@
                     textarea:placeholder-shown {
                         text-overflow: ellipsis;
                     }
+
+                    .error-message {
+                        margin-left: 20px;
+                        margin-top: 5px;
+                        color: red;
+                        filter: drop-shadow(1px 2px 2px black);
+                        text-shadow: 1px 2px 2px black;
+                    }
                 }
 
                 .form-name {
@@ -111,7 +124,7 @@
                 }
 
                 .form-message {
-                    margin-bottom: 13px;
+                    margin-bottom: 20px;
 
                     .form-message-input {}
                 }
@@ -121,7 +134,8 @@
                         width: 100%;
                         border-radius: 7px;
                         font-family: sans-serif;
-                        height: 50px;
+                        height: 100%;
+                        padding: 10px;
                         background: rgba(255, 255, 255, 0.25);
                         box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
                         backdrop-filter: blur(4px);
@@ -166,12 +180,6 @@
 }
 
 @media screen and (max-width: 910px) {
-    // ::ng-deep .ngx-modal {
-    //     width: 100% !important;
-    //     display: flex;
-    //     justify-content: center;
-    // }
-
     .contact-modal-container {
         width: 90%;
         margin: 0 auto;
@@ -182,24 +190,13 @@
             .contact-modal-right {
                 .google-map-container {
                     height: 300px !important;
-                    
+
                     .google-map {
                         border-bottom-left-radius: 7px;
                         border-top-right-radius: 0px !important;
                     }
-
                 }
             }
         }
     }
 }
-
-// @media screen and (max-width: 359px) {
-//     .form-button {
-//         .btnEmbark {
-//             .btnEmbark-text {
-//                 font-size: 13px !important;
-//             }
-//         }
-//     }
-// }

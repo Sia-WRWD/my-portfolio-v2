@@ -3,7 +3,7 @@ import anime from 'animejs/lib/anime.es.js';
 import { CarouselModule } from 'ngx-carousel-ease';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { workExp } from '../../shared/data/work-exp';
-import { ScrollReachedDirective } from 'src/app/directives/scroll-reaches.directive';
+import { ScrollReachedDirective } from 'src/app/dashboard/shared/directives/scroll-reaches.directive';
 
 @Component({
   selector: 'app-profile-workexp',
