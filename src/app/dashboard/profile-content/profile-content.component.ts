@@ -193,10 +193,8 @@ export class ProfileContentComponent {
         width: '100%', //calc(100% - 0.5rem - 14px - 40px)
       },
       actions: {
-        click: false
-      },
-      data: {
-        type: 'Angular modal library'
+        click: false,
+        escape: false
       }
     })
 
