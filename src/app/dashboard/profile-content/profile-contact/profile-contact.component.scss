@@ -189,8 +189,6 @@
 
             .contact-modal-right {
                 .google-map-container {
-                    height: 300px !important;
-
                     .google-map {
                         border-bottom-left-radius: 7px;
                         border-top-right-radius: 0px !important;
@@ -198,5 +196,36 @@
                 }
             }
         }
+    }
+}
+
+/* For screens with a height of at least 701px */
+@media screen and (min-height: 600px) and (max-height: 800px) {
+    /* Adjusting the height of the textarea */
+    .contact-modal-left .left-form .form-message textarea {
+        height: 100px !important;
+    }
+}
+
+/* For screens with a height up to 776px */
+@media screen and (min-height: 777px) {
+    /* Adjusting the height of the map container */
+    .contact-modal-right .google-map-container {
+        height: 300px !important;
+    }
+}
+
+/* For screens with a height up to 701px */
+@media screen and (max-height: 776px) {
+    /* Adjusting the height of the map container */
+    .contact-modal-right .google-map-container {
+        height: 200px !important;
+    }
+}
+
+/* For screens with a width of at least 911px and a height of at least 701px */
+@media screen and (min-width: 911px) {
+    .contact-modal-right .google-map-container {
+        height: 100% !important;
     }
 }

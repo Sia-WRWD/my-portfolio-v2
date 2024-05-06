@@ -245,33 +245,20 @@ a {
 }
 
 //Tooltip
-.toolTipMy:before {
-    content: '';
+.toolTipMy {
+    background: #c2c2c2;
+    color: #3d3d3f;
+    font-size: 11px;
+    border-radius: 3px;
+    padding: 5px;
+    max-width: 225px;
+    white-space: normal;
+    box-shadow: 0 0 3px #000000;
     position: absolute;
-    bottom: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: transparent transparent #f1f1f1 transparent;
+    z-index: 99999;
 }
 
 .toolTipMy .show {
     visibility: visible;
     opacity: 1;
-}
-
-.toolTipMy {
-    position: relative;
-    display: inline-block;
-    border-bottom: 1px dotted black;
-    visibility: visible;
-    width: 120px;
-    background-color: black;
-    color: #ffffff;
-    text-align: center;
-    padding: 5px 0px;
-    border-radius: 6px;
-    position: absolute;
-    z-index: 1;
 }

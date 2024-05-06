@@ -5,10 +5,24 @@
         <div class="form-header">
           <span class="form-header-text">Get in Touch</span>
           <div class="form-header-actions">
-            <div class="actions-info">
-              <fa-icon [icon]="['fas', 'info-circle']" myToolTip [myToolTip]="'test'"></fa-icon>
+            <div
+              class="actions-info"
+              myToolTip
+              [tooltipContent]="
+                'Thanks for reaching out! I will be replying back within 1 to 2 days.'
+              "
+              [tooltipOffset]="15"
+            >
+              <fa-icon [icon]="['fas', 'info-circle']"></fa-icon>
             </div>
-            <div class="actions-more">
+            <div
+              class="actions-more"
+              myToolTip
+              [tooltipContent]="
+                'Urgent Only: +6011-3186-3237'
+              "
+              [tooltipOffset]="0"
+            >
               <fa-icon [icon]="['fas', 'address-card']"></fa-icon>
             </div>
           </div>
@@ -42,13 +56,13 @@
             [formControl]="contactEmail"
             placeholder="Your Email, like a beacon in the frozen wilderness"
           />
-          @if (contactEmail.hasError('required') && contactEmail.touched) {
+          @if (contactEmail.hasError("required") && contactEmail.touched) {
             <div class="error-message">
               <fa-icon [icon]="['fas', 'exclamation-triangle']"></fa-icon>
               Email is Required!
             </div>
           }
-          @if (contactEmail.hasError('email') && contactEmail.touched) {
+          @if (contactEmail.hasError("email") && contactEmail.touched) {
             <div class="error-message">
               <fa-icon [icon]="['fas', 'exclamation-triangle']"></fa-icon>
               Invalid Email Format!
@@ -67,7 +81,9 @@
               Message is Required!
             </div>
           }
-          @if (contactMessage.hasError("invalidChars") && contactMessage.touched) {
+          @if (
+            contactMessage.hasError("invalidChars") && contactMessage.touched
+          ) {
             <div class="error-message">
               <fa-icon [icon]="['fas', 'exclamation-triangle']"></fa-icon>
               Invalid Characters Detected!
@@ -75,8 +91,12 @@
           }
         </div>
         <div class="form-button">
-          <button class="btnEmbark" (click)="sendMessage()" [disabled]="isDisable">
-            <span class="btnEmbark-text"> {{buttonText}} </span>
+          <button
+            class="btnEmbark"
+            (click)="sendMessage()"
+            [disabled]="isDisable"
+          >
+            <span class="btnEmbark-text"> {{ buttonText }} </span>
           </button>
         </div>
       </div>

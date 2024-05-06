@@ -8,6 +8,7 @@ export const stacks: any = [
           during my first internship, continue being utilized in my second internship 
           and remained as one of my main framework aside from React's NextJS as this
           framework offers better management capabilities for enterprise-level applications.`,
+                offset: 40,
                 opacity: 'selected'
             },
             {
@@ -17,6 +18,7 @@ export const stacks: any = [
           and is in the progress of mastering due to the fact that this framework being beginner-friendly
           than the Angular framework (true but to a certain extend) and most important of all it offers 
           more support in terms of animation libraries (such as Motion Framer) which Angular lacks.`,
+                offset: 55,
                 opacity: 'selected'
             },
             {
@@ -25,6 +27,7 @@ export const stacks: any = [
                 description: `An extended version of CSS that has various different features that provides the css
                 code with more structure and readability which I have used a lot during both my internships, freelancing
                 and for assignments which led me to be very well-versed in this aspect.`,
+                offset: 35,
                 opacity: 'selected'
             },
             {
@@ -33,6 +36,7 @@ export const stacks: any = [
                 description: `A CSS framework that simplifies the process for coding the components css as it only 
                 requires defining the css in the HTML page of the component, reducing the sizes of css related files,
                 making it very efficient and time-saving.`,
+                offset: 30,
                 opacity: 'selected'
             },
             {
@@ -41,6 +45,7 @@ export const stacks: any = [
                 description: `A high-level, class-based OOP language that I have utilized for developing various different
                 type of applications that include Enterprise-Level application (Java EE), Desktop Applications (Swing), 
                 and Backend Development (Java Spring Boot).`,
+                offset: 30,
                 opacity: 'selected'
             },
             {
@@ -49,6 +54,7 @@ export const stacks: any = [
                 description: `A versatile suite of cloud services by Google that is integral to my portfolio, offering 
                 essential tools for NoSQL Cloud Database storage, application hosting, deployment, and streamlined user 
                 authentication, facilitating seamless project development and management.`,
+                offset: 35,
                 opacity: 'selected'
             },
             {
@@ -57,6 +63,7 @@ export const stacks: any = [
                 description: `GitHub stands as a cornerstone in my portfolio, serving as the hub where I store, manage,
                 and showcase my code. It's an essential tool woven into both my professional ventures and personal projects, 
                 elevating them with meticulously crafted README.md files that captivate and inform.`,
+                offset: 40,
                 opacity: 'selected'
             }
         ]
@@ -67,6 +74,7 @@ export const stacks: any = [
                 name: "Python",
                 link: "https://cdn.worldvectorlogo.com/logos/python-5.svg",
                 description: "",
+                offset: 90,
                 opacity: 'selected'
             },
             {
