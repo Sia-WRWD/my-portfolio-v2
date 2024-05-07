@@ -15,6 +15,10 @@
     --btn-outline: rgb(255, 255, 255, .1);
 }
 
+*, ::after, ::before {
+    box-sizing: content-box !important;
+}
+
 html {
     height: 100%;
     box-sizing: border-box;
@@ -32,6 +36,7 @@ body {
     background: #000000;
     text-align: left;
     color: #8F98A0;
+    line-height: inherit;
     font-size: 14px;
     margin: 0;
     padding: 0;
@@ -245,20 +250,33 @@ a {
 }
 
 //Tooltip
-.toolTipMy {
-    background: #c2c2c2;
-    color: #3d3d3f;
-    font-size: 11px;
-    border-radius: 3px;
-    padding: 5px;
-    max-width: 225px;
-    white-space: normal;
-    box-shadow: 0 0 3px #000000;
-    position: absolute;
-    z-index: 99999;
+.ant-tooltip-inner {
+    background-color: rgba(0, 0, 0) !important;
+    box-sizing: border-box !important;
 }
 
-.toolTipMy .show {
-    visibility: visible;
-    opacity: 1;
+.ant-tooltip {
+    z-index: 9999 !important;
 }
+
+.cdk-overlay-container {
+    z-index: 3000 !important;
+}
+
+// .toolTipMy {
+//     background: #c2c2c2;
+//     color: #3d3d3f;
+//     font-size: 11px;
+//     border-radius: 3px;
+//     padding: 5px;
+//     max-width: 225px;
+//     white-space: normal;
+//     box-shadow: 0 0 3px #000000;
+//     position: absolute;
+//     z-index: 99999;
+// }
+
+// .toolTipMy .show {
+//     visibility: visible;
+//     opacity: 1;
+// }

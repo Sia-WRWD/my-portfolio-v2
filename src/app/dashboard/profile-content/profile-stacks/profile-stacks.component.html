@@ -22,6 +22,9 @@
           [attr.data-language]="language.name"
           [attr.data-opacity]="language.opacity"
           [attr.data-tooltip-html]="language.name"
+          nz-tooltip
+          [nzTooltipTitle]="language.description"
+          nzTooltipPlacement="topLeft"
         >
           <img src="{{ language.link }}" alt="" class="profile-stack-icon" />
         </div>

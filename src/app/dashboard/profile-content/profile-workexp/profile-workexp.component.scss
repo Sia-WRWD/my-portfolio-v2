@@ -1,3 +1,7 @@
+:host {
+    box-sizing: content-box !important;
+}
+
 .profile-workexp-container {
     display: flex;
     flex-direction: column;

@@ -6,12 +6,12 @@ import { faAddressCard, faExclamationTriangle, faInfoCircle, faWarning } from '@
 import { CustomValidators } from '../../shared/directives/custom-validators';
 import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
 import { environment } from 'src/assets/environment/environment';
-import { TooltipDirective } from '../../shared/directives/tooltip.directive';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 
 @Component({
   selector: 'app-profile-contact',
   standalone: true,
-  imports: [ReactiveFormsModule, FontAwesomeModule, TooltipDirective],
+  imports: [ReactiveFormsModule, FontAwesomeModule, NzToolTipModule],
   templateUrl: './profile-contact.component.html',
   styleUrl: './profile-contact.component.scss'
 })
