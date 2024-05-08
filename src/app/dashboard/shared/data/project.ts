@@ -10,7 +10,7 @@ export const projects: any = [
                 redirect: "https://github.com/Diskordlit/ClassInsight"
             },
             {
-                name: "hack",
+                name: "Hack",
                 link: "../../../../assets/icons/proj/classroom.png",
                 redirect: "https://microsoftaiclassroom.devpost.com/"
             },

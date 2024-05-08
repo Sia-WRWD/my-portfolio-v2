@@ -23,10 +23,14 @@
           [attr.data-opacity]="language.opacity"
           [attr.data-tooltip-html]="language.name"
           nz-tooltip
-          [nzTooltipTitle]="language.description"
+          [nzTooltipTitle]="languageTemplate"
           nzTooltipPlacement="topLeft"
         >
           <img src="{{ language.link }}" alt="" class="profile-stack-icon" />
+          <ng-template #languageTemplate>
+            <span style="font-size: 15px; font-weight: bold; color: #66C0F4;">{{ language.name }}, </span>
+            <span style="font-size: 12px;">{{ language.description }}</span>
+          </ng-template>
         </div>
       }
     }

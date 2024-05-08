@@ -105,6 +105,7 @@ export class ProfileEducationComponent {
     // Education Content Display Max-Height Observable.
     const eduTimelineContent = this.el.nativeElement.querySelector('.edu-timeline-content');
     const profileEduContentDisplay = this.el.nativeElement.querySelector('.profile-edu-content-display');
+    // const profileEduContentCards = this.el.nativeElement.querySelectorAll('.edu-card');
 
     if (eduTimelineContent && profileEduContentDisplay) {
       // Adjust max-height immediately during initialization
@@ -122,6 +123,17 @@ export class ProfileEducationComponent {
         const newMaxHeight = height;
         this.renderer.setStyle(profileEduContentDisplay, 'max-height', `${newMaxHeight}px`);
       });
+
+      // if (window.innerWidth <= 745) {
+      //   const firstCardHeight = profileEduContentCards[0].offsetHeight - 20;
+      //   console.log(profileEduContentCards);
+  
+      //   // Set the height of all cards to match the height of the first card
+      //   profileEduContentCards.forEach((card: any) => {
+      //     this.renderer.setStyle(card, 'height', `${firstCardHeight}px`);
+      //     console.log("test");
+      //   });
+      // }
 
       // Manually trigger window resize event when Chrome DevTools resize event is detected
       fromEvent(window, 'resize').pipe(

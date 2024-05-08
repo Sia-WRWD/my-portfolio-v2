@@ -2,7 +2,7 @@ export const rightContent = [
     {hackathons: [
         {
             logoSrc: '../../../assets/icons/proj/classroom.png', 
-            name: 'Microsoft AI Classroom Hackathon', 
+            name: 'MS AI Classroom Hackathon', 
             achievement: 'Participation',
             link: 'https://devpost.com/software/classinsight-pro'
         },

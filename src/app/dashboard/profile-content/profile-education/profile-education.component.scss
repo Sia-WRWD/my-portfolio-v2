@@ -149,10 +149,13 @@
                     justify-content: flex-start;
                     align-items: baseline;
                     flex-direction: row;
-                    flex-wrap: wrap;
+                    flex-wrap: nowrap;
                     width: 100%;
                     gap: 7px;
                     margin-top: 14px;
+                    overflow-x: scroll;
+                    max-width: 0;
+                    min-width: 100%;
 
                     .edu-achievement-content {
                         display: flex;
@@ -166,6 +169,7 @@
                         color: #FCC201;
                         text-shadow: 1px 2px 2px black;
                         box-shadow: 1px 1px 1px black;
+                        text-wrap: nowrap;
 
                         .edu-achievement-icon {
                             font-size: 16px;
@@ -177,6 +181,10 @@
                             font-size: 13px;
                         }
                     }
+                }
+
+                .edu-achievement-container::-webkit-scrollbar {
+                    height: 0px !important;
                 }
             }
         }
@@ -196,8 +204,58 @@
         user-select: none;
     }
 
+    .edu-card {
+        padding: 10px !important;
+    }
+
+    .edu-card-title {
+        font-size: 18px !important;
+    }
+
+    .edu-card-university {
+        font-size: 13px !important;
+    }
+
+    .edu-card-date {
+        font-size: 10px !important;
+    }
+
+    .edu-card-text {
+        font-size: 13px !important;
+    }
+
     .edu-date {
         position: static !important;
         text-align: left !important;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .edu-achievement-icon {
+        font-size: 13px !important;
+    }
+
+    .edu-achievement-desc {
+        font-size: 11px !important;
+    }
+
+    .edu-card-title {
+        font-size: 16px !important;
+    }
+
+    .edu-card-university {
+        font-size: 11px !important;
+    }
+
+    .edu-card-date {
+        font-size: 10px !important;
+    }
+
+    .edu-card-text {
+        font-size: 11px !important;
+    }
+
+    .edu-date {
+        font-size: 14px !important;
     }
 }

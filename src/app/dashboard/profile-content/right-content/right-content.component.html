@@ -1,5 +1,8 @@
 <div class="right-profile-content-inner-container">
-  <div class="right-profile-content-status anime-status" [ngStyle]="{ color: statusColor }">
+  <div
+    class="right-profile-content-status anime-status"
+    [ngStyle]="{ color: statusColor }"
+  >
     Currently {{ status }}
   </div>
   <div class="right-item content-hackathon">
@@ -17,7 +20,13 @@
                 [src]="hackathon.logoSrc"
                 [alt]="hackathon.name + '.jpg'"
                 class="hackathon-logo"
+                nz-tooltip
+                [nzTooltipTitle]="hackathonTemplate"
               />
+              <ng-template #hackathonTemplate>
+                <span style="font-weight: bold; font-size: 14px; color: #66C0F4;">{{ hackathon.name }}</span><br>
+                <span style="font-size: 13px;">{{ hackathon.achievement }}</span>
+              </ng-template>
             </a>
           }
         }
@@ -58,7 +67,11 @@
       }
     </div>
   </div>
-  <div class="right-item content-games" scrollReached (scrollReached)="onGamesReached()">
+  <div
+    class="right-item content-games"
+    scrollReached
+    (scrollReached)="onGamesReached()"
+  >
     <a
       href="https://steamcommunity.com/id/Sia-WRWD/games/?tab=all"
       target="_blank"
@@ -79,7 +92,13 @@
                   [src]="game.gameSrc"
                   [alt]="game.name + '.jpg'"
                   class="game-pic"
+                  nz-tooltip
+                  [nzTooltipTitle]="gameTemplate"
+                  nzTooltipPlacement="topRight"
                 />
+                <ng-template #gameTemplate>
+                  <span style="font-weight: bold; font-size: 14px;">{{ game.name }}</span><br>
+                </ng-template>
               </div>
             </a>
           }
@@ -87,7 +106,11 @@
       }
     </div>
   </div>
-  <div class="right-item content-friends" scrollReached (scrollReached)="onFriendsReached()">
+  <div
+    class="right-item content-friends"
+    scrollReached
+    (scrollReached)="onFriendsReached()"
+  >
     <div class="content-friends-container anime-friends">
       <span class="title friends-title">Friends</span>
       &nbsp;

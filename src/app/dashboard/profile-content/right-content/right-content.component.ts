@@ -4,11 +4,12 @@ import { activities } from '../../shared/data/activity';
 import { rightContent } from '../../shared/data/right-content';
 import { ScrollReachedDirective } from 'src/app/dashboard/shared/directives/scroll-reaches.directive';
 import anime from 'animejs/lib/anime.es.js';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 
 @Component({
   selector: 'app-right-content',
   standalone: true,
-  imports: [CommonModule, ScrollReachedDirective],
+  imports: [CommonModule, ScrollReachedDirective, NzToolTipModule],
   templateUrl: './right-content.component.html',
   styleUrl: './right-content.component.scss'
 })

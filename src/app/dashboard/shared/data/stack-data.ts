@@ -51,7 +51,7 @@ export const stacks: any = [
             {
                 name: "Firebase",
                 link: "https://cdn.worldvectorlogo.com/logos/firebase-1.svg",
-                description: `A versatile suite of cloud services by Google that is integral to my portfolio, offering 
+                description: `A great access to cloud services by Google that is integral to my portfolio, offering 
                 essential tools for NoSQL Cloud Database storage, application hosting, deployment, and streamlined user 
                 authentication, facilitating seamless project development and management.`,
                 offset: 35,
@@ -73,32 +73,42 @@ export const stacks: any = [
             {
                 name: "Python",
                 link: "https://cdn.worldvectorlogo.com/logos/python-5.svg",
-                description: "",
+                description: `Despite Python's reputation as a highly versatile language suitable for a wide range of applications, 
+                I have only been utilizing it in developing AI models and APIs. This preference is largely influenced by the 
+                vibrant community, which consistently introduces new libraries and updates, enhancing Python's capabilities.`,
                 offset: 90,
                 opacity: 'selected'
             },
             {
                 name: "TensorFlow",
                 link: "https://cdn.worldvectorlogo.com/logos/tensorflow-2.svg",
-                description: "",
+                description: `A free and open-source software library for machine learning and artificial intelligence, which I have
+                personally utilized in building Deep Learning models and explored on the many different pre-trained models' codes
+                offered in this library.`,
                 opacity: 'selected'
             },
             {
                 name: "NodeJS",
                 link: "https://cdn.worldvectorlogo.com/logos/nodejs-3.svg",
-                description: "",
+                description: `Node.js is a cross-platform, open-source JavaScript runtime environment which I have utilized in
+                creating the back-end for web applications, and in the context of AI Model Development, it is more used on
+                creating an API for the model to be callable from the front-end.`,
                 opacity: 'selected'
             },
             {
                 name: "Azure Functions",
                 link: "https://cdn.worldvectorlogo.com/logos/azure-2.svg",
-                description: "",
+                description: `An event-driven, serverless compute platform that I've used a serverless compute platform for the 
+                ClassInsight project's transcribe video API. It's triggered on demand, making it efficient, but it can only 
+                handle videos up to 20 minutes long due to the limitations imposed.`,
                 opacity: 'selected'
             },
             {
                 name: "Azure OpenAI",
                 link: "https://cdn.worldvectorlogo.com/logos/openai-2.svg",
-                description: "",
+                description: `A REST API which includes language models such as GPT-3 and GPT-4, I've seamlessly integrated it 
+                into the ClassInsight project, facilitating the summarization of extensive two-hour lectures into concise, 
+                digestible content, condensing key points into a five-minute read, enhancing learning efficiency.`,
                 opacity: 'selected'
             },
         ]
@@ -108,25 +118,34 @@ export const stacks: any = [
             {
                 name: "MySQL",
                 link: "https://static.cdnlogo.com/logos/m/78/mysql.svg",
-                description: "",
+                description: `My first Relational DBMS and have continued to use it in both work and hobby projects
+                alike. It is powerful compared to some NoSQL databases due to unique functionalities offered, such as
+                stored procedures, and etc.
+                `,
                 opacity: 'selected'
             },
             {
                 name: "Firebase",
                 link: "https://cdn.worldvectorlogo.com/logos/firebase-1.svg",
-                description: "",
+                description: `A great access to cloud services by Google that is integral to my portfolio, offering 
+                essential tools for NoSQL Cloud Database storage, application hosting, deployment, and streamlined user 
+                authentication, facilitating seamless project development and management.`,
                 opacity: 'selected'
             },
             {
                 name: "Azure CosmoDB",
                 link: "https://seeklogo.com/images/A/azure-cosmos-db-logo-128436034F-seeklogo.com.png",
-                description: "",
+                description: `Can't really say I am very well-versed with this DBMS as I have only utilized a handful of
+                times, mostly for Azure Related Hackathons. Even so, one advantage I can see when compared to traditional
+                databases are the ability to scale and efficient global distribution.`,
                 opacity: 'selected'
             },
             {
                 name: "MongoDB",
                 link: "https://cdn.worldvectorlogo.com/logos/mongodb-icon-1.svg",
-                description: "",
+                description: `Another NoSQL DBMS that I have utilized in conjunction with Angular and React frameworks for
+                personal projects and work. But, compared to MySQL, this is a bit lesser and though the case, from using it,
+                I can see its viability in terms of being document-oriented (JSON-like), making it easy for handling.`,
                 opacity: 'selected'
             },
         ]
