@@ -66,4 +66,8 @@ export class NavigationComponent {
   scrollToSection(sectionId: string) {
     this.scrollService.scrollToSection(sectionId);
   }
+
+  backToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 }

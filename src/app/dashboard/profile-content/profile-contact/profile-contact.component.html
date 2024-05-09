@@ -7,19 +7,9 @@
           <div class="form-header-actions">
             <div
               class="actions-info"
-              nzTooltipTitle="prompt text"
-              nzTooltipPlacement="topLeft"
-              nz-tooltip
+              (click)="showInfoMessage()"
             >
               <fa-icon [icon]="['fas', 'info-circle']"></fa-icon>
-            </div>
-            <div
-              class="actions-more"
-              [nzTooltipTitle]="'prompt text'"
-              nzTooltipPlacement="topLeft"
-              nz-tooltip
-            >
-              <fa-icon [icon]="['fas', 'address-card']"></fa-icon>
             </div>
           </div>
         </div>
@@ -89,7 +79,7 @@
         <div class="form-button">
           <button
             class="btnEmbark"
-            (click)="sendMessage()"
+            (click)="sendMessage($event)"
             [disabled]="isDisable"
           >
             <span class="btnEmbark-text"> {{ buttonText }} </span>

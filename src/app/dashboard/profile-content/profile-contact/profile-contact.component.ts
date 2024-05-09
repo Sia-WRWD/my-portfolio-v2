@@ -6,12 +6,12 @@ import { faAddressCard, faExclamationTriangle, faInfoCircle, faWarning } from '@
 import { CustomValidators } from '../../shared/directives/custom-validators';
 import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
 import { environment } from 'src/assets/environment/environment';
-import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { NzMessageModule, NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-profile-contact',
   standalone: true,
-  imports: [ReactiveFormsModule, FontAwesomeModule, NzToolTipModule],
+  imports: [ReactiveFormsModule, FontAwesomeModule, NzMessageModule],
   templateUrl: './profile-contact.component.html',
   styleUrl: './profile-contact.component.scss'
 })
@@ -24,7 +24,7 @@ export class ProfileContactComponent {
   isDisable: boolean = false;
   msgPlaceholder: any = `In this journey of life, every step forward is an adventure into the unknown. Strength lies not in the muscles, but in the courage of the heart. Every challenge faced is but a stepping stone towards growth. Let the icy winds of adversity sharpen your resolve. In the frozen expanse, discover the beauty of resilience. Embrace the chill of uncertainty, for within it lies the spark of possibility. Like the snowflakes that dance in the wind, each moment is fleeting yet precious. May the stars guide us through the coldest of nights, lighting our path with hope.`;
 
-  constructor(private library: FaIconLibrary, private elementRef: ElementRef) {
+  constructor(private library: FaIconLibrary, private elementRef: ElementRef, private messageService: NzMessageService) {
     library.addIcons(
       faInfoCircle,
       faAddressCard,
@@ -32,7 +32,9 @@ export class ProfileContactComponent {
     )
   }
 
-  sendMessage() {
+  sendMessage(event: Event) {
+    event.preventDefault();
+
     this.contactName.markAsTouched();
     this.contactEmail.markAsTouched();
     this.contactMessage.markAsTouched();
@@ -51,10 +53,15 @@ export class ProfileContactComponent {
 
       emailjs.send(environment.emailServiceId, environment.emailTemplateId, data, environment.emailUserId)
         .then((result: EmailJSResponseStatus) => {
-          this.contactName.reset();
-          this.contactEmail.reset();
-          this.contactMessage.reset();
-          this.buttonText = "Your message has been sent successfully! Freiren's magic knows no bounds."; // Update button text on success
+          console.log(result);
+          setTimeout(() => {
+            if (result.status == 200) {
+              this.buttonText = "Your message has been sent successfully! Freiren's magic knows no bounds.";
+              this.contactName.reset();
+              this.contactEmail.reset();
+              this.contactMessage.reset();
+            }
+          }, 2500)
         }, (error) => {
           // console.log(error.text);
         })
@@ -63,9 +70,12 @@ export class ProfileContactComponent {
             this.buttonText = "Embark on the Journey"; // Reset button text after delay
             this.sendingEmail = false; // Reset sending status after 3 seconds delay
             this.isDisable = false;
-          }, 5000);
+          }, 6000);
         });
     }
   }
 
+  showInfoMessage() {
+    this.messageService.info('Thanks for reaching out, I will try to get back to you within 1-2 business days!');
+  }
 }

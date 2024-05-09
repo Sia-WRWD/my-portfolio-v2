@@ -3,11 +3,12 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { ProfileHeaderComponent } from './profile-header/profile-header.component';
 import { LoaderComponent } from './loader/loader.component';
 import { ProfileContentComponent } from './profile-content/profile-content.component';
+import { FooterComponent } from './footer/footer.component';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [NavigationComponent, ProfileHeaderComponent, LoaderComponent, ProfileContentComponent],
+  imports: [NavigationComponent, ProfileHeaderComponent, LoaderComponent, ProfileContentComponent, FooterComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })

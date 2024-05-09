@@ -101,6 +101,7 @@ Welcome to the source of my personal portfolio website. This website contains al
 6. [CSS Animations](https://codepen.io/nelledejones/pen/gOOPWrK)
 7. [Scroll-to-Top During Refresh](https://stackoverflow.com/questions/3664381/force-page-scroll-position-to-top-at-page-refresh-in-html)
 8. [To Debug Tooltip](https://stackoverflow.com/questions/15370838/inspect-hovered-element-in-chrome)
+9. [Picture to SVG Line Art](https://tech-lagoon.com/imagechef/en/image-to-edge.html)
 
 #### Note for Self on SVG Icon Creation
 1. Look for existing SVG (WorldVectorLogo, Github Shields)
