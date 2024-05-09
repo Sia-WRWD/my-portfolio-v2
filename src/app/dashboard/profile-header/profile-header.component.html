@@ -1,74 +1,95 @@
 <div class="profile-header-container">
-    <div class="anime-profile-header" id="header-top">
-        <div class="profile-pic-container tilt-object">
-            <div class="profile-pic-inner-container">
-                <div class="profile-pic-frame-container">
-                    <img class="profile-pic-frame"
-                        src="https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/e322e4d4fc9df256d9c9d5166a9e86aa6e47bd03.png">
-                </div>
-                <img class="profile-pic steam-pic"
-                    src="https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/4fd8a06b61d271c4eb71c85df79268429de46d63.gif">
-                <img class="profile-pic real-pic"
-                    src="https://media.licdn.com/dms/image/C5603AQHusMWqmwvQuQ/profile-displayphoto-shrink_200_200/0/1659324199634?e=1717632000&v=beta&t=6raELBLMRKDUn_0v8YbkgcXaSCzBVSi4xbcTzRgjSdA">
-            </div>
+  <div class="anime-profile-header" id="header-top">
+    <div class="profile-pic-container tilt-object">
+      <div class="profile-pic-inner-container">
+        <div class="profile-pic-frame-container">
+          <img
+            class="profile-pic-frame"
+            src="https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/e322e4d4fc9df256d9c9d5166a9e86aa6e47bd03.png"
+          />
         </div>
-        <div class="profile-info-container">
-            <div class="profile-info-name-container ellipsis">
-                <span class="profile-info-name steam-name">ウダイジン</span>
-                <span class="profile-info-name real-name">Sia Chee Zhen</span>
-                <div class="profile-badge-level-number-container">
-                    <span class="profile-badge-level-number">
-                        {{myAge}}
-                    </span>
-                </div>
-            </div>
-            <div class="profile-info-others-container ellipsis">
-                <bdi>{{myHandle}}</bdi> &nbsp; <img class="profile_flag"
-                    src="https://community.cloudflare.steamstatic.com/public/images/countryflags/my.gif"> Klang,
-                Selangor
-            </div>
-            <div class="profile-info-summary-container">
-                <span class="emphasis">Hello World!</span> I'm Sia, a Full-Stack Developer located in Selangor,
-                Malaysia. I have completed a Diploma in Software Engineering and a Degree specializing in
-                AI from Asia Pacific University. I have a strong passion for enhancing my coding skills,
-                understanding various programming languages, and developing applications and websites. My
-                expertise lies in building WebApps and websites using the MEAN Stack. I enjoy exploring
-                new frameworks like React, Angular, NextJS, among others, and staying updated with emerging
-                technologies such as ChatGPT and Stable Diffusion. Additionally, I find joy in creating engaging
-                CSS components, training models, and exploring all aspects of coding.
-            </div>
-            <div class="profile-info-summary-footer"> <!--Need to Add Modal Later to show everything-->
-                View More Info
-            </div>
-        </div>
-        <div class="profile-badge-container">
-            <div class="profile-badge-level-container ellipsis">
-                Level
-                <div class="profile-badge-level-number-container">
-                    <span class="profile-badge-level-number">
-                        {{myAge}}
-                    </span>
-                </div>
-            </div>
-            <div class="profile-social-container">
-                @for (social of socials; track social) {
-                <a [href]="social.iconRedirect" target="_blank">
-                    <div class="profile-social-icon-container {{ social.iconClass }}">
-                        <fa-icon [icon]="['fab', social.iconName]"></fa-icon>
-                    </div>
-                </a>
-                }
-                <a href="https://www.riotgames.com/?gamename=Daijin&tagline=%E5%A4%A7%E8%87%A3%E3%81%AE%E7%8C%AB"
-                    target="_blank">
-                    <div class="profile-social-icon-container riot">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" role="img" viewBox="0 0 24 24"
-                            class="svg-inline--fa fa-riot">
-                            <path
-                                d="M13.458.86 0 7.093l3.353 12.761 2.552-.313-.701-8.024.838-.373 1.447 8.202 4.361-.535-.775-8.857.83-.37 1.591 9.025 4.412-.542-.849-9.708.84-.374 1.74 9.87L24 17.318V3.5Zm.316 19.356.222 1.256L24 23.14v-4.18l-10.22 1.256Z" />
-                        </svg>
-                    </div>
-                </a>
-            </div>
-        </div>
+        <img
+          class="profile-pic steam-pic"
+          src="https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/4fd8a06b61d271c4eb71c85df79268429de46d63.gif"
+        />
+        <img
+          class="profile-pic real-pic"
+          src="https://media.licdn.com/dms/image/C5603AQHusMWqmwvQuQ/profile-displayphoto-shrink_200_200/0/1659324199634?e=1717632000&v=beta&t=6raELBLMRKDUn_0v8YbkgcXaSCzBVSi4xbcTzRgjSdA"
+        />
+      </div>
     </div>
+    <div class="profile-info-container">
+      <div class="profile-info-name-container ellipsis">
+        <span class="profile-info-name steam-name">ウダイジン</span>
+        <span class="profile-info-name real-name">Sia Chee Zhen</span>
+        <div class="profile-badge-level-number-container">
+          <span class="profile-badge-level-number">
+            {{ myAge }}
+          </span>
+        </div>
+      </div>
+      <div class="profile-info-others-container ellipsis">
+        <bdi>{{ myHandle }}</bdi> &nbsp;
+        <img
+          class="profile_flag"
+          src="https://community.cloudflare.steamstatic.com/public/images/countryflags/my.gif"
+        />
+        Klang, Selangor
+      </div>
+      <div class="profile-info-summary-container">
+        <span class="emphasis">Hello World!</span> I'm Sia, a Full-Stack
+        Developer located in Selangor, Malaysia. I have completed a Diploma in
+        Software Engineering and a Degree specializing in AI from Asia Pacific
+        University. I have a strong passion for enhancing my coding skills,
+        understanding various programming languages, and developing applications
+        and websites. My expertise lies in building WebApps and websites using
+        the MEAN Stack. I enjoy exploring new frameworks like React, Angular,
+        NextJS, among others, and staying updated with emerging technologies
+        such as ChatGPT and Stable Diffusion. Additionally, I find joy in
+        creating engaging CSS components, training models, and exploring all
+        aspects of coding.
+      </div>
+      <div class="profile-info-summary-footer">
+        <!--Need to Add Modal Later to show everything-->
+        View More Info
+      </div>
+    </div>
+    <div class="profile-badge-container">
+      <div class="profile-badge-level-container ellipsis">
+        Level
+        <div class="profile-badge-level-number-container">
+          <span class="profile-badge-level-number">
+            {{ myAge }}
+          </span>
+        </div>
+      </div>
+      <div class="profile-social-container">
+        @for (social of socials; track social) {
+          <a [href]="social.iconRedirect" target="_blank">
+            <div class="profile-social-icon-container {{ social.iconClass }}">
+              <fa-icon [icon]="['fab', social.iconName]"></fa-icon>
+            </div>
+          </a>
+        }
+        <a
+          href="https://www.riotgames.com/?gamename=Daijin&tagline=%E5%A4%A7%E8%87%A3%E3%81%AE%E7%8C%AB"
+          target="_blank"
+        >
+          <div class="profile-social-icon-container riot">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+              role="img"
+              viewBox="0 0 24 24"
+              class="svg-inline--fa fa-riot"
+            >
+              <path
+                d="M13.458.86 0 7.093l3.353 12.761 2.552-.313-.701-8.024.838-.373 1.447 8.202 4.361-.535-.775-8.857.83-.37 1.591 9.025 4.412-.542-.849-9.708.84-.374 1.74 9.87L24 17.318V3.5Zm.316 19.356.222 1.256L24 23.14v-4.18l-10.22 1.256Z"
+              />
+            </svg>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
 </div>

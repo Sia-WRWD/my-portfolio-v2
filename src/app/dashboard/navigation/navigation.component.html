@@ -15,7 +15,7 @@
             class="header-menuitem"
             [ngClass]="option.anchor"
             href="../../../assets/RESUME.pdf"
-            download="Sia-Chee-Zhen-Resume.pdf"
+            target="_blank"
           >
             {{ option.name }}
             <span class="resume-icon">
@@ -52,8 +52,14 @@
   <div class="responsive-header-content">
     <div class="responsive-header-logo">
       <span class="responsive-header-logo-holder" (click)="backToTop()">
-        <img src="../../../assets/backup/logo-white.svg" class="responsive-logo-svg line" />
-        <img src="../../../assets/backup/logo.png" class="responsive-logo-svg noline" />
+        <img
+          src="../../../assets/backup/logo-white.svg"
+          class="responsive-logo-svg line"
+        />
+        <img
+          src="../../../assets/backup/logo.png"
+          class="responsive-logo-svg noline"
+        />
       </span>
       <span class="responsive-logo-text">SIA</span>
     </div>
@@ -70,13 +76,23 @@
             <div class="responsive-header-menu-options-inner-container">
               @for (option of options; track option) {
                 <div class="responsive-header-menu-option-container">
-                  <div
-                    class="responsive-header-menu-option"
-                    (click)="scrollToSection(option.anchor)"
-                  >
-                    {{ option.name }}
-                    <!--<fa-icon [icon]="['fab', option.iconName]"></fa-icon>-->
-                  </div>
+                  @if (option.name == "RESUME") {
+                    <a
+                      class="responsive-header-menu-option"
+                      href="../../../assets/RESUME.pdf"
+                      target="_blank"
+                    >
+                      {{ option.name }}
+                    </a>
+                  } @else {
+                    <div
+                      class="responsive-header-menu-option"
+                      (click)="scrollToSection(option.anchor)"
+                    >
+                      {{ option.name }}
+                      <!--<fa-icon [icon]="['fab', option.iconName]"></fa-icon>-->
+                    </div>
+                  }
                 </div>
               }
             </div>

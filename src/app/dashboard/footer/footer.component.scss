@@ -1,28 +1,317 @@
 .footer-container {
     width: 100%;
-    background: rgba(0,0,0,.85);
+    background: rgba(0, 0, 0, .85);
     width: 1000px;
     min-width: 0px;
     max-width: 1000px;
-    padding: 0 10px;
-    display: flex;
+    padding: 15px;
     min-height: 300px;
+    z-index: 999;
 
-    .footer-content {
-        .footer-socials {
+    .upper-content {
+        display: grid;
+        grid-template-areas: 'content logo';
+        gap: 10px;
 
+        .footer-content {
+            grid-area: content;
+            margin: auto;
+
+            .footer-socials {
+                display: flex;
+                gap: 10px;
+                margin-top: 10px;
+                flex-wrap: wrap;
+
+                .footer-social-icon-container {
+                    width: 40px;
+                    height: 40px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background: #171d25;
+                    border-radius: 5px;
+                    box-shadow: 1px 2px 2px black;
+
+                    fa-icon,
+                    .fa-riot {
+                        font-size: 24px;
+                        color: #66C0F4;
+                    }
+                }
+
+                //Hover Animation for Socials Buttons
+                @media (not (prefers-reduced-motion: reduce)) {
+
+                    .linkedin,
+                    .github,
+                    .facebook,
+                    .instagram,
+                    .hackerrank,
+                    .dev,
+                    .steam,
+                    .discord,
+                    .riot {
+                        transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+
+                        &:hover {
+                            transform: scale(1.1);
+                        }
+                    }
+
+                    .linkedin:hover {
+                        background-color: #0072b1;
+
+                        fa-icon {
+                            color: #ffffff;
+                        }
+                    }
+
+                    .github:hover {
+                        fa-icon {
+                            color: #ffffff;
+                        }
+                    }
+
+                    .facebook:hover {
+                        background-color: #1877F2;
+
+                        fa-icon {
+                            color: #ffffff;
+                        }
+                    }
+
+                    .instagram {
+                        transition: background-color 0.3s, color 0.3s ease-in-out;
+                        /* Apply transition to both background-color and color */
+
+                        &:hover {
+                            background: linear-gradient(to bottom left, #4f5bd5, #962fbf, #d62976, #fa7e1e, #feda75);
+
+                            fa-icon {
+                                color: #ffffff;
+                            }
+                        }
+                    }
+
+                    .hackerrank:hover {
+                        fa-icon {
+                            color: #2ec866;
+                        }
+                    }
+
+                    .dev:hover {
+                        background-color: #003e54;
+
+                        fa-icon {
+                            color: #ffffff;
+                        }
+                    }
+
+                    .steam:hover {
+                        background-color: #ffffff;
+
+                        fa-icon {
+                            color: #171a21;
+                        }
+                    }
+
+                    .discord:hover {
+                        background-color: #5662F5;
+
+                        fa-icon {
+                            color: #ffffff;
+                        }
+                    }
+
+                    .riot:hover {
+                        background-color: #D32936;
+
+                        .fa-riot {
+                            color: #ffffff;
+                        }
+                    }
+                }
+
+            }
+
+            .footer-links {
+                margin-top: 20px;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 15px;
+                justify-content: flex-start;
+                align-items: flex-start;
+                font-size: 18px;
+                color: white;
+                font-weight: lighter;
+                font-weight: 800;
+
+                .invisible {
+                    display: none;
+                }
+
+                .footer-link {
+                    cursor: pointer;
+                    position: relative;
+                    transition: 0.3s ease-in-out;
+
+                    &::before {
+                        content: '';
+                        height: 1.5px;
+                        background: #42B0EE;
+                        width: 0;
+                        position: absolute;
+                        bottom: -2px;
+                        transition: width 0.3s ease-in-out;
+                    }
+
+                    &:hover {
+                        color: #42B0EE;
+
+                        &::before {
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+
+            .footer-header {
+                font-size: 70px;
+                font-weight: 600;
+                color: #FFFFFF;
+                font-family: sans-serif;
+            }
+
+            .footer-copyright {
+                margin: 10px auto;
+                text-align: left;
+                font-size: 13px;
+                color: #FFFFFF;
+
+                a {
+                    position: relative;
+
+                    @media (not (prefers-reduced-motion: reduce)) {
+                        &::before {
+                            content: '';
+                            height: 1.5px;
+                            background: #42B0EE;
+                            width: 0;
+                            position: absolute;
+                            bottom: -2px;
+                            transition: width 0.3s ease-in-out;
+                        }
+
+                        &:hover {
+                            &::before {
+                                width: 100%;
+                            }
+                        }
+                    }
+                }
+            }
         }
-    
-        .footer-links {
-    
+
+        .footer-logo {
+            width: 300px;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #FFFFFF;
+            border-radius: 50%;
+            grid-area: logo;
+            position: relative;
+
+            .logo {
+                width: 100%;
+                height: 100%;
+                position: absolute;
+            }
+
+            .noline {
+                opacity: 0;
+                transition: 0.3s ease-in-out;
+            }
+
+            @media (not (prefers-reduced-motion: reduce)) {
+                &:hover {
+                    .noline {
+                        opacity: 1;
+                    }
+                }
+            }
         }
-    
-        .footer-copyright {
-    
+    }
+}
+
+@media screen and (max-width: 910px) {
+    .footer-container {
+        .upper-content {
+            grid-template-areas: 'content' 'logo';
+
+            .footer-header {
+                text-align: center;
+            }
+
+            .footer-socials {
+                justify-content: center;
+                align-items: center;
+            }
+
+            .footer-links {
+                justify-content: center !important;
+                align-items: center !important;
+
+                .invisible {
+                    display: block !important;
+                }
+            }
+
+            .footer-copyright {
+                text-align: center !important;
+            }
         }
+
+        .footer-logo {
+            margin: auto;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .footer-header {
+        font-size: 50px !important;
+    }
+
+    .footer-links {
+        font-size: 16px !important;
     }
 
     .footer-logo {
+        width: 200px !important;
+        height: 200px !important;
+    }
+}
 
+@media screen and (max-width: 576px) {
+    .footer-header {
+        font-size: 40px !important;
+    }
+}
+
+@media screen and (max-width: 405px) {
+    .footer-header {
+        font-size: 30px !important;
+    }
+    
+    .footer-links {
+        font-size: 14px !important;
+    }
+
+    .footer-copyright {
+        font-size: 13px !important;
     }
 }
