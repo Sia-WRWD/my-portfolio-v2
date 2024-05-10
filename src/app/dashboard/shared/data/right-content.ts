@@ -13,7 +13,7 @@ export const rightContent = [
             link: 'https://devpost.com/software/baby-ghost'
         },
         {
-            logoSrc: 'http://myhci-ux.org/wp-content/uploads/2024/02/cropped-logo_transparent_512x512-192x192.png', 
+            logoSrc: '../../../assets/icons/rightcontent/mychiux.png', 
             name: 'Fusion 2022', 
             achievement: 'Silver Award',
             link: 'http://myhci-ux.org/?page_id=2593'
@@ -43,7 +43,7 @@ export const rightContent = [
             anchorClass: 'lower-group'
         },
         {
-            groupSrc: 'https://scontent.fkul15-1.fna.fbcdn.net/v/t39.30808-1/306971630_457117563114905_953311376753399432_n.png?_nc_cat=103&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeGm87nbkovAPuwhA9aHQxLQqBIgGfCwi5KoEiAZ8LCLkv22AVLHC4URNIu-k4LtB0LIqtgLD9D2MG7-E3jjGSTM&_nc_ohc=q45ixSLnfdkAb4Z6cXk&_nc_ht=scontent.fkul15-1.fna&oh=00_AfBcVyRnyCvsG9gG5NZP7I6TuLMf3Ctmfas8zQj6xsPcnw&oe=66354179', 
+            groupSrc: 'https://www.spca.org.my/wp-content/uploads/2020/11/spca-logo.png', 
             name: 'SPCA', 
             members: '-',
             link: 'https://www.spca.org.my/',
