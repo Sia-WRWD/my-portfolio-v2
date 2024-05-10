@@ -58,6 +58,19 @@
     }
 }
 
+#sakana-widget {
+    position: fixed;
+    bottom: 0px;
+    left: 20px;
+    z-index: 999;
+}
+
+::ng-deep .sakana-widget-ctrl {
+    justify-content: center;
+    width: max-content !important;
+}
+
+
 .widget-container {
     display: flex;
     justify-content: center;
@@ -123,15 +136,8 @@
     }
 }
 
-#sakana-widget {
-    position: fixed;
-    bottom: 0px;
-    left: -20px;
-    z-index: 999;
+@media screen and (max-width: 576px) {
+    #sakana-widget {
+        left: -20px !important;
+    }
 }
-
-::ng-deep .sakana-widget-ctrl {
-    justify-content: center;
-    width: max-content !important;
-}
-

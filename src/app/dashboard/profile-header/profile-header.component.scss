@@ -371,6 +371,39 @@
 
 }
 
+::ng-deep .ant-modal-header {
+    border-top: 2px solid;
+    border-bottom: 0px;
+    border-image: linear-gradient(to right, #00ccff, #3366ff) 1;
+    background: radial-gradient(circle at top left, rgba(74, 81, 92, 0.4) 0%, rgba(75, 81, 92, 0) 60%), #25282e !important;
+}
+
+::ng-deep .ant-modal-title {
+    color: #FFFFFF;
+    font-weight: 600;
+    font-family: "Motiva Sans", Sans-serif;
+    font-size: 22px;
+}
+
+::ng-deep .ant-modal-close-x {
+    color: white !important;
+}
+
+::ng-deep .ant-modal-content {
+    background: radial-gradient(circle at top left, rgba(74, 81, 92, 0.4) 0%, rgba(75, 81, 92, 0) 60%), #25282e !important;
+}
+
+::ng-deep .ant-modal-footer {
+    display: none !important;
+}
+
+.modal-content-text {
+    font-family: "Motiva Sans", Arial, Helvetica, sans-serif;
+    color: #acb2b8;
+    line-height: 1.5;
+    text-align: justify;
+}
+
 @media screen and (max-width: 910px) {
     .profile-header-container {
         margin-top: 62px;

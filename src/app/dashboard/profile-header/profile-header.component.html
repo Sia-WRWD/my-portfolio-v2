@@ -49,7 +49,7 @@
         creating engaging CSS components, training models, and exploring all
         aspects of coding.
       </div>
-      <div class="profile-info-summary-footer">
+      <div class="profile-info-summary-footer" (click)="openInfoModal()">
         <!--Need to Add Modal Later to show everything-->
         View More Info
       </div>
@@ -93,3 +93,30 @@
     </div>
   </div>
 </div>
+
+<nz-modal
+  [(nzVisible)]="isVisible"
+  nzCentered
+  [nzTitle]="modalTitle"
+  [nzContent]="modalContent"
+  [nzFooter]="modalFooter"
+  (nzOnCancel)="hideInfoModal()"
+>
+  <ng-template #modalTitle>My Information</ng-template>
+  <ng-template #modalContent>
+    <p class="modal-content-text">
+      <span class="emphasis">Hello World!</span> I'm Sia, a Full-Stack Developer
+      located in Selangor, Malaysia. I have completed a Diploma in Software
+      Engineering and a Degree specializing in AI from Asia Pacific University.
+      I have a strong passion for enhancing my coding skills, understanding
+      various programming languages, and developing awpplications and websites.
+      My expertise lies in building WebApps and websites using the MEAN Stack. I
+      enjoy exploring new frameworks like React, Angular, NextJS, among others,
+      and staying updated with emerging technologies such as ChatGPT and Stable
+      Diffusion. Additionally, I find joy in creating engaging CSS components,
+      training models, and exploring all aspects of coding.
+    </p>
+  </ng-template>
+  <ng-template #modalFooter>
+  </ng-template>
+</nz-modal>

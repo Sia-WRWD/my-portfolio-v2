@@ -3,11 +3,12 @@ import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontaweso
 import { faGithub, faInstagram, faFacebookSquare, faLinkedinIn, faHackerrank, faDev, faSteam, faDiscord } from '@fortawesome/free-brands-svg-icons';
 import VanillaTilt from 'vanilla-tilt';
 import anime from 'animejs/lib/anime.es.js';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 
 @Component({
   selector: 'app-profile-header',
   standalone: true,
-  imports: [FontAwesomeModule],
+  imports: [FontAwesomeModule, NzModalModule],
   templateUrl: './profile-header.component.html',
   styleUrl: './profile-header.component.scss'
 })
@@ -16,6 +17,7 @@ export class ProfileHeaderComponent {
 
   myAge: number = 0;
   myHandle: string = "@Sia-WRWD®";
+  isVisible: boolean = false;
 
   socials: any = [
     { iconName: 'linkedin-in', iconClass: 'linkedin', iconRedirect: 'https://www.linkedin.com/in/Sia-WRWD/' },
@@ -127,5 +129,13 @@ export class ProfileHeaderComponent {
         delay: 100
       });
     });
+  }
+
+  openInfoModal() {
+    this.isVisible = true;
+  }
+
+  hideInfoModal() {
+    this.isVisible = false;
   }
 }
