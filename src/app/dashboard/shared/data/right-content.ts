@@ -13,7 +13,7 @@ export const rightContent = [
             link: 'https://devpost.com/software/baby-ghost'
         },
         {
-            logoSrc: '../../../assets/icons/rightcontent/mychiux.png', 
+            logoSrc: '../../../assets/icons/rightcontent/myhciux.png', 
             name: 'Fusion 2022', 
             achievement: 'Silver Award',
             link: 'http://myhci-ux.org/?page_id=2593'

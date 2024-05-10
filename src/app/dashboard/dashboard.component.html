@@ -1,31 +1,53 @@
 <app-navigation></app-navigation>
 <div class="profile-page">
-    <div class="profile-animated-background">
-        @if (currentTime == 'work-time') {
-        <video playsinline autoplay loop [muted]="'muted'"
-            poster="https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/fda4fdeb85a59563cf324600f9e23477861a02d5.jpg">
-            <source
-                src="https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/ce5d466e49827ccd94c616ebca4839a4a25dfbd6.webm"
-                type="video/webm">
-            <source
-                src="https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/986083752a0c715ab6c1ade40c690e6bc2432329.mp4"
-                type="video/mp4">
-        </video>
-        } @else {
-        <video playsinline autoplay loop [muted]="'muted'"
-            poster="https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/97008e292bf440a5f4e2db5944cef69d467646a0.jpg">
-            <source
-                src="https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/44607aab956016c08fe4449861774a9804188fa7.webm"
-                type="video/webm">
-            <source
-                src="https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/e2a8428a48f49312a3fe5c45206b998af76910e8.mp4"
-                type="video/mp4">
-        </video>
-        }
+  <div class="profile-animated-background">
+    @if (currentTime == "work-time") {
+      <video
+        playsinline
+        autoplay
+        loop
+        [muted]="'muted'"
+        poster="https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/fda4fdeb85a59563cf324600f9e23477861a02d5.jpg"
+      >
+        <source
+          src="https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/ce5d466e49827ccd94c616ebca4839a4a25dfbd6.webm"
+          type="video/webm"
+        />
+        <source
+          src="https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/986083752a0c715ab6c1ade40c690e6bc2432329.mp4"
+          type="video/mp4"
+        />
+      </video>
+    } @else {
+      <video
+        playsinline
+        autoplay
+        loop
+        [muted]="'muted'"
+        poster="https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/97008e292bf440a5f4e2db5944cef69d467646a0.jpg"
+      >
+        <source
+          src="https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/44607aab956016c08fe4449861774a9804188fa7.webm"
+          type="video/webm"
+        />
+        <source
+          src="https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/e2a8428a48f49312a3fe5c45206b998af76910e8.mp4"
+          type="video/mp4"
+        />
+      </video>
+    }
 
-        <!--Debug: https://stackoverflow.com/questions/69427603/autoplay-on-video-is-not-working-after-refreshing-page-->
-    </div>
-    <app-profile-header class="flex-container profile-content"></app-profile-header>
-    <app-profile-content class="flex-container profile-content"></app-profile-content>
-    <app-footer class="flex-container profile-content"></app-footer>
+    <!--Debug: https://stackoverflow.com/questions/69427603/autoplay-on-video-is-not-working-after-refreshing-page-->
+  </div>
+  <app-profile-header
+    class="flex-container profile-header"
+  ></app-profile-header>
+  <app-profile-content
+    class="flex-container profile-content"
+  ></app-profile-content>
+  <app-footer
+    class="flex-container profile-footer"
+    scrollReached
+    (scrollReached)="onFooterIntersection()"
+  ></app-footer>
 </div>

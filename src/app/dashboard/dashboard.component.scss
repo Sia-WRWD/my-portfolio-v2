@@ -14,7 +14,7 @@
         height: 100%;
         overflow: hidden;
 
-        > video {
+        >video {
             width: 100%;
             position: absolute;
             left: 50%;
@@ -22,6 +22,15 @@
             width: 1920px; //Check again.
         }
     }
+}
+
+.profile-footer {
+    opacity: 1;
+
+    @media (not (prefers-reduced-motion: reduce)) {
+        opacity: 0;
+    }
+
 }
 
 // @media(max-width: 1920px) {

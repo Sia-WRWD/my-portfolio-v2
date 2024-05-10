@@ -10,7 +10,6 @@ import { InViewportModule } from 'ng-in-viewport';
 import { CommonModule } from '@angular/common';
 import { ScrollReachedDirective } from 'src/app/dashboard/shared/directives/scroll-reaches.directive';
 import { ScrollReachedNavDirective } from 'src/app/dashboard/shared/directives/scroll-reaches-nav.directive';
-import { ScrollService } from '../shared/service/scroll.service';
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faChevronUp, faPhone, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { ModalService } from 'ngx-modal-ease';
@@ -96,6 +95,17 @@ export class ProfileContentComponent {
         duration: 1000, // Animation duration in milliseconds
         loop: false
       });
+
+      anime({
+        targets: '.sakana-widget',
+        translateX: ['100%', 0], // Move from left (-100%) to current position (0)
+        opacity: [0, 1], // Fade from transparent (0) to opaque (1)
+        easing: 'easeInOutQuad', // Use easing for smoother animation
+        delay: 500,
+        duration: 1000, // Animation duration in milliseconds
+        loop: false
+      });
+
       this.stacksAnimationPlayed = true;
     }
   }
