@@ -57,7 +57,7 @@ export class ProfileContentComponent {
     const takina = SakanaWidget.getCharacter('takina');
     takina!.initialState = {
       ...takina!.initialState,
-      i: 0.001,
+      i: 0.011,
       d: 1,
     };
     SakanaWidget.registerCharacter('takina-slow', takina!);
