@@ -5,7 +5,7 @@ import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontaweso
 import { faAddressCard, faExclamationTriangle, faInfoCircle, faWarning } from '@fortawesome/free-solid-svg-icons';
 import { CustomValidators } from '../../shared/directives/custom-validators';
 import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
-import { environment } from 'src/assets/environment/environment';
+// import { environment } from 'src/assets/environment/environment'; // FOR TESTING
 import { NzMessageModule, NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
@@ -51,7 +51,9 @@ export class ProfileContactComponent {
       this.buttonText = "Casting the Email Spell...";
       this.sendingEmail = true; // Set sending status to true
 
-      emailjs.send(environment.emailServiceId, environment.emailTemplateId, data, environment.emailUserId)
+      // environment.emailServiceId environment.emailTemplateId environment.emailUserId // FOR TESTING
+
+      emailjs.send(process.env['EMAIL_SERVICE_ID']!, process.env['EMAIL_TEMPLATE_ID']!, data, process.env['EMAIL_USER_ID']!)
         .then((result: EmailJSResponseStatus) => {
           console.log(result);
           setTimeout(() => {
