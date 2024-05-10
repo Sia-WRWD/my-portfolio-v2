@@ -122,3 +122,16 @@
         }
     }
 }
+
+#sakana-widget {
+    position: fixed;
+    bottom: 0px;
+    left: -20px;
+    z-index: 999;
+}
+
+::ng-deep .sakana-widget-ctrl {
+    justify-content: center;
+    width: max-content !important;
+}
+

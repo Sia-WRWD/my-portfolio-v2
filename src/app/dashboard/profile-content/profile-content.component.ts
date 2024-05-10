@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, Renderer2 } from '@angular/core';
 import anime from 'animejs/lib/anime.es.js';
 import { ProfileStacksComponent } from './profile-stacks/profile-stacks.component';
 import { ProfileEducationComponent } from './profile-education/profile-education.component';
@@ -15,6 +15,7 @@ import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontaweso
 import { faChevronUp, faPhone, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { ModalService } from 'ngx-modal-ease';
 import { ScrollToTopDirective } from '../shared/directives/scroll-to-top.directive';
+import SakanaWidget from 'sakana-widget';
 
 @Component({
   selector: 'app-profile-content',
@@ -36,7 +37,7 @@ export class ProfileContentComponent {
   rightContentAnimationPlayed: boolean = false;
   modalVisible: boolean = false;
 
-  constructor(private library: FaIconLibrary, private modalService: ModalService) {
+  constructor(private library: FaIconLibrary, private modalService: ModalService, private renderer: Renderer2, private el: ElementRef) {
     library.addIcons(
       faPhone,
       faXmark,
@@ -44,8 +45,35 @@ export class ProfileContentComponent {
     )
   }
 
+  ngOninit() {
+
+  }
+
   ngAfterViewInit() {
     this.onResponsiveWorkExpIntersection();
+    this.mountSakanaWidget();
+  }
+
+  mountSakanaWidget() {
+    const takina = SakanaWidget.getCharacter('takina');
+    takina!.initialState = {
+      ...takina!.initialState,
+      i: 0.001,
+      d: 1,
+    };
+    SakanaWidget.registerCharacter('takina-slow', takina!);
+    new SakanaWidget({ character: 'takina-slow' }).mount('#sakana-widget');
+
+    // Get the parent element with class sakana-widget-ctrl
+    const parentElement = this.el.nativeElement.querySelector('.sakana-widget-ctrl');
+
+    // Get the child <a> element
+    const anchorElement = parentElement.querySelector('a');
+
+    // Remove the <a> element if it exists
+    if (anchorElement) {
+      this.renderer.removeChild(parentElement, anchorElement);
+    }
   }
 
   onStacksIntersection({ target, visible }: { target: Element; visible: boolean }): void {
