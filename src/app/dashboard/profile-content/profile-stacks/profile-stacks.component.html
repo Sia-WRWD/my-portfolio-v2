@@ -1,44 +1,24 @@
 <div class="profile-stack-container" #stack>
   <div class="profile-stack-header-container ellipsis">
     <div class="profile-stack-header-title">My Stacks</div>
-    <div class="profile-stack-header-filter-container" #filterRef>
-      @for (filter of filters; track filter) {
-        <div
-          class="profile-stack-header-filter"
-          (click)="changeStack(filter.shorthand)"
-          [attr.data-state]="filter.state"
-          [id]="filter.shorthand"
-        >
-          {{ filter.name }}
-        </div>
-      }
-    </div>
   </div>
   <div class="profile-stack-icon-display">
-    @for (language of filteredStacks; track language) {
+      @for (stack of stackList; track stack) {
         <div
           class="profile-stack-icon-container"
+          [attr.data-language]="stack.name"
+          [attr.data-opacity]="stack.opacity"
+          [attr.data-tooltip-html]="stack.name"
           nz-tooltip
           [nzTooltipTitle]="languageTemplate"
           nzTooltipPlacement="topLeft"
         >
-          <img
-            nz-image
-            [nzSrc]="language.link"
-            width="75px"
-            height="75px"
-            [nzFallback]="fallback"
-            [nzDisablePreview]="true"
-            alt=""
-            class="profile-stack-icon"
-          />
+          <img src="{{ stack.link }}" alt="" class="profile-stack-icon" />
           <ng-template #languageTemplate>
-            <span style="font-size: 15px; font-weight: bold; color: #66c0f4"
-              >{{ language.name }},
-            </span>
-            <span style="font-size: 12px">{{ language.description }}</span>
+            <span style="font-size: 15px; font-weight: bold; color: #66C0F4;">{{ stack.name }}, </span>
+            <span style="font-size: 12px;">{{ stack.description }}</span>
           </ng-template>
         </div>
-    }
+      }
   </div>
 </div>
