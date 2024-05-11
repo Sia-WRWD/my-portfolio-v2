@@ -86,7 +86,7 @@
             cursor: pointer;
 
             @media (not (prefers-reduced-motion: reduce)) {
-                transform: translateY(500px);
+                // transform: translateY(500px);
             }
 
             &[data-opacity="selected"] {
