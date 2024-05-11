@@ -113,17 +113,17 @@ export class ProfileContentComponent {
   }
 
   onWorkExpIntersection(): void {
-    if (!this.workexpAnimationPlayed && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      anime({
-        targets: '.anime-profile-workexp',
-        translateX: ['100%', 0], // Move from left (-100%) to current position (0)
-        opacity: [0, 1], // Fade from transparent (0) to opaque (1)
-        easing: 'easeInOutQuad', // Use easing for smoother animation
-        delay: 0,
-        duration: 1000 // Animation duration in milliseconds
-      });
-      this.workexpAnimationPlayed = true;
-    }
+    // if (!this.workexpAnimationPlayed && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    //   anime({
+    //     targets: '.anime-profile-workexp',
+    //     translateX: ['100%', 0], // Move from left (-100%) to current position (0)
+    //     opacity: [0, 1], // Fade from transparent (0) to opaque (1)
+    //     easing: 'easeInOutQuad', // Use easing for smoother animation
+    //     delay: 0,
+    //     duration: 1000 // Animation duration in milliseconds
+    //   });
+    //   this.workexpAnimationPlayed = true;
+    // }
   }
 
   onResponsiveWorkExpIntersection() {
