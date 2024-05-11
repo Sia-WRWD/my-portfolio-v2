@@ -19,7 +19,6 @@ export class ProfileStacksComponent {
     { name: "Database", state: "Inactive", shorthand: "Database" }
   ]
   filteredStacks: any = [];
-  hoveredStack: any = [];
   animationPlayed: boolean = false;
 
   ngOnInit() {
@@ -78,22 +77,22 @@ export class ProfileStacksComponent {
 
   playStackAnimation() {
 
-    if (this.animationPlayed == false && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      anime({
-        targets: '.profile-stack-header-filter',
-        translateX: ['800px', 0], // Move from left (-100%) to current position (0)
-        opacity: [0, 1], // Fade from transparent (0) to opaque (1)
-        delay: anime.stagger(200, { start: 500 }), // Use easing for smoother animation
-      });
+    // if (this.animationPlayed == false && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    //   anime({
+    //     targets: '.profile-stack-header-filter',
+    //     translateX: ['800px', 0], // Move from left (-100%) to current position (0)
+    //     opacity: [0, 1], // Fade from transparent (0) to opaque (1)
+    //     delay: anime.stagger(200, { start: 500 }), // Use easing for smoother animation
+    //   });
 
-      anime({
-        targets: '.profile-stack-icon-container',
-        translateY: ['500px', 0], // Move from left (-100%) to current position (0)
-        delay: anime.stagger(150, { start: 500 }), // Use easing for smoother animation
-      });
+    //   anime({
+    //     targets: '.profile-stack-icon-container',
+    //     translateY: ['500px', 0], // Move from left (-100%) to current position (0)
+    //     delay: anime.stagger(150, { start: 500 }), // Use easing for smoother animation
+    //   });
 
-      this.removeAnimationInlineStyles();
-      this.animationPlayed = true;
-    }
+    //   this.removeAnimationInlineStyles();
+    //   this.animationPlayed = true;
+    // }
   }
 }
