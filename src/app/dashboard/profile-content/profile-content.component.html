@@ -2,15 +2,16 @@
   <div class="left-profile-content-container">
     <app-profile-stacks
       class="anime-profile-stacks"
-      inViewport
-      [inViewportOptions]="{ threshold: [0] }"
-      (inViewportAction)="onStacksIntersection($event)"
+      scrollReached
+      (scrollReached)="onStacksIntersection()"
       navScrollReached
       (navScrollReached)="onNavScrollReached('stacks')"
       id="stacks"
     ></app-profile-stacks>
     <app-profile-workexp
       class="anime-profile-workexp"
+      scrollReached
+      (scrollReached)="onWorkExpIntersection()"
       navScrollReached
       (navScrollReached)="onNavScrollReached('workexp')"
       id="workexp"
