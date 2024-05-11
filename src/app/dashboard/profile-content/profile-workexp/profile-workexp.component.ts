@@ -97,6 +97,7 @@ export class ProfileWorkexpComponent {
       if (idx == index) {
         // Trigger the click event for the bullet element at the specified index
         bulletElement.click();
+        console.log(idx);
       }
     });
 

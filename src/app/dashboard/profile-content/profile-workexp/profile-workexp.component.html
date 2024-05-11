@@ -10,7 +10,7 @@
     <div class="profile-workexp-content-display">
         <!--Slider AutoPlay Configs: [autoPlay]="true" [autoPlayAtStart]="true" [autoPlayInterval]="5000" 
             [displayAutoPlayControls]="false" [autoPlayDirection]="'ltr'"-->
-        <carousel [infinite]="false" [responsive]="true" [autoslideLimitPercentCard]="60" [slideToShow]="1"
+        <carousel [infinite]="false" [responsive]="true" [autoslideLimitPercentCard]="60" [slideToShow]="1" [autoPlayAtStart]="true"
             [slideToScroll]="1" [animationTimingMs]="400" [counter]="false" [animationTimingFn]="'ease-in-out'"
             [arrows]="false" [enableMouseDrag]="true" [slideMaxWidth]="600" class="profile-workexp-content-carousel">
             @for(slide of workExpSlides; track slide; let idx = $index) {
