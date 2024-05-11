@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { stacks } from '../../shared/data/stack-data';
 import anime from 'animejs/lib/anime.es.js';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
@@ -18,7 +18,7 @@ export class ProfileStacksComponent {
     { name: "Web Dev", state: "Inactive", shorthand: "WebDev" },
     { name: "AI Model Dev", state: "Inactive", shorthand: "AIModelDev" },
     { name: "Database", state: "Inactive", shorthand: "Database" }
-  ]
+  ];
   filteredStacks: any = [];
   animationPlayed: boolean = false;
 
@@ -30,6 +30,18 @@ export class ProfileStacksComponent {
     setTimeout(() => {
       this.playStackAnimation();
     }, 1000)
+  }
+
+  trackByFilter(index: number, filter: any): string {
+    return filter.shorthand;
+  }
+
+  trackByStack(index: number, stack: any): number {
+    return index;
+  }
+
+  trackByLanguage(index: number, language: any): number {
+    return index;
   }
 
   changeStack(filterValue: string) {
@@ -77,23 +89,6 @@ export class ProfileStacksComponent {
   }
 
   playStackAnimation() {
-
-    // if (this.animationPlayed == false && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    //   anime({
-    //     targets: '.profile-stack-header-filter',
-    //     translateX: ['800px', 0], // Move from left (-100%) to current position (0)
-    //     opacity: [0, 1], // Fade from transparent (0) to opaque (1)
-    //     delay: anime.stagger(200, { start: 500 }), // Use easing for smoother animation
-    //   });
-
-    //   anime({
-    //     targets: '.profile-stack-icon-container',
-    //     translateY: ['500px', 0], // Move from left (-100%) to current position (0)
-    //     delay: anime.stagger(150, { start: 500 }), // Use easing for smoother animation
-    //   });
-
-    //   this.removeAnimationInlineStyles();
-    //   this.animationPlayed = true;
-    // }
+    // Your animation logic here
   }
 }
