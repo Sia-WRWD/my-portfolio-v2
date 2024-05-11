@@ -3,12 +3,9 @@
     <div class="profile-stack-header-title">My Stacks</div>
   </div>
   <div class="profile-stack-icon-display">
-      @for (stack of stackList; track stack) {
+      @for (stack of stacks; track stack) {
         <div
           class="profile-stack-icon-container"
-          [attr.data-language]="stack.name"
-          [attr.data-opacity]="stack.opacity"
-          [attr.data-tooltip-html]="stack.name"
           nz-tooltip
           [nzTooltipTitle]="languageTemplate"
           nzTooltipPlacement="topLeft"
