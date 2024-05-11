@@ -15,8 +15,8 @@
     </div>
   </div>
   <div class="profile-stack-icon-display">
-    @for (stack of filteredStacks; track stack) {
-      @for (language of stack.languages; track language) {
+    <!-- @for (stack of filteredStacks; track stack) {
+      @for (language of stack.languages; track language) { -->
         <div
           class="profile-stack-icon-container"
           nz-tooltip
@@ -34,14 +34,20 @@
             alt=""
             class="profile-stack-icon"
           /> -->
-          <ng-template #languageTemplate>
+          <!-- <ng-template #languageTemplate>
             <span style="font-size: 15px; font-weight: bold; color: #66c0f4"
               >{{ language.name }},
             </span>
             <span style="font-size: 12px">{{ language.description }}</span>
+          </ng-template> -->
+          <ng-template #languageTemplate>
+            <span style="font-size: 15px; font-weight: bold; color: #66c0f4"
+              >test, 
+            </span>
+            <span style="font-size: 12px">test</span>
           </ng-template>
         </div>
-      }
-    }
+      <!-- }
+    } -->
   </div>
 </div>
