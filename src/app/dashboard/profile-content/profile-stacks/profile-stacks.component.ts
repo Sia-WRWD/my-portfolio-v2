@@ -14,7 +14,6 @@ import { NzImageModule } from 'ng-zorro-antd/image';
 })
 export class ProfileStacksComponent {
   filters: any = [
-    { name: "All", state: "Active", shorthand: "All" },
     { name: "Web Dev", state: "Inactive", shorthand: "WebDev" },
     { name: "AI Model Dev", state: "Inactive", shorthand: "AIModelDev" },
     { name: "Database", state: "Inactive", shorthand: "Database" }

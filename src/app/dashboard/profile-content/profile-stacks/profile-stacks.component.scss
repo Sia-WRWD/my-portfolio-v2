@@ -89,13 +89,13 @@
                 // transform: translateY(500px);
             }
 
-            &[data-opacity="selected"] {
-                opacity: 1;
-            }
+            // &[data-opacity="selected"] {
+            //     opacity: 1;
+            // }
 
-            &[data-opacity="unselected"] {
-                opacity: 0.25;
-            }
+            // &[data-opacity="unselected"] {
+            //     opacity: 0.25;
+            // }
 
             @media (not (prefers-reduced-motion: reduce)) {
                 transition: 0.3s ease-in-out;

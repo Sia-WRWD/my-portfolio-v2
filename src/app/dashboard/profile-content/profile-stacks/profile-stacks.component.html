@@ -19,9 +19,6 @@
       @for (language of stack.languages; track language) {
         <div
           class="profile-stack-icon-container"
-          [attr.data-language]="language.name"
-          [attr.data-opacity]="language.opacity"
-          [attr.data-tooltip-html]="language.name"
           nz-tooltip
           [nzTooltipTitle]="languageTemplate"
           nzTooltipPlacement="topLeft"
