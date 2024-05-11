@@ -6,6 +6,8 @@
         <div
           class="profile-stack-header-filter"
           (click)="changeStack(filter.shorthand)"
+          [attr.data-state]="filter.state"
+          [id]="filter.shorthand"
         >
           {{ filter.name }}
         </div>
@@ -17,9 +19,9 @@
       @for (language of stack.languages; track language) {
         <div
           class="profile-stack-icon-container"
-          nz-tooltip
-          [nzTooltipTitle]="languageTemplate"
-          nzTooltipPlacement="topLeft"
+          [attr.data-language]="language.name"
+          [attr.data-opacity]="language.opacity"
+          [attr.data-tooltip-html]="language.name"
         >
           <img [src]="language.link" alt="" class="profile-stack-icon" />
           <ng-template #languageTemplate>
