@@ -80,34 +80,34 @@
             border-radius: 3px;
             background: rgba(255, 255, 255, 0.2);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-            // backdrop-filter: blur(5px);
-            // -webkit-backdrop-filter: blur(5px);
+            // backdrop-filter: blur(5px); <-- This causes lag.
+            // -webkit-backdrop-filter: blur(5px); <-- This causes lag.
             border: 1px solid rgba(255, 255, 255, 0.3);
             cursor: pointer;
 
             @media (not (prefers-reduced-motion: reduce)) {
-                // transform: translateY(500px);
+                transform: translateY(500px);
             }
 
-            // &[data-opacity="selected"] {
-            //     opacity: 1;
-            // }
+            &[data-opacity="selected"] {
+                opacity: 1;
+            }
 
-            // &[data-opacity="unselected"] {
-            //     opacity: 0.25;
-            // }
+            &[data-opacity="unselected"] {
+                opacity: 0.25;
+            }
 
-            // @media (not (prefers-reduced-motion: reduce)) {
-            //     transition: 0.3s ease-in-out;
+            @media (not (prefers-reduced-motion: reduce)) {
+                transition: 0.3s ease-in-out;
 
-            //     &:hover {
-            //         transform: scale(1.05);
-            //     }
+                &:hover {
+                    transform: scale(1.05);
+                }
 
-            //     &:hover .profile-stack-icon {
-            //         transform: scale(1.3);
-            //     }
-            // }
+                &:hover .profile-stack-icon {
+                    transform: scale(1.3);
+                }
+            }
 
             .profile-stack-icon {
                 height: 75px;

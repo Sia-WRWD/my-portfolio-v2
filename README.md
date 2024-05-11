@@ -102,6 +102,7 @@ Welcome to the source of my personal portfolio website. This website contains al
 7. [Scroll-to-Top During Refresh](https://stackoverflow.com/questions/3664381/force-page-scroll-position-to-top-at-page-refresh-in-html)
 8. [To Debug Tooltip](https://stackoverflow.com/questions/15370838/inspect-hovered-element-in-chrome)
 9. [Picture to SVG Line Art](https://tech-lagoon.com/imagechef/en/image-to-edge.html)
+10. [Backdrop-Filter Causes Lag](https://stackoverflow.com/questions/62140523/why-does-a-blur-filter-with-a-transition-have-some-lag-and-problem)
 
 #### Note for Self on SVG Icon Creation
 1. Look for existing SVG (WorldVectorLogo, Github Shields)
