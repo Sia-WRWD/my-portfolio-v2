@@ -58,6 +58,10 @@
     }
 }
 
+::ng-deep .ant-modal-body {
+    padding: 0px !important;
+}
+
 #sakana-widget {
     position: fixed;
     bottom: 0px;

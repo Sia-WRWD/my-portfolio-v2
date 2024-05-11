@@ -51,7 +51,7 @@
   <div class="backtotop-container" scrollToTop>
     <fa-icon [icon]="['fas', 'chevron-up']" class="widget-icon"></fa-icon>
   </div>
-  @if (!modalVisible) {
+  @if (!isVisible) {
     <div class="contact-widget-container" (click)="openContactModal()">
       <fa-icon [icon]="['fas', 'phone']" class="widget-icon"></fa-icon>
     </div>
@@ -60,4 +60,19 @@
       <fa-icon [icon]="['fas', 'xmark']" class="widget-icon"></fa-icon>
     </div>
   }
+  <nz-modal
+    [(nzVisible)]="isVisible"
+    [nzContent]="modalContent"
+    [nzWidth]="910"
+    [nzClosable]="false"
+    [nzCentered]="true"
+  >
+
+
+    <ng-template #modalContent>
+      <app-profile-contact></app-profile-contact>
+    </ng-template>
+
+
+  </nz-modal>
 </div>

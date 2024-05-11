@@ -12,9 +12,9 @@ import { ScrollReachedDirective } from 'src/app/dashboard/shared/directives/scro
 import { ScrollReachedNavDirective } from 'src/app/dashboard/shared/directives/scroll-reaches-nav.directive';
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faChevronUp, faPhone, faXmark } from '@fortawesome/free-solid-svg-icons';
-import { ModalService } from 'ngx-modal-ease';
 import { ScrollToTopDirective } from '../shared/directives/scroll-to-top.directive';
 import SakanaWidget from 'sakana-widget';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 
 @Component({
   selector: 'app-profile-content',
@@ -22,7 +22,7 @@ import SakanaWidget from 'sakana-widget';
   imports: [
     ProfileStacksComponent, ProfileEducationComponent, ProfileProjectComponent,
     ProfileWorkexpComponent, ProfileContactComponent, InViewportModule, ScrollReachedDirective, ScrollReachedNavDirective,
-    CommonModule, RightContentComponent, FontAwesomeModule, ScrollToTopDirective
+    CommonModule, RightContentComponent, FontAwesomeModule, ScrollToTopDirective, NzModalModule
   ],
   templateUrl: './profile-content.component.html',
   styleUrl: './profile-content.component.scss'
@@ -34,9 +34,9 @@ export class ProfileContentComponent {
   projAnimationPlayed: boolean = false;
   eduAnimationPlayed: boolean = false;
   rightContentAnimationPlayed: boolean = false;
-  modalVisible: boolean = false;
+  isVisible: boolean = false;
 
-  constructor(private library: FaIconLibrary, private modalService: ModalService, private renderer: Renderer2, private el: ElementRef) {
+  constructor(private library: FaIconLibrary, private renderer: Renderer2, private el: ElementRef) {
     library.addIcons(
       faPhone,
       faXmark,
@@ -208,51 +208,10 @@ export class ProfileContentComponent {
   }
 
   openContactModal() {
-    var animationModalEnter;
-    var animationModalLeave;
-
-    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      animationModalEnter = 'enter-scale-down 0.3s ease-out';
-      animationModalLeave = 'scale-rotate 1s linear';
-    } else {
-      animationModalEnter = 'fade-in 0.3s linear';
-      animationModalLeave = 'fade-out 0.3s linear';
-    }
-
-    this.modalService.open(ProfileContactComponent, {
-      modal: {
-        enter: animationModalEnter,
-        leave: animationModalLeave,
-      },
-      overlay: {
-        leave: 'fade-out 0.1s linear',
-      },
-      size: {
-        width: '100%', //calc(100% - 0.5rem - 14px - 40px)
-      },
-      actions: {
-        click: false,
-        escape: false
-      }
-    })
-
-    this.toggleBodyOverflow(true);
+    this.isVisible = true;
   }
 
   closeContactModal() {
-    this.modalService.close();
-    this.toggleBodyOverflow(false);
-  }
-
-  toggleBodyOverflow(hide: boolean) {
-    const body = document.querySelector('body');
-
-    if (hide == true) {
-      body!.style.overflow = "hidden";
-      this.modalVisible = true;
-    } else {
-      body!.removeAttribute('style');
-      this.modalVisible = false;
-    }
+    this.isVisible = false;
   }
 }
