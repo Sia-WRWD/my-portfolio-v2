@@ -1,6 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import anime from 'animejs/lib/anime.es.js';
-import { CarouselModule } from 'ngx-carousel-ease';
+import { NzCarouselFlipStrategy, NzCarouselModule, NZ_CAROUSEL_CUSTOM_STRATEGIES } from 'ng-zorro-antd/carousel';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { workExp } from '../../shared/data/work-exp';
 import { ScrollReachedDirective } from 'src/app/dashboard/shared/directives/scroll-reaches.directive';
@@ -8,18 +8,27 @@ import { ScrollReachedDirective } from 'src/app/dashboard/shared/directives/scro
 @Component({
   selector: 'app-profile-workexp',
   standalone: true,
-  imports: [CarouselModule, CommonModule, ScrollReachedDirective, NgOptimizedImage],
+  imports: [NzCarouselModule, CommonModule, ScrollReachedDirective, NgOptimizedImage],
   templateUrl: './profile-workexp.component.html',
-  styleUrl: './profile-workexp.component.scss'
+  styleUrl: './profile-workexp.component.scss',
+  providers: [
+    {
+      provide: NZ_CAROUSEL_CUSTOM_STRATEGIES,
+      useValue: [
+        { name: 'flip', strategy: NzCarouselFlipStrategy }
+      ]
+    }
+  ]
 })
 export class ProfileWorkexpComponent {
   animationPlayed: boolean = false;
   workExpSlides: any = workExp;
+  strategy = 'flip';
 
   constructor(private el: ElementRef) { }
 
   ngAfterViewInit() {
-
+    this.resizeCarouselDescObserver();
   }
 
   removeAnimationInlineStyles() {
@@ -85,31 +94,60 @@ export class ProfileWorkexpComponent {
     return window.innerWidth > mobileScreenWidth;
   }
 
-  slideTo(index: number) {
-    const bulletsContainer = document.querySelector('.bullets-container');
-    const bulletElements = bulletsContainer!.querySelectorAll('.bullet');
+  // slideTo(index: number) {
+  //   const bulletsContainer = document.querySelector('.bullets-container');
+  //   const bulletElements = bulletsContainer!.querySelectorAll('.bullet');
 
-    bulletElements.forEach((bullet, idx) => {
-      // Assert bullet as HTMLElement
-      const bulletElement = bullet as HTMLElement;
+  //   bulletElements.forEach((bullet, idx) => {
+  //     // Assert bullet as HTMLElement
+  //     const bulletElement = bullet as HTMLElement;
 
-      // Check if the index matches the desired index
-      if (idx == index) {
-        // Trigger the click event for the bullet element at the specified index
-        bulletElement.click();
-        console.log(idx);
-      }
-    });
+  //     // Check if the index matches the desired index
+  //     if (idx == index) {
+  //       // Trigger the click event for the bullet element at the specified index
+  //       bulletElement.click();
+  //       console.log(idx);
+  //     }
+  //   });
 
-    this.workExpSlides.forEach((slide: any, idx: any) => {
-      // If the index matches the desired index
-      if (idx == index) {
-        // Set the selected property to 'active'
-        slide.selected = 'active';
-      } else {
-        // Set the selected property to 'inactive' for all other slides
-        slide.selected = 'inactive';
-      }
-    });
+  //   this.workExpSlides.forEach((slide: any, idx: any) => {
+  //     // If the index matches the desired index
+  //     if (idx == index) {
+  //       // Set the selected property to 'active'
+  //       slide.selected = 'active';
+  //     } else {
+  //       // Set the selected property to 'inactive' for all other slides
+  //       slide.selected = 'inactive';
+  //     }
+  //   });
+  // }
+
+  resizeCarouselDescObserver() {
+    // Select the first slide's content element
+    const firstSlideContent = document.querySelector('.profile-workexp-content-carousel-slide:nth-child(1) .slide-card-desc-desc');
+  
+    // Check if ResizeObserver is supported by the browser
+    if ('ResizeObserver' in window) {
+      // Create a new ResizeObserver
+      const resizeObserver = new ResizeObserver(entries => {
+        // Get the first entry (which corresponds to the first slide's content)
+        const firstEntry = entries[0];
+        
+        // Get the height of the first slide's content
+        const firstSlideHeight = firstEntry.contentRect.height;
+  
+        // Apply the height to the other slides' content
+        const otherSlides = document.querySelectorAll('.carousel-slide:nth-child(n+2) .slide-card-desc-desc');
+        otherSlides.forEach((slide: any) => {
+          slide.style.height = firstSlideHeight + 'px';
+        });
+      });
+  
+      // Observe changes in the size of the first slide's content
+      resizeObserver.observe(firstSlideContent!);
+    } else {
+      // Fallback for browsers that do not support ResizeObserver
+      console.error('ResizeObserver is not supported');
+    }
   }
 }

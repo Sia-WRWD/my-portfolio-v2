@@ -1,57 +1,78 @@
-<div class="profile-workexp-container" #workexp scrollReached (scrollReached)="onIntersection()">
-    <div class="profile-workexp-header-container ellipsis">
-        <div class="profile-workexp-header-title">
-            My Work-Exp
-        </div>
-        <div class="profile-workexp-header-lifelong-time">
-
-        </div>
-    </div>
-    <div class="profile-workexp-content-display">
-        <!--Slider AutoPlay Configs: [autoPlay]="true" [autoPlayAtStart]="true" [autoPlayInterval]="5000" 
-            [displayAutoPlayControls]="false" [autoPlayDirection]="'ltr'"-->
-        <carousel [infinite]="false" [responsive]="true" [autoslideLimitPercentCard]="60" [slideToShow]="1" [autoPlayAtStart]="true"
-            [slideToScroll]="1" [animationTimingMs]="400" [counter]="false" [animationTimingFn]="'ease-in-out'"
-            [arrows]="false" [enableMouseDrag]="true" [slideMaxWidth]="600" class="profile-workexp-content-carousel">
-            @for(slide of workExpSlides; track slide; let idx = $index) {
-                <div class="profile-workexp-content-carousel-slide carousel-slide" [id]="idx">
-                    <div class="slide-card-header">
-                        <a href="{{slide.link}}" target="_blank" class="slide-card-header-logo-container" tabindex="-1">
-                            <img [ngSrc]="slide.imgSrc" alt="{{slide.name}}" title="{{slide.name}}"
-                                class="slide-card-header-logo" width="50" height="50"/>
-                        </a>
-                        <span class="slide-card-header-name">{{slide.name}}</span>
-                    </div>
-                    <div class="slide-card-desc">
-                        <div class="slide-card-desc-padding">
-                            <div class="slide-card-desc-role" [ngClass]="slide.class">
-                                {{slide.role}}
-                            </div>
-                            <div class="slide-card-desc-date-duration">
-                                <span class="slide-card-desc-date">{{slide.startDate}} - {{slide.endDate}}</span>
-                                &nbsp;
-                                <span class="slide-card-desc-duration">({{slide.totalDuration}})</span>
-                            </div>
-                        </div>
-                        <div class="slide-card-desc-desc" [innerHTML]="slide.jobDesc">
-
-                        </div>
-                    </div>
-                @if(slide.name == "Whale Cloud") {
-                    <div class="slide-card-footer">
-
-                    </div>
-                }
+<div
+  class="profile-workexp-container"
+  #workexp
+  scrollReached
+  (scrollReached)="onIntersection()"
+>
+  <div class="profile-workexp-header-container ellipsis">
+    <div class="profile-workexp-header-title">My Work-Exp</div>
+    <div class="profile-workexp-header-lifelong-time"></div>
+  </div>
+  <div class="profile-workexp-content-display">
+    <nz-carousel
+      [nzEffect]="strategy"
+      class="profile-workexp-content-carousel"
+      [nzDots]="true"
+      [nzLoop]="false"
+    >
+      @for (slide of workExpSlides; track slide; let idx = $index) {
+        <div
+          class="profile-workexp-content-carousel-slide carousel-slide"
+          [id]="idx"
+          nz-carousel-content
+        >
+          <div class="slide-card-header">
+            <a
+              href="{{ slide.link }}"
+              target="_blank"
+              class="slide-card-header-logo-container"
+              tabindex="-1"
+            >
+              <img
+                [ngSrc]="slide.imgSrc"
+                alt="{{ slide.name }}"
+                title="{{ slide.name }}"
+                class="slide-card-header-logo"
+                width="50"
+                height="50"
+              />
+            </a>
+            <span class="slide-card-header-name">{{ slide.name }}</span>
+          </div>
+          <div class="slide-card-desc">
+            <div class="slide-card-desc-padding">
+              <div class="slide-card-desc-role" [ngClass]="slide.class">
+                {{ slide.role }}
+              </div>
+              <div class="slide-card-desc-date-duration">
+                <span class="slide-card-desc-date"
+                  >{{ slide.startDate }} - {{ slide.endDate }}</span
+                >
+                &nbsp;
+                <span class="slide-card-desc-duration"
+                  >({{ slide.totalDuration }})</span
+                >
+              </div>
             </div>
-            }
-        </carousel>
-        <div class="profile-workexp-content-carousel-filter">
-            @for(slide of workExpSlides; track slide) {
-            <div class="carousel-filter-icon-container" [ngClass]="slide.class" (click)="slideTo(slide.bullet)"
-                [attr.data-selected]="slide.selected">
-                <img [ngSrc]="slide.imgSrc" height="50" width="50">
-            </div>
-            }
+            <div class="slide-card-desc-desc" [innerHTML]="slide.jobDesc"></div>
+          </div>
+          @if (slide.name == "Whale Cloud") {
+            <div class="slide-card-footer"></div>
+          }
         </div>
-    </div>
+      }
+    </nz-carousel>
+    <!-- <div class="profile-workexp-content-carousel-filter">
+      @for (slide of workExpSlides; track slide) {
+        <div
+          class="carousel-filter-icon-container"
+          [ngClass]="slide.class"
+          (click)="slideTo(slide.bullet)"
+          [attr.data-selected]="slide.selected"
+        >
+          <img [ngSrc]="slide.imgSrc" height="50" width="50" />
+        </div>
+      }
+    </div> -->
+  </div>
 </div>
