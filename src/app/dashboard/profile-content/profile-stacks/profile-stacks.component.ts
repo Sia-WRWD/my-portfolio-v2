@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { stacks } from '../../shared/data/stack-data';
 import anime from 'animejs/lib/anime.es.js';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
@@ -12,6 +12,7 @@ import { NgOptimizedImage } from '@angular/common';
   styleUrl: './profile-stacks.component.scss'
 })
 export class ProfileStacksComponent {
+  @ViewChild('filterRef') filterRef!: ElementRef;
   filters: any = [
     { name: "All", state: "Active", shorthand: "All" },
     { name: "Web Dev", state: "Inactive", shorthand: "WebDev" },
@@ -63,8 +64,8 @@ export class ProfileStacksComponent {
 
   removeAnimationInlineStyles() {
     setTimeout(() => {
-      const filterElements = document.querySelectorAll('.profile-stack-header-filter');
-      filterElements.forEach(element => {
+      const filterElements = this.filterRef.nativeElement.querySelectorAll('.profile-stack-header-filter');
+      filterElements.forEach((element: any) => {
         element.removeAttribute('style');
       });
 
