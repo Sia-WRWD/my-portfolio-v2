@@ -20,6 +20,7 @@ import { ScrollReachedDirective } from 'src/app/dashboard/shared/directives/scro
     }
   ]
 })
+
 export class ProfileWorkexpComponent {
   animationPlayed: boolean = false;
   workExpSlides: any = workExp;
@@ -122,27 +123,31 @@ export class ProfileWorkexpComponent {
   //   });
   // }
 
+  slideTo() {
+    this
+  }
+
   resizeCarouselDescObserver() {
     // Select the first slide's content element
     const firstSlideContent = document.querySelector('.profile-workexp-content-carousel-slide:nth-child(1) .slide-card-desc-desc');
-  
+
     // Check if ResizeObserver is supported by the browser
     if ('ResizeObserver' in window) {
       // Create a new ResizeObserver
       const resizeObserver = new ResizeObserver(entries => {
         // Get the first entry (which corresponds to the first slide's content)
         const firstEntry = entries[0];
-        
+
         // Get the height of the first slide's content
         const firstSlideHeight = firstEntry.contentRect.height;
-  
+
         // Apply the height to the other slides' content
         const otherSlides = document.querySelectorAll('.carousel-slide:nth-child(n+2) .slide-card-desc-desc');
         otherSlides.forEach((slide: any) => {
           slide.style.height = firstSlideHeight + 'px';
         });
       });
-  
+
       // Observe changes in the size of the first slide's content
       resizeObserver.observe(firstSlideContent!);
     } else {
