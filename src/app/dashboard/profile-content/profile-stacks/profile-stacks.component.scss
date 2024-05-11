@@ -97,17 +97,17 @@
             //     opacity: 0.25;
             // }
 
-            @media (not (prefers-reduced-motion: reduce)) {
-                transition: 0.3s ease-in-out;
+            // @media (not (prefers-reduced-motion: reduce)) {
+            //     transition: 0.3s ease-in-out;
 
-                &:hover {
-                    transform: scale(1.05);
-                }
+            //     &:hover {
+            //         transform: scale(1.05);
+            //     }
 
-                &:hover .profile-stack-icon {
-                    transform: scale(1.3);
-                }
-            }
+            //     &:hover .profile-stack-icon {
+            //         transform: scale(1.3);
+            //     }
+            // }
 
             .profile-stack-icon {
                 height: 75px;
