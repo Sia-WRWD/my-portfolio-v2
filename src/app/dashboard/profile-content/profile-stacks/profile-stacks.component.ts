@@ -81,13 +81,13 @@ export class ProfileStacksComponent {
         targets: '.profile-stack-header-filter',
         translateX: ['800px', 0], // Move from left (-100%) to current position (0)
         opacity: [0, 1], // Fade from transparent (0) to opaque (1)
-        delay: anime.stagger(200, { start: 1250 }), // Use easing for smoother animation
+        delay: anime.stagger(200, { start: 750 }), // Use easing for smoother animation
       });
 
       anime({
         targets: '.profile-stack-icon-container',
         translateY: ['500px', 0], // Move from left (-100%) to current position (0)
-        delay: anime.stagger(150, { start: 1250 }), // Use easing for smoother animation
+        delay: anime.stagger(150, { start: 750 }), // Use easing for smoother animation
       });
 
       this.removeAnimationInlineStyles();
