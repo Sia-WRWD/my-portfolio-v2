@@ -1,5 +1,11 @@
 <div class="profile-content-container">
   <div class="left-profile-content-container">
+    <app-profile-stacks
+      class="anime-profile-stacks"
+      navScrollReached
+      (navScrollReached)="onNavScrollReached('stacks')"
+      id="stacks"
+    ></app-profile-stacks>
     <app-profile-workexp
       class="anime-profile-workexp"
       scrollReached
@@ -16,12 +22,6 @@
       (navScrollReached)="onNavScrollReached('project')"
       id="project"
     ></app-profile-project>
-    <app-profile-stacks
-    class="anime-profile-stacks"
-    navScrollReached
-    (navScrollReached)="onNavScrollReached('stacks')"
-    id="stacks"
-  ></app-profile-stacks>
     <app-profile-education
       class="anime-profile-edu"
       scrollReached

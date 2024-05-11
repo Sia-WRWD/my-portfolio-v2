@@ -10,7 +10,8 @@
       [nzTooltipTitle]="languageTemplate"
       nzTooltipPlacement="topLeft"
     >
-      <img src="{{ stack.link }}" alt="" class="profile-stack-icon" />
+      <p>{{ stack.name }}</p>
+      <!-- <img src="{{ stack.link }}" alt="" class="profile-stack-icon" /> -->
       <ng-template #languageTemplate>
         <span style="font-size: 15px; font-weight: bold; color: #66c0f4"
           >{{ stack.name }},
