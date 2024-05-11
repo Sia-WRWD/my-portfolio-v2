@@ -2,22 +2,47 @@
   <div class="profile-stack-header-container ellipsis">
     <div class="profile-stack-header-title">My Stacks</div>
     <div class="profile-stack-header-filter-container" #filterRef>
-      <div class="profile-stack-header-filter" *ngFor="let filter of filters; trackBy: trackByFilter" (click)="changeStack(filter.shorthand)" [attr.data-state]="filter.state" [id]="filter.shorthand">
-        {{ filter.name }}
-      </div>
+      @for (filter of filters; track filter) {
+        <div
+          class="profile-stack-header-filter"
+          (click)="changeStack(filter.shorthand)"
+          [attr.data-state]="filter.state"
+          [id]="filter.shorthand"
+        >
+          {{ filter.name }}
+        </div>
+      }
     </div>
   </div>
   <div class="profile-stack-icon-display">
-    <div *ngFor="let stack of filteredStacks; let i = index; trackBy: trackByStack">
-      <div *ngFor="let language of stack.languages; let j = index; trackBy: trackByLanguage">
-        <div class="profile-stack-icon-container" [attr.data-language]="language.name" [attr.data-opacity]="language.opacity" [attr.data-tooltip-html]="language.name" nz-tooltip [nzTooltipTitle]="languageTemplate" nzTooltipPlacement="topLeft">
-          <img [src]="language.link" alt="" class="profile-stack-icon" />
+    @for (stack of filteredStacks; track stack) {
+      @for (language of stack.languages; track language) {
+        <div
+          class="profile-stack-icon-container"
+          [attr.data-language]="language.name"
+          [attr.data-opacity]="language.opacity"
+          [attr.data-tooltip-html]="language.name"
+          nz-tooltip
+          [nzTooltipTitle]="languageTemplate"
+          nzTooltipPlacement="topLeft"
+        >
+          <img
+            nz-image
+            [nzSrc]="language.link"
+            width="75px"
+            height="75px"
+            [nzFallback]="fallback"
+            alt=""
+            class="profile-stack-icon"
+          />
           <ng-template #languageTemplate>
-            <span style="font-size: 15px; font-weight: bold; color: #66C0F4;">{{ language.name }}, </span>
-            <span style="font-size: 12px;">{{ language.description }}</span>
+            <span style="font-size: 15px; font-weight: bold; color: #66c0f4"
+              >{{ language.name }},
+            </span>
+            <span style="font-size: 12px">{{ language.description }}</span>
           </ng-template>
         </div>
-      </div>
-    </div>
+      }
+    }
   </div>
 </div>
