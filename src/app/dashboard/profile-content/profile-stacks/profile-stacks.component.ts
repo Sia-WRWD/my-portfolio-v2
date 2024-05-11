@@ -172,19 +172,19 @@ export class ProfileStacksComponent {
   //   }
   // }
 
-  removeAnimationInlineStyles() {
-    setTimeout(() => {
-      const filterElements = document.querySelectorAll('.profile-stack-header-filter');
-      filterElements.forEach(element => {
-        element.removeAttribute('style');
-      });
+  // removeAnimationInlineStyles() {
+  //   setTimeout(() => {
+  //     const filterElements = document.querySelectorAll('.profile-stack-header-filter');
+  //     filterElements.forEach(element => {
+  //       element.removeAttribute('style');
+  //     });
 
-      // const stackElements = document.querySelectorAll('.profile-stack-icon-container');
-      // stackElements.forEach(element => {
-      //   element.removeAttribute('style');
-      // });
-    }, 5000)
-  }
+  //     // const stackElements = document.querySelectorAll('.profile-stack-icon-container');
+  //     // stackElements.forEach(element => {
+  //     //   element.removeAttribute('style');
+  //     // });
+  //   }, 5000)
+  // }
 
   playStackAnimation() {
 
