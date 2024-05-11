@@ -74,8 +74,8 @@ export class ProfileContentComponent {
     }
   }
 
-  onStacksIntersection(): void {
-    if (this.stacksAnimationPlayed == false && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  onStacksIntersection({ target, visible }: { target: Element; visible: boolean }): void {
+    if (this.stacksAnimationPlayed == false && visible && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
 
       var delay = 0;
 
