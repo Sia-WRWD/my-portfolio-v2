@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import anime from 'animejs/lib/anime.es.js';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
-import { NgOptimizedImage } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { NzImageModule } from 'ng-zorro-antd/image';
 
 @Component({
   selector: 'app-profile-stacks',
   standalone: true,
-  imports: [NzToolTipModule, NgOptimizedImage, NzImageModule],
+  imports: [NzToolTipModule, NgOptimizedImage, NzImageModule, CommonModule],
   templateUrl: './profile-stacks.component.html',
   styleUrl: './profile-stacks.component.scss'
 })
