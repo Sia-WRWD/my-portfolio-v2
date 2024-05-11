@@ -49,9 +49,6 @@ export class ProfileContentComponent {
   }
 
   ngAfterViewInit() {
-    if (window.innerWidth < 910) {
-      this.onResponsiveWorkExpIntersection();
-    }
     this.mountSakanaWidget();
   }
 
@@ -114,26 +111,20 @@ export class ProfileContentComponent {
 
   onWorkExpIntersection(): void {
     if (!this.workexpAnimationPlayed && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      anime({
-        targets: '.anime-profile-workexp',
-        translateX: ['100%', 0], // Move from left (-100%) to current position (0)
-        opacity: [0, 1], // Fade from transparent (0) to opaque (1)
-        easing: 'easeInOutQuad', // Use easing for smoother animation
-        delay: 0,
-        duration: 1000 // Animation duration in milliseconds
-      });
-      this.workexpAnimationPlayed = true;
-    }
-  }
+      var delay = 0;
 
-  onResponsiveWorkExpIntersection() {
-    if (!this.workexpAnimationPlayed && !window.matchMedia('(prefers-reduced-motion: reduce)').matches && window.innerHeight >= 754 && window.innerWidth < 910) {
+      if (window.innerWidth < 910) {
+        delay = 1000
+      } else {
+        delay = 0
+      }
+
       anime({
         targets: '.anime-profile-workexp',
         translateX: ['100%', 0], // Move from left (-100%) to current position (0)
         opacity: [0, 1], // Fade from transparent (0) to opaque (1)
         easing: 'easeInOutQuad', // Use easing for smoother animation
-        delay: 1000,
+        delay: delay,
         duration: 1000 // Animation duration in milliseconds
       });
       this.workexpAnimationPlayed = true;
