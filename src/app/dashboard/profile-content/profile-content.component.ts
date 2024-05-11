@@ -49,7 +49,9 @@ export class ProfileContentComponent {
   }
 
   ngAfterViewInit() {
-    this.onResponsiveWorkExpIntersection();
+    if (window.innerWidth > 910) {
+      this.onResponsiveWorkExpIntersection();
+    }
     this.mountSakanaWidget();
   }
 
