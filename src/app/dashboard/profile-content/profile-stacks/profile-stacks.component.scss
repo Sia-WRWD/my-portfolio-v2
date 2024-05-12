@@ -41,6 +41,10 @@
                 transition: 0.3s ease-in-out;
                 line-height: 26px;
 
+                @media (not (prefers-reduced-motion: reduce)) {
+                    transform: translateX(800px);
+                }
+
                 &[data-state="Inactive"] {
                     @media (not (prefers-reduced-motion: reduce)) {
                         &:hover {
