@@ -104,9 +104,10 @@ Welcome to the source of my personal portfolio website. This website contains al
 9. [Picture to SVG Line Art](https://tech-lagoon.com/imagechef/en/image-to-edge.html)
 10. [Backdrop-Filter Causes Lag](https://stackoverflow.com/questions/62140523/why-does-a-blur-filter-with-a-transition-have-some-lag-and-problem)
 
-#### Note for Self on SVG Icon Creation
+#### Note for Self on SVG Icon Creation & Netlify Prod Env
 1. Look for existing SVG (WorldVectorLogo, Github Shields)
 2. To enable icon color change based on the css property of color, change the fill in svg path to "currentColor".
+3. For Netlify Prod Env, make sure that the types: ["node"] is added to tsconfig.app.json instead.
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
