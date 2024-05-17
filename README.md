@@ -132,7 +132,7 @@ This markdown was created with the help of the template provided by user othneil
 [commit-url]: https://github.com/ir4un/pt-v01/commits/main/
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/scz2401/
-[product-screenshot]: /public/githubthumb.png
+[product-screenshot]: /public/githubthumb.jpg
 [Angular.js]: https://img.shields.io/badge/Angular-20232A?style=for-the-badge&logo=angular&logoColor=61DAFB
 [Angular-url]: https://angular.io/
 [SASS]: https://img.shields.io/badge/SASS-20232A?style=for-the-badge&logo=sass
