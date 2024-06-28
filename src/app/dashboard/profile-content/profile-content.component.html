@@ -44,35 +44,3 @@
     <app-right-content></app-right-content>
   </div>
 </div>
-
-<div id="sakana-widget" class="sakana-widget"></div>
-
-<div class="widget-container">
-  <div class="backtotop-container" scrollToTop>
-    <fa-icon [icon]="['fas', 'chevron-up']" class="widget-icon"></fa-icon>
-  </div>
-  @if (!isVisible) {
-    <div class="contact-widget-container" (click)="openContactModal()">
-      <fa-icon [icon]="['fas', 'phone']" class="widget-icon"></fa-icon>
-    </div>
-  } @else {
-    <div class="contact-widget-container" (click)="closeContactModal()">
-      <fa-icon [icon]="['fas', 'xmark']" class="widget-icon"></fa-icon>
-    </div>
-  }
-  <nz-modal
-    [(nzVisible)]="isVisible"
-    [nzContent]="modalContent"
-    [nzWidth]="910"
-    [nzClosable]="false"
-    [nzCentered]="true"
-  >
-
-
-    <ng-template #modalContent>
-      <app-profile-contact></app-profile-contact>
-    </ng-template>
-
-
-  </nz-modal>
-</div>

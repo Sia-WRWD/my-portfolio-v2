@@ -7,14 +7,14 @@
         autoplay
         loop
         [muted]="'muted'"
-        poster="https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/fda4fdeb85a59563cf324600f9e23477861a02d5.jpg"
+        [poster]="profileBgPoster"
       >
         <source
-          src="https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/ce5d466e49827ccd94c616ebca4839a4a25dfbd6.webm"
+          [src]="profileBgWebm"
           type="video/webm"
         />
         <source
-          src="https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/986083752a0c715ab6c1ade40c690e6bc2432329.mp4"
+          [src]="profileBgMp4"
           type="video/mp4"
         />
       </video>
@@ -24,14 +24,14 @@
         autoplay
         loop
         [muted]="'muted'"
-        poster="https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/97008e292bf440a5f4e2db5944cef69d467646a0.jpg"
+        [poster]="profileBgOffPoster"
       >
         <source
-          src="https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/44607aab956016c08fe4449861774a9804188fa7.webm"
+          [src]="profileBgOffWebm"
           type="video/webm"
         />
         <source
-          src="https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/e2a8428a48f49312a3fe5c45206b998af76910e8.mp4"
+          [src]="profileBgOffMp4"
           type="video/mp4"
         />
       </video>
@@ -39,15 +39,56 @@
 
     <!--Debug: https://stackoverflow.com/questions/69427603/autoplay-on-video-is-not-working-after-refreshing-page-->
   </div>
-  <app-profile-header
+  <app-profile-header [ngStyle]="{'visibility': isProfileContentVisible ? 'visible' : 'hidden'}"
     class="flex-container profile-header"
   ></app-profile-header>
-  <app-profile-content
+  <app-profile-content [ngStyle]="{'visibility': isProfileContentVisible ? 'visible' : 'hidden'}"
     class="flex-container profile-content"
   ></app-profile-content>
   <app-footer
-    class="flex-container profile-footer"
+    class="flex-container profile-footer" [ngStyle]="{'visibility': isProfileContentVisible ? 'visible' : 'hidden'}"
     scrollReached
     (scrollReached)="onFooterIntersection()"
   ></app-footer>
+</div>
+
+<div id="sakana-widget" class="sakana-widget"></div>
+
+<div class="widget-container">
+  <div class="backtotop-container" scrollToTop>
+    <fa-icon [icon]="['fas', 'chevron-up']" class="widget-icon"></fa-icon>
+  </div>
+  @if (!isProfileContentVisible) {
+    <div class="background-widget-container" (click)="hideProfileContent()">
+      <fa-icon [icon]="['fas', 'image']" class="widget-icon"></fa-icon>
+    </div>
+  } @else {
+    <div class="background-widget-container" (click)="showProfileContent()">
+      <fa-icon [icon]="['fas', 'images']" class="widget-icon"></fa-icon>
+    </div>
+  }
+  @if (!isModalVisible) {
+    <div class="contact-widget-container" (click)="openContactModal()">
+      <fa-icon [icon]="['fas', 'phone']" class="widget-icon"></fa-icon>
+    </div>
+  } @else {
+    <div class="contact-widget-container" (click)="closeContactModal()">
+      <fa-icon [icon]="['fas', 'xmark']" class="widget-icon"></fa-icon>
+    </div>
+  }
+  <nz-modal
+    [(nzVisible)]="isModalVisible"
+    [nzContent]="modalContent"
+    [nzWidth]="910"
+    [nzClosable]="false"
+    [nzCentered]="true"
+  >
+
+
+    <ng-template #modalContent>
+      <app-profile-contact></app-profile-contact>
+    </ng-template>
+
+
+  </nz-modal>
 </div>

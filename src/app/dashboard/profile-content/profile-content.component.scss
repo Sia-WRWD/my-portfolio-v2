@@ -58,68 +58,6 @@
     }
 }
 
-::ng-deep .ant-modal-body {
-    padding: 0px !important;
-}
-
-#sakana-widget {
-    position: fixed;
-    bottom: 0px;
-    left: 20px;
-    z-index: 999;
-}
-
-::ng-deep .sakana-widget-ctrl {
-    justify-content: center;
-    width: max-content !important;
-}
-
-
-.widget-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-    z-index: 9999;
-    gap: 7px;
-
-    .contact-widget-container, .backtotop-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 10px;
-        border-radius: 50%;
-        background: #171d25;
-        height: 40px;
-        width: 40px;
-        filter: drop-shadow(1px 2px 3px black);
-        font-size: 24px;
-        cursor: pointer;
-        transition: 0.3s ease-in-out;
-
-        .widget-icon {
-            filter: drop-shadow(1px 1px 1px black);
-            color: white;
-            transition: 0.3s ease-in-out;
-        }
-
-        @media (not (prefers-reduced-motion: reduce)) {
-            &:hover .widget-icon {
-                color: #EB4D26;
-                animation: ring 3s .7s ease-in-out infinite;
-                transform: scale(1.2);
-            }
-        }
-    }
-
-    .backtotop-container {
-        display: none;
-    }
-}
-
 @media screen and (max-width: 910px) {
     .profile-content-container {
         flex-direction: column;
@@ -137,11 +75,5 @@
             order: 1;
             padding: 10px 10px 0px 10px !important;
         }
-    }
-}
-
-@media screen and (max-width: 576px) {
-    #sakana-widget {
-        left: -20px !important;
     }
 }

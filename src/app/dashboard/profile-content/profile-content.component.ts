@@ -11,10 +11,7 @@ import { CommonModule } from '@angular/common';
 import { ScrollReachedDirective } from 'src/app/dashboard/shared/directives/scroll-reaches.directive';
 import { ScrollReachedNavDirective } from 'src/app/dashboard/shared/directives/scroll-reaches-nav.directive';
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faChevronUp, faPhone, faXmark } from '@fortawesome/free-solid-svg-icons';
-import { ScrollToTopDirective } from '../shared/directives/scroll-to-top.directive';
-import SakanaWidget from 'sakana-widget';
-import { NzModalModule } from 'ng-zorro-antd/modal';
+import { faChevronUp, faImage, faImages, faPhone, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-profile-content',
@@ -22,7 +19,7 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
   imports: [
     ProfileStacksComponent, ProfileEducationComponent, ProfileProjectComponent,
     ProfileWorkexpComponent, ProfileContactComponent, InViewportModule, ScrollReachedDirective, ScrollReachedNavDirective,
-    CommonModule, RightContentComponent, FontAwesomeModule, ScrollToTopDirective, NzModalModule
+    CommonModule, RightContentComponent, FontAwesomeModule
   ],
   templateUrl: './profile-content.component.html',
   styleUrl: './profile-content.component.scss'
@@ -34,13 +31,16 @@ export class ProfileContentComponent {
   projAnimationPlayed: boolean = false;
   eduAnimationPlayed: boolean = false;
   rightContentAnimationPlayed: boolean = false;
-  isVisible: boolean = false;
+  isModalVisible: boolean = false;
+  isProfileContentVisible: boolean = false;
 
-  constructor(private library: FaIconLibrary, private renderer: Renderer2, private el: ElementRef) {
+  constructor(private library: FaIconLibrary) {
     library.addIcons(
       faPhone,
       faXmark,
-      faChevronUp
+      faChevronUp,
+      faImages,
+      faImage
     )
   }
 
@@ -49,29 +49,7 @@ export class ProfileContentComponent {
   }
 
   ngAfterViewInit() {
-    this.mountSakanaWidget();
-  }
-
-  mountSakanaWidget() {
-    const takina = SakanaWidget.getCharacter('takina');
-    takina!.initialState = {
-      ...takina!.initialState,
-      i: 0.011,
-      d: 1,
-    };
-    SakanaWidget.registerCharacter('takina-slow', takina!);
-    new SakanaWidget({ character: 'takina-slow' }).mount('#sakana-widget');
-
-    // Get the parent element with class sakana-widget-ctrl
-    const parentElement = this.el.nativeElement.querySelector('.sakana-widget-ctrl');
-
-    // Get the child <a> element
-    const anchorElement = parentElement.querySelector('a');
-
-    // Remove the <a> element if it exists
-    if (anchorElement) {
-      this.renderer.removeChild(parentElement, anchorElement);
-    }
+    
   }
 
   onStacksIntersection({ target, visible }: { target: Element; visible: boolean }): void {
@@ -198,13 +176,5 @@ export class ProfileContentComponent {
         this.rightContentAnimationPlayed = true;
       }
     }
-  }
-
-  openContactModal() {
-    this.isVisible = true;
-  }
-
-  closeContactModal() {
-    this.isVisible = false;
   }
 }

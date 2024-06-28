@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, Renderer2 } from '@angular/core';
 import { NavigationComponent } from './navigation/navigation.component';
 import { ProfileHeaderComponent } from './profile-header/profile-header.component';
 import { LoaderComponent } from './loader/loader.component';
@@ -6,11 +6,20 @@ import { ProfileContentComponent } from './profile-content/profile-content.compo
 import { FooterComponent } from './footer/footer.component';
 import anime from 'animejs/lib/anime.es.js';
 import { ScrollReachedDirective } from './shared/directives/scroll-reaches.directive';
+import { SeasoncheckerService } from './shared/service/season-checker.service';
+import { CommonModule } from '@angular/common';
+import SakanaWidget from 'sakana-widget';
+import { NzModalModule } from 'ng-zorro-antd/modal';
+import { ProfileContactComponent } from './profile-content/profile-contact/profile-contact.component';
+import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faPhone, faXmark, faChevronUp, faImages, faImage } from '@fortawesome/free-solid-svg-icons';
+import { ScrollToTopDirective } from './shared/directives/scroll-to-top.directive';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [NavigationComponent, ProfileHeaderComponent, LoaderComponent, ProfileContentComponent, FooterComponent, ScrollReachedDirective],
+  imports: [NavigationComponent, ProfileHeaderComponent, LoaderComponent, ProfileContentComponent, FooterComponent, ScrollReachedDirective, CommonModule,
+    ProfileContactComponent, NzModalModule, FontAwesomeModule, ScrollToTopDirective],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
@@ -18,11 +27,54 @@ export class DashboardComponent {
 
   currentTime: any = "";
   footerAnimationPlayed: boolean = false;
+  profileBgMp4: string = "";
+  profileBgWebm: string = "";
+  profileBgPoster: string = "";
+  profileBgOffMp4: string = "";
+  profileBgOffWebm: string = "";
+  profileBgOffPoster: string = "";
+  isProfileContentVisible: boolean = true;
+  isModalVisible: boolean = false;
 
-  constructor() { }
+  constructor(private library: FaIconLibrary, private seasonChecker: SeasoncheckerService, private renderer: Renderer2, private el: ElementRef) {
+    library.addIcons(
+      faPhone,
+      faXmark,
+      faChevronUp,
+      faImages,
+      faImage
+    )
+  }
 
   ngOnInit() {
     this.getCurrentTime();
+    this.bgOnSeasonChange();
+  }
+
+  ngAfterViewInit() {
+    this.mountSakanaWidget();
+  }
+
+  mountSakanaWidget() {
+    const takina = SakanaWidget.getCharacter('takina');
+    takina!.initialState = {
+      ...takina!.initialState,
+      i: 0.011,
+      d: 1,
+    };
+    SakanaWidget.registerCharacter('takina-slow', takina!);
+    new SakanaWidget({ character: 'takina-slow' }).mount('#sakana-widget');
+
+    // Get the parent element with class sakana-widget-ctrl
+    const parentElement = this.el.nativeElement.querySelector('.sakana-widget-ctrl');
+
+    // Get the child <a> element
+    const anchorElement = parentElement.querySelector('a');
+
+    // Remove the <a> element if it exists
+    if (anchorElement) {
+      this.renderer.removeChild(parentElement, anchorElement);
+    }
   }
 
   onFooterIntersection() {
@@ -50,6 +102,58 @@ export class DashboardComponent {
     }
   }
 
+  bgOnSeasonChange() {
+    const season = this.seasonChecker.getCurrentSeason();
+
+    // Define the seasons by date ranges
+    if (season == "Winter") { //Winter
+      this.profileBgMp4 = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/986083752a0c715ab6c1ade40c690e6bc2432329.mp4";
+      this.profileBgWebm = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/ce5d466e49827ccd94c616ebca4839a4a25dfbd6.webm";
+      this.profileBgPoster = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/fda4fdeb85a59563cf324600f9e23477861a02d5.jpg";
+
+      this.profileBgOffMp4 = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/97008e292bf440a5f4e2db5944cef69d467646a0.jpg";
+      this.profileBgOffWebm = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/44607aab956016c08fe4449861774a9804188fa7.webm";
+      this.profileBgOffPoster = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/e2a8428a48f49312a3fe5c45206b998af76910e8.mp4";
+    } else if (season == "Spring") { //Spring
+      this.profileBgMp4 = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/986083752a0c715ab6c1ade40c690e6bc2432329.mp4";
+      this.profileBgWebm = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/ce5d466e49827ccd94c616ebca4839a4a25dfbd6.webm";
+      this.profileBgPoster = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/fda4fdeb85a59563cf324600f9e23477861a02d5.jpg";
+
+      this.profileBgOffMp4 = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/97008e292bf440a5f4e2db5944cef69d467646a0.jpg";
+      this.profileBgOffWebm = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/44607aab956016c08fe4449861774a9804188fa7.webm";
+      this.profileBgOffPoster = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/e2a8428a48f49312a3fe5c45206b998af76910e8.mp4";
+    } else if (season == "Summer") { //Summer
+      this.profileBgMp4 = "https://cdn.akamai.steamstatic.com/steamcommunity/public/images/items/2861690/19a2c5ac064c8e252627ee866d77c5806df2b34c.mp4";
+      this.profileBgWebm = "https://cdn.akamai.steamstatic.com/steamcommunity/public/images/items/2861690/bf7539d121e6733f868ecafb4b2f21626af9de9a.webm";
+      this.profileBgPoster = "https://cdn.akamai.steamstatic.com/steamcommunity/public/images/items/2861690/45c9dc610960631bba87e510f19f7515db3026d2.jpg";
+
+      this.profileBgOffMp4 = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/97008e292bf440a5f4e2db5944cef69d467646a0.jpg";
+      this.profileBgOffWebm = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/44607aab956016c08fe4449861774a9804188fa7.webm";
+      this.profileBgOffPoster = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/e2a8428a48f49312a3fe5c45206b998af76910e8.mp4";
+    } else if (season == "Autumn") { //Autumn
+      this.profileBgMp4 = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/986083752a0c715ab6c1ade40c690e6bc2432329.mp4";
+      this.profileBgWebm = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/ce5d466e49827ccd94c616ebca4839a4a25dfbd6.webm";
+      this.profileBgPoster = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/fda4fdeb85a59563cf324600f9e23477861a02d5.jpg";
+
+      this.profileBgOffMp4 = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/97008e292bf440a5f4e2db5944cef69d467646a0.jpg";
+      this.profileBgOffWebm = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/44607aab956016c08fe4449861774a9804188fa7.webm";
+      this.profileBgOffPoster = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/e2a8428a48f49312a3fe5c45206b998af76910e8.mp4";
+    }
+  }
+
+  openContactModal() {
+    this.isModalVisible = true;
+  }
+
+  closeContactModal() {
+    this.isModalVisible = false;
+  }
+
+  hideProfileContent() {
+    this.isProfileContentVisible = true;
+  }
+
+  showProfileContent() {
+    this.isProfileContentVisible = false;
+  }
 }
-
-
