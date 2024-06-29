@@ -39,14 +39,14 @@
 
     <!--Debug: https://stackoverflow.com/questions/69427603/autoplay-on-video-is-not-working-after-refreshing-page-->
   </div>
-  <app-profile-header [ngStyle]="{'visibility': isProfileContentVisible ? 'visible' : 'hidden'}"
+  <app-profile-header 
     class="flex-container profile-header"
   ></app-profile-header>
-  <app-profile-content [ngStyle]="{'visibility': isProfileContentVisible ? 'visible' : 'hidden'}"
+  <app-profile-content
     class="flex-container profile-content"
   ></app-profile-content>
   <app-footer
-    class="flex-container profile-footer" [ngStyle]="{'visibility': isProfileContentVisible ? 'visible' : 'hidden'}"
+    class="flex-container profile-footer"
     scrollReached
     (scrollReached)="onFooterIntersection()"
   ></app-footer>
@@ -58,7 +58,7 @@
   <div class="backtotop-container" scrollToTop>
     <fa-icon [icon]="['fas', 'chevron-up']" class="widget-icon"></fa-icon>
   </div>
-  @if (!isProfileContentVisible) {
+  @if (isProfileContentVisible) {
     <div class="background-widget-container" (click)="hideProfileContent()">
       <fa-icon [icon]="['fas', 'image']" class="widget-icon"></fa-icon>
     </div>

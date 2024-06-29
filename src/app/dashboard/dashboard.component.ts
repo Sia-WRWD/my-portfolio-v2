@@ -150,10 +150,24 @@ export class DashboardComponent {
   }
 
   hideProfileContent() {
-    this.isProfileContentVisible = true;
+    this.isProfileContentVisible = false;
+    anime({
+      targets: ['.profile-header', '.profile-content', '.profile-footer'],
+      opacity: [1, 0], // Fade from transparent (0) to opaque (1)
+      easing: 'easeInOutQuad', // Use easing for smoother animation
+      delay: 0,
+      duration: 1000 // Animation duration in milliseconds
+    });
   }
 
   showProfileContent() {
-    this.isProfileContentVisible = false;
+    this.isProfileContentVisible = true;
+    anime({
+      targets: ['.profile-header', '.profile-content', '.profile-footer'],
+      opacity: [0, 1], // Fade from transparent (0) to opaque (1)
+      easing: 'easeInOutQuad', // Use easing for smoother animation
+      delay: 0,
+      duration: 1000 // Animation duration in milliseconds
+    });
   }
 }
