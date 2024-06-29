@@ -78,7 +78,7 @@ export class DashboardComponent {
   }
 
   onFooterIntersection() {
-    if (!this.footerAnimationPlayed && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    if (!this.footerAnimationPlayed && !window.matchMedia('(prefers-reduced-motion: reduce)').matches && this.isProfileContentVisible) {
       anime({
         targets: '.profile-footer',
         translateX: ['-100%', 0], // Move from left (-100%) to current position (0)
@@ -156,15 +156,26 @@ export class DashboardComponent {
       opacity: [1, 0], // Fade from transparent (0) to opaque (1)
       easing: 'easeInOutQuad', // Use easing for smoother animation
       delay: 0,
-      duration: 1000 // Animation duration in milliseconds
+      duration: 1000, // Animation duration in milliseconds
+      complete: function (anim) {
+        // After the animation completes, set display to none
+        document.querySelectorAll('.profile-header, .profile-content, .profile-footer').forEach(el => {
+          (el as HTMLElement).style.visibility = 'hidden';
+        });
+      }
     });
   }
 
   showProfileContent() {
+    // Before starting the animation, set display to block
+    document.querySelectorAll('.profile-header, .profile-content, .profile-footer').forEach(el => {
+      (el as HTMLElement).style.visibility = 'visible';
+    });
     this.isProfileContentVisible = true;
     anime({
       targets: ['.profile-header', '.profile-content', '.profile-footer'],
       opacity: [0, 1], // Fade from transparent (0) to opaque (1)
+      visibility: ['hidden', 'visible'],
       easing: 'easeInOutQuad', // Use easing for smoother animation
       delay: 0,
       duration: 1000 // Animation duration in milliseconds
