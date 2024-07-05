@@ -1,3 +1,7 @@
+:host {
+    width: 100%;
+}
+
 .right-profile-content-inner-container {
     height: 100%;
     width: 100%;
@@ -52,7 +56,7 @@
     }
 
     .anime-status,
-    .anime-hackathons,
+    .anime-achievements,
     .anime-groups,
     .anime-friends,
     .anime-games {
@@ -63,26 +67,24 @@
         }
     }
 
-    .content-hackathon {
+    .content-achievement {
         margin-bottom: 40px;
 
-        .hackathon-logo-showcase {
+        .achievement-logo-showcase {
             display: flex;
             flex-direction: row;
             gap: 16px;
 
-            a {
-                .hackathon-logo {
-                    width: 54px;
-                    height: 54px;
-                    filter: drop-shadow(1px 2px 2px rgb(0, 0, 0, 0.7));
+            .achievement-logo {
+                width: 54px;
+                height: 54px;
+                filter: drop-shadow(1px 2px 2px rgb(0, 0, 0, 0.7));
 
-                    @media (not (prefers-reduced-motion: reduce)) {
-                        transition: 0.2s ease-in;
+                @media (not (prefers-reduced-motion: reduce)) {
+                    transition: 0.2s ease-in;
 
-                        &:hover {
-                            transform: scale(1.15);
-                        }
+                    &:hover {
+                        transform: scale(1.15);
                     }
                 }
             }
@@ -355,7 +357,7 @@
             order: 1;
         }
 
-        .content-hackathon {
+        .content-achievement {
             order: 2;
             width: calc(50% - 20px);
             padding: 8px;
@@ -363,10 +365,10 @@
             margin-bottom: 12px;
             overflow: hidden;
 
-            .hackathon-logo-showcase {
+            .achievement-logo-showcase {
                 gap: 8px;
 
-                .hackathon-logo {
+                .achievement-logo {
                     width: 36px !important;
                     height: 36px !important;
                 }
@@ -456,7 +458,7 @@
 
 @media screen and (max-width: 620px) {
 
-    .content-hackathon .hackathon-logo-showcase,
+    .content-achievement .achievement-logo-showcase,
     .content-friends .highlighted-friends,
     .content-groups .groups-main,
     .content-games .highlighted-games {
@@ -471,10 +473,32 @@
         margin-right: 4px !important;
     }
 
-    .content-hackathon .hackathon-logo-showcase::-webkit-scrollbar,
+    .content-achievement .achievement-logo-showcase::-webkit-scrollbar,
     .content-friends .highlighted-friends::-webkit-scrollbar,
     .content-groups .groups-main::-webkit-scrollbar,
     .content-games .highlighted-games::-webkit-scrollbar {
         height: 0px !important;
     }
+}
+
+.content-achievement .achievement-logo-showcase,
+.content-friends .highlighted-friends,
+.content-groups .groups-main,
+.content-games .highlighted-games {
+    max-width: 260px;
+    overflow: hidden;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+}
+
+.regular-groups-pic,
+.small-groups-pic {
+    margin-right: 4px !important;
+}
+
+.content-achievement .achievement-logo-showcase::-webkit-scrollbar,
+.content-friends .highlighted-friends::-webkit-scrollbar,
+.content-groups .groups-main::-webkit-scrollbar,
+.content-games .highlighted-games::-webkit-scrollbar {
+    height: 0px !important;
 }

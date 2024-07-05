@@ -1,27 +1,33 @@
 export const rightContent = [
-    {hackathons: [
+    {achievements: [
+        {
+            logoSrc: '../../../assets/icons/proj/immortal.png', 
+            name: 'Dota 2 Ranked', 
+            award: 'Immortal',
+            link: 'https://www.esports.net/wiki/guides/dota-2-ranks/'
+        },
         {
             logoSrc: '../../../assets/icons/proj/classroom.png', 
             name: 'MS AI Classroom Hackathon', 
-            achievement: 'Participation',
+            award: 'Participation',
             link: 'https://devpost.com/software/classinsight-pro'
         },
         {
             logoSrc: '../../../assets/icons/rightcontent/melb.png', 
             name: 'Melbourne Hack 2022', 
-            achievement: 'Participation',
+            award: 'Participation',
             link: 'https://devpost.com/software/baby-ghost'
         },
         {
             logoSrc: '../../../assets/icons/rightcontent/myhciux.png', 
             name: 'Fusion 2022', 
-            achievement: 'Silver Award',
+            award: 'Silver Award',
             link: 'http://myhci-ux.org/?page_id=2593'
         },
         {
             logoSrc: 'https://vhackusm.com/img/VHack_Logo.png', 
             name: 'Varsity Hackathon 2022', 
-            achievement: 'Participation',
+            award: 'Participation',
             link: 'https://www.instagram.com/p/CbB9nwpB7X6/?hl=en'
         },
     ]},

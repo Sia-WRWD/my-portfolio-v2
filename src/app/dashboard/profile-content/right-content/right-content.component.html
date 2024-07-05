@@ -5,29 +5,35 @@
   >
     Currently {{ status }}
   </div>
-  <div class="right-item content-hackathon">
-    <div class="mb4 anime-hackathons">
-      <span class="title hackathon-title">Hackathons</span>
+  <div class="right-item content-achievement">
+    <div class="mb4 anime-achievements">
+      <span class="title achievement-title">Achievements</span>
       &nbsp;
-      <span class="total hackathon-total">4</span>
+      <span class="total achievement-total">{{ achievementsLength }}</span>
     </div>
-    <div class="hackathon-logo-showcase">
+    <div class="achievement-logo-showcase" #achievementShowcase>
       @for (content of rightContent; track content) {
-        @if (content.hasOwnProperty("hackathons")) {
-          @for (hackathon of content.hackathons; track hackathon) {
-            <a [href]="hackathon.link" target="_blank">
-              <img
-                [src]="hackathon.logoSrc"
-                [alt]="hackathon.name + '.jpg'"
-                class="hackathon-logo"
-                nz-tooltip
-                [nzTooltipTitle]="hackathonTemplate"
-              />
-              <ng-template #hackathonTemplate>
-                <span style="font-weight: bold; font-size: 14px; color: #66C0F4;">{{ hackathon.name }}</span><br>
-                <span style="font-size: 13px;">{{ hackathon.achievement }}</span>
-              </ng-template>
-            </a>
+        @if (content.hasOwnProperty("achievements")) {
+          @for (achievement of content.achievements; track achievement) {
+            <img
+              [src]="achievement.logoSrc"
+              [alt]="achievement.name + '.jpg'"
+              class="achievement-logo"
+              nz-tooltip
+              [nzTooltipTitle]="achievementTemplate"
+            />
+            <ng-template #achievementTemplate>
+              <span
+                style="font-weight: bold; font-size: 14px; color: #66c0f4"
+                >{{ achievement.name }}</span
+              ><br />
+              <div style="display: flex; flex-direction: row; align-items: center;">
+                <span style="font-size: 13px; margin-right: 5px;">{{ achievement.award }}</span>
+                <a [href]="achievement.link" target="_blank">
+                  <fa-icon [icon]="['fas', 'up-right-from-square']"></fa-icon>
+                </a>
+              </div>
+            </ng-template>
           }
         }
       }
@@ -38,7 +44,7 @@
     <div class="mb4 anime-groups">
       <span class="title groups-title" style="cursor: default">Groups</span>
       &nbsp;
-      <span class="total groups-total">3</span>
+      <span class="total groups-total">{{ groupsLength }}</span>
     </div>
     <div class="groups-main">
       @for (content of rightContent; track content) {
@@ -79,7 +85,7 @@
       <div class="mb4 anime-games">
         <span class="title games-title link">Games</span>
         &nbsp;
-        <span class="total games-total">48</span>
+        <span class="total games-total">{{ gamesLength }}</span>
       </div>
     </a>
     <div class="highlighted-games">
@@ -97,7 +103,10 @@
                   nzTooltipPlacement="topRight"
                 />
                 <ng-template #gameTemplate>
-                  <span style="font-weight: bold; font-size: 14px;">{{ game.name }}</span><br>
+                  <span style="font-weight: bold; font-size: 14px">{{
+                    game.name
+                  }}</span
+                  ><br />
                 </ng-template>
               </div>
             </a>
@@ -114,7 +123,7 @@
     <div class="content-friends-container anime-friends">
       <span class="title friends-title">Friends</span>
       &nbsp;
-      <span class="total friends-total">420</span>
+      <span class="total friends-total">{{ friendsLength }}</span>
     </div>
     <div class="highlighted-friends">
       @for (content of rightContent; track content) {

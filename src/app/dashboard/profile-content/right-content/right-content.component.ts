@@ -1,21 +1,25 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { activities } from '../../shared/data/activity';
 import { rightContent } from '../../shared/data/right-content';
 import { ScrollReachedDirective } from 'src/app/dashboard/shared/directives/scroll-reaches.directive';
 import anime from 'animejs/lib/anime.es.js';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-right-content',
   standalone: true,
-  imports: [CommonModule, ScrollReachedDirective, NzToolTipModule],
+  imports: [CommonModule, ScrollReachedDirective, NzToolTipModule, FontAwesomeModule],
   templateUrl: './right-content.component.html',
   styleUrl: './right-content.component.scss'
 })
 export class RightContentComponent {
+  @ViewChild('achievementShowcase') achievementShowcase!: ElementRef;
+
   statusAnimationPlayed: boolean = false;
-  hackathonsAnimationPlayed: boolean = false;
+  achievementsAnimationPlayed: boolean = false;
   groupsAnimationPlayed: boolean = false;
   gamesAnimationPlayed: boolean = false;
   friendsAnimationPlayed: boolean = false;
@@ -24,6 +28,16 @@ export class RightContentComponent {
   statusColor: string = "";
   activities: any = activities;
   rightContent: any = rightContent;
+  achievementsLength: number = 0;
+  groupsLength: number = 0;
+  gamesLength: number = 49;
+  friendsLength: number = 420;
+
+  constructor(library: FaIconLibrary) {
+    library.addIcons(
+      faUpRightFromSquare
+    )
+  }
 
   ngOnInit() {
     this.statusUpdate();
@@ -32,6 +46,16 @@ export class RightContentComponent {
 
   ngAfterViewInit() {
     this.onInitAnimation();
+    this.setVariablesLength();
+
+    if (window.innerWidth > 910) {
+      this.desktopAchievementHorizontalScroll();
+    }
+  }
+
+  setVariablesLength() {
+    this.achievementsLength = this.rightContent.find((content: any) => 'achievements' in content)?.achievements.length || 0;
+    this.groupsLength = this.rightContent.find((content: any) => 'groups' in content)?.groups.length || 0;
   }
 
   statusUpdate() {
@@ -69,7 +93,7 @@ export class RightContentComponent {
 
   onInitAnimation() {
     this.onStatusReached();
-    this.onHackathonReached();
+    this.onAchievementsReached();
     this.onGroupsReached();
 
     if (window.innerWidth <= 910) {
@@ -94,10 +118,10 @@ export class RightContentComponent {
     }
   }
 
-  onHackathonReached() {
-    if (!this.hackathonsAnimationPlayed && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  onAchievementsReached() {
+    if (!this.achievementsAnimationPlayed && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       anime({
-        targets: '.anime-hackathons',
+        targets: '.anime-achievements',
         translateX: ['-100%', 0], // Move from left (-100%) to current position (0)
         opacity: [0, 1], // Fade from transparent (0) to opaque (1)
         easing: 'easeInOutQuad', // Use easing for smoother animation
@@ -106,12 +130,12 @@ export class RightContentComponent {
       });
 
       anime({
-        targets: '.hackathon-logo',
+        targets: '.achievement-logo',
         opacity: [0, 1], // Fade from transparent (0) to opaque (1)
         delay: anime.stagger(300, { start: 1600 }), // Use easing for smoother animation
       });
 
-      this.hackathonsAnimationPlayed = true;
+      this.achievementsAnimationPlayed = true;
     }
   }
 
@@ -156,14 +180,14 @@ export class RightContentComponent {
           duration: 1000 // Animation duration in milliseconds
         });
 
-        
-      anime({
-        targets: '.game-container',
-        translateX: ['100%', 0],
-        opacity: [0, 1], // Fade from transparent (0) to opaque (1)
-        easing: 'easeInOutQuad',
-        delay: anime.stagger(300, { start: 0 }), // Use easing for smoother animation
-      });
+
+        anime({
+          targets: '.game-container',
+          translateX: ['100%', 0],
+          opacity: [0, 1], // Fade from transparent (0) to opaque (1)
+          easing: 'easeInOutQuad',
+          delay: anime.stagger(300, { start: 0 }), // Use easing for smoother animation
+        });
 
         this.gamesAnimationPlayed = true;
       }
@@ -235,10 +259,20 @@ export class RightContentComponent {
         translateY: ['100%', 0], // Move from left (-100%) to current position (0)
         opacity: [0, 1], // Fade from transparent (0) to opaque (1)
         easing: 'easeInOutQuad', // Use easing for smoother animation
-        delay: anime.stagger(300, { start: 3000}),
+        delay: anime.stagger(300, { start: 3000 }),
       });
 
       this.friendsAnimationPlayed = true;
     }
+  }
+
+  desktopAchievementHorizontalScroll() {
+    const showcase = this.achievementShowcase.nativeElement as HTMLElement;
+
+    showcase.addEventListener('wheel', (event) => {
+      event.preventDefault();
+      const scrollAmount = event.deltaY; // Reduce scroll speed by a factor of 0.2
+      showcase.scrollLeft += scrollAmount;
+    });
   }
 }
