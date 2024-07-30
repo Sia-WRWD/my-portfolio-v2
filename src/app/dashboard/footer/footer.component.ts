@@ -1,4 +1,5 @@
 import { Component, ElementRef } from '@angular/core';
+import { formatDate } from '@angular/common';
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faGithub, faFacebookSquare, faInstagram, faLinkedinIn, faHackerrank, faDev, faSteam, faDiscord } from '@fortawesome/free-brands-svg-icons';
 import { ScrollService } from '../shared/service/scroll.service';
@@ -15,6 +16,7 @@ import anime from 'animejs/lib/anime.es.js';
 export class FooterComponent {
 
   footerAnimationPlayed: boolean = false;
+  currentYear: string = "";
   socials: any = [
     { iconName: 'linkedin-in', iconClass: 'linkedin', iconRedirect: 'https://www.linkedin.com/in/Sia-WRWD/' },
     { iconName: 'github', iconClass: 'github', iconRedirect: 'https://github.com/Sia-WRWD' },
@@ -45,6 +47,16 @@ export class FooterComponent {
       faSteam,
       faDiscord
     )
+  }
+
+  ngOnInit() {
+    this.getYear();
+  }
+
+  getYear() {
+    const date = new Date();
+    this.currentYear = formatDate(date, "yyyy", "en");
+    console.log(this.currentYear);
   }
 
   onFooterIntersection() {
