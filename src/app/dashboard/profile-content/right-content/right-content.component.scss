@@ -2,6 +2,12 @@
     width: 100%;
 }
 
+a {
+    &:hover {
+        color: white;
+    }
+}
+
 .right-profile-content-inner-container {
     height: 100%;
     width: 100%;
@@ -210,6 +216,11 @@
                     .groups-main-name {
                         margin-bottom: 3px;
                         font-size: 13px;
+                        transition: 0.2s ease-in-out;
+
+                        &:hover {
+                            color: #42B0EE;
+                        }
                     }
 
                     .groups-main-members {
@@ -334,6 +345,11 @@
                             display: flex;
                             justify-content: center;
                             align-items: center;
+                            transition: 0.2s ease-in-out;
+
+                            &:hover {
+                                color: #42B0EE;
+                            }
                         }
                     }
                 }
@@ -486,9 +502,12 @@
 .content-groups .groups-main,
 .content-games .highlighted-games {
     max-width: 260px;
+    scroll-behavior: smooth;
+}
+
+.content-achievement .achievement-logo-showcase {
     overflow: hidden;
     overflow-x: scroll;
-    scroll-behavior: smooth;
 }
 
 .regular-groups-pic,
