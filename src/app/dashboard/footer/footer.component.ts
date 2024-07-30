@@ -56,7 +56,6 @@ export class FooterComponent {
   getYear() {
     const date = new Date();
     this.currentYear = formatDate(date, "yyyy", "en");
-    console.log(this.currentYear);
   }
 
   onFooterIntersection() {
