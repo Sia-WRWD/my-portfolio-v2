@@ -9,14 +9,8 @@
         [muted]="'muted'"
         [poster]="profileBgPoster"
       >
-        <source
-          [src]="profileBgWebm"
-          type="video/webm"
-        />
-        <source
-          [src]="profileBgMp4"
-          type="video/mp4"
-        />
+        <source [src]="profileBgWebm" type="video/webm" />
+        <source [src]="profileBgMp4" type="video/mp4" />
       </video>
     } @else {
       <video
@@ -26,20 +20,14 @@
         [muted]="'muted'"
         [poster]="profileBgOffPoster"
       >
-        <source
-          [src]="profileBgOffWebm"
-          type="video/webm"
-        />
-        <source
-          [src]="profileBgOffMp4"
-          type="video/mp4"
-        />
+        <source [src]="profileBgOffWebm" type="video/webm" />
+        <source [src]="profileBgOffMp4" type="video/mp4" />
       </video>
     }
     <div class="background-tile"></div>
     <!--Debug: https://stackoverflow.com/questions/69427603/autoplay-on-video-is-not-working-after-refreshing-page-->
   </div>
-  <app-profile-header 
+  <app-profile-header
     class="flex-container profile-header"
   ></app-profile-header>
   <app-profile-content
@@ -67,15 +55,15 @@
       <fa-icon [icon]="['fas', 'images']" class="widget-icon"></fa-icon>
     </div>
   }
-  @if (!isModalVisible) {
-    <div class="contact-widget-container" (click)="openContactModal()">
-      <fa-icon [icon]="['fas', 'phone']" class="widget-icon"></fa-icon>
-    </div>
-  } @else {
+  <!-- @if (!isModalVisible) { -->
+  <div class="contact-widget-container" (click)="openContactModal()">
+    <fa-icon [icon]="['fas', 'phone']" class="widget-icon"></fa-icon>
+  </div>
+  <!-- } @else {
     <div class="contact-widget-container" (click)="closeContactModal()">
       <fa-icon [icon]="['fas', 'xmark']" class="widget-icon"></fa-icon>
     </div>
-  }
+  } -->
   <nz-modal
     [(nzVisible)]="isModalVisible"
     [nzContent]="modalContent"
@@ -83,12 +71,8 @@
     [nzClosable]="false"
     [nzCentered]="true"
   >
-
-
     <ng-template #modalContent>
       <app-profile-contact></app-profile-contact>
     </ng-template>
-
-
   </nz-modal>
 </div>

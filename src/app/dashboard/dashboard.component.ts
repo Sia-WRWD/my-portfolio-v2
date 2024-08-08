@@ -14,6 +14,7 @@ import { ProfileContactComponent } from './profile-content/profile-contact/profi
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPhone, faXmark, faChevronUp, faImages, faImage } from '@fortawesome/free-solid-svg-icons';
 import { ScrollToTopDirective } from './shared/directives/scroll-to-top.directive';
+import { ModalService } from './shared/service/modal.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -37,7 +38,8 @@ export class DashboardComponent {
   isModalVisible: boolean = false;
   sakanaAnimationPlayed: boolean = false;
 
-  constructor(private library: FaIconLibrary, private seasonChecker: SeasoncheckerService, private renderer: Renderer2, private el: ElementRef) {
+  constructor(private library: FaIconLibrary, private seasonChecker: SeasoncheckerService, private renderer: Renderer2, 
+    private el: ElementRef, private modalService: ModalService) {
     library.addIcons(
       faPhone,
       faXmark,
@@ -50,10 +52,17 @@ export class DashboardComponent {
   ngOnInit() {
     this.getCurrentTime();
     this.bgOnSeasonChange();
+    this.modalVisibilitySubscription();
   }
 
   ngAfterViewInit() {
     this.mountSakanaWidget();
+  }
+
+  modalVisibilitySubscription() {
+    this.modalService.isVisible$.subscribe(isVisible => {
+      this.isModalVisible = isVisible;
+    });
   }
 
   mountSakanaWidget() {
@@ -161,11 +170,7 @@ export class DashboardComponent {
   }
 
   openContactModal() {
-    this.isModalVisible = true;
-  }
-
-  closeContactModal() {
-    this.isModalVisible = false;
+    this.modalService.showModal();
   }
 
   hideProfileContent() {

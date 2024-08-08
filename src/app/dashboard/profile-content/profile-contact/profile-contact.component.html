@@ -11,6 +11,12 @@
             >
               <fa-icon [icon]="['fas', 'info-circle']"></fa-icon>
             </div>
+            <div
+              class="actions-close"
+              (click)="hideModal()"
+            >
+              <fa-icon [icon]="['fas', 'close']"></fa-icon>
+            </div>
           </div>
         </div>
         <div class="form-name">
@@ -19,6 +25,7 @@
             class="form-name-input"
             id="name"
             [formControl]="contactName"
+            autocomplete="off"
             placeholder="Your Name, a reminder of companionship amidst the icy expanse"
           />
           @if (contactName.hasError("required") && contactName.touched) {
@@ -39,6 +46,7 @@
             type="email"
             class="form-email-input"
             id="email"
+            autocomplete="off"
             [formControl]="contactEmail"
             placeholder="Your Email, like a beacon in the frozen wilderness"
           />
@@ -58,6 +66,7 @@
         <div class="form-message">
           <textarea
             class="form-message-textarea"
+            autocomplete="off"
             [formControl]="contactMessage"
             [placeholder]="msgPlaceholder"
           ></textarea>
