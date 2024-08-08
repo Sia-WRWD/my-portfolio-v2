@@ -279,7 +279,9 @@
                     }
 
                     &:checked+.responsive-header-menu .responsive-header-menu-options-container {
-                        left: -16px
+                        visibility: visible;
+                        opacity: 1;
+                        animation: fadeIn 0.5s;
                     }
                 }
 
@@ -289,15 +291,19 @@
                     transition: .5s ease-in-out;
                     box-shadow: 0 0 0 0 #FFF, 0 0 0 0 #FFF;
                     cursor: pointer;
+                    overflow: hidden;
 
                     .responsive-header-menu-options-container {
                         width: 100vw;
                         height: 100vh;
-                        position: absolute;
+                        position: fixed;
                         top: 62px;
-                        left: 3000px;
+                        left: 0px;
+                        visibility: hidden;
                         background: rgb(0, 0, 0, 0.5);
-                        transition: 0.5s ease-in-out;
+                        opacity: 0;
+                        transition: visibility 0s, opacity 0.5s linear;
+                        z-index: 1000;
 
                         .responsive-header-menu-options-inner-container {
                             display: flex;
@@ -397,4 +403,13 @@
     100% {
         transform: translateX(0px);
     }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
 }

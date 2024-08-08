@@ -73,16 +73,6 @@ export class ProfileContentComponent {
         loop: false
       });
 
-      anime({
-        targets: '.sakana-widget',
-        translateX: ['100%', 0], // Move from left (-100%) to current position (0)
-        opacity: [0, 1], // Fade from transparent (0) to opaque (1)
-        easing: 'easeInOutQuad', // Use easing for smoother animation
-        delay: 500,
-        duration: 1000, // Animation duration in milliseconds
-        loop: false
-      });
-
       this.stacksAnimationPlayed = true;
     }
   }

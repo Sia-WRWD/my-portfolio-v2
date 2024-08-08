@@ -35,6 +35,7 @@ export class DashboardComponent {
   profileBgOffPoster: string = "";
   isProfileContentVisible: boolean = true;
   isModalVisible: boolean = false;
+  sakanaAnimationPlayed: boolean = false;
 
   constructor(private library: FaIconLibrary, private seasonChecker: SeasoncheckerService, private renderer: Renderer2, private el: ElementRef) {
     library.addIcons(
@@ -74,6 +75,24 @@ export class DashboardComponent {
     // Remove the <a> element if it exists
     if (anchorElement) {
       this.renderer.removeChild(parentElement, anchorElement);
+    }
+
+    this.onSakanaMounted(); //Sakana Animation
+  }
+
+  onSakanaMounted() {
+    if (this.sakanaAnimationPlayed == false && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      anime({
+        targets: '.sakana-widget',
+        translateX: ['100%', 0], // Move from left (-100%) to current position (0)
+        opacity: [0, 1], // Fade from transparent (0) to opaque (1)
+        easing: 'easeInOutQuad', // Use easing for smoother animation
+        delay: 500,
+        duration: 1000, // Animation duration in milliseconds
+        loop: false
+      });
+      
+      this.sakanaAnimationPlayed = true;
     }
   }
 
