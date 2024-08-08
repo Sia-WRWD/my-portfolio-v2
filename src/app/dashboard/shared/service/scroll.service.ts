@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class ScrollService {
     scrollToSection(sectionId: string) {
         const section = document.getElementById(sectionId);
-        const headerOffset = 10;
+        const headerOffset = 110;
         var sectionPosition = section!.getBoundingClientRect().top;
         var offsetPosition = sectionPosition + window.pageYOffset - headerOffset;
 

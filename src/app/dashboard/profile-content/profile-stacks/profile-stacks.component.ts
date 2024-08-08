@@ -2,12 +2,11 @@ import { Component } from '@angular/core';
 import { stacks } from '../../shared/data/stack-data';
 import anime from 'animejs/lib/anime.es.js';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
-import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-profile-stacks',
   standalone: true,
-  imports: [NzToolTipModule, NgOptimizedImage],
+  imports: [NzToolTipModule],
   templateUrl: './profile-stacks.component.html',
   styleUrl: './profile-stacks.component.scss'
 })
@@ -68,10 +67,10 @@ export class ProfileStacksComponent {
         element.removeAttribute('style');
       });
 
-      // const stackElements = document.querySelectorAll('.profile-stack-icon-container');
-      // stackElements.forEach(element => {
-      //   element.removeAttribute('style');
-      // });
+      const stackElements = document.querySelectorAll('.profile-stack-icon-container');
+      stackElements.forEach(element => {
+        element.removeAttribute('style');
+      });
     }, 5000)
   }
 
@@ -90,7 +89,7 @@ export class ProfileStacksComponent {
         delay: anime.stagger(150, { start: 750 }), // Use easing for smoother animation
       });
 
-      this.removeAnimationInlineStyles();
+      // this.removeAnimationInlineStyles(); // Might cause disappearing of elements.
       this.animationPlayed = true;
     }
   }

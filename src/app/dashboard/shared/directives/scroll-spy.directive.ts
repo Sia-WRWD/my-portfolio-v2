@@ -14,15 +14,15 @@ export class ScrollSpyDirective {
         var header = document.querySelector('.profile-header-container');
 
         if (scrollTop > 0) {
-            this.renderer.addClass(this.el.nativeElement, 'scroll-down-fixed');
-            if (window.innerWidth > 910) {
-                this.renderer.setStyle(header, "paddingTop", "119px");
-            }
-        } else {
-            this.renderer.removeClass(this.el.nativeElement, 'scroll-down-fixed');
-            if (window.innerWidth > 910) {
-                this.renderer.setStyle(header, "paddingTop", "0px");
-            }
+            this.renderer.addClass(this.el.nativeElement, 'scroll-down-opacity');
+            // if (window.innerWidth > 910) {
+            //     this.renderer.setStyle(header, "paddingTop", "119px");
+            // }
+        } else {    
+            this.renderer.removeClass(this.el.nativeElement, 'scroll-down-opacity');
+            // if (window.innerWidth > 910) {
+            //     this.renderer.setStyle(header, "paddingTop", "0px");
+            // }
         }
     }
 }
