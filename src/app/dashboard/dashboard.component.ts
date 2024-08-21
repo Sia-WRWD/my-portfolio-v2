@@ -15,6 +15,7 @@ import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontaweso
 import { faPhone, faXmark, faChevronUp, faImages, faImage } from '@fortawesome/free-solid-svg-icons';
 import { ScrollToTopDirective } from './shared/directives/scroll-to-top.directive';
 import { ModalService } from './shared/service/modal.service';
+import { Background, backgrounds } from './shared/data/background';
 
 @Component({
   selector: 'app-dashboard',
@@ -28,12 +29,7 @@ export class DashboardComponent {
 
   currentTime: any = "";
   footerAnimationPlayed: boolean = false;
-  profileBgMp4: string = "";
-  profileBgWebm: string = "";
-  profileBgPoster: string = "";
-  profileBgOffMp4: string = "";
-  profileBgOffWebm: string = "";
-  profileBgOffPoster: string = "";
+  currentBackground: any;
   isProfileContentVisible: boolean = true;
   isModalVisible: boolean = false;
   sakanaAnimationPlayed: boolean = false;
@@ -132,40 +128,19 @@ export class DashboardComponent {
 
   bgOnSeasonChange() {
     const season = this.seasonChecker.getCurrentSeason();
+    const background = backgrounds.find((bg: Background) => bg.season === season);
 
-    // Define the seasons by date ranges
-    if (season == "Winter") { //Winter
-      this.profileBgMp4 = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/986083752a0c715ab6c1ade40c690e6bc2432329.mp4";
-      this.profileBgWebm = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/ce5d466e49827ccd94c616ebca4839a4a25dfbd6.webm";
-      this.profileBgPoster = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/fda4fdeb85a59563cf324600f9e23477861a02d5.jpg";
-
-      this.profileBgOffMp4 = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/e2a8428a48f49312a3fe5c45206b998af76910e8.mp4";
-      this.profileBgOffWebm = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/44607aab956016c08fe4449861774a9804188fa7.webm";
-      this.profileBgOffPoster = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/97008e292bf440a5f4e2db5944cef69d467646a0.jpg";
-    } else if (season == "Spring") { //Spring
-      this.profileBgMp4 = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/986083752a0c715ab6c1ade40c690e6bc2432329.mp4";
-      this.profileBgWebm = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/ce5d466e49827ccd94c616ebca4839a4a25dfbd6.webm";
-      this.profileBgPoster = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/fda4fdeb85a59563cf324600f9e23477861a02d5.jpg";
-
-      this.profileBgOffMp4 = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/e2a8428a48f49312a3fe5c45206b998af76910e8.mp4";
-      this.profileBgOffWebm = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/44607aab956016c08fe4449861774a9804188fa7.webm";
-      this.profileBgOffPoster = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/97008e292bf440a5f4e2db5944cef69d467646a0.jpg";
-    } else if (season == "Summer") { //Summer
-      this.profileBgMp4 = "https://cdn.akamai.steamstatic.com/steamcommunity/public/images/items/2861690/19a2c5ac064c8e252627ee866d77c5806df2b34c.mp4";
-      this.profileBgWebm = "https://cdn.akamai.steamstatic.com/steamcommunity/public/images/items/2861690/bf7539d121e6733f868ecafb4b2f21626af9de9a.webm";
-      this.profileBgPoster = "https://cdn.akamai.steamstatic.com/steamcommunity/public/images/items/2861690/45c9dc610960631bba87e510f19f7515db3026d2.jpg";
-
-      this.profileBgOffMp4 = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/e2a8428a48f49312a3fe5c45206b998af76910e8.mp4";
-      this.profileBgOffWebm = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/44607aab956016c08fe4449861774a9804188fa7.webm";
-      this.profileBgOffPoster = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/97008e292bf440a5f4e2db5944cef69d467646a0.jpg";
-    } else if (season == "Autumn") { //Autumn
-      this.profileBgMp4 = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/986083752a0c715ab6c1ade40c690e6bc2432329.mp4";
-      this.profileBgWebm = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/ce5d466e49827ccd94c616ebca4839a4a25dfbd6.webm";
-      this.profileBgPoster = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/fda4fdeb85a59563cf324600f9e23477861a02d5.jpg";
-
-      this.profileBgOffMp4 = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/e2a8428a48f49312a3fe5c45206b998af76910e8.mp4";
-      this.profileBgOffWebm = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/44607aab956016c08fe4449861774a9804188fa7.webm";
-      this.profileBgOffPoster = "      https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/97008e292bf440a5f4e2db5944cef69d467646a0.jpg";
+    if (background) {
+      this.currentBackground = {
+        profileBgMp4: background.profileBgMp4,
+        profileBgWebm: background.profileBgWebm,
+        profileBgPoster: background.profileBgPoster,
+        profileBgOffMp4: background.profileBgOffMp4,
+        profileBgOffWebm: background.profileBgOffWebm,
+        profileBgOffPoster: background.profileBgOffPoster
+      };
+    } else {
+      console.error('Season not found!');
     }
   }
 

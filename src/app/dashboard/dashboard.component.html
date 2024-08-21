@@ -7,10 +7,10 @@
         autoplay
         loop
         [muted]="'muted'"
-        [poster]="profileBgPoster"
+        [poster]="currentBackground.profileBgPoster"
       >
-        <source [src]="profileBgWebm" type="video/webm" />
-        <source [src]="profileBgMp4" type="video/mp4" />
+        <source [src]="currentBackground.profileBgWebm" type="video/webm" />
+        <source [src]="currentBackground.profileBgMp4" type="video/mp4" />
       </video>
     } @else {
       <video
@@ -18,10 +18,10 @@
         autoplay
         loop
         [muted]="'muted'"
-        [poster]="profileBgOffPoster"
+        [poster]="currentBackground.profileBgOffPoster"
       >
-        <source [src]="profileBgOffWebm" type="video/webm" />
-        <source [src]="profileBgOffMp4" type="video/mp4" />
+        <source [src]="currentBackground.profileBgOffWebm" type="video/webm" />
+        <source [src]="currentBackground.profileBgOffMp4" type="video/mp4" />
       </video>
     }
     <div class="background-tile"></div>

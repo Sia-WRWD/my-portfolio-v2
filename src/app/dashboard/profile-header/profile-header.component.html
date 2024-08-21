@@ -3,15 +3,29 @@
     <div class="profile-pic-container tilt-object">
       <div class="profile-pic-inner-container">
         <div class="profile-pic-frame-container">
-          <img
-            class="profile-pic-frame"
-            [src]="profilePicFrame"
-          />
+          @if (currentTime == "work-time") {
+            <img
+              class="profile-pic-frame"
+              [src]="currentProfilePic.profilePicFrame"
+            />
+          } @else {
+            <img
+              class="profile-pic-frame"
+              [src]="currentProfilePic.profileOffPicFrame"
+            />
+          }
         </div>
-        <img
+        @if (currentTime == "work-time") {
+          <img
+            class="profile-pic steam-pic"
+            [src]="currentProfilePic.profilePicSteam"
+          />
+        } @else {
+          <img
           class="profile-pic steam-pic"
-          [src]="profilePicSteam"
+          [src]="currentProfilePic.profileOffPicSteam"
         />
+        }
         <img
           class="profile-pic real-pic"
           src="../../../assets/backup/profile.jpg"
@@ -117,6 +131,5 @@
       training models, and exploring all aspects of coding.
     </p>
   </ng-template>
-  <ng-template #modalFooter>
-  </ng-template>
+  <ng-template #modalFooter> </ng-template>
 </nz-modal>

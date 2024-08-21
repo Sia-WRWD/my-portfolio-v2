@@ -6,6 +6,7 @@ import anime from 'animejs/lib/anime.es.js';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { SeasoncheckerService } from '../shared/service/season-checker.service';
 import { ProfileContactComponent } from '../profile-content/profile-contact/profile-contact.component';
+import { ProfilePic, profilePics } from '../shared/data/profile-pic';
 
 @Component({
   selector: 'app-profile-header',
@@ -17,11 +18,11 @@ import { ProfileContactComponent } from '../profile-content/profile-contact/prof
 export class ProfileHeaderComponent {
   @ViewChild('profileSummaryModal') profileSummaryModal!: ElementRef;
 
+  currentTime: any = "";
   myAge: number = 0;
   myHandle: string = "@Sia-WRWD®";
   isVisible: boolean = false;
-  profilePicFrame: string = "";
-  profilePicSteam: string = "";
+  currentProfilePic: any;
   isModalVisible: boolean = false;
   isProfileContentVisible: boolean = true;
 
@@ -50,6 +51,7 @@ export class ProfileHeaderComponent {
   }
 
   ngOnInit() {
+    this.getCurrentTime();
     this.calculateAge();
     this.picOnSeasonChange();
   }
@@ -146,22 +148,30 @@ export class ProfileHeaderComponent {
     this.isVisible = false;
   }
 
+  getCurrentTime() {
+    const now = new Date();
+    const hours = now.getHours();
+
+    if (hours >= 9 && hours < 18) { //working-time
+      this.currentTime = 'work-time';
+    } else if (hours >= 18 && hours < 9) { //off-work
+      this.currentTime = 'off-time';
+    }
+  }
+
   picOnSeasonChange() {
     const season = this.seasonChecker.getCurrentSeason();
+    const profilePic = profilePics.find((bg: ProfilePic) => bg.season === season);
 
-    // Define the seasons by date ranges
-    if (season == "Winter") { //Winter
-      this.profilePicSteam = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/4fd8a06b61d271c4eb71c85df79268429de46d63.gif";
-      this.profilePicFrame = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/e322e4d4fc9df256d9c9d5166a9e86aa6e47bd03.png";
-    } else if (season == "Spring") { //Spring
-      this.profilePicSteam = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/4fd8a06b61d271c4eb71c85df79268429de46d63.gif";
-      this.profilePicFrame = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/e322e4d4fc9df256d9c9d5166a9e86aa6e47bd03.png";
-    } else if (season == "Summer") { //Summer
-      this.profilePicFrame = "https://cdn.akamai.steamstatic.com/steamcommunity/public/images/items/2861690/b921dcff9e6fffb20bd91b29700ead7468f36737.png";
-      this.profilePicSteam = "https://cdn.akamai.steamstatic.com/steamcommunity/public/images/items/2861690/c6de335c0a6737e5105eef701af2d3284ab513c4.gif";
-    } else if (season == "Autumn") { //Autumn
-      this.profilePicSteam = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/4fd8a06b61d271c4eb71c85df79268429de46d63.gif";
-      this.profilePicFrame = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/e322e4d4fc9df256d9c9d5166a9e86aa6e47bd03.png";
+    if (profilePic) {
+      this.currentProfilePic = {
+        profilePicSteam: profilePic.profilePicSteam,
+        profilePicFrame: profilePic.profilePicFrame,
+        profileOffPicSteam: profilePic.profileOffPicSteam,
+        profileOffPicFrame: profilePic.profileOffPicFrame
+      };
+    } else {
+      console.error('Season not found!');
     }
   }
 }
