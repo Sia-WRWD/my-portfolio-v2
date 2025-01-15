@@ -55,6 +55,7 @@ export class ProfileHeaderComponent {
     this.calculateAge();
     this.getCurrentTime();
     this.picOnSeasonChange();
+    console.log(this.currentProfilePic)
   }
 
   ngAfterViewInit() {
@@ -166,10 +167,10 @@ export class ProfileHeaderComponent {
 
     if (profilePic) {
       this.currentProfilePic = {
-        profilePicSteam: profilePic.profilePicSteam,
+        profilePicAvatar: profilePic.profilePicAvatar,
         profilePicFrame: profilePic.profilePicFrame,
-        profileOffPicSteam: profilePic.profileOffPicSteam,
-        profileOffPicFrame: profilePic.profileOffPicFrame
+        profilePicOffAvatar: profilePic.profilePicAvatar,
+        profilePicOffFrame: profilePic.profilePicOffFrame
       };
     } else {
       console.error('Season not found!');
