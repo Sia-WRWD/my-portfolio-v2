@@ -6,24 +6,24 @@
           @if (currentTime == "work-time") {
             <img
               class="profile-pic-frame"
-              [src]="profilePicFrame"
+              [src]="currentProfilePic.profilePicFrame"
             />
           } @else {
             <img
               class="profile-pic-frame"
-              [src]="profilePicOffFrame"
+              [src]="currentProfilePic.profilePicOffFrame"
             />
           }
         </div>
         @if (currentTime == "work-time") {
           <img
             class="profile-pic steam-pic"
-            [src]="profilePicAvatar"
+            [src]="currentProfilePic.profilePicAvatar"
           />
         } @else {
           <img
             class="profile-pic steam-pic"
-            [src]="profilePicOffAvatar"
+            [src]="currentProfilePic.profilePicOffAvatar"
           />
         }
         <img
