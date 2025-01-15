@@ -48,7 +48,7 @@
                         gap: 10px;
                         color: #ffffff;
 
-                        .actions-info {
+                        .actions-info, .actions-close {
                             font-size: 24px;
                             transition: 0.3s ease-in-out;
                             filter: drop-shadow(1px 2px 2px black);
@@ -57,6 +57,16 @@
                             @media (not (prefers-reduced-motion: reduce)) {
                                 &:hover {
                                     color: #66C0F4;
+                                }
+                            }
+                        }
+
+                        .actions-close {
+                            color: #66C0F4;
+
+                            @media (not (prefers-reduced-motion: reduce)) {
+                                &:hover {
+                                    color: #ffffff;
                                 }
                             }
                         }

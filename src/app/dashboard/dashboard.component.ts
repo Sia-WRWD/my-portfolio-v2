@@ -14,6 +14,8 @@ import { ProfileContactComponent } from './profile-content/profile-contact/profi
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPhone, faXmark, faChevronUp, faImages, faImage } from '@fortawesome/free-solid-svg-icons';
 import { ScrollToTopDirective } from './shared/directives/scroll-to-top.directive';
+import { ModalService } from './shared/service/modal.service';
+import { Background, backgrounds } from './shared/data/background';
 
 @Component({
   selector: 'app-dashboard',
@@ -27,16 +29,13 @@ export class DashboardComponent {
 
   currentTime: any = "";
   footerAnimationPlayed: boolean = false;
-  profileBgMp4: string = "";
-  profileBgWebm: string = "";
-  profileBgPoster: string = "";
-  profileBgOffMp4: string = "";
-  profileBgOffWebm: string = "";
-  profileBgOffPoster: string = "";
+  currentBackground: any;
   isProfileContentVisible: boolean = true;
   isModalVisible: boolean = false;
+  sakanaAnimationPlayed: boolean = false;
 
-  constructor(private library: FaIconLibrary, private seasonChecker: SeasoncheckerService, private renderer: Renderer2, private el: ElementRef) {
+  constructor(private library: FaIconLibrary, private seasonChecker: SeasoncheckerService, private renderer: Renderer2, 
+    private el: ElementRef, private modalService: ModalService) {
     library.addIcons(
       faPhone,
       faXmark,
@@ -49,10 +48,17 @@ export class DashboardComponent {
   ngOnInit() {
     this.getCurrentTime();
     this.bgOnSeasonChange();
+    this.modalVisibilitySubscription();
   }
 
   ngAfterViewInit() {
     this.mountSakanaWidget();
+  }
+
+  modalVisibilitySubscription() {
+    this.modalService.isVisible$.subscribe(isVisible => {
+      this.isModalVisible = isVisible;
+    });
   }
 
   mountSakanaWidget() {
@@ -74,6 +80,24 @@ export class DashboardComponent {
     // Remove the <a> element if it exists
     if (anchorElement) {
       this.renderer.removeChild(parentElement, anchorElement);
+    }
+
+    this.onSakanaMounted(); //Sakana Animation
+  }
+
+  onSakanaMounted() {
+    if (this.sakanaAnimationPlayed == false && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      anime({
+        targets: '.sakana-widget',
+        translateX: ['100%', 0], // Move from left (-100%) to current position (0)
+        opacity: [0, 1], // Fade from transparent (0) to opaque (1)
+        easing: 'easeInOutQuad', // Use easing for smoother animation
+        delay: 500,
+        duration: 1000, // Animation duration in milliseconds
+        loop: false
+      });
+      
+      this.sakanaAnimationPlayed = true;
     }
   }
 
@@ -104,7 +128,9 @@ export class DashboardComponent {
 
   bgOnSeasonChange() {
     const season = this.seasonChecker.getCurrentSeason();
+    const background = backgrounds.find((bg: Background) => bg.season === season);
 
+<<<<<<< HEAD
     // Define the seasons by date ranges
     if (season == "Winter") { //Winter
       this.profileBgMp4 = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/986083752a0c715ab6c1ade40c690e6bc2432329.mp4"; //Need to Change
@@ -138,15 +164,24 @@ export class DashboardComponent {
       this.profileBgOffMp4 = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/e2a8428a48f49312a3fe5c45206b998af76910e8.mp4"; //Need to Change
       this.profileBgOffWebm = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/44607aab956016c08fe4449861774a9804188fa7.webm"; // Need to change
       this.profileBgOffPoster = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/97008e292bf440a5f4e2db5944cef69d467646a0.jpg"; // Need to change
+=======
+    if (background) {
+      this.currentBackground = {
+        profileBgMp4: background.profileBgMp4,
+        profileBgWebm: background.profileBgWebm,
+        profileBgPoster: background.profileBgPoster,
+        profileBgOffMp4: background.profileBgOffMp4,
+        profileBgOffWebm: background.profileBgOffWebm,
+        profileBgOffPoster: background.profileBgOffPoster
+      };
+    } else {
+      console.error('Season not found!');
+>>>>>>> 17cecba3699642ab5850731a325a7e0b2b809659
     }
   }
 
   openContactModal() {
-    this.isModalVisible = true;
-  }
-
-  closeContactModal() {
-    this.isModalVisible = false;
+    this.modalService.showModal();
   }
 
   hideProfileContent() {

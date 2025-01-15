@@ -2,11 +2,12 @@ import { Component, ElementRef } from '@angular/core';
 import anime from 'animejs/lib/anime.es.js';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faAddressCard, faExclamationTriangle, faInfoCircle, faWarning } from '@fortawesome/free-solid-svg-icons';
+import { faAddressCard, faExclamationTriangle, faInfoCircle, faClose } from '@fortawesome/free-solid-svg-icons';
 import { CustomValidators } from '../../shared/directives/custom-validators';
 import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
 // import { environment } from 'src/assets/environment/environment'; // FOR TESTING
 import { NzMessageModule, NzMessageService } from 'ng-zorro-antd/message';
+import { ModalService } from '../../shared/service/modal.service';
 
 @Component({
   selector: 'app-profile-contact',
@@ -24,11 +25,14 @@ export class ProfileContactComponent {
   isDisable: boolean = false;
   msgPlaceholder: any = `In this journey of life, every step forward is an adventure into the unknown. Strength lies not in the muscles, but in the courage of the heart. Every challenge faced is but a stepping stone towards growth. Let the icy winds of adversity sharpen your resolve. In the frozen expanse, discover the beauty of resilience. Embrace the chill of uncertainty, for within it lies the spark of possibility. Like the snowflakes that dance in the wind, each moment is fleeting yet precious. May the stars guide us through the coldest of nights, lighting our path with hope.`;
 
-  constructor(private library: FaIconLibrary, private elementRef: ElementRef, private messageService: NzMessageService) {
+  constructor(private library: FaIconLibrary, private elementRef: ElementRef, private messageService: NzMessageService,
+    private modalService: ModalService
+  ) {
     library.addIcons(
       faInfoCircle,
       faAddressCard,
-      faExclamationTriangle
+      faExclamationTriangle,
+      faClose
     )
   }
 
@@ -79,5 +83,9 @@ export class ProfileContactComponent {
 
   showInfoMessage() {
     this.messageService.info('Thanks for reaching out, I will try to get back to you within 1-2 business days!');
+  }
+
+  hideModal() {
+    this.modalService.hideModal();
   }
 }

@@ -6,6 +6,7 @@ import anime from 'animejs/lib/anime.es.js';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { SeasoncheckerService } from '../shared/service/season-checker.service';
 import { ProfileContactComponent } from '../profile-content/profile-contact/profile-contact.component';
+import { ProfilePic, profilePics } from '../shared/data/profile-pic';
 
 @Component({
   selector: 'app-profile-header',
@@ -21,10 +22,14 @@ export class ProfileHeaderComponent {
   myAge: number = 0;
   myHandle: string = "@Sia-WRWD®";
   isVisible: boolean = false;
+<<<<<<< HEAD
   profilePicFrame: string = "";
   profilePicAvatar: string = "";
   profilePicOffFrame: string = "";
   profilePicOffAvatar: string = "";
+=======
+  currentProfilePic: any;
+>>>>>>> 17cecba3699642ab5850731a325a7e0b2b809659
   isModalVisible: boolean = false;
   isProfileContentVisible: boolean = true;
 
@@ -53,6 +58,7 @@ export class ProfileHeaderComponent {
   }
 
   ngOnInit() {
+    this.getCurrentTime();
     this.calculateAge();
     this.getCurrentTime();
     this.picOnSeasonChange();
@@ -163,7 +169,9 @@ export class ProfileHeaderComponent {
 
   picOnSeasonChange() {
     const season = this.seasonChecker.getCurrentSeason();
+    const profilePic = profilePics.find((bg: ProfilePic) => bg.season === season);
 
+<<<<<<< HEAD
     // Define the seasons by date ranges
     if (season == "Winter") { //Winter
       this.profilePicAvatar = "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/items/2861720/5ae020a665661d3e6499da7fb601f373fa998228.gif"; // Need to change
@@ -190,6 +198,17 @@ export class ProfileHeaderComponent {
       this.profilePicOffAvatar = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/4fd8a06b61d271c4eb71c85df79268429de46d63.gif"; // Need to change
       this.profilePicOffFrame = "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/items/2861700/67498b6c05c5835f35f3eced8fa689cbbe0ac117.png"; // Need to change
 
+=======
+    if (profilePic) {
+      this.currentProfilePic = {
+        profilePicSteam: profilePic.profilePicSteam,
+        profilePicFrame: profilePic.profilePicFrame,
+        profileOffPicSteam: profilePic.profileOffPicSteam,
+        profileOffPicFrame: profilePic.profileOffPicFrame
+      };
+    } else {
+      console.error('Season not found!');
+>>>>>>> 17cecba3699642ab5850731a325a7e0b2b809659
     }
   }
 }
