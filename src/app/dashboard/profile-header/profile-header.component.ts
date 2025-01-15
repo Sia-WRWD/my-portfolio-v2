@@ -17,11 +17,14 @@ import { ProfileContactComponent } from '../profile-content/profile-contact/prof
 export class ProfileHeaderComponent {
   @ViewChild('profileSummaryModal') profileSummaryModal!: ElementRef;
 
+  currentTime: any = "";
   myAge: number = 0;
   myHandle: string = "@Sia-WRWD®";
   isVisible: boolean = false;
   profilePicFrame: string = "";
-  profilePicSteam: string = "";
+  profilePicAvatar: string = "";
+  profilePicOffFrame: string = "";
+  profilePicOffAvatar: string = "";
   isModalVisible: boolean = false;
   isProfileContentVisible: boolean = true;
 
@@ -51,6 +54,7 @@ export class ProfileHeaderComponent {
 
   ngOnInit() {
     this.calculateAge();
+    this.getCurrentTime();
     this.picOnSeasonChange();
   }
 
@@ -146,22 +150,46 @@ export class ProfileHeaderComponent {
     this.isVisible = false;
   }
 
+  getCurrentTime() {
+    const now = new Date();
+    const hours = now.getHours();
+
+    if (hours >= 9 && hours < 18) { //working-time
+      this.currentTime = 'work-time';
+    } else if (hours >= 18 && hours < 9) { //off-work
+      this.currentTime = 'off-time';
+    }
+  }
+
   picOnSeasonChange() {
     const season = this.seasonChecker.getCurrentSeason();
 
     // Define the seasons by date ranges
     if (season == "Winter") { //Winter
-      this.profilePicSteam = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/4fd8a06b61d271c4eb71c85df79268429de46d63.gif";
+      this.profilePicAvatar = "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/items/2861720/5ae020a665661d3e6499da7fb601f373fa998228.gif"; // Need to change
+      this.profilePicFrame = "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/items/2861720/410eecdbc6f2505e98863ab4200ca454032b40a2.png"; // Need to change
+
+      this.profilePicOffAvatar = "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/items/2861720/5ae020a665661d3e6499da7fb601f373fa998228.gif";
+      this.profilePicOffFrame = "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/items/2861720/410eecdbc6f2505e98863ab4200ca454032b40a2.png";
+    } else if (season == "Spring") { //Done
+      this.profilePicAvatar = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/4fd8a06b61d271c4eb71c85df79268429de46d63.gif";
       this.profilePicFrame = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/e322e4d4fc9df256d9c9d5166a9e86aa6e47bd03.png";
-    } else if (season == "Spring") { //Spring
-      this.profilePicSteam = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/4fd8a06b61d271c4eb71c85df79268429de46d63.gif";
-      this.profilePicFrame = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/e322e4d4fc9df256d9c9d5166a9e86aa6e47bd03.png";
-    } else if (season == "Summer") { //Summer
+
+      this.profilePicOffAvatar = "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/items/2855140/18201b6931880d3bcb863fc3f5f5d0f3889f5c68.gif";
+      this.profilePicOffFrame = "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/items/2855140/4324f3a8e05e1c110fad71443d61c7ba82c4e474.png";
+    } else if (season == "Summer") { //Done
+      this.profilePicAvatar = "https://cdn.akamai.steamstatic.com/steamcommunity/public/images/items/2861690/c6de335c0a6737e5105eef701af2d3284ab513c4.gif";
       this.profilePicFrame = "https://cdn.akamai.steamstatic.com/steamcommunity/public/images/items/2861690/b921dcff9e6fffb20bd91b29700ead7468f36737.png";
-      this.profilePicSteam = "https://cdn.akamai.steamstatic.com/steamcommunity/public/images/items/2861690/c6de335c0a6737e5105eef701af2d3284ab513c4.gif";
+
+      this.profilePicOffAvatar = "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/items/2861690/0d81afcfee604d3b93b374ac74c2ce2d34a5b63a.gif";
+      this.profilePicOffFrame = "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/items/2861690/396aa5ec2a44df7548ffa2bcc5383eef91095a4b.png";
     } else if (season == "Autumn") { //Autumn
-      this.profilePicSteam = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/4fd8a06b61d271c4eb71c85df79268429de46d63.gif";
-      this.profilePicFrame = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/e322e4d4fc9df256d9c9d5166a9e86aa6e47bd03.png";
+      this.profilePicAvatar = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/4fd8a06b61d271c4eb71c85df79268429de46d63.gif"; // Need to change
+      this.profilePicFrame = "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/items/2861700/67498b6c05c5835f35f3eced8fa689cbbe0ac117.png";
+
+      this.profilePicOffAvatar = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/4fd8a06b61d271c4eb71c85df79268429de46d63.gif"; // Need to change
+      this.profilePicOffFrame = "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/items/2861700/67498b6c05c5835f35f3eced8fa689cbbe0ac117.png"; // Need to change
+
     }
   }
 }

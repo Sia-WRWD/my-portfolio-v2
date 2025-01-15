@@ -42,11 +42,11 @@ export class RightContentComponent {
   ngOnInit() {
     this.statusUpdate();
     this.friendStatusUpdate();
+    this.setVariablesLength();
   }
 
   ngAfterViewInit() {
     this.onInitAnimation();
-    this.setVariablesLength();
 
     if (window.innerWidth > 910) {
       this.desktopAchievementHorizontalScroll();

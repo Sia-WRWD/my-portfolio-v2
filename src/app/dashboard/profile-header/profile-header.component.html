@@ -3,15 +3,29 @@
     <div class="profile-pic-container tilt-object">
       <div class="profile-pic-inner-container">
         <div class="profile-pic-frame-container">
-          <img
-            class="profile-pic-frame"
-            [src]="profilePicFrame"
-          />
+          @if (currentTime == "work-time") {
+            <img
+              class="profile-pic-frame"
+              [src]="profilePicFrame"
+            />
+          } @else {
+            <img
+              class="profile-pic-frame"
+              [src]="profilePicOffFrame"
+            />
+          }
         </div>
-        <img
-          class="profile-pic steam-pic"
-          [src]="profilePicSteam"
-        />
+        @if (currentTime == "work-time") {
+          <img
+            class="profile-pic steam-pic"
+            [src]="profilePicAvatar"
+          />
+        } @else {
+          <img
+            class="profile-pic steam-pic"
+            [src]="profilePicOffAvatar"
+          />
+        }
         <img
           class="profile-pic real-pic"
           src="../../../assets/backup/profile.jpg"
