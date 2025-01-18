@@ -11,6 +11,7 @@ import anime from 'animejs/lib/anime.es.js';
 export class LoaderComponent implements AfterViewInit {
   @ViewChild('videoPlayer') videoPlayer!: ElementRef<HTMLVideoElement>;
   @ViewChild('loaderMessage') loaderMessage!: ElementRef;
+  isVideoPlayed: boolean = false;
 
   constructor(private renderer: Renderer2) { }
 
@@ -18,9 +19,12 @@ export class LoaderComponent implements AfterViewInit {
     this.renderer.setStyle(document.body, 'overflow-y', 'hidden');
 
     this.renderer.listen(document, 'click', () => {
-      this.fadeOut(this.loaderMessage.nativeElement, () => {
-        this.videoPlayer.nativeElement.play();
-      });
+      if (!this.isVideoPlayed) {
+        this.fadeOut(this.loaderMessage.nativeElement, () => {
+          this.videoPlayer.nativeElement.play();
+          this.isVideoPlayed = true;
+        });
+      }
     });
 
     this.videoPlayer.nativeElement.onended = () => {
