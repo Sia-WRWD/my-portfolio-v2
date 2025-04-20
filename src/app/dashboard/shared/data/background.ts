@@ -11,9 +11,9 @@ export interface Background {
 export const backgrounds: Background[] = [
     { //Don't Have
         season: "Winter",
-        profileBgMp4: "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/986083752a0c715ab6c1ade40c690e6bc2432329.mp4", //Need to Change
-        profileBgWebm: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/items/2861720/124bf94415accfef96f86cbbe566e42374d53b76.webm", // Need to change
-        profileBgPoster: "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/fda4fdeb85a59563cf324600f9e23477861a02d5.jpg", // Need to change
+        profileBgMp4: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/items/2861720/4f3b30e2e72655a8eb948bd9d3ba66a30681a6b9.mp4",
+        profileBgWebm: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/items/2861720/85882f90ad8ca69467610883a9fa95ecc2f071ab.webm",
+        profileBgPoster: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/items/2861720/87fd4f413d9ad44e19cd2876a48e25b4025dce74.jpg",
 
         profileBgOffMp4: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/items/2861720/8df64a76003112a9480cf2c116a88c2b841cc44f.mp4",
         profileBgOffWebm: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/items/2861720/124bf94415accfef96f86cbbe566e42374d53b76.webm",
@@ -49,5 +49,4 @@ export const backgrounds: Background[] = [
         profileBgOffWebm: "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/44607aab956016c08fe4449861774a9804188fa7.webm", // Need to change
         profileBgOffPoster: "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2855140/97008e292bf440a5f4e2db5944cef69d467646a0.jpg", // Need to change
     },
-
 ]
