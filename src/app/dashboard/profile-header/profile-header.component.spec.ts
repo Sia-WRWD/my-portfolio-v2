@@ -1,3 +1,4 @@
+import { IntroService } from '../shared/service/intro.service';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProfileHeaderComponent } from './profile-header.component';
@@ -8,7 +9,8 @@ describe('ProfileHeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ProfileHeaderComponent]
+      imports: [ProfileHeaderComponent],
+      providers: [IntroService]
     })
     .compileComponents();
     

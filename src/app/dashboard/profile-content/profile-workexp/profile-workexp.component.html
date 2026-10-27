@@ -1,12 +1,7 @@
-<div
-  class="profile-workexp-container"
-  #workexp
-  scrollReached
-  (scrollReached)="onIntersection()"
->
+<div class="profile-workexp-container" #workexp>
   <div class="profile-workexp-header-container ellipsis">
     <div class="profile-workexp-header-title">My Work-Exp</div>
-    <div class="profile-workexp-header-lifelong-time"></div>
+    <div class="profile-workexp-header-summary">{{ totalRecordLabel }} on record</div>
   </div>
   <div class="profile-workexp-content-display">
     <nz-carousel
@@ -15,64 +10,54 @@
       [nzDots]="true"
       [nzLoop]="false"
     >
-      @for (slide of workExpSlides; track slide; let idx = $index) {
+      @for (slide of workExpSlides; track slide.role + slide.startDate) {
         <div
           class="profile-workexp-content-carousel-slide carousel-slide"
-          [id]="idx"
+          [ngClass]="slide.class"
           nz-carousel-content
         >
-          <div class="slide-card-header">
+          <div class="workexp-game">
             <a
-              href="{{ slide.link }}"
+              class="workexp-capsule"
+              [href]="slide.link"
               target="_blank"
-              class="slide-card-header-logo-container"
               tabindex="-1"
             >
               <img
                 [ngSrc]="slide.imgSrc"
-                alt="{{ slide.name }}"
-                title="{{ slide.name }}"
-                class="slide-card-header-logo"
-                width="50"
-                height="50"
+                [alt]="slide.name"
+                class="workexp-capsule-logo"
+                width="56"
+                height="56"
               />
             </a>
-            <span class="slide-card-header-name">{{ slide.name }}</span>
-          </div>
-          <div class="slide-card-desc">
-            <div class="slide-card-desc-padding">
-              <div class="slide-card-desc-role" [ngClass]="slide.class">
-                {{ slide.role }}
-              </div>
-              <div class="slide-card-desc-date-duration">
-                <span class="slide-card-desc-date"
-                  >{{ slide.startDate }} - {{ slide.endDate }}</span
-                >
-                &nbsp;
-                <span class="slide-card-desc-duration"
-                  >({{ slide.totalDuration }})</span
-                >
+            <div class="workexp-game-info">
+              <div class="workexp-role">{{ slide.role }}</div>
+              <div class="workexp-company-row">
+                <a class="workexp-company" [href]="slide.link" target="_blank">{{ slide.name }}</a>
+                @if (slide.project) {
+                  <span class="workexp-project">{{ slide.project }}</span>
+                }
               </div>
             </div>
-            <div class="slide-card-desc-desc" [innerHTML]="slide.jobDesc"></div>
+            <div class="workexp-playtime">
+              <span class="workexp-playtime-record">{{ slide.recordLabel }} on record</span>
+              <span class="workexp-playtime-last">
+                {{ slide.isCurrent ? "Currently in-game" : "last played on " + slide.endDate }}
+              </span>
+            </div>
           </div>
-          @if (slide.name == "Whale Cloud") {
-            <div class="slide-card-footer"></div>
-          }
+
+          <div class="workexp-desc slide-card-desc-desc" [innerHTML]="slide.jobDesc"></div>
+
+          <div class="workexp-footer">
+            <span class="workexp-footer-dates">{{ slide.startDate }} – {{ slide.isCurrent ? "Present" : slide.endDate }}</span>
+            <span class="workexp-footer-status" [class.is-current]="slide.isCurrent">
+              {{ slide.isCurrent ? "In-Game" : "Completed" }}
+            </span>
+          </div>
         </div>
       }
     </nz-carousel>
-    <!-- <div class="profile-workexp-content-carousel-filter">
-      @for (slide of workExpSlides; track slide) {
-        <div
-          class="carousel-filter-icon-container"
-          [ngClass]="slide.class"
-          (click)="slideTo(slide.bullet)"
-          [attr.data-selected]="slide.selected"
-        >
-          <img [ngSrc]="slide.imgSrc" height="50" width="50" />
-        </div>
-      }
-    </div> -->
   </div>
 </div>

@@ -1,8 +1,15 @@
-<div class="loader-container">
-    <div class="loader-message" #loaderMessage>Click to Start!</div>
+<div class="loader-container" #loaderContainer>
+    <div class="loader-message" #loaderMessage>
+        Click to Start!
+        <span class="loader-hint">Press anywhere to boot up the profile</span>
+    </div>
     <video #videoPlayer playsinline allow="autoplay" autoplay muted>
         <source src="https://cdn.fastly.steamstatic.com/steamcommunity/public/images/items/2861720/3d2d86bc3fc5928f4a6bfdd061c8107e6be1faa9.webm" type="video/webm">
         <source src="https://cdn.fastly.steamstatic.com/steamcommunity/public/images/items/2861720/beda041b3317da5950dda5aa4319f2dce1feee8f.mp4" type="video/mp4">
         <img src="https://cdn.fastly.steamstatic.com/steamcommunity/public/images/items/2861720/eca5871ca45838af8c953be846ab495d198dad19.png">
     </video>
+    <button type="button" class="loader-skip" (click)="skipIntro($event)">
+        Skip Intro
+        <fa-icon [icon]="['fas', 'forward']" class="loader-skip-icon"></fa-icon>
+    </button>
 </div>

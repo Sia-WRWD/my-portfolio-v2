@@ -4,16 +4,26 @@ import { activities } from '../../shared/data/activity';
 import { rightContent } from '../../shared/data/right-content';
 import { ScrollReachedDirective } from 'src/app/dashboard/shared/directives/scroll-reaches.directive';
 import anime from 'animejs/lib/anime.es.js';
-import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { NzTooltipModule } from 'ng-zorro-antd/tooltip';
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
+import { IntroService } from '../../shared/service/intro.service';
+
+// Each block's slot in the post-intro sequence (ms), landing just after the sidebar panel itself.
+const REVEAL_SLOTS = {
+  status: 400,
+  achievements: 500,
+  groups: 600,
+  games: 700,
+  friends: 800
+};
 
 @Component({
   selector: 'app-right-content',
   standalone: true,
-  imports: [CommonModule, ScrollReachedDirective, NzToolTipModule, FontAwesomeModule],
+  imports: [CommonModule, ScrollReachedDirective, NzTooltipModule, FontAwesomeModule],
   templateUrl: './right-content.component.html',
-  styleUrl: './right-content.component.scss'
+  styleUrls: ['./right-content.component.scss', './friend-mini-profile.scss']
 })
 export class RightContentComponent {
   @ViewChild('achievementShowcase') achievementShowcase!: ElementRef;
@@ -33,7 +43,7 @@ export class RightContentComponent {
   gamesLength: number = 49;
   friendsLength: number = 420;
 
-  constructor(library: FaIconLibrary) {
+  constructor(library: FaIconLibrary, private intro: IntroService) {
     library.addIcons(
       faUpRightFromSquare
     )
@@ -46,8 +56,6 @@ export class RightContentComponent {
   }
 
   ngAfterViewInit() {
-    this.onInitAnimation();
-
     if (window.innerWidth > 910) {
       this.desktopAchievementHorizontalScroll();
     }
@@ -91,49 +99,47 @@ export class RightContentComponent {
     return statuses[randomIndex];
   }
 
-  onInitAnimation() {
-    this.onStatusReached();
-    this.onAchievementsReached();
-    this.onGroupsReached();
+  prefersReducedMotion(): boolean {
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }
 
-    if (window.innerWidth <= 910) {
-      this.onResponsiveGamesReached();
-      this.onResponsiveFriendsReached();
-    } else if (window.innerWidth > 910 && window.innerHeight > 754) {
-      this.onResponsiveGamesReached();
-      this.onResponsiveFriendsReached();
-    }
+  // Animated items sit inside hover popovers' stacking contexts, so leftover transforms must go.
+  clearTransforms(anim: any) {
+    anim.animatables.forEach((animatable: any) => animatable.target.style.removeProperty('transform'));
+  }
+
+  revealTitle(selector: string, delay: number) {
+    anime({
+      targets: selector,
+      translateX: [-40, 0],
+      opacity: [0, 1],
+      easing: 'easeOutCubic',
+      delay,
+      duration: 550,
+      complete: (anim: any) => this.clearTransforms(anim)
+    });
   }
 
   onStatusReached() {
-    if (!this.statusAnimationPlayed && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      anime({
-        targets: '.anime-status',
-        translateX: ['-100%', 0], // Move from left (-100%) to current position (0)
-        opacity: [0, 1], // Fade from transparent (0) to opaque (1)
-        easing: 'easeInOutQuad', // Use easing for smoother animation
-        delay: 1200,
-        duration: 1000 // Animation duration in milliseconds
-      });
+    if (!this.statusAnimationPlayed && !this.prefersReducedMotion()) {
+      this.revealTitle('.anime-status', this.intro.delayFor(REVEAL_SLOTS.status));
       this.statusAnimationPlayed = true;
     }
   }
 
   onAchievementsReached() {
-    if (!this.achievementsAnimationPlayed && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      anime({
-        targets: '.anime-achievements',
-        translateX: ['-100%', 0], // Move from left (-100%) to current position (0)
-        opacity: [0, 1], // Fade from transparent (0) to opaque (1)
-        easing: 'easeInOutQuad', // Use easing for smoother animation
-        delay: 1300,
-        duration: 1000 // Animation duration in milliseconds
-      });
+    if (!this.achievementsAnimationPlayed && !this.prefersReducedMotion()) {
+      const delay = this.intro.delayFor(REVEAL_SLOTS.achievements);
+      this.revealTitle('.anime-achievements', delay);
 
       anime({
         targets: '.achievement-logo',
-        opacity: [0, 1], // Fade from transparent (0) to opaque (1)
-        delay: anime.stagger(300, { start: 1600 }), // Use easing for smoother animation
+        scale: [0.5, 1],
+        opacity: [0, 1],
+        easing: 'easeOutBack',
+        duration: 450,
+        delay: anime.stagger(60, { start: delay + 150 }),
+        complete: (anim: any) => this.clearTransforms(anim)
       });
 
       this.achievementsAnimationPlayed = true;
@@ -141,27 +147,28 @@ export class RightContentComponent {
   }
 
   onGroupsReached() {
-    if (!this.groupsAnimationPlayed && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      anime({
-        targets: '.anime-groups',
-        translateX: ['-100%', 0], // Move from left (-100%) to current position (0)
-        opacity: [0, 1], // Fade from transparent (0) to opaque (1)
-        easing: 'easeInOutQuad', // Use easing for smoother animation
-        delay: 1600,
-        duration: 1000 // Animation duration in milliseconds
-      });
+    if (!this.groupsAnimationPlayed && !this.prefersReducedMotion()) {
+      const delay = this.intro.delayFor(REVEAL_SLOTS.groups);
+      this.revealTitle('.anime-groups', delay);
 
       anime({
         targets: '.groups-main-pic',
-        opacity: [0, 1], // Fade from transparent (0) to opaque (1)
-        delay: anime.stagger(300, { start: 2200 }), // Use easing for smoother animation
+        scale: [0.6, 1],
+        opacity: [0, 1],
+        easing: 'easeOutBack',
+        duration: 450,
+        delay: anime.stagger(90, { start: delay + 150 }),
+        complete: (anim: any) => this.clearTransforms(anim)
       });
 
       anime({
         targets: '.groups-main-info',
-        translateX: ['100%', 0],
-        opacity: [0, 1], // Fade from transparent (0) to opaque (1)
-        delay: anime.stagger(300, { start: 2300 }), // Use easing for smoother animation
+        translateX: [30, 0],
+        opacity: [0, 1],
+        easing: 'easeOutCubic',
+        duration: 500,
+        delay: anime.stagger(90, { start: delay + 200 }),
+        complete: (anim: any) => this.clearTransforms(anim)
       });
 
       this.groupsAnimationPlayed = true;
@@ -169,49 +176,18 @@ export class RightContentComponent {
   }
 
   onGamesReached() {
-    if (!this.gamesAnimationPlayed && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-
-      if (window.innerWidth > 910) {
-        anime({
-          targets: '.anime-games',
-          translateX: ['-100%', 0], // Move from left (-100%) to current position (0)
-          opacity: [0, 1], // Fade from transparent (0) to opaque (1)
-          easing: 'easeInOutQuad', // Use easing for smoother animation
-          delay: 0,
-          duration: 1000 // Animation duration in milliseconds
-        });
-
-
-        anime({
-          targets: '.game-container',
-          translateX: ['100%', 0],
-          opacity: [0, 1], // Fade from transparent (0) to opaque (1)
-          easing: 'easeInOutQuad',
-          delay: anime.stagger(300, { start: 0 }), // Use easing for smoother animation
-        });
-
-        this.gamesAnimationPlayed = true;
-      }
-    }
-  }
-
-  onResponsiveGamesReached() {
-    if (!this.gamesAnimationPlayed && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      anime({
-        targets: '.anime-games',
-        translateX: ['-100%', 0], // Move from left (-100%) to current position (0)
-        opacity: [0, 1], // Fade from transparent (0) to opaque (1)
-        easing: 'easeInOutQuad', // Use easing for smoother animation
-        delay: 3600,
-        duration: 1000 // Animation duration in milliseconds
-      });
+    if (!this.gamesAnimationPlayed && !this.prefersReducedMotion()) {
+      const delay = this.intro.delayFor(REVEAL_SLOTS.games);
+      this.revealTitle('.anime-games', delay);
 
       anime({
         targets: '.game-container',
-        translateY: ['-100%', 0], // Move from left (-100%) to current position (0)
-        opacity: [0, 1], // Fade from transparent (0) to opaque (1)
-        easing: 'easeInOutQuad', // Use easing for smoother animation
-        delay: anime.stagger(300, { start: 3700 }),
+        translateY: [30, 0],
+        opacity: [0, 1],
+        easing: 'easeOutCubic',
+        duration: 500,
+        delay: anime.stagger(80, { start: delay + 150 }),
+        complete: (anim: any) => this.clearTransforms(anim)
       });
 
       this.gamesAnimationPlayed = true;
@@ -219,48 +195,18 @@ export class RightContentComponent {
   }
 
   onFriendsReached() {
-    if (!this.friendsAnimationPlayed && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-
-      if (window.innerWidth > 910) {
-        anime({
-          targets: '.anime-friends',
-          translateX: ['-100%', 0], // Move from left (-100%) to current position (0)
-          opacity: [0, 1], // Fade from transparent (0) to opaque (1)
-          easing: 'easeInOutQuad', // Use easing for smoother animation
-          delay: 0,
-          duration: 1000 // Animation duration in milliseconds
-        });
-
-        anime({
-          targets: '.highlighted-friends-container',
-          translateY: ['100%', 0],
-          opacity: [0, 1], // Fade from transparent (0) to opaque (1)
-          delay: anime.stagger(300, { start: 500 }), // Use easing for smoother animation
-        });
-
-        this.friendsAnimationPlayed = true;
-      }
-    }
-  }
-
-  onResponsiveFriendsReached() {
-    if (!this.friendsAnimationPlayed && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-
-      anime({
-        targets: '.anime-friends',
-        translateX: ['-100%', 0], // Move from left (-100%) to current position (0)
-        opacity: [0, 1], // Fade from transparent (0) to opaque (1)
-        easing: 'easeInOutQuad', // Use easing for smoother animation
-        delay: 2900,
-        duration: 1000 // Animation duration in milliseconds
-      });
+    if (!this.friendsAnimationPlayed && !this.prefersReducedMotion()) {
+      const delay = this.intro.delayFor(REVEAL_SLOTS.friends);
+      this.revealTitle('.anime-friends', delay);
 
       anime({
         targets: '.highlighted-friends-container',
-        translateY: ['100%', 0], // Move from left (-100%) to current position (0)
-        opacity: [0, 1], // Fade from transparent (0) to opaque (1)
-        easing: 'easeInOutQuad', // Use easing for smoother animation
-        delay: anime.stagger(300, { start: 3000 }),
+        translateY: [24, 0],
+        opacity: [0, 1],
+        easing: 'easeOutCubic',
+        duration: 500,
+        delay: anime.stagger(70, { start: delay + 150 }),
+        complete: (anim: any) => this.clearTransforms(anim)
       });
 
       this.friendsAnimationPlayed = true;

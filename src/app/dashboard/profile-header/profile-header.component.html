@@ -63,19 +63,34 @@
         creating engaging CSS components, training models, and exploring all
         aspects of coding.
       </div>
-      <div class="profile-info-summary-footer" (click)="openInfoModal()">
-        <!--Need to Add Modal Later to show everything-->
+      <button type="button" class="profile-info-summary-footer" (click)="openInfoModal()">
         View More Info
-      </div>
+      </button>
     </div>
     <div class="profile-badge-container">
-      <div class="profile-badge-level-container ellipsis">
+      <div class="profile-badge-level-container">
         Level
-        <div class="profile-badge-level-number-container">
-          <span class="profile-badge-level-number">
-            {{ myAge }}
-          </span>
+        <div class="profile-level-ring" [title]="levelProgressLabel">
+          <svg viewBox="0 0 44 44" class="profile-level-ring-svg" aria-hidden="true">
+            <circle class="profile-level-ring-track" cx="22" cy="22" r="19" />
+            <circle
+              #levelRingProgress
+              class="profile-level-ring-progress"
+              cx="22"
+              cy="22"
+              r="19"
+              [attr.stroke-dasharray]="levelRingCircumference"
+              [attr.stroke-dashoffset]="levelRingOffset"
+            />
+          </svg>
+          <span class="profile-badge-level-number">{{ myAge }}</span>
         </div>
+      </div>
+      <div class="profile-level-xp">
+        <div class="profile-level-xp-bar">
+          <div class="profile-level-xp-fill" [style.width.%]="levelProgressPercent"></div>
+        </div>
+        <span class="profile-level-xp-text">{{ levelProgressLabel }}</span>
       </div>
       <div class="profile-social-container">
         @for (social of socials; track social) {

@@ -46,6 +46,10 @@ export class NavigationComponent {
   }
 
   staggerOptions() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return;
+    }
+
     anime({
       targets: '.responsive-header-menu-option-container',
       translateX: ['500px', '0px'], //from value, destination value.

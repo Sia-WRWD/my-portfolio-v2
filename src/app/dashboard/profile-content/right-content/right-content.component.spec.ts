@@ -1,3 +1,4 @@
+import { IntroService } from '../../shared/service/intro.service';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RightContentComponent } from './right-content.component';
@@ -8,7 +9,8 @@ describe('RightContentComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RightContentComponent]
+      imports: [RightContentComponent],
+      providers: [IntroService]
     })
     .compileComponents();
     

@@ -1,5 +1,4 @@
-import { Component, ElementRef, QueryList, ViewChildren } from '@angular/core';
-import { ScrollReachedDirective } from 'src/app/dashboard/shared/directives/scroll-reaches.directive';
+import { Component, ElementRef } from '@angular/core';
 import VanillaTilt from 'vanilla-tilt';
 import anime from 'animejs/lib/anime.es.js';
 import { projects } from '../../shared/data/project';
@@ -7,14 +6,12 @@ import { projects } from '../../shared/data/project';
 @Component({
   selector: 'app-profile-project',
   standalone: true,
-  imports: [ScrollReachedDirective],
+  imports: [],
   templateUrl: './profile-project.component.html',
   styleUrl: './profile-project.component.scss'
 })
 export class ProfileProjectComponent {
 
-  @ViewChildren('projectCardContent') projectCardContentElements!: QueryList<ElementRef>;
-  @ViewChildren('projectCardBg') projectCardBgElements!: QueryList<ElementRef>;
   animationPlayed: boolean = false;
   selectedProjects: any = projects;
 
@@ -24,7 +21,7 @@ export class ProfileProjectComponent {
     if (this.shouldApplyTilt() && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       VanillaTilt.init(
         this.el.nativeElement.querySelectorAll('.tilt-object'),
-        { max: 30, speed: 100, scale: 1.1 }
+        { max: 6, speed: 400, scale: 1.02, glare: true, 'max-glare': 0.15 }
       );
     }
   }
@@ -34,46 +31,20 @@ export class ProfileProjectComponent {
     return window.innerWidth > mobileScreenWidth;
   }
 
-  removeAnimationInlineStyles() {
-    setTimeout(() => {
-      const projElements = document.querySelectorAll('.profile-project-card');
-      projElements.forEach(element => {
-        element.removeAttribute('style');
-      });
-    }, 2000)
-  }
-
-  onIntersection(): void {
-
+  playIntro(startDelay: number): void {
     if (this.animationPlayed == false && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       anime({
-        targets: '.profile-project-card',
+        targets: this.el.nativeElement.querySelectorAll('.project-capsule'),
         opacity: [0, 1],
-        scale: [0, 1],
-        delay: anime.stagger(200, { start: 500 })
+        translateY: [40, 0],
+        easing: 'easeOutCubic',
+        duration: 600,
+        delay: anime.stagger(90, { start: startDelay }),
+        // VanillaTilt owns the transform from here on.
+        complete: (anim: any) => anim.animatables.forEach((a: any) => a.target.style.removeProperty('transform'))
       });
 
-      this.removeAnimationInlineStyles();
       this.animationPlayed = true;
-    }
-  }
-
-  //To apply effects on Project Card Bg when user enters Project Card Content.
-  onMouseEnter(index: number) {
-    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      const projectCardBgElement = this.projectCardBgElements.toArray()[index]?.nativeElement;
-      if (projectCardBgElement) {
-        projectCardBgElement.classList.add('project-card-bg-hovered');
-      }
-    }
-  }
-
-  onMouseLeave(index: number) {
-    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      const projectCardBgElement = this.projectCardBgElements.toArray()[index]?.nativeElement;
-      if (projectCardBgElement) {
-        projectCardBgElement.classList.remove('project-card-bg-hovered');
-      }
     }
   }
 }

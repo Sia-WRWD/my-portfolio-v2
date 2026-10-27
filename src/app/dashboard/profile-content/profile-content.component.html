@@ -2,9 +2,8 @@
   <div class="left-profile-content-container">
     <app-profile-stacks
       class="anime-profile-stacks"
-      inViewport
-      [inViewportOptions]="{ threshold: [0] }"
-      (inViewportAction)="onStacksIntersection($event)"
+      scrollReached
+      (scrollReached)="onStacksIntersection()"
       navScrollReached
       (navScrollReached)="onNavScrollReached('stacks')"
       id="stacks"
@@ -36,9 +35,8 @@
   </div>
   <div
     class="right-profile-content-container"
-    inViewport
-    [inViewportOptions]="{ threshold: [0] }"
-    (inViewportAction)="onRightContentIntersection($event)"
+    scrollReached
+    (scrollReached)="onRightContentIntersection()"
     id="right-content"
   >
     <app-right-content></app-right-content>

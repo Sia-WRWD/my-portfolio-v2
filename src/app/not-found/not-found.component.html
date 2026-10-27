@@ -1,1 +1,94 @@
-<p>not-found works!</p>
+<div class="not-found-page" [attr.data-profile-theme]="themeService.appliedTheme()">
+  <div class="not-found-background" aria-hidden="true">
+    @if (background) {
+      @if (reduceMotion) {
+        <img class="not-found-background-media" [src]="background.profileBgOffPoster" alt="" />
+      } @else {
+        <video
+          class="not-found-background-media"
+          playsinline
+          autoplay
+          loop
+          [muted]="'muted'"
+          [poster]="background.profileBgOffPoster"
+        >
+          <source [src]="background.profileBgOffWebm" type="video/webm" />
+          <source [src]="background.profileBgOffMp4" type="video/mp4" />
+        </video>
+      }
+    }
+    <div class="background-tile"></div>
+    <div class="background-vignette"></div>
+  </div>
+
+  <main class="not-found-content">
+    <section class="error-dialog" #errorDialog role="alert" aria-labelledby="error-heading">
+      <div class="error-dialog-titlebar">
+        <span class="error-dialog-title">
+          <fa-icon [icon]="faTriangleExclamation"></fa-icon>
+          Error
+        </span>
+        <a
+          class="error-dialog-close"
+          routerLink="/"
+          [state]="{ skipIntro: true }"
+          aria-label="Back to profile"
+          title="Back to profile"
+        >
+          <fa-icon [icon]="faXmark"></fa-icon>
+        </a>
+      </div>
+
+      <div class="error-dialog-body">
+        <div class="error-avatar" #avatar>
+          @if (profilePic) {
+            <img class="error-avatar-pic" [src]="profilePic.profilePicOffAvatar" alt="" />
+            <img class="error-avatar-frame" [src]="profilePic.profilePicOffFrame" alt="" />
+          }
+          <span class="error-avatar-status">
+            <span class="error-avatar-status-dot"></span>
+            Offline
+          </span>
+        </div>
+
+        <div class="error-dialog-text">
+          <div class="error-code" aria-hidden="true">404</div>
+          <h1 class="error-heading" id="error-heading">The specified profile could not be found.</h1>
+          <p class="error-quip">{{ quip }}</p>
+          <div class="error-path">
+            <span class="error-path-label">Requested URL</span>
+            <code class="error-path-value">{{ requestedPath }}</code>
+          </div>
+          <div class="error-actions">
+            <a class="error-btn error-btn-primary" routerLink="/" [state]="{ skipIntro: true }">
+              <fa-icon [icon]="faHouse"></fa-icon>
+              Return to Profile
+            </a>
+            <a
+              class="error-btn error-btn-secondary"
+              routerLink="/"
+              [queryParams]="{ contact: 1 }"
+              [state]="{ skipIntro: true }"
+            >
+              <fa-icon [icon]="faPhone"></fa-icon>
+              Contact Me
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  @if (isToastVisible()) {
+    <div class="achievement-toast" #achievementToast role="status" (click)="dismissToast()">
+      <div class="achievement-toast-icon">
+        <fa-icon [icon]="faTrophy"></fa-icon>
+      </div>
+      <div class="achievement-toast-text">
+        <span class="achievement-toast-label">Achievement Unlocked</span>
+        <span class="achievement-toast-name">Explorer</span>
+        <span class="achievement-toast-desc">Found a page that doesn't exist.</span>
+      </div>
+    </div>
+  }
+</div>

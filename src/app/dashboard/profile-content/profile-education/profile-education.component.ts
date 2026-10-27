@@ -1,86 +1,80 @@
-import { Component, ElementRef, HostListener, Renderer2 } from '@angular/core';
-import { ScrollReachedDirective } from 'src/app/dashboard/shared/directives/scroll-reaches.directive';
+import { Component, DestroyRef, ElementRef, HostListener, Renderer2 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CommonModule } from '@angular/common';
-import { Observable, debounceTime, fromEvent, map } from 'rxjs';
+import { debounceTime, fromEvent } from 'rxjs';
 import { edu } from '../../shared/data/edu';
 import anime from 'animejs/lib/anime.es.js';
-import { faAward, faBuildingColumns, faChevronDown, faChevronUp, faClipboardCheck } from '@fortawesome/free-solid-svg-icons';
+import { faAward, faBuildingColumns, faChevronDown, faChevronUp, faClipboardCheck, faGraduationCap, faSchool } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-profile-education',
   standalone: true,
-  imports: [ScrollReachedDirective, CommonModule, FontAwesomeModule],
+  imports: [CommonModule, FontAwesomeModule],
   templateUrl: './profile-education.component.html',
   styleUrl: './profile-education.component.scss'
 })
 export class ProfileEducationComponent {
   animationPlayed: boolean = false;
   selectedEdu: any = edu;
+  currentItemIndex: number = 0;
   private isAnimating: boolean = false;
-  private currentItemIndex: number = 0;
 
-  constructor(private el: ElementRef, private renderer: Renderer2, library: FaIconLibrary) {
+  constructor(private el: ElementRef, private renderer: Renderer2, private destroyRef: DestroyRef, library: FaIconLibrary) {
     library.addIcons(
       faChevronUp,
       faChevronDown,
       faClipboardCheck,
       faAward,
-      faBuildingColumns
+      faBuildingColumns,
+      faGraduationCap,
+      faSchool
     )
   }
 
-  //Mobile Nav Scroll
   scrollToNext() {
-    const container = this.el.nativeElement.querySelector('.profile-edu-content-display');
-    const itemHeight = container.querySelector('.edu-timeline-content').offsetHeight;
-    const nextIndex = this.currentItemIndex + 1;
-    const nextScrollTop = nextIndex * itemHeight;
-
-    if (nextIndex < this.selectedEdu.length) { // Check if next index is within bounds
-      this.animateScroll(container, container.scrollTop, nextScrollTop, 300); // Adjust the duration as needed
-      this.currentItemIndex = nextIndex;
-    }
+    this.goTo(this.currentItemIndex + 1);
   }
 
   scrollToPrevious() {
-    const container = this.el.nativeElement.querySelector('.profile-edu-content-display');
-    const itemHeight = container.querySelector('.edu-timeline-content').offsetHeight;
-    const previousIndex = this.currentItemIndex - 1;
-    const previousScrollTop = previousIndex * itemHeight;
-
-    if (previousIndex >= 0) { // Check if previous index is within bounds
-      this.animateScroll(container, container.scrollTop, previousScrollTop, 300); // Adjust the duration as needed
-      this.currentItemIndex = previousIndex;
-    }
+    this.goTo(this.currentItemIndex - 1);
   }
 
-  //Desktop Scroll
+  goTo(index: number) {
+    if (this.isAnimating || index < 0 || index >= this.selectedEdu.length) {
+      return;
+    }
+
+    const container = this.getContainer();
+    const itemHeight = container.querySelector<HTMLElement>('.edu-timeline-content')!.offsetHeight;
+
+    this.animateScroll(container, container.scrollTop, index * itemHeight, 300);
+    this.currentItemIndex = index;
+  }
+
+  // Wheel steps one item at a time, but hands scrolling back to the page at either end of the list.
   @HostListener('wheel', ['$event'])
   onWheel(event: WheelEvent) {
-    event.preventDefault(); // Prevent default scrolling behavior
-
-    if (this.isAnimating) {
-      return; // Do nothing if animation is already in progress
+    if (!(event.target as HTMLElement).closest('.profile-edu-content-display') || event.deltaY === 0) {
+      return;
     }
 
-    const container = this.el.nativeElement.querySelector('.profile-edu-content-display');
-    const items = container.querySelectorAll('.edu-timeline-content');
-    const itemHeight = items[0].offsetHeight;
-    const containerHeight = container.offsetHeight;
+    const target = this.currentItemIndex + (event.deltaY > 0 ? 1 : -1);
 
-    const deltaY = event.deltaY;
-
-    if (deltaY > 0) {
-      // Scroll down
-      this.animateScroll(container, container.scrollTop, container.scrollTop + itemHeight, 300); // Adjust the duration as needed
-    } else if (deltaY < 0) {
-      // Scroll up
-      this.animateScroll(container, container.scrollTop, container.scrollTop - itemHeight, 300); // Adjust the duration as needed
+    if (target < 0 || target >= this.selectedEdu.length) {
+      return;
     }
+
+    event.preventDefault();
+    this.goTo(target);
   }
 
   animateScroll(element: HTMLElement, start: number, end: number, duration: number) {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      element.scrollTop = end;
+      return;
+    }
+
     this.isAnimating = true;
 
     const startTime = performance.now();
@@ -102,98 +96,69 @@ export class ProfileEducationComponent {
   }
 
   ngAfterViewInit() {
-    // Education Content Display Max-Height Observable.
-    const eduTimelineContent = this.el.nativeElement.querySelector('.edu-timeline-content');
-    const profileEduContentDisplay = this.el.nativeElement.querySelector('.profile-edu-content-display');
-    // const profileEduContentCards = this.el.nativeElement.querySelectorAll('.edu-card');
+    this.syncItemHeights();
 
-    if (eduTimelineContent && profileEduContentDisplay) {
-      // Adjust max-height immediately during initialization
-      const initialHeight = eduTimelineContent.offsetHeight;
-      const initialMaxHeight = initialHeight;
-      this.renderer.setStyle(profileEduContentDisplay, 'max-height', `${initialMaxHeight}px`);
+    fromEvent(window, 'resize').pipe(
+      debounceTime(100),
+      takeUntilDestroyed(this.destroyRef)
+    ).subscribe(() => this.syncItemHeights());
+  }
 
-      // Create an Observable to observe changes in the height of the .edu-timeline-content element
-      const heightChanges$: Observable<number> = fromEvent(window, 'resize').pipe(
-        map(() => eduTimelineContent.offsetHeight)
-      );
+  // Every item takes the tallest item's height so each scroll step lands exactly on the next item.
+  syncItemHeights() {
+    const container = this.getContainer();
+    const items: HTMLElement[] = Array.from(container?.querySelectorAll('.edu-timeline-content') ?? []);
 
-      // Subscribe to the Observable to update the max-height of the .profile-edu-content-display element
-      heightChanges$.subscribe(height => {
-        const newMaxHeight = height;
-        this.renderer.setStyle(profileEduContentDisplay, 'max-height', `${newMaxHeight}px`);
-      });
-
-      // if (window.innerWidth <= 745) {
-      //   const firstCardHeight = profileEduContentCards[0].offsetHeight - 20;
-      //   console.log(profileEduContentCards);
-  
-      //   // Set the height of all cards to match the height of the first card
-      //   profileEduContentCards.forEach((card: any) => {
-      //     this.renderer.setStyle(card, 'height', `${firstCardHeight}px`);
-      //     console.log("test");
-      //   });
-      // }
-
-      // Manually trigger window resize event when Chrome DevTools resize event is detected
-      fromEvent(window, 'resize').pipe(
-        debounceTime(100) // Adjust debounce time as needed
-      ).subscribe(() => {
-        window.dispatchEvent(new Event('resize'));
-      });
+    if (!container || items.length === 0) {
+      return;
     }
+
+    items.forEach(item => this.renderer.removeStyle(item, 'height'));
+    const tallest = Math.max(...items.map(item => item.offsetHeight));
+
+    items.forEach(item => this.renderer.setStyle(item, 'height', `${tallest}px`));
+    this.renderer.setStyle(container, 'max-height', `${tallest}px`);
+    container.scrollTop = this.currentItemIndex * tallest;
   }
 
-
-  removeAnimationInlineStyles() {
-    setTimeout(() => {
-      // const dateElements = document.querySelectorAll('.edu-date');
-      // dateElements.forEach(element => {
-      //   element.removeAttribute('style');
-      // });
-
-      const cardElements = document.querySelectorAll('.edu-card');
-      cardElements.forEach(element => {
-        element.removeAttribute('style');
-      });
-
-      if (window.innerWidth <= 910) {
-        const navElements = document.querySelectorAll('.edu-mobile-nav');
-        navElements.forEach(element => {
-          element.removeAttribute('style');
-        });
-      }
-    }, 5000)
+  getContainer(): HTMLElement {
+    return this.el.nativeElement.querySelector('.profile-edu-content-display');
   }
 
-  onIntersection(): void {
-
+  playIntro(startDelay: number): void {
     if (this.animationPlayed == false && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
 
       anime({
-        targets: '.edu-date',
-        translateX: ['-100%', 0], // Move from left (-100%) to current position (0)
-        opacity: [0, 1], // Fade from transparent (0) to opaque (1)
-        delay: 1000,
+        targets: this.el.nativeElement.querySelectorAll('.edu-card'),
+        translateY: [40, 0],
+        opacity: [0, 1],
+        easing: 'easeOutCubic',
+        duration: 600,
+        delay: startDelay,
+        complete: (anim: any) => anim.animatables.forEach((a: any) => a.target.style.removeProperty('transform'))
       });
 
       anime({
-        targets: '.edu-card',
-        translateY: ['1000px', 0],
-        opacity: [0, 1], // Fade from transparent (0) to opaque (1)
-        delay: anime.stagger(200, { start: 1200 }), // Use easing for smoother animation
+        targets: this.el.nativeElement.querySelectorAll('.edu-badge'),
+        scale: [0.6, 1],
+        rotate: [-10, 0],
+        easing: 'easeOutBack',
+        duration: 600,
+        delay: startDelay + 200,
+        complete: (anim: any) => anim.animatables.forEach((a: any) => a.target.style.removeProperty('transform'))
       });
 
-      if (window.innerWidth <= 910) {
-        anime({
-          targets: '.edu-mobile-nav',
-          translateX: ['100%', 0],
-          opacity: [0, 1], // Fade from transparent (0) to opaque (1)
-          delay: anime.stagger(300, { start: 1200 }),
-        });
-      }
+      // Nav pills keep their disabled opacity in CSS, so hand both properties back once they land.
+      anime({
+        targets: this.el.nativeElement.querySelectorAll('.edu-mobile-nav'),
+        translateX: [20, 0],
+        opacity: [0, 1],
+        easing: 'easeOutCubic',
+        duration: 450,
+        delay: anime.stagger(80, { start: startDelay + 100 }),
+        complete: (anim: any) => anim.animatables.forEach((a: any) => a.target.removeAttribute('style'))
+      });
 
-      this.removeAnimationInlineStyles();
       this.animationPlayed = true;
     }
   }

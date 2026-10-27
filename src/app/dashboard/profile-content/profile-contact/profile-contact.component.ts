@@ -6,13 +6,13 @@ import { faAddressCard, faExclamationTriangle, faInfoCircle, faClose } from '@fo
 import { CustomValidators } from '../../shared/directives/custom-validators';
 import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
 // import { environment } from 'src/assets/environment/environment'; // FOR TESTING
-import { NzMessageModule, NzMessageService } from 'ng-zorro-antd/message';
+import { NzMessageService } from 'ng-zorro-antd/message';
 import { ModalService } from '../../shared/service/modal.service';
 
 @Component({
   selector: 'app-profile-contact',
   standalone: true,
-  imports: [ReactiveFormsModule, FontAwesomeModule, NzMessageModule],
+  imports: [ReactiveFormsModule, FontAwesomeModule],
   templateUrl: './profile-contact.component.html',
   styleUrl: './profile-contact.component.scss'
 })

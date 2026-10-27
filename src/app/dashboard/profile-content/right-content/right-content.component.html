@@ -2,10 +2,17 @@
   <div
     class="right-profile-content-status anime-status"
     [ngStyle]="{ color: statusColor }"
+    scrollReached
+    (scrollReached)="onStatusReached()"
   >
+    <span class="status-dot" aria-hidden="true"></span>
     Currently {{ status }}
   </div>
-  <div class="right-item content-achievement">
+  <div
+    class="right-item content-achievement"
+    scrollReached
+    (scrollReached)="onAchievementsReached()"
+  >
     <div class="mb4 anime-achievements">
       <span class="title achievement-title">Achievements</span>
       &nbsp;
@@ -39,7 +46,11 @@
       }
     </div>
   </div>
-  <div class="right-item content-groups">
+  <div
+    class="right-item content-groups"
+    scrollReached
+    (scrollReached)="onGroupsReached()"
+  >
     <!--Clubs-->
     <div class="mb4 anime-groups">
       <span class="title groups-title" style="cursor: default">Groups</span>
@@ -163,6 +174,30 @@
                   [attr.data-position]="friend.position"
                 >
                   <span class="friend-level">{{ friend.level }}</span>
+                </div>
+                <div
+                  class="friend-mini-profile"
+                  [attr.data-status]="friend.status"
+                  aria-hidden="true"
+                >
+                  <div class="friend-mini-profile-banner"></div>
+                  <div class="friend-mini-profile-body">
+                    <img
+                      [src]="friend.picSrc"
+                      alt=""
+                      class="friend-mini-profile-pic"
+                    />
+                    <div class="friend-mini-profile-info">
+                      <span class="friend-mini-profile-name ellipsis">{{ friend.name }}</span>
+                      <span class="friend-mini-profile-status ellipsis">
+                        {{ friend.status == "In-Game" ? "Playing " + friend.game : friend.status }}
+                      </span>
+                    </div>
+                  </div>
+                  <div class="friend-mini-profile-footer">
+                    <span>Steam Level</span>
+                    <span class="friend-mini-profile-level">{{ friend.level }}</span>
+                  </div>
                 </div>
               </div>
             </a>

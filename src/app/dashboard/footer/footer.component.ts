@@ -5,6 +5,7 @@ import { faGithub, faFacebookSquare, faInstagram, faLinkedinIn, faHackerrank, fa
 import { ScrollService } from '../shared/service/scroll.service';
 import { ScrollReachedDirective } from '../shared/directives/scroll-reaches.directive';
 import anime from 'animejs/lib/anime.es.js';
+import { IntroService } from '../shared/service/intro.service';
 
 @Component({
   selector: 'app-footer',
@@ -36,7 +37,8 @@ export class FooterComponent {
     { name: "RESUME", anchor: "resume", icon: "" }
   ]
 
-  constructor(library: FaIconLibrary, private el: ElementRef, private scrollService: ScrollService) {
+  constructor(library: FaIconLibrary, private el: ElementRef, private scrollService: ScrollService,
+    private intro: IntroService) {
     library.addIcons(
       faGithub,
       faFacebookSquare,
@@ -60,47 +62,57 @@ export class FooterComponent {
 
   onFooterIntersection() {
     if (!this.footerAnimationPlayed && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      // Starts as the footer panel (animated by the dashboard on the same slot) settles in.
+      const delay = this.intro.delayFor(700) + 200;
+      const clearTransforms = (anim: any) => anim.animatables.forEach((a: any) => a.target.style.removeProperty('transform'));
+
       anime({
         targets: '.footer-header',
-        translateX: ['-100%', 0], // Move from left (-100%) to current position (0)
-        opacity: [0, 1], // Fade from transparent (0) to opaque (1)
-        easing: 'easeInOutQuad', // Use easing for smoother animation
-        delay: 1000,
-        duration: 1000 // Animation duration in milliseconds
+        translateX: [-60, 0],
+        opacity: [0, 1],
+        easing: 'easeOutCubic',
+        delay,
+        duration: 650,
+        complete: clearTransforms
       });
 
       anime({
         targets: '.footer-logo',
-        translateX: ['100%', 0], // Move from left (-100%) to current position (0)
-        opacity: [0, 1], // Fade from transparent (0) to opaque (1)
-        easing: 'easeInOutQuad', // Use easing for smoother animation
-        delay: 1250,
-        duration: 1000 // Animation duration in milliseconds
+        translateX: [60, 0],
+        rotate: [8, 0],
+        opacity: [0, 1],
+        easing: 'easeOutBack',
+        delay: delay + 100,
+        duration: 700,
+        complete: clearTransforms
       });
 
       anime({
         targets: '.footer-socials a',
-        translateY: ['100%', 0], // Move from left (-100%) to current position (0)
-        opacity: [0, 1], // Fade from transparent (0) to opaque (1)
-        easing: 'easeInOutQuad', // Use easing for smoother animation
-        delay: anime.stagger(200, { start: 1500 }),
+        translateY: [20, 0],
+        opacity: [0, 1],
+        easing: 'easeOutBack',
+        duration: 450,
+        delay: anime.stagger(50, { start: delay + 200 }),
+        complete: clearTransforms
       });
 
       anime({
         targets: '.footer-link',
-        translateY: ['-100%', 0], // Move from left (-100%) to current position (0)
-        opacity: [0, 1], // Fade from transparent (0) to opaque (1)
-        easing: 'easeInOutQuad', // Use easing for smoother animation
-        delay: anime.stagger(200, { start: 1500 }),
+        translateY: [-16, 0],
+        opacity: [0, 1],
+        easing: 'easeOutCubic',
+        duration: 450,
+        delay: anime.stagger(60, { start: delay + 250 }),
+        complete: clearTransforms
       });
 
       anime({
         targets: '.footer-copyright',
-        translateX: ['-100%', 0], // Move from left (-100%) to current position (0)
-        opacity: [0, 1], // Fade from transparent (0) to opaque (1)
-        easing: 'easeInOutQuad', // Use easing for smoother animation
-        delay: 2000,
-        duration: 1000 // Animation duration in milliseconds
+        opacity: [0, 1],
+        easing: 'easeOutCubic',
+        delay: delay + 450,
+        duration: 500
       });
 
       this.footerAnimationPlayed = true;

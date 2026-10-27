@@ -1,3 +1,4 @@
+import { IntroService } from '../shared/service/intro.service';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoaderComponent } from './loader.component';
@@ -8,7 +9,8 @@ describe('LoaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LoaderComponent]
+      imports: [LoaderComponent],
+      providers: [IntroService]
     })
     .compileComponents();
     

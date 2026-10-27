@@ -7,6 +7,8 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
 import { SeasoncheckerService } from '../shared/service/season-checker.service';
 import { ProfileContactComponent } from '../profile-content/profile-contact/profile-contact.component';
 import { ProfilePic, profilePics } from '../shared/data/profile-pic';
+import { IntroService } from '../shared/service/intro.service';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-profile-header',
@@ -17,9 +19,14 @@ import { ProfilePic, profilePics } from '../shared/data/profile-pic';
 })
 export class ProfileHeaderComponent {
   @ViewChild('profileSummaryModal') profileSummaryModal!: ElementRef;
+  @ViewChild('levelRingProgress') levelRingProgress!: ElementRef<SVGCircleElement>;
 
   currentTime: any = "";
   myAge: number = 0;
+  readonly levelRingCircumference: number = 2 * Math.PI * 19;
+  levelRingOffset: number = this.levelRingCircumference;
+  levelProgressPercent: number = 0;
+  levelProgressLabel: string = "";
   myHandle: string = "@Sia-WRWD®";
   isVisible: boolean = false;
   currentProfilePic: any;
@@ -37,7 +44,8 @@ export class ProfileHeaderComponent {
     { iconName: 'discord', iconClass: 'discord', iconRedirect: 'https://www.discord.com/users/370570874438287363' }
   ] //Discord need to add tooltip
 
-  constructor(library: FaIconLibrary, private el: ElementRef, private seasonChecker: SeasoncheckerService) {
+  constructor(library: FaIconLibrary, private el: ElementRef, private seasonChecker: SeasoncheckerService,
+    private intro: IntroService) {
     library.addIcons(
       faGithub,
       faFacebookSquare,
@@ -55,18 +63,11 @@ export class ProfileHeaderComponent {
     this.calculateAge();
     this.getCurrentTime();
     this.picOnSeasonChange();
-    console.log(this.currentProfilePic)
   }
 
   ngAfterViewInit() {
     if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      anime({
-        targets: '.anime-profile-header',
-        translateY: ['-100%', 0], // Move from left (-100%) to current position (0)
-        opacity: [0, 1], // Fade from transparent (0) to opaque (1)
-        easing: 'easeInOutQuad', // Use easing for smoother animation
-        duration: 1000 // Animation duration in milliseconds
-      });
+      this.intro.done$.pipe(take(1)).subscribe(() => this.playIntro());
     }
 
     if (this.shouldApplyTilt() && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -79,6 +80,24 @@ export class ProfileHeaderComponent {
     if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       this.addPicChangeListeners();
     }
+  }
+
+  playIntro() {
+    anime({
+      targets: '.anime-profile-header',
+      translateY: [-60, 0],
+      opacity: [0, 1],
+      easing: 'easeOutCubic',
+      duration: 700
+    });
+
+    anime({
+      targets: this.levelRingProgress.nativeElement,
+      strokeDashoffset: [this.levelRingCircumference, this.levelRingCircumference * (1 - this.levelProgressPercent / 100)],
+      easing: 'easeOutCubic',
+      delay: 500,
+      duration: 1200
+    });
   }
 
   shouldApplyTilt(): boolean {
@@ -98,6 +117,21 @@ export class ProfileHeaderComponent {
   calculateAge() {
     const today = new Date();
     this.myAge = today.getFullYear() - 2001;
+    this.calculateLevelProgress(today);
+  }
+
+  // The level ticks over every new year, so XP is how far through the current year we are.
+  calculateLevelProgress(today: Date) {
+    const yearStart = new Date(today.getFullYear(), 0, 1).getTime();
+    const yearEnd = new Date(today.getFullYear() + 1, 0, 1).getTime();
+    const progress = (today.getTime() - yearStart) / (yearEnd - yearStart);
+
+    this.levelProgressPercent = Math.round(progress * 100);
+    this.levelProgressLabel = `${this.levelProgressPercent}% XP to Level ${this.myAge + 1}`;
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      this.levelRingOffset = this.levelRingCircumference * (1 - progress);
+    }
   }
 
   addPicChangeListeners() {

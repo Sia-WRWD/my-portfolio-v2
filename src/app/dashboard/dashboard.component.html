@@ -1,6 +1,6 @@
 <app-loader></app-loader>
 <app-navigation></app-navigation>
-<div class="profile-page">
+<div class="profile-page" [attr.data-profile-theme]="themeService.appliedTheme()">
   <div class="profile-animated-background">
     @if (currentTime == "work-time") {
       <video
@@ -44,20 +44,51 @@
 <div id="sakana-widget" class="sakana-widget"></div>
 
 <div class="widget-container">
-  <div class="backtotop-container" scrollToTop>
+  <div class="backtotop-container" scrollToTop title="Back to top">
     <fa-icon [icon]="['fas', 'chevron-up']" class="widget-icon"></fa-icon>
   </div>
+  <div class="theme-widget">
+    <div
+      class="theme-widget-container"
+      (click)="toggleThemePicker()"
+      [class.is-open]="isThemePickerOpen"
+      title="Profile theme"
+    >
+      <fa-icon [icon]="['fas', 'palette']" class="widget-icon"></fa-icon>
+    </div>
+    @if (isThemePickerOpen) {
+      <div class="theme-picker" role="listbox" aria-label="Profile theme">
+        <div class="theme-picker-title">Profile Theme</div>
+        @for (option of themeService.options; track option.id) {
+          <button
+            type="button"
+            class="theme-picker-option"
+            role="option"
+            [attr.aria-selected]="themeService.theme() === option.id"
+            [class.is-active]="themeService.theme() === option.id"
+            (click)="selectTheme(option.id)"
+          >
+            <span class="theme-picker-swatch" [style.background]="option.swatch"></span>
+            {{ option.label }}
+            @if (themeService.theme() === option.id) {
+              <fa-icon [icon]="['fas', 'check']" class="theme-picker-check"></fa-icon>
+            }
+          </button>
+        }
+      </div>
+    }
+  </div>
   @if (isProfileContentVisible) {
-    <div class="background-widget-container" (click)="hideProfileContent()">
+    <div class="background-widget-container" (click)="hideProfileContent()" title="View background">
       <fa-icon [icon]="['fas', 'image']" class="widget-icon"></fa-icon>
     </div>
   } @else {
-    <div class="background-widget-container" (click)="showProfileContent()">
+    <div class="background-widget-container" (click)="showProfileContent()" title="Show profile">
       <fa-icon [icon]="['fas', 'images']" class="widget-icon"></fa-icon>
     </div>
   }
   <!-- @if (!isModalVisible) { -->
-  <div class="contact-widget-container" (click)="openContactModal()">
+  <div class="contact-widget-container" (click)="openContactModal()" title="Contact me">
     <fa-icon [icon]="['fas', 'phone']" class="widget-icon"></fa-icon>
   </div>
   <!-- } @else {
@@ -71,6 +102,7 @@
     [nzWidth]="910"
     [nzClosable]="false"
     [nzCentered]="true"
+    (nzOnCancel)="closeContactModal()"
   >
     <ng-template #modalContent>
       <app-profile-contact></app-profile-contact>

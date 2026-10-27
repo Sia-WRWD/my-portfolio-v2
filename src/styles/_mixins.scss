@@ -1,0 +1,62 @@
+// Shared Steam-client building blocks. Colours come from the theme tokens in styles.scss.
+
+@mixin glass-panel($radius: var(--panel-radius)) {
+    background: var(--panel-bg);
+    border: 1px solid var(--panel-border);
+    border-radius: $radius;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+@mixin showcase-header {
+    background: linear-gradient(90deg, var(--gradient-showcase-header-left) 0%, var(--color-showcase-header) 90%);
+    border-radius: var(--showcase-radius) var(--showcase-radius) 0 0;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    letter-spacing: 0.2px;
+}
+
+@mixin showcase-body {
+    border-radius: 0 0 var(--showcase-radius) var(--showcase-radius);
+    border: 1px solid var(--panel-border);
+    border-top: none;
+}
+
+@mixin steam-btn-primary {
+    background: linear-gradient(90deg, #06BFFF 0%, #2D73FF 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(13, 107, 255, 0.35);
+    cursor: pointer;
+    transition: filter 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+
+    &:hover {
+        filter: brightness(1.12);
+        box-shadow: 0 4px 16px rgba(13, 107, 255, 0.55);
+    }
+}
+
+@mixin steam-pill {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 999px;
+    color: #dcdedf;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.16);
+        border-color: rgba(255, 255, 255, 0.3);
+        color: #ffffff;
+    }
+}
+
+@mixin hover-lift($distance: -3px) {
+    @media (not (prefers-reduced-motion: reduce)) {
+        transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+
+        &:hover {
+            transform: translateY($distance);
+        }
+    }
+}

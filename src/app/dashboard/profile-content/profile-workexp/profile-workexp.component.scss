@@ -1,3 +1,5 @@
+@use '../../../../styles/mixins' as m;
+
 :host {
     box-sizing: content-box !important;
 }
@@ -11,17 +13,16 @@
     padding-bottom: 15px;
 
     .profile-workexp-header-container {
+        @include m.showcase-header;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         font-family: "Motiva Sans", Sans-serif;
         font-weight: 200;
-        background: linear-gradient(90deg, var(--gradient-showcase-header-left) 0%, var(--color-showcase-header) 90%);
-        padding: 5px 10px 5px 10px;
+        padding: 6px 12px;
         color: #ffffff;
         font-size: 20px;
         line-height: 30px;
-        border-radius: 3px 3px 0px 0px;
         align-items: center;
         flex-wrap: wrap;
         gap: 5px;
@@ -30,18 +31,23 @@
             font-weight: 500;
             margin-right: 40px;
         }
+
+        .profile-workexp-header-summary {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.75);
+        }
     }
 
     .profile-workexp-content-display {
+        @include m.showcase-body;
         display: flex;
-        padding: 10px;
+        padding: 12px;
         flex-direction: column;
-        width: calc(100% - 20px);
+        width: calc(100% - 26px);
         height: 100%;
         background-color: rgba(0, 0, 0, 0.3);
         justify-content: center;
         align-items: center;
-        border-radius: 0px 0px 3px 3px;
         min-height: 225px;
         gap: 10px;
 
@@ -50,203 +56,162 @@
             overflow: hidden;
             min-height: 225px;
             opacity: 0;
-            border-radius: 7px;
 
             @media (prefers-reduced-motion: reduce) {
                 opacity: 1;
             }
+        }
+    }
+}
 
-            .profile-workexp-content-carousel-slide {
-                border-radius: 7px;
-                background: rgba(255, 255, 255, 0.25);
-                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-                backdrop-filter: blur(6.3px);
-                -webkit-backdrop-filter: blur(6.3px);
-                //border: 1px solid rgba(255, 255, 255, 1);
-                box-shadow: 1px 2px 3px black;
-                display: flex;
-                align-items: flex-start;
-                flex-direction: row;
-                overflow: hidden;
+// One job, laid out like a game in Steam's "Recent Activity" list.
+.profile-workexp-content-carousel-slide {
+    --company: #66C0F4;
+    display: flex;
+    flex-direction: column;
+    border-radius: 4px;
+    overflow: hidden;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.02) 100%), rgba(16, 20, 27, 0.75);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
 
-                .profile-workexp-content-carousel-slide-card-content {
-                    padding: 0.625rem;
-                }
+    &.wct {
+        --company: #42B0EE;
+    }
 
-                .profile-workexp-content-carousel-slide-title-card {
-                    text-align: center;
-                    margin-bottom: 2rem;
+    &.fus {
+        --company: #D00910;
+    }
 
-                    h3 {
-                        font-size: 1.2rem;
-                    }
-                }
+    &.qube {
+        --company: #BC2024;
+    }
 
-                .slide-card-header {
-                    width: 80px;
-                    min-height: 300px;
-                    background: radial-gradient(98.31% 133.89% at 12.99% 12.25%, #693F00 10%, #33005C 62.6%, #022216 90%);
-                    position: relative;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
+    .workexp-game {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 12px 14px;
+        background: linear-gradient(90deg, color-mix(in srgb, var(--company) 22%, transparent) 0%, transparent 65%);
 
-                    .slide-card-header-name {
-                        display: inline-block;
-                        transform: translateX(-100px);
-                        text-align: center;
-                        font-size: 16px;
-                        color: #FFFFFF;
-                        text-shadow: 1px 2px 3px black;
-                        position: absolute;
-                        bottom: 20px;
-                        transition: 0.3s ease-in-out;
-                        font-weight: 600;
-                        letter-spacing: .3px;
-                    }
+        .workexp-capsule {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+            width: 64px;
+            height: 64px;
+            border-radius: 4px;
+            background: #ffffff;
+            box-shadow: 0 0 0 2px color-mix(in srgb, var(--company) 70%, transparent), 0 4px 12px rgba(0, 0, 0, 0.5);
 
-                    .slide-card-header-logo-container {
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        width: 50px;
-                        height: 50px;
-                        border-radius: 50%;
-                        position: absolute;
-                        top: 10px;
-                        left: 35px;
-                        background: white;
-                        transition: .3s ease-in-out;
-                        padding: 10px;
+            .workexp-capsule-logo {
+                width: 46px;
+                height: 46px;
+                object-fit: contain;
+            }
 
-                        .slide-card-header-logo {
-                            height: 45px;
-                            width: 45px;
-                        }
+            @media (not (prefers-reduced-motion: reduce)) {
+                transition: transform 0.2s ease;
 
-                        @media (not (prefers-reduced-motion: reduce)) {
-                            &:hover {
-                                animation: hithere 1s ease infinite;
-                                box-shadow: 1px 1px 2px 2px black;
-                            }
-                        }
-                    }
-
-                    @media (not (prefers-reduced-motion: reduce)) {
-                        .slide-card-header-logo-container:hover+.slide-card-header-name {
-                            transform: translateX(0px);
-                        }
-                    }
-                }
-
-                .slide-card-desc {
-                    width: 100%;
-                    padding: 7px;
-
-                    .slide-card-desc-padding {
-                        padding-left: 40px;
-                        padding-top: 12px;
-
-                        .slide-card-desc-role {
-                            font-size: 24px;
-                            font-weight: 700;
-                            text-shadow: 1px 2px 2px black;
-                        }
-
-                        .wct {
-                            color: #42B0EE;
-                        }
-
-                        .fus {
-                            color: #D00910;
-                        }
-
-                        .qube {
-                            color: #BC2024;
-                        }
-
-                        .slide-card-desc-date-duration {
-                            margin-top: 5px;
-                            color: #D3D3D3;
-                            font-weight: lighter;
-
-                            .slide-card-desc-date {
-                                font-size: 15px;
-                            }
-
-                            .slide-card-desc-duration {
-                                font-size: 12px;
-                            }
-                        }
-                    }
-
-                    .slide-card-desc-desc {
-                        padding: 10px;
-                        line-height: 20px;
-                        color: white;
-                        word-spacing: 2px;
-                        text-align: justify;
-                    }
+                &:hover {
+                    animation: hithere 1s ease infinite;
                 }
             }
         }
 
-        .profile-workexp-content-carousel-filter {
+        .workexp-game-info {
             display: flex;
-            flex-direction: row;
-            gap: 10px;
-            justify-content: center;
-            align-items: center;
+            flex-direction: column;
+            min-width: 0;
+            flex: 1;
 
-            .carousel-filter-icon-container {
-                padding: 5px;
-                background: rgba(255, 255, 255, 0.25);
-                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-                backdrop-filter: blur(6.3px);
-                -webkit-backdrop-filter: blur(6.3px);
-                border: 1px solid rgba(255, 255, 255, 1);
-                border-radius: 7px;
-                cursor: pointer;
-                box-shadow: 1px 2px 3px black;
-                transition: .3s ease-in-out;
+            .workexp-role {
+                color: #ffffff;
+                font-size: 20px;
+                font-weight: 600;
+                line-height: 1.25;
+                text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.6);
+            }
 
-                @media (not (prefers-reduced-motion: reduce)) {
-                    opacity: 0;
-                }
+            .workexp-company-row {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                gap: 4px 8px;
+            }
 
-                img {
-                    transition: .3s ease-in-out;
-                    filter: drop-shadow(1px 2px 3px black);
-                }
+            .workexp-company {
+                width: fit-content;
+                color: color-mix(in srgb, var(--company) 55%, #ffffff);
+                font-size: 14px;
+                font-weight: 500;
+                transition: color 0.2s ease;
 
-                @media (not (prefers-reduced-motion: reduce)) {
-                    &:hover {
-                        opacity: 1 !important;
-                        transform: scale(1.05);
-                    }
-                }
-
-                &[data-selected="active"] {
-                    opacity: 1;
-                }
-
-                &[data-selected="inactive"] {
-                    opacity: 0.25;
+                &:hover {
+                    color: #ffffff;
                 }
             }
 
-            .wct[data-selected="active"] {
-                border: 2px solid #42B0EE;
+            .workexp-project {
+                padding: 1px 7px;
+                border-radius: 2px;
+                background: rgba(103, 193, 245, 0.12);
+                color: #67c1f5;
+                font-size: 11px;
+                line-height: 16px;
+                white-space: nowrap;
             }
+        }
 
-            .fus[data-selected="active"] {
-                border: 2px solid #D00910;
+        .workexp-playtime {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            flex-shrink: 0;
+            text-align: right;
+            color: #8f98a0;
+            font-size: 12px;
+            line-height: 1.5;
+
+            .workexp-playtime-record {
+                color: #c6d4df;
+                font-size: 13px;
             }
+        }
+    }
 
-            .qube[data-selected="active"] {
-                border: 2px solid #BC2024;
+    .workexp-desc {
+        padding: 12px 14px;
+        color: #c6d4df;
+        font-size: 14px;
+        line-height: 1.55;
+        text-align: justify;
+    }
+
+    .workexp-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 14px;
+        background: rgba(0, 0, 0, 0.3);
+        color: #8f98a0;
+        font-size: 12px;
+
+        .workexp-footer-status {
+            padding: 2px 8px;
+            border-radius: 2px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            color: #898989;
+            background: rgba(137, 137, 137, 0.15);
+
+            &.is-current {
+                color: #90ba3c;
+                background: rgba(144, 186, 60, 0.15);
             }
-
         }
     }
 }
@@ -260,11 +225,6 @@
     overflow: hidden;
     min-height: 225px;
     display: flex;
-}
-
-:host ::ng-deep .slides-container {
-    margin: 0 !important;
-    margin-bottom: 10px !important;
 }
 
 :host ::ng-deep .special-links {
@@ -292,70 +252,40 @@
     }
 }
 
+:host ::ng-deep .slick-dots.slick-dots-bottom {
+    position: static;
+    margin: 10px 0 0 !important;
+}
+
+::ng-deep .ant-carousel .slick-dots li button {
+    border-radius: 999px !important;
+}
+
 ::ng-deep .ant-carousel .slick-dots li.slick-active button {
-    background: #66C0F4 !important;
-    box-shadow: 1px 2px 2px black;
+    background: var(--accent) !important;
+    box-shadow: 0 0 8px var(--accent);
 }
 
 @media screen and (max-width: 768px) {
-    .profile-workexp-content-carousel {
-        order: 2;
+    .profile-workexp-content-carousel-slide {
+        .workexp-game {
+            flex-wrap: wrap;
 
-        .profile-workexp-content-carousel-filter {
-            order: 1;
+            .workexp-game-info .workexp-role {
+                font-size: 17px;
+            }
+
+            .workexp-playtime {
+                flex-basis: 100%;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                text-align: left;
+            }
         }
 
-        .profile-workexp-content-carousel-slide {
-            flex-direction: column !important;
-            align-items: center !important;
-
-            .slide-card-header {
-                width: 100% !important;
-                min-height: 175px !important;
-                flex-direction: column !important;
-
-                .slide-card-header-name {
-                    position: static !important;
-                    transform: none !important;
-                    font-size: 35px !important;
-                    text-wrap: nowrap !important;
-                    margin-right: 0px !important;
-                    margin-bottom: 10px !important;
-                }
-
-                .slide-card-header-logo-container {
-                    left: unset !important;
-                    right: 20px !important;
-                    margin: auto;
-                    top: 50px !important;
-                    width: 70px !important;
-                    height: 70px !important;
-                    position: static !important;
-
-                    .slide-card-header-logo {
-                        width: 60px !important;
-                        height: 60px !important;
-                    }
-                }
-            }
-
-            .slide-card-desc {
-                .slide-card-desc-padding {
-                    padding: 0 10px !important;
-                }
-
-                .slide-card-desc-role {
-                    font-size: 20px !important;
-                }
-
-                .slide-card-desc-date {
-                    font-size: 16px;
-                }
-
-                .slide-card-desc-desc {
-                    font-size: 13px;
-                }
-            }
+        .workexp-desc {
+            font-size: 13px;
         }
     }
 

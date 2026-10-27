@@ -15,10 +15,34 @@ a {
     flex-direction: column;
 
     .right-profile-content-status {
+        display: flex;
+        align-items: center;
+        gap: 10px;
         font-family: "Motiva Sans", Sans-serif;
         font-weight: 200;
         font-size: 20px;
         margin-bottom: 32px;
+
+        .status-dot {
+            position: relative;
+            flex-shrink: 0;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: currentColor;
+            box-shadow: 0 0 8px currentColor;
+
+            @media (not (prefers-reduced-motion: reduce)) {
+                &::after {
+                    content: "";
+                    position: absolute;
+                    inset: 0;
+                    border-radius: 50%;
+                    background: currentColor;
+                    animation: statusPulse 2s ease-out infinite;
+                }
+            }
+        }
     }
 
     .right-item {
@@ -84,13 +108,19 @@ a {
             .achievement-logo {
                 width: 54px;
                 height: 54px;
+                border-radius: 6px;
                 filter: drop-shadow(1px 2px 2px rgb(0, 0, 0, 0.7));
+                transition: filter 0.2s ease-in;
+
+                &:hover {
+                    filter: drop-shadow(0 0 8px rgba(252, 194, 1, 0.75));
+                }
 
                 @media (not (prefers-reduced-motion: reduce)) {
                     transition: 0.2s ease-in;
 
                     &:hover {
-                        transform: scale(1.15);
+                        transform: scale(1.15) rotate(-3deg);
                     }
                 }
             }
@@ -117,9 +147,10 @@ a {
                 .game {
 
                     .game-pic {
-                        border-radius: 4px;
+                        border-radius: 6px;
                         height: 54px;
                         width: 54px;
+                        outline: 1px solid rgba(255, 255, 255, 0.1);
                         filter: drop-shadow(1px 2px 3px black);
 
                         @media (not (prefers-reduced-motion: reduce)) {
@@ -128,9 +159,14 @@ a {
                     }
                 }
 
+                &:hover .game-pic {
+                    outline-color: rgba(102, 192, 244, 0.8);
+                    filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.7));
+                }
+
                 @media (not (prefers-reduced-motion: reduce)) {
                     &:hover .game-pic {
-                        transform: scale(1.15);
+                        transform: translateY(-4px) scale(1.1);
                     }
                 }
             }
@@ -355,6 +391,18 @@ a {
                 }
             }
         }
+    }
+}
+
+@keyframes statusPulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: scale(2.6);
+        opacity: 0;
     }
 }
 

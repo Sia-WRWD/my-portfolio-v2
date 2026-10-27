@@ -13,6 +13,78 @@
     --btn-background: rgba(0, 0, 0, .2);
     --btn-background-hover: rgb(255, 255, 255, .1);
     --btn-outline: rgb(255, 255, 255, .1);
+    --panel-bg: rgba(0, 0, 0, .32);
+    --panel-border: rgba(255, 255, 255, .08);
+    --panel-radius: 12px;
+    --showcase-radius: 10px;
+    --accent: #66C0F4;
+}
+
+// Steam profile themes. "autumn" is the original palette defined in :root.
+[data-profile-theme="winter"] {
+    --gradient-left: rgba(170, 205, 235, 1);
+    --gradient-right: rgba(90, 140, 220, 1);
+    --gradient-background: rgba(24, 38, 70, 0.6);
+    --gradient-background-right: rgba(90, 140, 220, 1);
+    --gradient-background-left: rgba(170, 205, 235, 1);
+    --gradient-showcase-header-left: rgba(70, 130, 190, 1);
+    --color-showcase-header: rgba(70, 130, 190, .4);
+    --accent: #8fd3ff;
+}
+
+[data-profile-theme="spring"] {
+    --gradient-left: rgba(255, 196, 214, 1);
+    --gradient-right: rgba(236, 112, 160, 1);
+    --gradient-background: rgba(70, 40, 82, 0.55);
+    --gradient-background-right: rgba(236, 112, 160, 1);
+    --gradient-background-left: rgba(255, 196, 214, 1);
+    --gradient-showcase-header-left: rgba(95, 160, 90, 1);
+    --color-showcase-header: rgba(95, 160, 90, .4);
+    --accent: #ff9ec4;
+}
+
+[data-profile-theme="summer"] {
+    --gradient-left: rgba(255, 206, 92, 1);
+    --gradient-right: rgba(255, 128, 64, 1);
+    --gradient-background: rgba(92, 48, 24, 0.55);
+    --gradient-background-right: rgba(255, 128, 64, 1);
+    --gradient-background-left: rgba(255, 206, 92, 1);
+    --gradient-showcase-header-left: rgba(226, 140, 40, 1);
+    --color-showcase-header: rgba(226, 140, 40, .4);
+    --accent: #ffc95c;
+}
+
+[data-profile-theme="midnight"] {
+    --gradient-left: rgba(48, 64, 150, 1);
+    --gradient-right: rgba(98, 52, 170, 1);
+    --gradient-background: rgba(8, 10, 28, 0.75);
+    --gradient-background-right: rgba(98, 52, 170, 1);
+    --gradient-background-left: rgba(48, 64, 150, 1);
+    --gradient-showcase-header-left: rgba(64, 86, 190, 1);
+    --color-showcase-header: rgba(64, 86, 190, .4);
+    --accent: #8fa8ff;
+}
+
+[data-profile-theme="steel"] {
+    --gradient-left: rgba(132, 150, 168, 1);
+    --gradient-right: rgba(72, 92, 112, 1);
+    --gradient-background: rgba(26, 32, 40, 0.72);
+    --gradient-background-right: rgba(72, 92, 112, 1);
+    --gradient-background-left: rgba(132, 150, 168, 1);
+    --gradient-showcase-header-left: rgba(98, 120, 142, 1);
+    --color-showcase-header: rgba(98, 120, 142, .4);
+    --accent: #a9c4dc;
+}
+
+[data-profile-theme="cosmic"] {
+    --gradient-left: rgba(176, 82, 224, 1);
+    --gradient-right: rgba(255, 92, 164, 1);
+    --gradient-background: rgba(28, 10, 58, 0.65);
+    --gradient-background-right: rgba(255, 92, 164, 1);
+    --gradient-background-left: rgba(176, 82, 224, 1);
+    --gradient-showcase-header-left: rgba(140, 70, 210, 1);
+    --color-showcase-header: rgba(140, 70, 210, .4);
+    --accent: #e08cff;
 }
 
 *, ::after, ::before {
@@ -93,28 +165,6 @@ a {
 
     100% {
         transform: scale(1);
-    }
-}
-
-@keyframes bounceUp {
-
-    0%,
-    20%,
-    50%,
-    80%,
-    100% {
-        transform: translateY(0);
-        /* Start and end positions */
-    }
-
-    40% {
-        transform: translateY(-10px);
-        /* Bounce up position */
-    }
-
-    60% {
-        transform: translateY(-5px);
-        /* Bounce back position */
     }
 }
 
@@ -251,8 +301,16 @@ a {
 
 //Tooltip
 .ant-tooltip-inner {
-    background-color: rgba(0, 0, 0) !important;
+    background: linear-gradient(180deg, #2a313c 0%, #171d25 100%) !important;
+    border: 1px solid rgba(255, 255, 255, .1);
+    border-radius: 6px !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .5) !important;
     box-sizing: border-box !important;
+}
+
+.ant-tooltip-arrow-content,
+.ant-tooltip-arrow::before {
+    background: #171d25 !important;
 }
 
 .ant-tooltip {

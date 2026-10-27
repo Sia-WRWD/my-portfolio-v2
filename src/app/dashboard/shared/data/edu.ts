@@ -14,6 +14,7 @@ export const edu: any = [
         understanding of AI application architecture and the development process.`,
         redirect: 'https://www.apu.edu.my/our-courses/undergraduate-studies/computing-technology-games-development/bachelor-computer-science-artificial-intelligence',
         logoSrc: '',
+        badgeIcon: 'graduation-cap',
         color: '#F5D90C'
     },
     {
@@ -29,6 +30,7 @@ export const edu: any = [
         course, I have gained a lot of knowledge on software development and many different programming languages (that includes HTML, CSS, JS, PHP, Java, etc).`,
         redirect: 'https://www.apu.edu.my/our-courses/pre-university-studies/diploma-programmes/diploma-information-communication-technology',
         logoSrc: '',
+        badgeIcon: 'graduation-cap',
         color: '#0C7D3F'
     },
     {
@@ -44,6 +46,7 @@ export const edu: any = [
         and extracurricular involvement.`,
         redirect: 'https://sites.google.com/moe-dl.edu.my/smkmethodistacsklang',
         logoSrc: '',
+        badgeIcon: 'school',
         color: '#2E3293'
     },
     {
@@ -59,6 +62,7 @@ export const edu: any = [
         hosted regularly at the school.`,
         redirect: 'https://tenby.edu.my/setia-eco-park/',
         logoSrc: '',
+        badgeIcon: 'school',
         color: '#098D47'
     }
 ]

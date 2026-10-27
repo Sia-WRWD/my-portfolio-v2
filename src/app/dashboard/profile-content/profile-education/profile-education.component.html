@@ -1,51 +1,56 @@
-<div
-  class="profile-edu-container"
-  #edu
-  scrollReached
-  (scrollReached)="onIntersection()"
->
+<div class="profile-edu-container" #edu>
   <div class="profile-edu-header-container ellipsis">
     <div class="profile-edu-header-title">My Education</div>
     <div class="profile-edu-header-mobile-nav">
-      <div class="edu-mobile-nav" (click)="scrollToPrevious()" title="previous">
+      <span class="edu-nav-count">{{ currentItemIndex + 1 }} / {{ selectedEdu.length }}</span>
+      <div class="edu-mobile-nav" (click)="scrollToPrevious()" title="previous" [class.is-disabled]="currentItemIndex === 0">
         <fa-icon [icon]="['fas', 'chevron-up']"></fa-icon>
       </div>
-      <div class="edu-mobile-nav" (click)="scrollToNext()" title="next">
+      <div class="edu-mobile-nav" (click)="scrollToNext()" title="next" [class.is-disabled]="currentItemIndex === selectedEdu.length - 1">
         <fa-icon [icon]="['fas', 'chevron-down']"></fa-icon>
       </div>
     </div>
   </div>
+  <div class="profile-edu-progress">
+    <div class="profile-edu-progress-text">
+      <span>Milestones Unlocked</span>
+      <span class="profile-edu-progress-count">{{ selectedEdu.length }} of {{ selectedEdu.length }} (100%)</span>
+    </div>
+    <div class="profile-edu-progress-bar"><div class="profile-edu-progress-fill"></div></div>
+  </div>
   <div class="profile-edu-content-display">
-    @for (edu of selectedEdu; track edu) {
+    @for (edu of selectedEdu; track edu.course) {
       <div class="edu-timeline-content">
-        <h3 class="edu-date" [ngStyle]="{ color: edu.color }">
-          {{ edu.startDate }}
-        </h3>
-        <div class="edu-card">
-          <div class="edu-card-title">
-            {{ edu.course }}
+        <div class="edu-card" [style.--edu-color]="edu.color">
+          <div class="edu-badge">
+            <fa-icon [icon]="['fas', edu.badgeIcon]" class="edu-badge-icon"></fa-icon>
+            <span class="edu-badge-year">{{ edu.startDate }}</span>
           </div>
-          <div class="edu-card-subtitle">
-            <a class="edu-card-university" [href]="edu.redirect">{{
-              edu.school
-            }}</a>
-            <p class="edu-card-date">({{ edu.date }})</p>
-          </div>
-          <div class="edu-card-text">
-            {{ edu.desc }}
-          </div>
-          <div class="edu-achievement-container">
-            @for (achievement of edu.achievement; track achievement) {
-              <div class="edu-achievement-content">
-                <fa-icon
-                  [icon]="['fas', achievement.icon]"
-                  class="edu-achievement-icon"
-                ></fa-icon>
-                <div class="edu-achievement-desc">
-                  {{ achievement.desc }}
-                </div>
+          <div class="edu-card-main">
+            <div class="edu-card-top">
+              <div class="edu-card-heading">
+                <div class="edu-card-title">{{ edu.course }}</div>
+                <a class="edu-card-university" [href]="edu.redirect" target="_blank">{{ edu.school }}</a>
               </div>
-            }
+              <div class="edu-card-unlocked">
+                <span class="edu-card-unlocked-label">Unlocked</span>
+                <span class="edu-card-date">{{ edu.date }}</span>
+              </div>
+            </div>
+            <div class="edu-card-text">
+              {{ edu.desc }}
+            </div>
+            <div class="edu-achievement-container">
+              @for (achievement of edu.achievement; track achievement.desc) {
+                <div class="edu-achievement-content">
+                  <fa-icon
+                    [icon]="['fas', achievement.icon]"
+                    class="edu-achievement-icon"
+                  ></fa-icon>
+                  <span class="edu-achievement-desc">{{ achievement.desc }}</span>
+                </div>
+              }
+            </div>
           </div>
         </div>
       </div>

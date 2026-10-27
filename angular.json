@@ -39,6 +39,9 @@
               "./node_modules/sakana-widget/lib/index.css",
               "src/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": ["src/styles"]
+            },
             "scripts": []
           },
           "configurations": {
@@ -104,6 +107,9 @@
               "./node_modules/sakana-widget/lib/index.css",
               "src/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": ["src/styles"]
+            },
             "scripts": []
           }
         }

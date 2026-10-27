@@ -16,7 +16,7 @@ export const projects: any = [
             },
             {
                 name: "JS",
-                link: "https://cdn.worldvectorlogo.com/logos/logo-javascript.svg",
+                link: "../../../../assets/icons/stacks/javascript.svg",
                 redirect: ""
             },
             {
@@ -45,7 +45,7 @@ export const projects: any = [
             },
             {
                 name: "Angular",
-                link: "https://cdn.worldvectorlogo.com/logos/angular-icon-1.svg",
+                link: "../../../../assets/icons/stacks/angular.svg",
                 redirect: ""
             },
             {
@@ -99,7 +99,7 @@ export const projects: any = [
             },
             {
                 name: "JS",
-                link: "https://cdn.worldvectorlogo.com/logos/logo-javascript.svg",
+                link: "../../../../assets/icons/stacks/javascript.svg",
                 redirect: ""
             }
         ],
@@ -152,7 +152,7 @@ export const projects: any = [
             },
             {
                 name: "Angular",
-                link: "https://cdn.worldvectorlogo.com/logos/angular-icon-1.svg",
+                link: "../../../../assets/icons/stacks/angular.svg",
                 redirect: ""
             }
         ],

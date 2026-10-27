@@ -16,22 +16,95 @@
     transform: translate(-50%, -50%);
     z-index: 999999;
     width: 100%;
+    font-family: "Motiva Sans", Sans-serif;
     font-size: 6rem;
+    font-weight: 600;
+    letter-spacing: 2px;
     color: white;
-    text-shadow: 1px 2px 3px black;
+    text-shadow: 0 0 24px rgba(102, 192, 244, 0.55), 1px 2px 3px black;
     text-wrap: wrap;
     text-align: center;
-    animation: blink 1.5s infinite;
+    cursor: pointer;
+
+    @media (not (prefers-reduced-motion: reduce)) {
+      animation: blink 1.5s infinite;
+    }
+
+    .loader-hint {
+      display: block;
+      margin-top: 12px;
+      font-size: 1rem;
+      font-weight: 300;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #8f98a0;
+      text-shadow: none;
+    }
 
     @keyframes blink {
       0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
+      50% { opacity: 0.25; }
+    }
+  }
+
+  .loader-skip {
+    position: absolute;
+    right: 32px;
+    bottom: 32px;
+    z-index: 1000000;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 18px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 4px;
+    background: rgba(23, 26, 33, 0.7);
+    backdrop-filter: blur(6px);
+    color: #c6d4df;
+    font-family: "Motiva Sans", Sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+
+    .loader-skip-icon {
+      font-size: 12px;
+    }
+
+    &:hover,
+    &:focus-visible {
+      background: linear-gradient(90deg, #06bfff 0%, #2d73ff 100%);
+      border-color: transparent;
+      color: #ffffff;
+      outline: none;
+    }
+
+    @media (not (prefers-reduced-motion: reduce)) {
+      &:hover .loader-skip-icon {
+        animation: skip-nudge 0.6s ease infinite;
+      }
+    }
+
+    @keyframes skip-nudge {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(4px); }
     }
   }
 
   @media (max-width: 992px) {
     .loader-message {
       font-size: 6rem;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .loader-skip {
+      right: 16px;
+      bottom: 16px;
+      padding: 8px 14px;
+      font-size: 12px;
     }
   }
 

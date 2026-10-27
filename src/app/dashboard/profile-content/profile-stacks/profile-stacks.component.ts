@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { stacks } from '../../shared/data/stack-data';
 import anime from 'animejs/lib/anime.es.js';
-import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { NzTooltipModule } from 'ng-zorro-antd/tooltip';
 
 @Component({
   selector: 'app-profile-stacks',
   standalone: true,
-  imports: [NzToolTipModule],
+  imports: [NzTooltipModule],
   templateUrl: './profile-stacks.component.html',
   styleUrl: './profile-stacks.component.scss'
 })
@@ -22,12 +22,6 @@ export class ProfileStacksComponent {
 
   ngOnInit() {
     this.filteredStacks = stacks;
-  }
-
-  ngAfterViewInit() {
-    setTimeout(() => {
-      this.playStackAnimation();
-    }, 1000)
   }
 
   changeStack(filterValue: string) {
@@ -60,37 +54,38 @@ export class ProfileStacksComponent {
     }
   }
 
-  removeAnimationInlineStyles() {
-    setTimeout(() => {
-      const filterElements = document.querySelectorAll('.profile-stack-header-filter');
-      filterElements.forEach(element => {
-        element.removeAttribute('style');
-      });
-
-      const stackElements = document.querySelectorAll('.profile-stack-icon-container');
-      stackElements.forEach(element => {
-        element.removeAttribute('style');
-      });
-    }, 5000)
-  }
-
-  playStackAnimation() {
+  playIntro(startDelay: number) {
     if (this.animationPlayed == false && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       anime({
         targets: '.profile-stack-header-filter',
-        translateX: ['800px', 0], // Move from left (-100%) to current position (0)
-        opacity: [0, 1], // Fade from transparent (0) to opaque (1)
-        delay: anime.stagger(200, { start: 750 }), // Use easing for smoother animation
+        translateX: [40, 0],
+        opacity: [0, 1],
+        easing: 'easeOutCubic',
+        duration: 500,
+        delay: anime.stagger(70, { start: startDelay }),
+        complete: (anim: any) => this.clearInlineStyles(anim)
       });
 
       anime({
         targets: '.profile-stack-icon-container',
-        translateY: ['500px', 0], // Move from left (-100%) to current position (0)
-        delay: anime.stagger(150, { start: 750 }), // Use easing for smoother animation
+        translateY: [30, 0],
+        scale: [0.85, 1],
+        opacity: [0, 1],
+        easing: 'easeOutBack',
+        duration: 500,
+        delay: anime.stagger(35, { start: startDelay + 150 }),
+        complete: (anim: any) => this.clearInlineStyles(anim)
       });
 
-      // this.removeAnimationInlineStyles(); // Might cause disappearing of elements.
       this.animationPlayed = true;
     }
+  }
+
+  // Hand opacity and transform back to the stylesheet so the filter dimming and hover effects keep working.
+  clearInlineStyles(anim: any) {
+    anim.animatables.forEach((animatable: any) => {
+      animatable.target.style.removeProperty('transform');
+      animatable.target.style.removeProperty('opacity');
+    });
   }
 }

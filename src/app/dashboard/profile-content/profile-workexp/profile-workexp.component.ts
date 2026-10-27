@@ -1,14 +1,15 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, DestroyRef, ElementRef, Renderer2 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import anime from 'animejs/lib/anime.es.js';
 import { NzCarouselFlipStrategy, NzCarouselModule, NZ_CAROUSEL_CUSTOM_STRATEGIES } from 'ng-zorro-antd/carousel';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { debounceTime, fromEvent } from 'rxjs';
 import { workExp } from '../../shared/data/work-exp';
-import { ScrollReachedDirective } from 'src/app/dashboard/shared/directives/scroll-reaches.directive';
 
 @Component({
   selector: 'app-profile-workexp',
   standalone: true,
-  imports: [NzCarouselModule, CommonModule, ScrollReachedDirective, NgOptimizedImage],
+  imports: [NzCarouselModule, CommonModule, NgOptimizedImage],
   templateUrl: './profile-workexp.component.html',
   styleUrl: './profile-workexp.component.scss',
   providers: [
@@ -23,136 +24,100 @@ import { ScrollReachedDirective } from 'src/app/dashboard/shared/directives/scro
 
 export class ProfileWorkexpComponent {
   animationPlayed: boolean = false;
-  workExpSlides: any = workExp;
+  workExpSlides: any[] = workExp.map((slide: any) => ({ ...slide, ...this.getPlaytime(slide) }));
+  totalRecordLabel: string = this.formatRecord(this.countDistinctMonths(workExp));
   strategy = 'flip';
 
-  constructor(private el: ElementRef) { }
+  constructor(private el: ElementRef, private renderer: Renderer2, private destroyRef: DestroyRef) { }
+
+  // Steam-style "x hrs on record", counted in whole months with both ends inclusive.
+  getPlaytime(slide: any): { months: number, recordLabel: string, isCurrent: boolean } {
+    const isCurrent = slide.endDate === 'Now';
+    const { start, end } = this.getRange(slide);
+    const months = end - start + 1;
+
+    return { months, recordLabel: this.formatRecord(months), isCurrent };
+  }
+
+  // Back-to-back roles share their handover month, so the total counts each month only once.
+  countDistinctMonths(slides: any[]): number {
+    const months = new Set<number>();
+    slides.forEach(slide => {
+      const { start, end } = this.getRange(slide);
+      for (let month = start; month <= end; month++) {
+        months.add(month);
+      }
+    });
+    return months.size;
+  }
+
+  // Start and end as absolute month numbers (year * 12 + month).
+  getRange(slide: any): { start: number, end: number } {
+    const now = new Date();
+    const start = this.parseMonth(slide.startDate);
+    const end = slide.endDate === 'Now' ? now.getFullYear() * 12 + now.getMonth() : this.parseMonth(slide.endDate);
+    return { start, end };
+  }
+
+  // Accepts labels like "Jan 2024", "Sept 2022" or "April 2026".
+  parseMonth(label: string): number {
+    const [month, year] = label.split(' ');
+    const monthIndex = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
+      .indexOf(month.slice(0, 3).toLowerCase());
+    return Number(year) * 12 + monthIndex;
+  }
+
+  formatRecord(months: number): string {
+    return months < 12 ? `${months} mos` : `${(months / 12).toFixed(1)} yrs`;
+  }
 
   ngAfterViewInit() {
-    this.resizeCarouselDescObserver();
+    this.syncDescHeights();
+
+    fromEvent(window, 'resize').pipe(
+      debounceTime(100),
+      takeUntilDestroyed(this.destroyRef)
+    ).subscribe(() => this.syncDescHeights());
   }
 
-  removeAnimationInlineStyles() {
-    setTimeout(() => {
-      const carouselElement = document.querySelectorAll<HTMLDivElement>('.profile-workexp-content-carousel');
-      carouselElement.forEach(element => {
-        element.removeAttribute('style');
-        element.style.opacity = '1';
-      });
+  // Every description takes the tallest one's height so the carousel doesn't jump between slides.
+  syncDescHeights() {
+    const descs: HTMLElement[] = Array.from(this.el.nativeElement.querySelectorAll('.slide-card-desc-desc'));
 
-      const filterElements = document.querySelectorAll('.carousel-filter-icon-container');
-      filterElements.forEach(element => {
-        element.removeAttribute('style');
-      });
-    }, 3000)
-  }
-
-  onIntersection(): void {
-
-    if (this.animationPlayed == false && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-
-      if (window.innerWidth > 768) {
-        anime({
-          targets: '.profile-workexp-content-carousel',
-          translateX: ['100%', 0], // Move from left (-100%) to current position (0)
-          opacity: [0, 1], // Fade from transparent (0) to opaque (1)
-          delay: 500, // Use easing for smoother animation
-        });
-
-        anime({
-          targets: '.carousel-filter-icon-container',
-          translateX: ['-1000px', 0], // Move from left (-100%) to current position (0)
-          opacity: [0, 1], // Fade from transparent (0) to opaque (1)
-          delay: anime.stagger(200, { start: 700 }), // Use easing for smoother animation
-        });
-
-        this.removeAnimationInlineStyles();
-        this.animationPlayed = true;
-      } else {
-        anime({
-          targets: '.carousel-filter-icon-container',
-          translateX: ['1000px', 0], // Move from left (-100%) to current position (0)
-          opacity: [0, 1], // Fade from transparent (0) to opaque (1)
-          delay: anime.stagger(200, { start: 500 }), // Use easing for smoother animation
-        });
-
-        anime({
-          targets: '.profile-workexp-content-carousel',
-          translateX: ['100%', 0], // Move from left (-100%) to current position (0)
-          opacity: [0, 1], // Fade from transparent (0) to opaque (1)
-          delay: 900, // Use easing for smoother animation
-        });
-
-        this.removeAnimationInlineStyles();
-        this.animationPlayed = true;
-      }
+    if (descs.length === 0) {
+      return;
     }
+
+    descs.forEach(desc => this.renderer.removeStyle(desc, 'height'));
+    const tallest = Math.max(...descs.map(desc => desc.offsetHeight));
+    descs.forEach(desc => this.renderer.setStyle(desc, 'height', `${tallest}px`));
   }
 
-  shouldApplyTilt(): boolean {
-    // Adjust the screen width threshold based on your definition of "mobile"
-    const mobileScreenWidth = 910;
-    return window.innerWidth > mobileScreenWidth;
-  }
+  playIntro(startDelay: number): void {
+    if (this.animationPlayed == false && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const carousel = this.el.nativeElement.querySelector('.profile-workexp-content-carousel');
 
-  // slideTo(index: number) {
-  //   const bulletsContainer = document.querySelector('.bullets-container');
-  //   const bulletElements = bulletsContainer!.querySelectorAll('.bullet');
-
-  //   bulletElements.forEach((bullet, idx) => {
-  //     // Assert bullet as HTMLElement
-  //     const bulletElement = bullet as HTMLElement;
-
-  //     // Check if the index matches the desired index
-  //     if (idx == index) {
-  //       // Trigger the click event for the bullet element at the specified index
-  //       bulletElement.click();
-  //       console.log(idx);
-  //     }
-  //   });
-
-  //   this.workExpSlides.forEach((slide: any, idx: any) => {
-  //     // If the index matches the desired index
-  //     if (idx == index) {
-  //       // Set the selected property to 'active'
-  //       slide.selected = 'active';
-  //     } else {
-  //       // Set the selected property to 'inactive' for all other slides
-  //       slide.selected = 'inactive';
-  //     }
-  //   });
-  // }
-
-  slideTo() {
-    this
-  }
-
-  resizeCarouselDescObserver() {
-    // Select the first slide's content element
-    const firstSlideContent = document.querySelector('.profile-workexp-content-carousel-slide:nth-child(1) .slide-card-desc-desc');
-
-    // Check if ResizeObserver is supported by the browser
-    if ('ResizeObserver' in window) {
-      // Create a new ResizeObserver
-      const resizeObserver = new ResizeObserver(entries => {
-        // Get the first entry (which corresponds to the first slide's content)
-        const firstEntry = entries[0];
-
-        // Get the height of the first slide's content
-        const firstSlideHeight = firstEntry.contentRect.height;
-
-        // Apply the height to the other slides' content
-        const otherSlides = document.querySelectorAll('.carousel-slide:nth-child(n+2) .slide-card-desc-desc');
-        otherSlides.forEach((slide: any) => {
-          slide.style.height = firstSlideHeight + 'px';
-        });
+      anime({
+        targets: carousel,
+        translateY: [30, 0],
+        opacity: [0, 1],
+        easing: 'easeOutCubic',
+        duration: 600,
+        delay: startDelay,
+        complete: () => carousel.style.removeProperty('transform')
       });
 
-      // Observe changes in the size of the first slide's content
-      resizeObserver.observe(firstSlideContent!);
-    } else {
-      // Fallback for browsers that do not support ResizeObserver
-      console.error('ResizeObserver is not supported');
+      anime({
+        targets: this.el.nativeElement.querySelectorAll('.workexp-capsule'),
+        scale: [0.6, 1],
+        rotate: [-12, 0],
+        easing: 'easeOutBack',
+        duration: 600,
+        delay: startDelay + 200,
+        complete: (anim: any) => anim.animatables.forEach((a: any) => a.target.style.removeProperty('transform'))
+      });
+
+      this.animationPlayed = true;
     }
   }
 }

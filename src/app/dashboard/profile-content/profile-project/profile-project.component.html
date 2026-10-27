@@ -1,67 +1,40 @@
-<div
-  class="profile-project-container"
-  #proj
-  scrollReached
-  (scrollReached)="onIntersection()"
->
+<div class="profile-project-container" #proj>
   <div class="profile-project-header-container ellipsis">
     <div class="profile-project-header-title">My Projects</div>
+    <div class="profile-project-header-summary">{{ selectedProjects.length }} in library</div>
   </div>
   <div class="profile-project-content-display">
-    <div class="profile-project-card-container">
-      @for (proj of selectedProjects; track proj; let idx = $index) {
-        <div class="profile-project-card tilt-object">
-          <img
-            #projectCardBg
-            class="project-card-bg"
-            [src]="proj.bgSrc"
-            [alt]="proj.name"
-            fill
-          />
-          <div
-            class="project-card-content"
-            #projectCardContent
-            (mouseenter)="onMouseEnter(idx)"
-            (mouseleave)="onMouseLeave(idx)"
-          >
-            <div class="project-card-name">
-              {{ proj.name }}
+    <div class="project-grid">
+      @for (proj of selectedProjects; track proj.id; let first = $first) {
+        <div class="project-capsule tilt-object" [class.is-featured]="first">
+          <a class="project-capsule-media" [href]="proj.link" target="_blank" tabindex="-1">
+            <img class="project-capsule-img" [src]="proj.bgSrc" [alt]="proj.name" loading="lazy" />
+            @if (first) {
+              <span class="project-capsule-ribbon">Featured</span>
+            }
+          </a>
+          <div class="project-capsule-body">
+            <div class="project-capsule-title-row">
+              <img class="project-capsule-icon" [src]="proj.stacksLogo[0].link" alt="" />
+              <a class="project-capsule-title ellipsis" [href]="proj.link" target="_blank">{{ proj.name }}</a>
             </div>
-            <div class="project-card-stack" ngOptimizedImageIgnore>
-              @for (stack of proj.stacksLogo; track stack) {
-                @if (stack.redirect != "") {
-                  <a [href]="stack.redirect" target="_blank">
-                    <div
-                      class="project-card-stack-icon-container redirect"
-                      [title]="stack.name"
-                    >
-                      <img
-                        [src]="stack.link"
-                        [alt]="stack.name"
-                        class="project-card-stack-icon"
-                        height="40"
-                        width="40"
-                      />
-                    </div>
-                  </a>
-                } @else {
-                  <div
-                    class="project-card-stack-icon-container"
-                    [title]="stack.name"
-                  >
-                    <img
-                      [src]="stack.link"
-                      [alt]="stack.name"
-                      class="project-card-stack-icon"
-                      height="40"
-                      width="40"
-                    />
-                  </div>
+            <p class="project-capsule-desc">{{ proj.desc }}</p>
+            <div class="project-capsule-tags">
+              @for (stack of proj.stacksLogo; track stack.name; let firstStack = $first) {
+                @if (!firstStack) {
+                  @if (stack.redirect) {
+                    <a class="project-tag is-link" [href]="stack.redirect" target="_blank" [title]="'Open ' + stack.name">
+                      <img class="project-tag-icon" [src]="stack.link" alt="" />
+                      {{ stack.name }}
+                    </a>
+                  } @else {
+                    <span class="project-tag">
+                      <img class="project-tag-icon" [src]="stack.link" alt="" />
+                      {{ stack.name }}
+                    </span>
+                  }
                 }
               }
-            </div>
-            <div class="project-card-desc">
-              {{ proj.desc }}
             </div>
           </div>
         </div>

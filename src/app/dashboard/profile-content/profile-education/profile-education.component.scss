@@ -1,3 +1,5 @@
+@use '../../../../styles/mixins' as m;
+
 .profile-edu-container {
     display: flex;
     flex-direction: column;
@@ -7,17 +9,16 @@
     padding-bottom: 15px;
 
     .profile-edu-header-container {
+        @include m.showcase-header;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         font-family: "Motiva Sans", Sans-serif;
         font-weight: 200;
-        background: linear-gradient(90deg, var(--gradient-showcase-header-left) 0%, var(--color-showcase-header) 90%);
-        padding: 5px 10px 5px 10px;
+        padding: 6px 12px;
         color: #ffffff;
         font-size: 20px;
         line-height: 30px;
-        border-radius: 3px 3px 0px 0px;
         align-items: center;
         flex-wrap: wrap;
         gap: 5px;
@@ -28,234 +29,259 @@
         }
 
         .profile-edu-header-mobile-nav {
-            display: none;
-            gap: 7px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+
+            .edu-nav-count {
+                margin-right: 4px;
+                font-size: 13px;
+                color: rgba(255, 255, 255, 0.75);
+            }
 
             .edu-mobile-nav {
-                font-size: 16px;
-                padding: 7px;
-                height: 15px;
-                width: 15px;
+                @include m.steam-pill;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                border-radius: 5px;
-                border: 2px solid white;
-                cursor: pointer;
+                width: 15px;
+                height: 15px;
+                padding: 6px;
+                font-size: 13px;
+                border-radius: 4px;
+
+                &.is-disabled {
+                    opacity: 0.35;
+                    cursor: default;
+                }
+            }
+        }
+    }
+
+    .profile-edu-progress {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        padding: 10px 14px;
+        background: rgba(0, 0, 0, 0.4);
+        border: 1px solid var(--panel-border);
+        border-top: none;
+        border-bottom: none;
+
+        .profile-edu-progress-text {
+            display: flex;
+            justify-content: space-between;
+            color: #8f98a0;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+
+            .profile-edu-progress-count {
+                color: #c6d4df;
+                text-transform: none;
+                letter-spacing: 0;
+            }
+        }
+
+        .profile-edu-progress-bar {
+            height: 6px;
+            border-radius: 2px;
+            background: rgba(255, 255, 255, 0.08);
+            overflow: hidden;
+
+            .profile-edu-progress-fill {
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, #47bfff 0%, #1a44c2 100%);
             }
         }
     }
 
     .profile-edu-content-display {
-        display: flex;
-        padding: 7px 0px 0px 0px;
-        flex-direction: column;
-        width: 100%;
-        height: 100%;
+        @include m.showcase-body;
         background-color: rgba(0, 0, 0, 0.3);
-        justify-content: flex-start;
-        align-items: center;
-        border-radius: 0px 0px 3px 3px;
-        max-height: 280px;
         overflow: hidden;
+    }
+}
 
-        .edu-timeline-content {
-            border-left: 1px solid #f4f5f7;
-            position: relative;
-            padding: 20px;
-            margin-left: 90px;
+// Each item fills exactly one scroll step; the TS sets its height to the tallest item.
+.edu-timeline-content {
+    box-sizing: border-box !important;
+    display: flex;
+    padding: 12px;
+}
 
-            .edu-date {
-                position: absolute;
-                left: -9rem;
-                width: 7.5rem;
-                text-align: right;
-                color: #e5e5e5;
-                text-shadow: 1px 2px 2px black;
+// One education entry, styled like a row on Steam's achievements page.
+.edu-card {
+    --edu-color: #66C0F4;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    flex: 1;
+    min-width: 0;
+    padding: 14px;
+    border-radius: 4px;
+    background: linear-gradient(90deg, color-mix(in srgb, var(--edu-color) 14%, transparent) 0%, rgba(255, 255, 255, 0.02) 60%), rgba(16, 20, 27, 0.75);
+    box-shadow: inset 3px 0 0 var(--edu-color), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+
+    @media (not (prefers-reduced-motion: reduce)) {
+        opacity: 0;
+    }
+
+    .edu-badge {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 4px;
+        flex-shrink: 0;
+        width: 72px;
+        height: 72px;
+        border-radius: 4px;
+        background: radial-gradient(circle at 30% 25%, color-mix(in srgb, var(--edu-color) 85%, #ffffff), color-mix(in srgb, var(--edu-color) 55%, #000000));
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+        color: #ffffff;
+
+        .edu-badge-icon {
+            font-size: 28px;
+            filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.45));
+        }
+
+        .edu-badge-year {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.6px;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+        }
+    }
+
+    .edu-card-main {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        flex: 1;
+        min-width: 0;
+    }
+
+    .edu-card-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 12px;
+
+        .edu-card-heading {
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+        }
+
+        .edu-card-title {
+            color: #ffffff;
+            font-size: 19px;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .edu-card-university {
+            width: fit-content;
+            color: #66C0F4;
+            font-size: 14px;
+            transition: color 0.2s ease;
+
+            &:hover {
+                color: #ffffff;
+            }
+        }
+
+        .edu-card-unlocked {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            flex-shrink: 0;
+            text-align: right;
+            font-size: 12px;
+            line-height: 1.5;
+
+            .edu-card-unlocked-label {
+                color: #8f98a0;
             }
 
-            .edu-card {
-                padding: 20px;
-                background: rgba(255, 255, 255, 0.2);
-                border-radius: 4px;
-                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-                backdrop-filter: blur(5px);
-                -webkit-backdrop-filter: blur(5px);
-                border: 1px solid rgba(255, 255, 255, 0.3);
-                min-height: calc(235px - 40px);
-                text-shadow: 1px 2px 3px black;
+            .edu-card-date {
+                color: #c6d4df;
+            }
+        }
+    }
 
-                .edu-card-title {
-                    display: flex;
-                    flex-wrap: wrap;
-                    font-size: 24px;
-                    margin-bottom: 7px;
-                    font-weight: bolder;
-                    color: #66C0F4;
-                    text-shadow: 1px 2px 3px black;
-                }
+    .edu-card-text {
+        color: #acb2b8;
+        font-size: 13px;
+        line-height: 1.5;
+        text-align: justify;
+    }
 
-                .edu-card-subtitle {
-                    display: flex;
-                    flex-direction: row;
-                    flex-wrap: wrap;
-                    gap: 7px;
-                    margin-bottom: 14px;
-                    align-items: baseline;
+    .edu-achievement-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
 
-                    .edu-card-university {
-                        font-size: 16px;
-                        position: relative;
-                        transition: 0.3s ease-in-out;
+        .edu-achievement-content {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 9px;
+            border-radius: 2px;
+            background: rgba(252, 194, 1, 0.1);
+            color: #e8c14d;
+            font-size: 12px;
+            white-space: nowrap;
 
-                        &::before {
-                            content: "";
-                            position: absolute;
-                            bottom: -3px;
-                            left: 0;
-                            height: 3px;
-                            margin-top: 7px;
-                            background: #66C0F4;
-                            width: 0;
-                            transition: width 0.3s ease-in-out;
-                        }
-
-                        @media (not (prefers-reduced-motion: reduce)) {
-                            &:hover {
-                                color: #66C0F4;
-
-                                &::before {
-                                    width: 100%;
-                                }
-                            }
-                        }
-                    }
-
-                    .edu-card-date {
-                        margin: 0;
-                        font-size: 12px;
-                        font-style: italic;
-                    }
-                }
-
-                .edu-card-text {
-                    color: white;
-                    line-height: 1.4;
-                    text-align: justify;
-                }
-
-                .edu-achievement-container {
-                    display: flex;
-                    justify-content: flex-start;
-                    align-items: baseline;
-                    flex-direction: row;
-                    flex-wrap: nowrap;
-                    width: 100%;
-                    gap: 7px;
-                    margin-top: 14px;
-                    overflow-x: scroll;
-                    max-width: 0;
-                    min-width: 100%;
-
-                    .edu-achievement-content {
-                        display: flex;
-                        flex-direction: row;
-                        justify-content: center;
-                        align-items: center;
-                        gap: 4px;
-                        padding: 10px;
-                        border: 1.5px solid #FCC201;
-                        border-radius: 7px;
-                        color: #FCC201;
-                        text-shadow: 1px 2px 2px black;
-                        box-shadow: 1px 1px 1px black;
-                        text-wrap: nowrap;
-
-                        .edu-achievement-icon {
-                            font-size: 16px;
-                            margin-right: 2px;
-                            filter: drop-shadow(1px 1px 1px black);
-                        }
-
-                        .edu-achievement-desc {
-                            font-size: 13px;
-                        }
-                    }
-                }
-
-                .edu-achievement-container::-webkit-scrollbar {
-                    height: 0px !important;
-                }
+            .edu-achievement-icon {
+                font-size: 12px;
             }
         }
     }
 }
 
-@media screen and (max-width: 910px) {
-    .profile-edu-header-mobile-nav {
-        display: flex !important;
-    }
-}
-
 @media screen and (max-width: 768px) {
     .edu-timeline-content {
-        padding: 10px 20px !important;
-        margin-left: 40px !important;
+        padding: 10px;
         user-select: none;
     }
 
     .edu-card {
-        padding: 10px !important;
-    }
+        flex-direction: column;
+        gap: 12px;
+        padding: 12px;
 
-    .edu-card-title {
-        font-size: 18px !important;
-    }
+        .edu-badge {
+            flex-direction: row;
+            width: auto;
+            height: auto;
+            padding: 6px 10px;
+            gap: 8px;
 
-    .edu-card-university {
-        font-size: 13px !important;
-    }
+            .edu-badge-icon {
+                font-size: 18px;
+            }
+        }
 
-    .edu-card-date {
-        font-size: 10px !important;
-    }
+        .edu-card-top {
+            flex-direction: column;
+            gap: 6px;
 
-    .edu-card-text {
-        font-size: 13px !important;
-    }
+            .edu-card-title {
+                font-size: 16px;
+            }
 
-    .edu-date {
-        position: static !important;
-        text-align: left !important;
-    }
-}
+            .edu-card-unlocked {
+                flex-direction: row;
+                gap: 6px;
+                align-items: center;
+            }
+        }
 
-@media screen and (max-width: 600px) {
-    .edu-achievement-icon {
-        font-size: 13px !important;
-    }
-
-    .edu-achievement-desc {
-        font-size: 11px !important;
-    }
-
-    .edu-card-title {
-        font-size: 16px !important;
-    }
-
-    .edu-card-university {
-        font-size: 11px !important;
-    }
-
-    .edu-card-date {
-        font-size: 10px !important;
-    }
-
-    .edu-card-text {
-        font-size: 11px !important;
-    }
-
-    .edu-date {
-        font-size: 14px !important;
+        .edu-card-text {
+            font-size: 12px;
+        }
     }
 }

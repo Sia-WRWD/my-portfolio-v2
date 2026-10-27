@@ -1,12 +1,18 @@
 .footer-container {
     width: 100%;
-    // background: rgba(0, 0, 0, .85);
-    width: 1000px;
+    width: 992px;
     min-width: 0px;
-    max-width: 1000px;
+    max-width: 992px;
     padding: 15px;
+    margin-top: 24px;
     min-height: 300px;
     z-index: 999;
+    background: linear-gradient(160deg, rgba(23, 29, 37, 0.55) 0%, rgba(0, 0, 0, 0.35) 100%);
+    border: 1px solid var(--panel-border);
+    border-radius: var(--panel-radius);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 
     .upper-content {
         display: grid;
@@ -29,9 +35,10 @@
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    background: #171d25;
-                    border-radius: 5px;
-                    box-shadow: 1px 2px 2px black;
+                    background: rgba(23, 29, 37, 0.9);
+                    border: 1px solid rgba(255, 255, 255, 0.08);
+                    border-radius: 8px;
+                    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.45);
 
                     fa-icon,
                     .fa-riot {
@@ -52,10 +59,10 @@
                     .steam,
                     .discord,
                     .riot {
-                        transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+                        transition: transform 0.25s ease, background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 
                         &:hover {
-                            transform: scale(1.1);
+                            transform: translateY(-3px) scale(1.08);
                         }
                     }
 
@@ -180,8 +187,14 @@
             .footer-header {
                 font-size: 70px;
                 font-weight: 600;
+                line-height: 1.05;
                 color: #FFFFFF;
                 font-family: sans-serif;
+                background: linear-gradient(90deg, #ffffff 40%, var(--accent));
+                -webkit-background-clip: text;
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+                filter: drop-shadow(1px 2px 3px rgba(0, 0, 0, 0.6));
             }
 
             .footer-copyright {
@@ -224,6 +237,7 @@
             border-radius: 50%;
             grid-area: logo;
             position: relative;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.35), 0 0 0 6px rgba(255, 255, 255, 0.05);
 
             .logo {
                 width: 100%;
