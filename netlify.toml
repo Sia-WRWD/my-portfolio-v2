@@ -1,0 +1,3 @@
+# Angular CLI 22 exits with code 3 on anything older than Node 22.22.3, 24.15.0, or 26.
+[build.environment]
+  NODE_VERSION = "22.22.3"
