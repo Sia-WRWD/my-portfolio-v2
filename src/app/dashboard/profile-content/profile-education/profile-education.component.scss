@@ -1,11 +1,22 @@
 @use '../../../../styles/mixins' as m;
 
+:host {
+    display: block;
+    width: 100%;
+    box-sizing: border-box !important;
+
+    &,
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box !important;
+    }
+}
+
 .profile-edu-container {
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 100%;
-    overflow: hidden;
     padding-bottom: 15px;
 
     .profile-edu-header-container {
@@ -109,6 +120,8 @@
     box-sizing: border-box !important;
     display: flex;
     padding: 12px;
+    width: 100%;
+    min-width: 0;
 }
 
 // One education entry, styled like a row on Steam's achievements page.
@@ -118,7 +131,9 @@
     align-items: flex-start;
     gap: 16px;
     flex: 1;
+    width: 100%;
     min-width: 0;
+    min-height: 0;
     padding: 14px;
     border-radius: 4px;
     background: linear-gradient(90deg, color-mix(in srgb, var(--edu-color) 14%, transparent) 0%, rgba(255, 255, 255, 0.02) 60%), rgba(16, 20, 27, 0.75);
@@ -161,6 +176,8 @@
         gap: 8px;
         flex: 1;
         min-width: 0;
+        min-height: 0;
+        width: 100%;
     }
 
     .edu-card-top {
@@ -180,6 +197,8 @@
             font-size: 19px;
             font-weight: 600;
             line-height: 1.3;
+            overflow-wrap: break-word;
+            word-break: break-word;
         }
 
         .edu-card-university {
@@ -187,6 +206,7 @@
             color: #66C0F4;
             font-size: 14px;
             transition: color 0.2s ease;
+            overflow-wrap: break-word;
 
             &:hover {
                 color: #ffffff;
@@ -217,12 +237,15 @@
         font-size: 13px;
         line-height: 1.5;
         text-align: justify;
+        overflow-wrap: break-word;
+        word-break: break-word;
     }
 
     .edu-achievement-container {
         display: flex;
         flex-wrap: wrap;
         gap: 6px;
+        min-width: 0;
 
         .edu-achievement-content {
             display: inline-flex;
@@ -234,9 +257,17 @@
             color: #e8c14d;
             font-size: 12px;
             white-space: nowrap;
+            max-width: 100%;
 
             .edu-achievement-icon {
                 font-size: 12px;
+                flex-shrink: 0;
+            }
+
+            .edu-achievement-desc {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
             }
         }
     }
@@ -250,6 +281,7 @@
 
     .edu-card {
         flex-direction: column;
+        align-items: stretch;
         gap: 12px;
         padding: 12px;
 
@@ -259,10 +291,16 @@
             height: auto;
             padding: 6px 10px;
             gap: 8px;
+            align-self: flex-start;
 
             .edu-badge-icon {
                 font-size: 18px;
             }
+        }
+
+        .edu-card-main {
+            width: 100%;
+            min-width: 0;
         }
 
         .edu-card-top {

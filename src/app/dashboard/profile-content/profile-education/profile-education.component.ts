@@ -46,10 +46,13 @@ export class ProfileEducationComponent {
     }
 
     const container = this.getContainer();
-    const itemHeight = container.querySelector<HTMLElement>('.edu-timeline-content')!.offsetHeight;
+    const item = container?.querySelector<HTMLElement>('.edu-timeline-content');
+    const itemHeight = item?.offsetHeight || 0;
 
-    this.animateScroll(container, container.scrollTop, index * itemHeight, 300);
-    this.currentItemIndex = index;
+    if (itemHeight > 0) {
+      this.animateScroll(container, container.scrollTop, index * itemHeight, 300);
+      this.currentItemIndex = index;
+    }
   }
 
   // Wheel steps one item at a time, but hands scrolling back to the page at either end of the list.
@@ -98,6 +101,26 @@ export class ProfileEducationComponent {
   ngAfterViewInit() {
     this.syncItemHeights();
 
+    if (typeof document !== 'undefined' && 'fonts' in document) {
+      document.fonts.ready.then(() => this.syncItemHeights());
+    }
+
+    const container = this.getContainer();
+    if (typeof ResizeObserver !== 'undefined' && container) {
+      let lastWidth = container.clientWidth;
+      const ro = new ResizeObserver(entries => {
+        for (const entry of entries) {
+          const newWidth = entry.contentRect.width;
+          if (Math.abs(newWidth - lastWidth) > 1) {
+            lastWidth = newWidth;
+            this.syncItemHeights();
+          }
+        }
+      });
+      ro.observe(container);
+      this.destroyRef.onDestroy(() => ro.disconnect());
+    }
+
     fromEvent(window, 'resize').pipe(
       debounceTime(100),
       takeUntilDestroyed(this.destroyRef)
@@ -107,18 +130,27 @@ export class ProfileEducationComponent {
   // Every item takes the tallest item's height so each scroll step lands exactly on the next item.
   syncItemHeights() {
     const container = this.getContainer();
-    const items: HTMLElement[] = Array.from(container?.querySelectorAll('.edu-timeline-content') ?? []);
-
-    if (!container || items.length === 0) {
+    if (!container) {
       return;
     }
 
-    items.forEach(item => this.renderer.removeStyle(item, 'height'));
-    const tallest = Math.max(...items.map(item => item.offsetHeight));
+    const items: HTMLElement[] = Array.from(container.querySelectorAll('.edu-timeline-content'));
+    if (items.length === 0) {
+      return;
+    }
 
-    items.forEach(item => this.renderer.setStyle(item, 'height', `${tallest}px`));
-    this.renderer.setStyle(container, 'max-height', `${tallest}px`);
-    container.scrollTop = this.currentItemIndex * tallest;
+    this.renderer.removeStyle(container, 'height');
+    this.renderer.removeStyle(container, 'max-height');
+    items.forEach(item => this.renderer.removeStyle(item, 'height'));
+
+    const tallest = Math.max(...items.map(item => Math.max(item.scrollHeight, item.offsetHeight)));
+
+    if (tallest > 0) {
+      items.forEach(item => this.renderer.setStyle(item, 'height', `${tallest}px`));
+      this.renderer.setStyle(container, 'height', `${tallest}px`);
+      this.renderer.setStyle(container, 'max-height', `${tallest}px`);
+      container.scrollTop = this.currentItemIndex * tallest;
+    }
   }
 
   getContainer(): HTMLElement {
@@ -126,6 +158,7 @@ export class ProfileEducationComponent {
   }
 
   playIntro(startDelay: number): void {
+    this.syncItemHeights();
     if (this.animationPlayed == false && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
 
       anime({
